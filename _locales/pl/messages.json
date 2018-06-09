@@ -1,0 +1,10 @@
+{
+    "appName": {
+        "message": "Raindrop.io New Tab / Speed Dial",
+        "description": "name"
+    },
+    "appDesc": {
+        "message": "Your beautiful start page with favorite sites and bookmarks.",
+        "description": "description"
+    }
+}

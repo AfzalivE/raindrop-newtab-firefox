@@ -1,0 +1,57 @@
+{
+  "manifest_version": 2,
+  "name": "Raindrop.io New Tab / Speed Dial",
+  "description": "Your beautiful start page with favorite sites and bookmarks.",
+  "homepage_url": "https://raindrop.io",
+  "short_name": "RaindropNewTab",
+  "version": "0.7.5",
+  "default_locale": "en",
+  "commands": {
+    "_execute_page_action": {
+      "suggested_key": {
+        "windows": "Ctrl+E",
+        "mac": "Command+E",
+        "chromeos": "Ctrl+E",
+        "linux": "Ctrl+E"
+      }
+    }
+  },
+
+  "background": {
+    "scripts": ["background.js"]
+  },
+
+  "permissions": [
+    "tabs",
+    "storage",
+    "*://*/*",
+    "<all_urls>",
+    "notifications"
+  ],
+
+  "icons": {
+    "16": "common/images/icon-16.png",
+    "48": "common/images/icon-48.png",
+    "128": "common/images/icon-128.png"
+  },
+
+  "chrome_url_overrides": {
+    "newtab": "app/index.html#/"
+  },
+
+  "options_ui": {
+    "page": "settings/settings.html",
+    "chrome_style": true
+  },
+
+  "page_action": {
+    "default_icon": {
+      "19": "common/images/page-action-19.png",
+      "38": "common/images/page-action-38.png"
+    },
+    "default_title": "Save to Raindrop.io",
+    "default_popup": "miniclipper/index.html"
+  },
+
+  "content_security_policy": "script-src 'self' https://www.google-analytics.com https://pagead2.googlesyndication.com https://*.intercom.io https://*.intercomcdn.com https://*.getsentry.com https://*.ravenjs.com https://*.uservoice.com; object-src 'self'"
+}
