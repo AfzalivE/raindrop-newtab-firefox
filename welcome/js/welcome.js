@@ -9980,7 +9980,7 @@ window.pathPrefix = "/other/newtab/welcome/";
       initJSfile: function () {
         var e = this,
           o = new XMLHttpRequest,
-          a = (window.pathPrefix || "") + "../common/js/" + this.currentLang + ".js",
+          a = (window.pathPrefix || "") + "../common/js/" + this.currentLang + ".json",
           i = new Event("langLoaded");
         o.onreadystatechange = function () {
           4 == o.readyState && o.responseText && (window["lang_" + e.currentLang] = JSON.parse(o.responseText), window.languageLoaded = !0, window.dispatchEvent(i))
