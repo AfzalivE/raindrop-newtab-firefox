@@ -260,7 +260,7 @@ module.exports = {
                     fileReader.onload = function (evt) {
                         // Read out file contents as a Data URL
                         var result = evt.target.result;
-                        
+
                         trySetBg(result);
                         try{localStorage.setItem(url, result);}catch(e){}
                     };
@@ -10078,7 +10078,7 @@ module.exports = {
 
         if ((window.environment||[]).indexOf("safari_popup")!=-1)
             _target = "_blank";
-        
+
         return _target;
     },
 
@@ -10088,7 +10088,7 @@ module.exports = {
         if ((window.environment||[]).indexOf("clipper")!=-1){
             _target = "_blank";
         }
-        
+
         if (window.location.protocol.indexOf("http")!=-1) {
             sURL = "/settings#/settings";
         }
@@ -10096,7 +10096,7 @@ module.exports = {
         {
             sURL = "../settings/settings.html?isMac#/settings";
         }
-        
+
         return sURL;
     }
 };
@@ -10189,7 +10189,7 @@ module.exports = {
         }
 
         s = S(s).replaceAll('"', '').s;
-        
+
         if (s.indexOf("-")!=-1){
           s = s.substr(0, s.indexOf("-")-1);
         }
@@ -10379,7 +10379,7 @@ module.exports = {
 
       var _this = this;
       var xmlhttp = new XMLHttpRequest();
-      var url = (window.pathPrefix||"")+"../common/js/"+this.currentLang+".js";
+      var url = (window.pathPrefix||"")+"../common/js/"+this.currentLang+".json";
 
       var e = new Event('langLoaded');
       xmlhttp.onreadystatechange = function() {
@@ -10495,7 +10495,7 @@ var CollectionsStore = Reflux.createStore({
         if (!_loaded) {
             Api.get("collections", function (json) {
                 _loaded = true;
-                
+
                 if (json.result){
                     _collections = json.items || [];
 
@@ -10638,7 +10638,7 @@ var CollectionsStore = Reflux.createStore({
 
                     _this.trigger(_collections);
                     _this._saveCache();
-                    
+
                     ChildrensActions.removeCollection(params);
                     UserActions.saveGroups();
 
@@ -10861,7 +10861,7 @@ var StatsStore = Reflux.createStore({
                 }
             })
             .catch(function(e){
-                            
+
             });}catch(e){}
 
     	_loading = true;
@@ -11540,7 +11540,7 @@ var UserStore = Reflux.createStore({
               this.cleanGroups();
             }
         }
-        
+
         if (typeof callback == "function")
           callback(_logged);
     },
@@ -11609,16 +11609,16 @@ module.exports = React.createClass({displayName: "exports",
 		var uniqLink = "https://raindrop.io/?ref="+UserStore.getUser()._id;
 
 		return (
-			React.createElement("div", null, 
-				React.createElement("h1", null, "Want free access to ", React.createElement("b", null, "PRO Features"), " for 12 months?"), 
-				React.createElement("p", {style: {fontSize: "20px", margin: "36px 0px"}}, 
-					"Raindrop.io is free, but you can ", React.createElement("a", {href: "https://raindrop.io/static/pro", target: "_blank"}, "get more nice PRO features"), ".", React.createElement("br", null), 
+			React.createElement("div", null,
+				React.createElement("h1", null, "Want free access to ", React.createElement("b", null, "PRO Features"), " for 12 months?"),
+				React.createElement("p", {style: {fontSize: "20px", margin: "36px 0px"}},
+					"Raindrop.io is free, but you can ", React.createElement("a", {href: "https://raindrop.io/static/pro", target: "_blank"}, "get more nice PRO features"), ".", React.createElement("br", null),
 					"Get 5 of your friends to sign up with this unique URL:"
-				), 	
+				),
 
-				React.createElement("div", {className: "invite-link"}, 
-					React.createElement("input", {type: "text", value: uniqLink, onFocus: this.handleSelectAll, onMouseUp: this.handleSelectAll}), 
-					React.createElement("a", {href: "https://www.facebook.com/share.php?u="+encodeURIComponent(uniqLink), target: "_blank", className: "invite-btn fb"}, React.createElement("span", {dangerouslySetInnerHTML: {__html:fb}}), " Share"), 
+				React.createElement("div", {className: "invite-link"},
+					React.createElement("input", {type: "text", value: uniqLink, onFocus: this.handleSelectAll, onMouseUp: this.handleSelectAll}),
+					React.createElement("a", {href: "https://www.facebook.com/share.php?u="+encodeURIComponent(uniqLink), target: "_blank", className: "invite-btn fb"}, React.createElement("span", {dangerouslySetInnerHTML: {__html:fb}}), " Share"),
 					React.createElement("a", {href: "https://twitter.com/home?status="+encodeURIComponent(tweetLine+" "+uniqLink), target: "_blank", className: "invite-btn tweet"}, React.createElement("span", {dangerouslySetInnerHTML: {__html:twitter}}), " Tweet")
 				)
 			)
@@ -11657,9 +11657,9 @@ var AfterClipper = React.createClass({displayName: "AfterClipper",
 	render: function() {
 		if (this.state.showInvite)
 			return (
-				React.createElement("div", {id: "content"}, 
-					React.createElement("article", null, 
-						React.createElement("header", null, 
+				React.createElement("div", {id: "content"},
+					React.createElement("article", null,
+						React.createElement("header", null,
 							React.createElement(Invite, null)
 						)
 					)
@@ -11668,9 +11668,9 @@ var AfterClipper = React.createClass({displayName: "AfterClipper",
 
 		//Click the  toolbar icon to get started.
 		return (
-			React.createElement("div", {id: "content"}, 
-				React.createElement("article", null, 
-					React.createElement("div", {className: "extension-pointer"}, 
+			React.createElement("div", {id: "content"},
+				React.createElement("article", null,
+					React.createElement("div", {className: "extension-pointer"},
 						"Click the ", React.createElement("span", {className: "light-icon", dangerouslySetInnerHTML: {__html:light}}), " toolbar icon to get started."
 					)
 				)
@@ -11745,13 +11745,13 @@ module.exports = React.createClass({displayName: "exports",
 			prefix = "for "+_.capitalize(this.state.browser);
 		}
 
-		var tagLine = (React.createElement("h3", null, 
+		var tagLine = (React.createElement("h3", null,
 			React.createElement("a", {href: this.state.link, onClick: this.handleInstall, target: "_blank"}, "Install our browser extension ", prefix), " and keep your content handy. From any tab."
 		));
 
 		var other = (
-			React.createElement("div", null, 
-				React.createElement("br", null), React.createElement("br", null), 
+			React.createElement("div", null,
+				React.createElement("br", null), React.createElement("br", null),
 				React.createElement("h3", {className: "subheader", style: {fontSize: "15px"}}, React.createElement("a", {href: globalJson.links.apps, target: "_blank"}, "Want install to another browser?"))
 			)
 		);
@@ -11763,23 +11763,23 @@ module.exports = React.createClass({displayName: "exports",
 			tagLine = React.createElement("h3", null, "Click lightning toolbar icon to get started");
 
 		return (
-			React.createElement("div", {id: "content"}, 
-				React.createElement("article", null, 
-					React.createElement("header", null, 
-						React.createElement("h1", null, "Clip web content easily"), 
-						tagLine, 
+			React.createElement("div", {id: "content"},
+				React.createElement("article", null,
+					React.createElement("header", null,
+						React.createElement("h1", null, "Clip web content easily"),
+						tagLine,
 
-						React.createElement("br", null), React.createElement("br", null), 
+						React.createElement("br", null), React.createElement("br", null),
 
-						React.createElement("div", {id: "videoPlayer"}, 
+						React.createElement("div", {id: "videoPlayer"},
 							React.createElement("video", {ref: "vid", src: "https://raindrop.io/other/welcome3/raindrop.mp4", width: "546", height: "400", preload: true, autoPlay: true, loop: true})
 						)
-					), 
+					),
 
 					other
-				), 
+				),
 
-				React.createElement("footer", {className: "subheader"}, 
+				React.createElement("footer", {className: "subheader"},
 					React.createElement("a", {href: "#/features", className: "button default"}, "Next ", React.createElement("span", {className: "icon", dangerouslySetInnerHTML: {__html:icons.forward}}))
 				)
 			)
@@ -11896,8 +11896,8 @@ module.exports = React.createClass({displayName: "exports",
 
 		if (this.state.loading)
 			return (
-				React.createElement("div", {id: "content"}, 
-					React.createElement("article", null, 
+				React.createElement("div", {id: "content"},
+					React.createElement("article", null,
 						React.createElement("span", {dangerouslySetInnerHTML: {__html:icons.preloader}})
 					)
 				)
@@ -11905,32 +11905,32 @@ module.exports = React.createClass({displayName: "exports",
 
 		var items = interests.map(function(i,index) {
 			return (
-				React.createElement("div", {className: "item "+(_this.state.selected.indexOf(index) != -1 ? "active" : null), "data-index": index, onClick: _this.check}, 
-					React.createElement("img", {src: network.fixURL("/img/templates/" + i.cover_path + ".png"), alt: ""}), 
+				React.createElement("div", {className: "item "+(_this.state.selected.indexOf(index) != -1 ? "active" : null), "data-index": index, onClick: _this.check},
+					React.createElement("img", {src: network.fixURL("/img/templates/" + i.cover_path + ".png"), alt: ""}),
 					React.createElement("span", null, i.title)
 				)
 			);
 		});
 
 		return (
-			React.createElement("div", {id: "content"}, 
-				React.createElement("article", null, 
-					React.createElement("header", null, 
-						React.createElement("h1", null, "Select your interests"), 
+			React.createElement("div", {id: "content"},
+				React.createElement("article", null,
+					React.createElement("header", null,
+						React.createElement("h1", null, "Select your interests"),
 						React.createElement("h3", null, "We call it «collections»")
-					), 
+					),
 
-					React.createElement("div", {className: "cheker"}, 
+					React.createElement("div", {className: "cheker"},
 						items
-					), 
+					),
 
-					React.createElement("br", null), React.createElement("br", null), 
-					React.createElement("div", {style: {opacity:.5}}, 
+					React.createElement("br", null), React.createElement("br", null),
+					React.createElement("div", {style: {opacity:.5}},
 						React.createElement("h3", {className: "subheader"}, "You can customize or make any other collections later")
 					), React.createElement("br", null)
-				), 
+				),
 
-				React.createElement("footer", {className: "subheader"}, 
+				React.createElement("footer", {className: "subheader"},
 					React.createElement("a", {href: "", onClick: this.goNext, className: "button default"}, "Next ", React.createElement("span", {className: "icon", dangerouslySetInnerHTML: {__html:icons.forward}}))
 				)
 			)
@@ -11969,51 +11969,51 @@ module.exports = React.createClass({displayName: "exports",
 
 	render: function() {
 		return (
-			React.createElement("div", {id: "content"}, 
-				React.createElement("div", {id: "screen-wrap"}, 
-				React.createElement("div", {id: "screen"}, 
-					React.createElement("div", {className: "animFromBottom"}, React.createElement("div", {className: "logo", dangerouslySetInnerHTML: {__html:logo}}), 
+			React.createElement("div", {id: "content"},
+				React.createElement("div", {id: "screen-wrap"},
+				React.createElement("div", {id: "screen"},
+					React.createElement("div", {className: "animFromBottom"}, React.createElement("div", {className: "logo", dangerouslySetInnerHTML: {__html:logo}}),
 
-						React.createElement("h1", null, "Your new home for all interests is ready!"), 
+						React.createElement("h1", null, "Your new home for all interests is ready!"),
 
-						React.createElement("div", {className: "screen-img current-target-"+this.state.over}, 
+						React.createElement("div", {className: "screen-img current-target-"+this.state.over},
 							React.createElement("div", null)
 						)
 					)
 				)
-				), 
+				),
 
-				React.createElement("article", {className: "subheader"}, 
-					React.createElement("div", {className: "liner left"}, 
+				React.createElement("article", {className: "subheader"},
+					React.createElement("div", {className: "liner left"},
 						"Here your collections"
-					), 
+					),
 					React.createElement("div", {className: "liner right"}
-						
-					), 
 
-					React.createElement("h2", {style: {marginTop:"0px"}}, "Space for most important:"), 
+					),
 
-					React.createElement("div", {className: "grid"}, 
-						React.createElement("div", {className: "item", "data-item": "clip", onMouseOver: this.handleOver, onMouseLeave: this.handleLeave, title: "You can save any content from web, including pages, links, articles, images and video."}, 
-							React.createElement("div", {className: "ic clip"}), 
+					React.createElement("h2", {style: {marginTop:"0px"}}, "Space for most important:"),
+
+					React.createElement("div", {className: "grid"},
+						React.createElement("div", {className: "item", "data-item": "clip", onMouseOver: this.handleOver, onMouseLeave: this.handleLeave, title: "You can save any content from web, including pages, links, articles, images and video."},
+							React.createElement("div", {className: "ic clip"}),
 							React.createElement("span", null, "Articles and pages from web")
-						), 
+						),
 
-						React.createElement("div", {className: "item", "data-item": "files", onMouseOver: this.handleOver, onMouseLeave: this.handleLeave, title: "Images. Soon PDF, Mark Down and other."}, 
-							React.createElement("div", {className: "ic files"}), 
+						React.createElement("div", {className: "item", "data-item": "files", onMouseOver: this.handleOver, onMouseLeave: this.handleLeave, title: "Images. Soon PDF, Mark Down and other."},
+							React.createElement("div", {className: "ic files"}),
 							React.createElement("span", null, "Files from desktop")
-						), 
+						),
 
-						React.createElement("div", {className: "item", "data-item": "embed", onMouseOver: this.handleOver, onMouseLeave: this.handleLeave, title: "Youtube, Vimeo, Flickr, IMDB, Slideshare and many other"}, 
-							React.createElement("div", {className: "ic embed"}), 
+						React.createElement("div", {className: "item", "data-item": "embed", onMouseOver: this.handleOver, onMouseLeave: this.handleLeave, title: "Youtube, Vimeo, Flickr, IMDB, Slideshare and many other"},
+							React.createElement("div", {className: "ic embed"}),
 							React.createElement("span", null, "Favorite movies, pictures or presentations")
-						), 
+						),
 
-						React.createElement("div", {className: "item", title: ""}, 
-							React.createElement("div", {className: "ic notes"}), 
-							React.createElement("span", null, "Notes"), 
+						React.createElement("div", {className: "item", title: ""},
+							React.createElement("div", {className: "ic notes"}),
+							React.createElement("span", null, "Notes"),
 
-							React.createElement("div", {className: "info"}, 
+							React.createElement("div", {className: "info"},
 								"Soon"
 							)
 						)
@@ -12048,9 +12048,9 @@ module.exports = React.createClass({displayName: "exports",
 							<span>Your inspiration</span>
 						</div>
 					</div>*/
-				), 
+				),
 
-				React.createElement("footer", {className: "subheader"}, 
+				React.createElement("footer", {className: "subheader"},
 					React.createElement("a", {href: "#/clipper", className: "button default"}, "Next ", React.createElement("span", {className: "icon", dangerouslySetInnerHTML: {__html:icons.forward}}))
 				)
 			)
@@ -12080,34 +12080,34 @@ module.exports = React.createClass({displayName: "exports",
 
     renderFeatures: function() {
     	return (
-    		React.createElement("div", {className: "grid", style: {maxWidth:"720px"}}, 
-				React.createElement("div", {className: "item", title: ""}, 
-					React.createElement("div", {className: "ic search", style: {marginLeft:"-44px"}}), 
+    		React.createElement("div", {className: "grid", style: {maxWidth:"720px"}},
+				React.createElement("div", {className: "item", title: ""},
+					React.createElement("div", {className: "ic search", style: {marginLeft:"-44px"}}),
 					React.createElement("span", {style: {marginTop:"10px"}}, "Smart search")
-				), 
+				),
 
-				React.createElement("div", {className: "item", title: ""}, 
-					React.createElement("div", {className: "ic sixsti shared"}), 
+				React.createElement("div", {className: "item", title: ""},
+					React.createElement("div", {className: "ic sixsti shared"}),
 					React.createElement("span", null, "Share & collaborate")
-				), 
+				),
 
-				React.createElement("div", {className: "item", title: ""}, 
-					React.createElement("div", {className: "ic sixsti newtab"}), 
+				React.createElement("div", {className: "item", title: ""},
+					React.createElement("div", {className: "ic sixsti newtab"}),
 					React.createElement("span", null, React.createElement("a", {href: globalJson.links.apps, target: "_blank"}, "New Tab replacement"))
-				), 
+				),
 
-				React.createElement("div", {className: "item", title: ""}, 
-					React.createElement("div", {className: "ic sixsti screenshot"}), 
+				React.createElement("div", {className: "item", title: ""},
+					React.createElement("div", {className: "ic sixsti screenshot"}),
 					React.createElement("span", null, "Page screenshots")
-				), 
+				),
 
-				React.createElement("div", {className: "item", title: ""}, 
-					React.createElement("div", {className: "ic sixsti rss"}), 
+				React.createElement("div", {className: "item", title: ""},
+					React.createElement("div", {className: "ic sixsti rss"}),
 					React.createElement("span", null, React.createElement("a", {href: globalJson.links.settings+"/rss", target: "_blank"}, "RSS"))
-				), 
+				),
 
-				React.createElement("div", {className: "item", title: ""}, 
-					React.createElement("div", {className: "ic sixsti import"}), 
+				React.createElement("div", {className: "item", title: ""},
+					React.createElement("div", {className: "ic sixsti import"}),
 					React.createElement("span", null, React.createElement("a", {href: globalJson.links.settings+"/import", target: "_blank"}, "Import/export bookmarks"))
 				)
 			)
@@ -12130,32 +12130,32 @@ module.exports = React.createClass({displayName: "exports",
 
 		if (this.state.platform=="newtab")
 			footerLink = (
-				React.createElement("div", {className: "info-open-newtab"}, 
+				React.createElement("div", {className: "info-open-newtab"},
 					React.createElement("div", {className: "ic newtab-browser"}), " Open new tab to get started"
 				)
 			);
 
 		return (
-			React.createElement("div", {id: "content"}, 
-				React.createElement("article", null, 
-					React.createElement("header", null, 
-						React.createElement(Invite, null), 
+			React.createElement("div", {id: "content"},
+				React.createElement("article", null,
+					React.createElement("header", null,
+						React.createElement(Invite, null),
 
-						React.createElement("div", {className: "subheader"}, 
-							React.createElement("div", {className: "nice-line"}), 
-							React.createElement("h4", null, "Also available for iPhone, iPad, Android and Mac OS X:"), 
-							React.createElement("div", {className: "install-links"}, 
-								React.createElement("a", {href: globalJson.links.ios, target: "_blank"}, React.createElement("span", {dangerouslySetInnerHTML: {__html:ios}})), 
-								React.createElement("a", {href: globalJson.links.android, target: "_blank"}, React.createElement("span", {dangerouslySetInnerHTML: {__html:android}})), 
+						React.createElement("div", {className: "subheader"},
+							React.createElement("div", {className: "nice-line"}),
+							React.createElement("h4", null, "Also available for iPhone, iPad, Android and Mac OS X:"),
+							React.createElement("div", {className: "install-links"},
+								React.createElement("a", {href: globalJson.links.ios, target: "_blank"}, React.createElement("span", {dangerouslySetInnerHTML: {__html:ios}})),
+								React.createElement("a", {href: globalJson.links.android, target: "_blank"}, React.createElement("span", {dangerouslySetInnerHTML: {__html:android}})),
 								React.createElement("a", {href: globalJson.links.osx, target: "_blank"}, React.createElement("span", {dangerouslySetInnerHTML: {__html:osx}}))
 							)
 						)
 					)
-				), 
+				),
 
-				React.createElement("footer", {className: "subheader"}, 
-					React.createElement("a", {href: "https://raindrop.io/settings#/settings/import", target: "_blank", className: "button default"}, "Import bookmarks"), 
-					"   ", 
+				React.createElement("footer", {className: "subheader"},
+					React.createElement("a", {href: "https://raindrop.io/settings#/settings/import", target: "_blank", className: "button default"}, "Import bookmarks"),
+					"   ",
 					footerLink
 				)
 			)
@@ -12172,14 +12172,14 @@ module.exports = React.createClass({displayName: "exports",
 		origin = encodeURIComponent(origin.substr(1,origin.length));
 
         return (
-          React.createElement("div", {id: "content"}, 
-            React.createElement("article", null, 
-              React.createElement("div", {className: "logo", dangerouslySetInnerHTML: {__html:logo}}), 
-              React.createElement("h1", null, langLang("welcome"), " Raindrop.io"), 
+          React.createElement("div", {id: "content"},
+            React.createElement("article", null,
+              React.createElement("div", {className: "logo", dangerouslySetInnerHTML: {__html:logo}}),
+              React.createElement("h1", null, langLang("welcome"), " Raindrop.io"),
 
-              React.createElement("br", null), React.createElement("br", null), 
-              React.createElement("div", null, 
-                React.createElement("a", {href: "/account?redirect="+origin, className: "button default", style: {display:"inline-block",marginRight:"10px"}}, langLang("signIn"), " ", React.createElement("span", {className: "icon", dangerouslySetInnerHTML: {__html:icons.forward}})), 
+              React.createElement("br", null), React.createElement("br", null),
+              React.createElement("div", null,
+                React.createElement("a", {href: "/account?redirect="+origin, className: "button default", style: {display:"inline-block",marginRight:"10px"}}, langLang("signIn"), " ", React.createElement("span", {className: "icon", dangerouslySetInnerHTML: {__html:icons.forward}})),
                 React.createElement("a", {href: "/account/signup?redirect="+origin, className: "button active", style: {display:"inline-block",marginLeft:"10px"}}, langLang("signUp"), " ", React.createElement("span", {className: "icon", dangerouslySetInnerHTML: {__html:icons.forward}}))
               )
             )
@@ -12210,20 +12210,20 @@ module.exports = React.createClass({displayName: "exports",
 
 	render: function() {
 		return (
-			React.createElement("div", {id: "content"}, 
-				React.createElement("article", null, 
-					React.createElement("header", null, React.createElement("div", {className: "logo", dangerouslySetInnerHTML: {__html:logo}}), 
+			React.createElement("div", {id: "content"},
+				React.createElement("article", null,
+					React.createElement("header", null, React.createElement("div", {className: "logo", dangerouslySetInnerHTML: {__html:logo}}),
 
-					React.createElement("h1", null, "Welcome to Raindrop.io")), 
+					React.createElement("h1", null, "Welcome to Raindrop.io")),
 
 
-					React.createElement("br", null), React.createElement("br", null), 
-					React.createElement("div", {className: "subheader"}, 
+					React.createElement("br", null), React.createElement("br", null),
+					React.createElement("div", {className: "subheader"},
 						React.createElement("a", {href: "#/collections", className: "button active"}, "Learn more ", React.createElement("span", {className: "icon", dangerouslySetInnerHTML: {__html:icons.forward}}))
 					)
-				), 
+				),
 
-				React.createElement("footer", {className: "subheader"}, 
+				React.createElement("footer", {className: "subheader"},
 					React.createElement("a", {href: "#/features", className: "button silver right"}, "Skip")
 				)
 			)
@@ -12331,8 +12331,8 @@ var AppRoute = React.createClass({displayName: "AppRoute",
         switch(this.state.step){
           case "loading":
             return (
-              React.createElement("div", {id: "content"}, 
-                React.createElement("article", null, 
+              React.createElement("div", {id: "content"},
+                React.createElement("article", null,
                   React.createElement("span", {dangerouslySetInnerHTML: {__html:icons.preloader}})
                 )
               )
@@ -12352,7 +12352,7 @@ var commonComponents = {
   loaded: false,
   load: function() {
     if (this.loaded) return false;
-    
+
     this.loaded = true;
   }
 }
@@ -12384,14 +12384,14 @@ var StartRoute = require('./routes/Start'),
     AfterClipperRoute = require('./routes/AfterClipper');
 
 var routes = (
-    React.createElement(Route, {name: "app", path: "/", handler: AppRoute}, 
-        React.createElement(Route, {name: "collections", handler: CollectionsRoute}), 
-        React.createElement(Route, {name: "content", handler: ContentRoute}), 
-        React.createElement(Route, {name: "clipper", handler: ClipperRoute}), 
-        React.createElement(Route, {name: "features", handler: FeaturesRoute}), 
-        React.createElement(Route, {name: "afterclipper", handler: AfterClipperRoute}), 
-        React.createElement(Route, {name: "login", handler: LoginRoute}), 
-        React.createElement(DefaultRoute, {name: "start", handler: StartRoute}), 
+    React.createElement(Route, {name: "app", path: "/", handler: AppRoute},
+        React.createElement(Route, {name: "collections", handler: CollectionsRoute}),
+        React.createElement(Route, {name: "content", handler: ContentRoute}),
+        React.createElement(Route, {name: "clipper", handler: ClipperRoute}),
+        React.createElement(Route, {name: "features", handler: FeaturesRoute}),
+        React.createElement(Route, {name: "afterclipper", handler: AfterClipperRoute}),
+        React.createElement(Route, {name: "login", handler: LoginRoute}),
+        React.createElement(DefaultRoute, {name: "start", handler: StartRoute}),
         React.createElement(NotFoundRoute, {name: "notfound", handler: StartRoute})
     )
 );

@@ -235,11 +235,11 @@ module.exports = React.createClass({
                 icon = "cancel";
 
             return (
-                React.createElement("li", {key: "toast_"+item.id, "data-id": item.id, id: "toast-"+item.id, onMouseEnter: _this.handleStopTimer, onClick: _this.handleCloseItem}, 
-                    React.createElement("div", {className: "item-wrap status-"+item.status||""}, 
-                        React.createElement("div", null, React.createElement(Icon, {name: icon})), 
-                        React.createElement("div", null, 
-                            title, 
+                React.createElement("li", {key: "toast_"+item.id, "data-id": item.id, id: "toast-"+item.id, onMouseEnter: _this.handleStopTimer, onClick: _this.handleCloseItem},
+                    React.createElement("div", {className: "item-wrap status-"+item.status||""},
+                        React.createElement("div", null, React.createElement(Icon, {name: icon})),
+                        React.createElement("div", null,
+                            title,
                             React.createElement("div", {className: "excerpt"}, item.text)
                         )
                     )
@@ -248,7 +248,7 @@ module.exports = React.createClass({
         });
 
         return (
-            React.createElement(ReactCSSTransitionGroup, {component: "ul", transitionName: "toastanim", transitionEnterTimeout: 300, transitionLeaveTimeout: 300}, 
+            React.createElement(ReactCSSTransitionGroup, {component: "ul", transitionName: "toastanim", transitionEnterTimeout: 300, transitionLeaveTimeout: 300},
                 items
             )
         );
@@ -406,7 +406,7 @@ module.exports = {
                     fileReader.onload = function (evt) {
                         // Read out file contents as a Data URL
                         var result = evt.target.result;
-                        
+
                         trySetBg(result);
                         try{localStorage.setItem(url, result);}catch(e){}
                     };
@@ -695,7 +695,7 @@ module.exports = {
 
         if ((window.environment||[]).indexOf("safari_popup")!=-1)
             _target = "_blank";
-        
+
         return _target;
     },
 
@@ -705,7 +705,7 @@ module.exports = {
         if ((window.environment||[]).indexOf("clipper")!=-1){
             _target = "_blank";
         }
-        
+
         if (window.location.protocol.indexOf("http")!=-1) {
             sURL = "/settings#/settings";
         }
@@ -713,7 +713,7 @@ module.exports = {
         {
             sURL = "../settings/settings.html?isMac#/settings";
         }
-        
+
         return sURL;
     }
 };
@@ -797,7 +797,7 @@ module.exports = {
 
       var _this = this;
       var xmlhttp = new XMLHttpRequest();
-      var url = (window.pathPrefix||"")+"../common/js/"+this.currentLang+".js";
+      var url = (window.pathPrefix||"")+"../common/js/"+this.currentLang+".json";
 
       var e = new Event('langLoaded');
       xmlhttp.onreadystatechange = function() {
@@ -835,12 +835,12 @@ module.exports = React.createClass({displayName: "exports",
 		if (this.props.images.length>1)
 			forward = React.createElement("a", {href: "", className: "action-icon", onClick: this.handleForward}, React.createElement(Icon, {name: "forward"}));
 		return (
-			React.createElement("div", {className: "slider"}, 
-				forward, 
+			React.createElement("div", {className: "slider"},
+				forward,
 
-					React.createElement(ReactCSSTransitionGroup, {transitionName: "carousel"}, 
+					React.createElement(ReactCSSTransitionGroup, {transitionName: "carousel"},
 						React.createElement("img", {src: this.props.images[this.state.index], alt: "", key: this.props.images[this.state.index]})
-					), 
+					),
 
 				React.createElement("img", {className: "space", src: this.props.images[this.state.index], alt: ""})
 			)
@@ -856,19 +856,19 @@ module.exports = React.createClass({displayName: "exports",
 
 	render: function() {
 		return (
-			React.createElement("div", {className: "page-wrap"}, 
-				React.createElement("section", null, 
-					React.createElement("header", null, 
+			React.createElement("div", {className: "page-wrap"},
+				React.createElement("section", null,
+					React.createElement("header", null,
 						React.createElement("h2", null, t.s("exportBookmarks"))
-					), 
+					),
 
-					React.createElement("article", null, 
-						React.createElement("div", {className: "list"}, 
-							React.createElement("a", {href: consts.host+"/api/export", target: window.targetLink, className: "item", download: true}, 
-								React.createElement("span", {className: "title"}, t.s("allBookmarks")), 
-								React.createElement("span", {className: "block"}, 
-									".html" 
-								), 
+					React.createElement("article", null,
+						React.createElement("div", {className: "list"},
+							React.createElement("a", {href: consts.host+"/api/export", target: window.targetLink, className: "item", download: true},
+								React.createElement("span", {className: "title"}, t.s("allBookmarks")),
+								React.createElement("span", {className: "block"},
+									".html"
+								),
 								React.createElement("span", {className: "forward last-icon"}, React.createElement(Icon, {name: "chevron-right"}))
 							)
 						)
@@ -889,16 +889,16 @@ module.exports = React.createClass({displayName: "exports",
 
 	render: function() {
 		return (
-			React.createElement("div", {className: "page-wrap"}, 
-				React.createElement("section", null, 
-					React.createElement("header", null, 
-						React.createElement("h2", null, t.s("help")), 
+			React.createElement("div", {className: "page-wrap"},
+				React.createElement("section", null,
+					React.createElement("header", null,
+						React.createElement("h2", null, t.s("help")),
 						React.createElement("p", null, t.s("haveIdeas"))
-					), 
+					),
 
-					React.createElement("article", null, 
-						React.createElement(UserVoice, null), 
-						React.createElement("br", null), 
+					React.createElement("article", null,
+						React.createElement(UserVoice, null),
+						React.createElement("br", null),
 						"Send your emails to ", React.createElement("a", {href: "mailto:info@raindrop.io"}, "info@raindrop.io")
 					)
 				)
@@ -912,7 +912,7 @@ module.exports = React.createClass({displayName: "exports",
 	componentDidMount: function() {
 		this.props.changeTitle(t.s("importBookmarks"));
 	},
-	
+
 	render: function() {
 		return (React.createElement("iframe", {src: consts.host+"/other/import/import.html"}));
 	}
@@ -925,65 +925,65 @@ module.exports = React.createClass({displayName: "exports",
 	componentDidMount: function() {
 		this.props.changeTitle(t.s("install"));
 	},
-	
+
 	render: function() {
 		return (
-			React.createElement("div", {className: "page-wrap"}, 
-				React.createElement("div", {className: "platforms"}, 
-					React.createElement("div", {className: "item hide-on-clipper", style: {backgroundColor: "#707D87"}}, 
-						React.createElement("img", {src: consts.host+"/img/marketing/teaser/extension.png", alt: ""}), 
-						React.createElement("div", {className: "title"}, 
-							React.createElement("div", {className: "desc"}, t.s("browserPlugin")), 
-							React.createElement("div", {className: "links"}, 
-								React.createElement("a", {href: "https://chrome.google.com/webstore/detail/raindropio/ldgfbffkinooeloadekpmfoklnobpien", target: "_blank"}, React.createElement("img", {src: consts.host+"/img/marketing/teaser/badge-chrome.png", height: "32", alt: ""})), 
-								React.createElement("a", {href: "https://addons.mozilla.org/firefox/addon/raindropio/", target: "_blank"}, React.createElement("img", {src: consts.host+"/img/marketing/teaser/badge-firefox.png", height: "32", alt: ""})), 
-								React.createElement("a", {href: "https://raindrop.io/releases/safari.safariextz", target: "_blank"}, React.createElement("img", {src: consts.host+"/img/marketing/teaser/badge-safari.png", height: "32", alt: ""})), 
+			React.createElement("div", {className: "page-wrap"},
+				React.createElement("div", {className: "platforms"},
+					React.createElement("div", {className: "item hide-on-clipper", style: {backgroundColor: "#707D87"}},
+						React.createElement("img", {src: consts.host+"/img/marketing/teaser/extension.png", alt: ""}),
+						React.createElement("div", {className: "title"},
+							React.createElement("div", {className: "desc"}, t.s("browserPlugin")),
+							React.createElement("div", {className: "links"},
+								React.createElement("a", {href: "https://chrome.google.com/webstore/detail/raindropio/ldgfbffkinooeloadekpmfoklnobpien", target: "_blank"}, React.createElement("img", {src: consts.host+"/img/marketing/teaser/badge-chrome.png", height: "32", alt: ""})),
+								React.createElement("a", {href: "https://addons.mozilla.org/firefox/addon/raindropio/", target: "_blank"}, React.createElement("img", {src: consts.host+"/img/marketing/teaser/badge-firefox.png", height: "32", alt: ""})),
+								React.createElement("a", {href: "https://raindrop.io/releases/safari.safariextz", target: "_blank"}, React.createElement("img", {src: consts.host+"/img/marketing/teaser/badge-safari.png", height: "32", alt: ""})),
 								React.createElement("a", {href: "https://addons.opera.com/extensions/details/raindropio-smart-bookmarks", target: "_blank"}, React.createElement("img", {src: consts.host+"/img/marketing/teaser/badge-opera.png", height: "32", alt: ""}))
 							)
 						)
-					), 
+					),
 
-					React.createElement("div", {className: "item", style: {backgroundColor: "#4B88B7"}}, 
-						React.createElement("img", {src: consts.host+"/img/marketing/teaser/ios.png", alt: ""}), 
-						React.createElement("div", {className: "title"}, 
-							React.createElement("div", {className: "desc"}, "iPhone & iPad"), 
-							React.createElement("div", {className: "links"}, 
+					React.createElement("div", {className: "item", style: {backgroundColor: "#4B88B7"}},
+						React.createElement("img", {src: consts.host+"/img/marketing/teaser/ios.png", alt: ""}),
+						React.createElement("div", {className: "title"},
+							React.createElement("div", {className: "desc"}, "iPhone & iPad"),
+							React.createElement("div", {className: "links"},
 								React.createElement("a", {href: "https://itunes.apple.com/us/app/raindrop.io-keep-your-favorites/id1021913807", target: "_blank"}, React.createElement("img", {src: consts.host+"/img/marketing/teaser/badge-ios.png", height: "32", alt: ""}))
 							)
 						)
-					), 
+					),
 
-					React.createElement("div", {className: "item hide-on-mac", style: {backgroundColor: "#4CB580"}}, 
-						React.createElement("img", {src: consts.host+"/img/marketing/teaser/android.png", alt: ""}), 
-						React.createElement("div", {className: "title"}, 
-							React.createElement("div", {className: "desc"}, "Android Phone & Tablet"), 
-							React.createElement("div", {className: "links"}, 
+					React.createElement("div", {className: "item hide-on-mac", style: {backgroundColor: "#4CB580"}},
+						React.createElement("img", {src: consts.host+"/img/marketing/teaser/android.png", alt: ""}),
+						React.createElement("div", {className: "title"},
+							React.createElement("div", {className: "desc"}, "Android Phone & Tablet"),
+							React.createElement("div", {className: "links"},
 								React.createElement("a", {href: "https://play.google.com/store/apps/details?id=io.raindrop.raindropio&hl=en", target: "_blank"}, React.createElement("img", {src: consts.host+"/img/marketing/teaser/badge-android.png", height: "38", alt: ""}))
 							)
 						)
-					), 
+					),
 
-					React.createElement("div", {className: "item", style: {backgroundColor: "#7753CD"}}, 
-						React.createElement("img", {src: consts.host+"/img/marketing/teaser/mac.png", alt: ""}), 
-						React.createElement("div", {className: "title"}, 
-							React.createElement("div", {className: "desc"}, "Mac OS X"), 
-							React.createElement("div", {className: "links"}, 
+					React.createElement("div", {className: "item", style: {backgroundColor: "#7753CD"}},
+						React.createElement("img", {src: consts.host+"/img/marketing/teaser/mac.png", alt: ""}),
+						React.createElement("div", {className: "title"},
+							React.createElement("div", {className: "desc"}, "Mac OS X"),
+							React.createElement("div", {className: "links"},
 								React.createElement("a", {href: "https://itunes.apple.com/app/raindrop.io-keep-your-favorites/id957810159", target: "_blank"}, React.createElement("img", {src: consts.host+"/img/marketing/teaser/badge-mac.png", height: "32", alt: ""}))
 							)
 						)
-					), 
+					),
 
-					React.createElement("div", {className: "item", style: {backgroundColor: "#E8674F"}}, 
-						React.createElement("img", {src: consts.host+"/img/marketing/teaser/mac.png", alt: ""}), 
-						React.createElement("div", {className: "title"}, 
-							React.createElement("div", {className: "desc"}, t.s("pro_speed_dial")), 
-							React.createElement("div", {className: "links"}, 
+					React.createElement("div", {className: "item", style: {backgroundColor: "#E8674F"}},
+						React.createElement("img", {src: consts.host+"/img/marketing/teaser/mac.png", alt: ""}),
+						React.createElement("div", {className: "title"},
+							React.createElement("div", {className: "desc"}, t.s("pro_speed_dial")),
+							React.createElement("div", {className: "links"},
 								React.createElement("a", {href: "https://chrome.google.com/webstore/detail/raindropio-new-tab-speed/knifgjkgmgdinjeecneiphoniamhgbof", target: "_blank"}, React.createElement("img", {src: consts.host+"/img/marketing/teaser/badge-chrome.png", height: "32", alt: ""}))
 								/*<a href="https://raindrop.io/releases/newtab.xpi" target="_blank"><img src={consts.host+"/img/marketing/teaser/badge-firefox.png"} height="32" alt="" /></a>*/
 							)
 						)
 					)
-				)				
+				)
 			)
 		);
 	}
@@ -1030,20 +1030,20 @@ module.exports = React.createClass({displayName: "exports",
 			dropboxLink="#/settings/pro"
 
 		return (
-			React.createElement("div", {className: "page-wrap"}, 
-				React.createElement("section", null, 
-					React.createElement("header", null, 
+			React.createElement("div", {className: "page-wrap"},
+				React.createElement("section", null,
+					React.createElement("header", null,
 						React.createElement("h2", null, "Integration")
-					), 
+					),
 
-					React.createElement("article", null, 
-						React.createElement("div", {className: "list"}, 
-							React.createElement("a", {href: dropboxLink, target: window.targetLink, className: "item"}, 
-								React.createElement("span", {className: "title", style: {flex:1}}, 
-									t.s("pro_dropbox"), 
+					React.createElement("article", null,
+						React.createElement("div", {className: "list"},
+							React.createElement("a", {href: dropboxLink, target: window.targetLink, className: "item"},
+								React.createElement("span", {className: "title", style: {flex:1}},
+									t.s("pro_dropbox"),
 									React.createElement("span", {className: "subtitle"}, t.s("pro_dropboxD"))
-								), 
-								React.createElement("span", {className: "last-icon"}, 
+								),
+								React.createElement("span", {className: "last-icon"},
 									React.createElement("div", {className: "extra-checkbox"+(dropbox?" active":"")})
 								)
 							)
@@ -1088,42 +1088,42 @@ module.exports = React.createClass({displayName: "exports",
 	renderFree: function() {
 		if (this.state.loading)
 			return (
-				React.createElement("div", {className: "page-wrap"}, 
-				React.createElement("section", null, 
-					React.createElement("header", null, 
+				React.createElement("div", {className: "page-wrap"},
+				React.createElement("section", null,
+					React.createElement("header", null,
 						React.createElement("h2", null, t.s("loading"), "...")
 					)
 				)
 				)
 			);
-		
-		return (
-			React.createElement("section", null, 
-				React.createElement("header", null, 
-					React.createElement("h2", null, t.s("upgradeAccount"))
-				), 
 
-				React.createElement("article", null, 
-					React.createElement("div", {className: "list"}, 
-						React.createElement("div", {className: "text"}, 
-							React.createElement("img", {className: "pull-right", src: consts.host+"/img/v3/pro-buy.png", width: "109", alt: ""}), 
-							React.createElement("strong", null, t.s("footerProAd"), " ", t.s("footerProAdD"), ":"), 
-							React.createElement("ul", null, 
-								React.createElement("li", null, t.s("nestedCollections")), 
-								React.createElement("li", null, t.s("dropboxBackup")), 
-								React.createElement("li", null, t.s("pro_nextFeatures")), 
-								React.createElement("li", null, t.s("pro_support")), 
+		return (
+			React.createElement("section", null,
+				React.createElement("header", null,
+					React.createElement("h2", null, t.s("upgradeAccount"))
+				),
+
+				React.createElement("article", null,
+					React.createElement("div", {className: "list"},
+						React.createElement("div", {className: "text"},
+							React.createElement("img", {className: "pull-right", src: consts.host+"/img/v3/pro-buy.png", width: "109", alt: ""}),
+							React.createElement("strong", null, t.s("footerProAd"), " ", t.s("footerProAdD"), ":"),
+							React.createElement("ul", null,
+								React.createElement("li", null, t.s("nestedCollections")),
+								React.createElement("li", null, t.s("dropboxBackup")),
+								React.createElement("li", null, t.s("pro_nextFeatures")),
+								React.createElement("li", null, t.s("pro_support")),
 								React.createElement("li", null, t.s("pro_noAds"))
 							)
-						), 
+						),
 
-						React.createElement("a", {href: consts.host+"/pages/pricing", target: window.targetLink, className: "item"}, 
-							React.createElement("span", {className: "title", style: {flex:1}}, t.s("compareFreePro")), 
+						React.createElement("a", {href: consts.host+"/pages/pricing", target: window.targetLink, className: "item"},
+							React.createElement("span", {className: "title", style: {flex:1}}, t.s("compareFreePro")),
 							React.createElement("span", {className: "forward"}, React.createElement(Icon, {name: "chevron-right"}))
-						), 
+						),
 
-						React.createElement("a", {href: consts.host+"/static/pro", target: window.targetLink, className: "item accent"}, 
-							React.createElement("span", {className: "title"}, t.s("upgradeToPro")), 
+						React.createElement("a", {href: consts.host+"/static/pro", target: window.targetLink, className: "item accent"},
+							React.createElement("span", {className: "title"}, t.s("upgradeToPro")),
 							React.createElement("span", {className: "forward"}, React.createElement(Icon, {name: "chevron-right"}))
 						)
 					)
@@ -1134,22 +1134,22 @@ module.exports = React.createClass({displayName: "exports",
 
 	renderPro: function() {
 		return (
-			React.createElement("section", null, 
-				React.createElement("header", null, 
+			React.createElement("section", null,
+				React.createElement("header", null,
 					React.createElement("h2", null, t.s("upgradeAccount"))
-				), 
+				),
 
-				React.createElement("article", null, 
-					React.createElement("div", {className: "list"}, 
-						React.createElement("div", {className: "text"}, 
-							React.createElement("strong", {style: {textTransform:"capitalize"}}, 
-								React.createElement(Icon, {name: "done", className: "icn-green pull-right"}), 
+				React.createElement("article", null,
+					React.createElement("div", {className: "list"},
+						React.createElement("div", {className: "text"},
+							React.createElement("strong", {style: {textTransform:"capitalize"}},
+								React.createElement(Icon, {name: "done", className: "icn-green pull-right"}),
 								t.s("until") + " " + moment(UserStore.getUser().proExpire).format("ll")
 							)
-						), 
+						),
 
-						React.createElement("a", {href: consts.host+"/static/pro", target: window.targetLink, className: "item accent"}, 
-							React.createElement("span", {className: "title"}, t.s("renewPro")), 
+						React.createElement("a", {href: consts.host+"/static/pro", target: window.targetLink, className: "item accent"},
+							React.createElement("span", {className: "title"}, t.s("renewPro")),
 							React.createElement("span", {className: "forward"}, React.createElement(Icon, {name: "chevron-right"}))
 						)
 					)
@@ -1160,54 +1160,54 @@ module.exports = React.createClass({displayName: "exports",
 
 	render: function() {
 		return (
-			React.createElement("div", {className: "page-wrap"}, 
-				UserStore.isPro() ? this.renderPro() : this.renderFree(), 
+			React.createElement("div", {className: "page-wrap"},
+				UserStore.isPro() ? this.renderPro() : this.renderFree(),
 
-				React.createElement("section", null, 
-					React.createElement("header", null, 
+				React.createElement("section", null,
+					React.createElement("header", null,
 						React.createElement("h2", null, "Q&A")
-					), 
+					),
 
-					React.createElement("article", null, 
-						React.createElement("div", {className: "list"}, 
-							React.createElement("div", {className: "text"}, 
-								React.createElement("strong", null, "Where do I get started?"), 
-								React.createElement("p", null, 
+					React.createElement("article", null,
+						React.createElement("div", {className: "list"},
+							React.createElement("div", {className: "text"},
+								React.createElement("strong", null, "Where do I get started?"),
+								React.createElement("p", null,
 									"Start with the free plan — it’s the best choice if you want to test our apps. Plus, it’s completely free."
 								)
-							), 
+							),
 
-							React.createElement("div", {className: "text"}, 
-								React.createElement("strong", null, "Do I have to pay for my nested collections to keep them accessible?"), 
-								React.createElement("p", null, 
+							React.createElement("div", {className: "text"},
+								React.createElement("strong", null, "Do I have to pay for my nested collections to keep them accessible?"),
+								React.createElement("p", null,
 									"No. Don’t worry, we won’t charge you for hosting your nested collections. The great news is that all your nested collections remain accessible even if your subscription ends or you’ve switched to the free plan."
 								)
-							), 
+							),
 
-							React.createElement("div", {className: "text"}, 
-								React.createElement("strong", null, "How can I cancel my subscription?"), 
-								React.createElement("p", null, 
+							React.createElement("div", {className: "text"},
+								React.createElement("strong", null, "How can I cancel my subscription?"),
+								React.createElement("p", null,
 									"At any time you can cancel the subscription and get your money back. To do this, please ", React.createElement("a", {href: "#/settings/help"}, "contact us"), "."
 								)
-							), 
+							),
 
-							React.createElement("div", {className: "text"}, 
-								React.createElement("strong", null, "What happens at the end of the paid period?"), 
-								React.createElement("p", null, 
+							React.createElement("div", {className: "text"},
+								React.createElement("strong", null, "What happens at the end of the paid period?"),
+								React.createElement("p", null,
 									"When the period of paid subscription ends you automatically switch to the free plan. All your collections (including nested) will remain accessible, but if you want to create more nested collections you will have to switch to paid plan. Also Dropbox backup will be stopped."
 								)
-							), 
+							),
 
-							React.createElement("div", {className: "text"}, 
-								React.createElement("strong", null, "Is there any discount for an annual subscription?"), 
-								React.createElement("p", null, 
+							React.createElement("div", {className: "text"},
+								React.createElement("strong", null, "Is there any discount for an annual subscription?"),
+								React.createElement("p", null,
 									"Yes, we offer a 20% discount if you choose annual subscription."
 								)
-							), 
+							),
 
-							React.createElement("div", {className: "text"}, 
-								React.createElement("strong", null, "Got more questions?"), 
-								React.createElement("p", null, 
+							React.createElement("div", {className: "text"},
+								React.createElement("strong", null, "Got more questions?"),
+								React.createElement("p", null,
 									"We are happy to help you. ", React.createElement("a", {href: "#/settings/help"}, "Contact us"), "."
 								)
 							)
@@ -1335,9 +1335,9 @@ module.exports = React.createClass({displayName: "exports",
 	render: function() {
 		if (this.state.loading)
 			return (
-				React.createElement("div", {className: "page-wrap"}, 
-				React.createElement("section", null, 
-					React.createElement("header", null, 
+				React.createElement("div", {className: "page-wrap"},
+				React.createElement("section", null,
+					React.createElement("header", null,
 						React.createElement("h2", null, t.s("loading"), "...")
 					)
 				)
@@ -1358,106 +1358,106 @@ module.exports = React.createClass({displayName: "exports",
         var emailPassword = null;
         if (!this.state.user.password)
         	emailPassword = (
-        		React.createElement("label", {className: "item"}, 
-					React.createElement("span", {className: "title"}, t.s("password")), 
-					React.createElement("span", {className: "block"}, 
+        		React.createElement("label", {className: "item"},
+					React.createElement("span", {className: "title"}, t.s("password")),
+					React.createElement("span", {className: "block"},
 						React.createElement("input", {type: "password", onChange: this.handleNewPasswordChange, placeholder: t.s("newPassword"), required: true})
 					)
 				)
         	);
 
 		return (
-			React.createElement("div", {className: "page-wrap"}, 
-				React.createElement("section", null, 
-					React.createElement("header", null, 
-						React.createElement("h2", null, t.s("basicData")), 
-						React.createElement("p", null, 
+			React.createElement("div", {className: "page-wrap"},
+				React.createElement("section", null,
+					React.createElement("header", null,
+						React.createElement("h2", null, t.s("basicData")),
+						React.createElement("p", null,
 							t.s("changeAvatarInfo")
 						)
-					), 
+					),
 
-					React.createElement("article", null, 
-						React.createElement("form", {onSubmit: this.handleSaveProfile}, 
-							React.createElement("div", {className: "list"}, 
-								React.createElement("label", {className: "item"}, 
-									React.createElement("span", {className: "title"}, t.s("yourName")), 
-									React.createElement("span", {className: "block"}, 
+					React.createElement("article", null,
+						React.createElement("form", {onSubmit: this.handleSaveProfile},
+							React.createElement("div", {className: "list"},
+								React.createElement("label", {className: "item"},
+									React.createElement("span", {className: "title"}, t.s("yourName")),
+									React.createElement("span", {className: "block"},
 										React.createElement("input", {type: "text", defaultValue: this.state.user.fullName, onChange: this.handleFullNameChange, required: true})
 									)
-								), 
+								),
 
-								React.createElement("label", {className: "item"}, 
-									React.createElement("span", {className: "title"}, "Email"), 
-									React.createElement("span", {className: "block"}, 
+								React.createElement("label", {className: "item"},
+									React.createElement("span", {className: "title"}, "Email"),
+									React.createElement("span", {className: "block"},
 										React.createElement("input", {type: "email", defaultValue: this.state.user.email, onChange: this.handleEmailChange, placeholder: "your@email.com", required: true})
 									)
-								), 
+								),
 
-								emailPassword, 
+								emailPassword,
 
-								React.createElement("label", {className: "item"}, 
-									React.createElement("span", {className: "title"}, t.s("language")), 
-									React.createElement("span", {className: "block"}, 
-										React.createElement("select", {ref: "lang", onChange: this.handleLangChange}, 
+								React.createElement("label", {className: "item"},
+									React.createElement("span", {className: "title"}, t.s("language")),
+									React.createElement("span", {className: "block"},
+										React.createElement("select", {ref: "lang", onChange: this.handleLangChange},
 											languages
 										)
 									)
-								), 
+								),
 
-								React.createElement("div", {className: "item"}, 
-									React.createElement("span", {className: "title"}, "ID"), 
-									React.createElement("span", {className: "block"}, 
+								React.createElement("div", {className: "item"},
+									React.createElement("span", {className: "title"}, "ID"),
+									React.createElement("span", {className: "block"},
 										this.state.user._id
 									)
-								), 
+								),
 
-								React.createElement("a", {href: "https://gravatar.com", target: "_blank", className: "item"}, 
-									React.createElement("span", {className: "title", style: {flex:1}}, t.s("changeAvatar")), 
+								React.createElement("a", {href: "https://gravatar.com", target: "_blank", className: "item"},
+									React.createElement("span", {className: "title", style: {flex:1}}, t.s("changeAvatar")),
 									React.createElement("span", {className: "forward"}, React.createElement(Icon, {name: "chevron-right"}))
 								)
-							), 
+							),
 
-							React.createElement("div", {className: "actions"}, 
+							React.createElement("div", {className: "actions"},
 								React.createElement("input", {type: "submit", value: t.s("save")})
 							)
 						)
 					)
-				), 
+				),
 
-				React.createElement("section", {className: this.state.user.password ? "" : "hidden"}, 
-					React.createElement("header", null, 
+				React.createElement("section", {className: this.state.user.password ? "" : "hidden"},
+					React.createElement("header", null,
 						React.createElement("h2", null, t.s("changePassword"))
-					), 
+					),
 
-					React.createElement("article", null, 
-						React.createElement("form", {onSubmit: this.handleSavePassword}, 
-							React.createElement("div", {className: "list"}, 
-								React.createElement("label", {className: "item"}, 
-									React.createElement("span", {className: "title"}, t.s("currentPassword")), 
-									React.createElement("span", {className: "block"}, 
+					React.createElement("article", null,
+						React.createElement("form", {onSubmit: this.handleSavePassword},
+							React.createElement("div", {className: "list"},
+								React.createElement("label", {className: "item"},
+									React.createElement("span", {className: "title"}, t.s("currentPassword")),
+									React.createElement("span", {className: "block"},
 										React.createElement("input", {type: "password", onChange: this.handleOldPasswordChange, placeholder: t.s("currentPassword"), required: true})
 									)
-								), 
+								),
 
-								React.createElement("label", {className: "item"}, 
-									React.createElement("span", {className: "title"}, t.s("newPassword")), 
-									React.createElement("span", {className: "block"}, 
+								React.createElement("label", {className: "item"},
+									React.createElement("span", {className: "title"}, t.s("newPassword")),
+									React.createElement("span", {className: "block"},
 										React.createElement("input", {type: "password", onChange: this.handleNewPasswordChange, placeholder: t.s("newPassword"), required: true})
 									)
 								)
-							), 
+							),
 
-							React.createElement("div", {className: "actions"}, 
-								React.createElement("a", {href: consts.host+"/account/reset", target: "_blank"}, t.s("recoverPassword")), 
+							React.createElement("div", {className: "actions"},
+								React.createElement("a", {href: consts.host+"/account/reset", target: "_blank"}, t.s("recoverPassword")),
 								React.createElement("input", {type: "submit", value: t.s("changePassword")})
 							)
 						)
 					)
-				), 
+				),
 
-				React.createElement("section", null, 
-					React.createElement("article", null, 
-						React.createElement("div", {className: "actions"}, 
+				React.createElement("section", null,
+					React.createElement("article", null,
+						React.createElement("div", {className: "actions"},
 							React.createElement("a", {href: "", onClick: this.handleRemoveAccount}, t.s("removeAccount"))
 						)
 					)
@@ -1509,11 +1509,11 @@ module.exports = React.createClass({displayName: "exports",
         try{cover = network.fixURL(item.cover[0]);}catch(e){}
 
     	return (
-    		React.createElement("a", {href: item.link, target: window.targetLink, className: "item"}, 
-				React.createElement("span", {className: "title"}, item.title), 
-				React.createElement("span", {className: "block"}, 
+    		React.createElement("a", {href: item.link, target: window.targetLink, className: "item"},
+				React.createElement("span", {className: "title"}, item.title),
+				React.createElement("span", {className: "block"},
 					item.link
-				), 
+				),
 				React.createElement("span", {className: "last-icon", style: {marginLeft:"20px"}}, React.createElement("img", {src: cover, className: "icon", height: "24", alt: ""}))
 			)
     	);
@@ -1548,29 +1548,29 @@ module.exports = React.createClass({displayName: "exports",
 
 
 		return (
-			React.createElement("div", {className: "page-wrap"}, 
-				React.createElement("section", null, 
-					React.createElement("header", null, 
-						React.createElement("h2", null, t.s("privateRSSfeed")), 
+			React.createElement("div", {className: "page-wrap"},
+				React.createElement("section", null,
+					React.createElement("header", null,
+						React.createElement("h2", null, t.s("privateRSSfeed")),
 						React.createElement("p", null, t.s("feedWarning"))
-					), 
+					),
 
-					React.createElement("article", null, 
-						React.createElement("div", {className: "list"}, 
-							this.renderItem({title: t.s("myCollections"), link: consts.host+"/feeds/"+UserStore.getUser().uniqKey}), 
-							this.renderItem({title: t.s("orAlternativeFeed"), link: consts.host+"/feed/"+UserStore.getUser().uniqKey}), 
+					React.createElement("article", null,
+						React.createElement("div", {className: "list"},
+							this.renderItem({title: t.s("myCollections"), link: consts.host+"/feeds/"+UserStore.getUser().uniqKey}),
+							this.renderItem({title: t.s("orAlternativeFeed"), link: consts.host+"/feed/"+UserStore.getUser().uniqKey}),
 							privateList
 						)
 					)
-				), 
+				),
 
-				React.createElement("section", null, 
-					React.createElement("header", null, 
+				React.createElement("section", null,
+					React.createElement("header", null,
 						React.createElement("h2", null, t.s("publicRSSfeed"))
-					), 
+					),
 
-					React.createElement("article", null, 
-						React.createElement("div", {className: "list"}, 
+					React.createElement("article", null,
+						React.createElement("div", {className: "list"},
 							publicList
 						)
 					)
@@ -1645,46 +1645,46 @@ module.exports = React.createClass({displayName: "exports",
     		importLink = React.createElement("a", {href: consts.host+"/other/import/import.html", target: "_blank"}, t.s("importBookmarks"));
 
     	return (
-    		React.createElement("menu", null, 
-				React.createElement("li", {className: "section"}, 
+    		React.createElement("menu", null,
+				React.createElement("li", {className: "section"},
 					t.s("account")
-				), 
-				React.createElement("li", {className: "item hide-on-mac "+(this.context.router.isActive("pro") ? "active" : "")}, 
+				),
+				React.createElement("li", {className: "item hide-on-mac "+(this.context.router.isActive("pro") ? "active" : "")},
 					React.createElement("a", {href: "#/settings/pro"}, t.s("upgradeAccount"))
-				), 
-				React.createElement("li", {className: "item "+(this.context.router.isActive("profile") ? "active" : "")}, 
+				),
+				React.createElement("li", {className: "item "+(this.context.router.isActive("profile") ? "active" : "")},
 					React.createElement("a", {href: "#/settings"}, t.s("profile"))
-				), 
+				),
 
-				React.createElement("li", {className: "section"}, 
+				React.createElement("li", {className: "section"},
 					t.s("basicData")
-				), 
-				React.createElement("li", {className: "item "+(this.context.router.isActive("import") ? "active" : "")}, 
+				),
+				React.createElement("li", {className: "item "+(this.context.router.isActive("import") ? "active" : "")},
 					importLink
-				), 
-				React.createElement("li", {className: "item "+(this.context.router.isActive("export") ? "active" : "")}, 
+				),
+				React.createElement("li", {className: "item "+(this.context.router.isActive("export") ? "active" : "")},
 					React.createElement("a", {href: "#/settings/export"}, t.s("exportBookmarks"))
-				), 
-				React.createElement("li", {className: "item "+(this.context.router.isActive("integration") ? "active" : "")}, 
+				),
+				React.createElement("li", {className: "item "+(this.context.router.isActive("integration") ? "active" : "")},
 					React.createElement("a", {href: "#/settings/integration"}, "Integration")
-				), 
-				React.createElement("li", {className: "item "+(this.context.router.isActive("rss") ? "active" : "")}, 
+				),
+				React.createElement("li", {className: "item "+(this.context.router.isActive("rss") ? "active" : "")},
 					React.createElement("a", {href: "#/settings/rss"}, "RSS")
-				), 
+				),
 
 				React.createElement("li", {className: "section"}
-					
-				), 
-				React.createElement("li", {className: "item "+(this.context.router.isActive("install") ? "active" : "")}, 
+
+				),
+				React.createElement("li", {className: "item "+(this.context.router.isActive("install") ? "active" : "")},
 					React.createElement("a", {href: "#/settings/install"}, t.s("install"), "   ", React.createElement(Icon, {name: "apple"}), " ", React.createElement(Icon, {name: "android", className: "hide-on-mac"}), " ", React.createElement(Icon, {name: "google-chrome"}), " ", React.createElement(Icon, {name: "laptop"}))
-				), 
-				React.createElement("li", {className: "item "+(this.context.router.isActive("help") ? "active" : "")}, 
+				),
+				React.createElement("li", {className: "item "+(this.context.router.isActive("help") ? "active" : "")},
 					React.createElement("a", {href: "#/settings/help"}, t.s("help"))
-				), 
-				React.createElement("li", {className: "item "+(!UserStore.isPro() ? "hidden" : "")}, 
+				),
+				React.createElement("li", {className: "item "+(!UserStore.isPro() ? "hidden" : "")},
 					React.createElement("a", {href: consts.host+"/static/upcoming", target: window.targetLink}, t.s("pro_nextFeatures"))
-				), 
-				React.createElement("li", {className: "item"}, 
+				),
+				React.createElement("li", {className: "item"},
 					React.createElement("a", {href: consts.host+"/dev", target: window.targetLink}, t.s("forDevelopers"))
 				)
 			)
@@ -1693,17 +1693,17 @@ module.exports = React.createClass({displayName: "exports",
 
     renderStatic: function() {
     	return (
-    		React.createElement("menu", null, 
-				React.createElement("li", {className: "section"}, 
+    		React.createElement("menu", null,
+				React.createElement("li", {className: "section"},
 					"Raindrop.io"
-				), 
-				React.createElement("li", {className: "item "+(this.context.router.isActive("install") ? "active" : "")}, 
+				),
+				React.createElement("li", {className: "item "+(this.context.router.isActive("install") ? "active" : "")},
 					React.createElement("a", {href: "#/settings/install"}, t.s("install"))
-				), 
-				React.createElement("li", {className: "item "+(this.context.router.isActive("help") ? "active" : "")}, 
+				),
+				React.createElement("li", {className: "item "+(this.context.router.isActive("help") ? "active" : "")},
 					React.createElement("a", {href: "#/settings/help"}, t.s("help"))
-				), 
-				React.createElement("li", {className: "item"}, 
+				),
+				React.createElement("li", {className: "item"},
 					React.createElement("a", {href: consts.host+"/dev", target: window.targetLink}, t.s("forDevelopers"))
 				)
     		)
@@ -1723,26 +1723,26 @@ module.exports = React.createClass({displayName: "exports",
 			backURL = "../app/index.html"+window.location.search;
 
 		return (
-			React.createElement("div", {id: "page"}, 
-				React.createElement("div", {id: "sidebar"}, 
-					React.createElement("header", {className: "desktop_hide"}, 
-						React.createElement("a", {href: "", onClick: this.handleSidebar}, 
+			React.createElement("div", {id: "page"},
+				React.createElement("div", {id: "sidebar"},
+					React.createElement("header", {className: "desktop_hide"},
+						React.createElement("a", {href: "", onClick: this.handleSidebar},
 							React.createElement(Icon, {name: "clear"})
 						)
-					), 
+					),
 
 					UserStore.isLogged() ? this.renderLogged() : this.renderStatic()
-				), 
-				React.createElement("div", {id: "content"}, 
-					
-					React.createElement(DocumentTitle, {title: this.state.title||""}), 
-					React.createElement(RouteHandler, {changeTitle: this.handleTitle})
-				), 
+				),
+				React.createElement("div", {id: "content"},
 
-				React.createElement("div", {id: "toolbar"}, 
-					React.createElement("a", {href: backURL, id: "go-back"}, React.createElement(Icon, {name: "back"})), 
-					React.createElement("a", {href: "", className: "title", onClick: this.handleSidebar}, 
-						this.state.title, 
+					React.createElement(DocumentTitle, {title: this.state.title||""}),
+					React.createElement(RouteHandler, {changeTitle: this.handleTitle})
+				),
+
+				React.createElement("div", {id: "toolbar"},
+					React.createElement("a", {href: backURL, id: "go-back"}, React.createElement(Icon, {name: "back"})),
+					React.createElement("a", {href: "", className: "title", onClick: this.handleSidebar},
+						this.state.title,
 						React.createElement(Icon, {name: "arrow-down", size: "small", className: "mobileMenu desktop_hide"})
 					)
 				)
@@ -1834,17 +1834,17 @@ window.addEventListener((window.languageLoaded ? "DOMContentLoaded" : "langLoade
 	var HelpRoute = require("./routes/Help");
 
 	var routes = (
-	    React.createElement(Route, {path: "/", handler: AppRoute}, 
-	        React.createElement(Route, {name: "settings", path: "/settings", handler: SettingsRoute}, 
-	        	React.createElement(DefaultRoute, {name: "profile", handler: ProfileRoute}), 
-	        	React.createElement(Route, {name: "pro", path: "pro", handler: ProRoute}), 
-	        	React.createElement(Route, {name: "import", path: "import", handler: ImportRoute}), 
-	        	React.createElement(Route, {name: "export", path: "export", handler: ExportRoute}), 
-	        	React.createElement(Route, {name: "integration", path: "integration", handler: IntegrationRoute}), 
-	        	React.createElement(Route, {name: "rss", path: "rss", handler: RSSRoute}), 
-	        	React.createElement(Route, {name: "install", path: "install", handler: InstallRoute}), 
+	    React.createElement(Route, {path: "/", handler: AppRoute},
+	        React.createElement(Route, {name: "settings", path: "/settings", handler: SettingsRoute},
+	        	React.createElement(DefaultRoute, {name: "profile", handler: ProfileRoute}),
+	        	React.createElement(Route, {name: "pro", path: "pro", handler: ProRoute}),
+	        	React.createElement(Route, {name: "import", path: "import", handler: ImportRoute}),
+	        	React.createElement(Route, {name: "export", path: "export", handler: ExportRoute}),
+	        	React.createElement(Route, {name: "integration", path: "integration", handler: IntegrationRoute}),
+	        	React.createElement(Route, {name: "rss", path: "rss", handler: RSSRoute}),
+	        	React.createElement(Route, {name: "install", path: "install", handler: InstallRoute}),
 	        	React.createElement(Route, {name: "help", path: "help", handler: HelpRoute})
-	        ), 
+	        ),
 	        React.createElement(Redirect, {to: "settings"})
 	    )
 	);
@@ -1982,7 +1982,7 @@ var CollectionsStore = Reflux.createStore({
         if (!_loaded) {
             Api.get("collections", function (json) {
                 _loaded = true;
-                
+
                 if (json.result){
                     _collections = json.items || [];
 
@@ -2125,7 +2125,7 @@ var CollectionsStore = Reflux.createStore({
 
                     _this.trigger(_collections);
                     _this._saveCache();
-                    
+
                     ChildrensActions.removeCollection(params);
                     UserActions.saveGroups();
 
@@ -2348,7 +2348,7 @@ var StatsStore = Reflux.createStore({
                 }
             })
             .catch(function(e){
-                            
+
             });}catch(e){}
 
     	_loading = true;

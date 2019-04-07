@@ -5115,7 +5115,7 @@ module.exports = {
                     fileReader.onload = function (evt) {
                         // Read out file contents as a Data URL
                         var result = evt.target.result;
-                        
+
                         trySetBg(result);
                         try{localStorage.setItem(url, result);}catch(e){}
                     };
@@ -5282,7 +5282,7 @@ module.exports = {
         }
 
         s = S(s).replaceAll('"', '').s;
-        
+
         if (s.indexOf("-")!=-1){
           s = s.substr(0, s.indexOf("-")-1);
         }
@@ -5472,7 +5472,7 @@ module.exports = {
 
       var _this = this;
       var xmlhttp = new XMLHttpRequest();
-      var url = (window.pathPrefix||"")+"../common/js/"+this.currentLang+".js";
+      var url = (window.pathPrefix||"")+"../common/js/"+this.currentLang+".json";
 
       var e = new Event('langLoaded');
       xmlhttp.onreadystatechange = function() {

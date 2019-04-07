@@ -256,15 +256,15 @@ window.addEventListener((window.languageLoaded ? "DOMContentLoaded" : "langLoade
   }
 
   var routes = (
-      React.createElement(Route, {name: "app", path: "/", handler: AppRoute}, 
-          React.createElement(Route, {name: "collection", path: "/collection/:cId/?:search?", handler: CollectionRoute}), 
-          React.createElement(Route, {name: "interface", path: "/interface", handler: InterfaceRoute}), 
-          React.createElement(Route, {name: "waitauth", path: "/waitauth", handler: WaitAuth}), 
-          React.createElement(Route, {name: "tools", path: "/tools", handler: ToolsRoute}, 
-            React.createElement(DefaultRoute, {name: "index", handler: ToolsIndexRoute}), 
+      React.createElement(Route, {name: "app", path: "/", handler: AppRoute},
+          React.createElement(Route, {name: "collection", path: "/collection/:cId/?:search?", handler: CollectionRoute}),
+          React.createElement(Route, {name: "interface", path: "/interface", handler: InterfaceRoute}),
+          React.createElement(Route, {name: "waitauth", path: "/waitauth", handler: WaitAuth}),
+          React.createElement(Route, {name: "tools", path: "/tools", handler: ToolsRoute},
+            React.createElement(DefaultRoute, {name: "index", handler: ToolsIndexRoute}),
             React.createElement(Route, {name: "tags", path: "tags", handler: ToolsTagsRoute})
-          ), 
-          routeInitRoute, routeDefaultRoute, 
+          ),
+          routeInitRoute, routeDefaultRoute,
           React.createElement(NotFoundRoute, {name: "not-found", handler: notFound})
       )
   );
@@ -280,7 +280,7 @@ window.addEventListener((window.languageLoaded ? "DOMContentLoaded" : "langLoade
         ga('send', 'pageview');
         window.Intercom('update');
       }catch(e){}
-      
+
       React.render(React.createElement(Handler, null), eContent, function(){
         document.documentElement.classList.add("show");
         commonComponents.load();
@@ -382,54 +382,54 @@ module.exports = React.createClass({
 
     render: function() {
       return (
-        React.createElement("div", {className: "context-actions"}, 
-          React.createElement("div", {className: "badge"}, this.state.count, " ", t.s("of"), " ", this.state.bookmarksCount), 
+        React.createElement("div", {className: "context-actions"},
+          React.createElement("div", {className: "badge"}, this.state.count, " ", t.s("of"), " ", this.state.bookmarksCount),
 
-          React.createElement("a", {href: "", className: "action", onClick: this.handleMove}, 
-            React.createElement("span", {className: "icon"}, React.createElement(Icon, {name: "move-all"})), 
+          React.createElement("a", {href: "", className: "action", onClick: this.handleMove},
+            React.createElement("span", {className: "icon"}, React.createElement(Icon, {name: "move-all"})),
             React.createElement("span", {className: "title"}, t.s("moveSelectedBookmarks"))
-          ), 
+          ),
 
-          React.createElement("a", {href: "", className: "action", onClick: this.handleCopy}, 
-            React.createElement("span", {className: "icon"}, React.createElement(Icon, {name: "copy"})), 
+          React.createElement("a", {href: "", className: "action", onClick: this.handleCopy},
+            React.createElement("span", {className: "icon"}, React.createElement(Icon, {name: "copy"})),
             React.createElement("span", {className: "title"}, "Copy")
-          ), 
+          ),
 
-          React.createElement("a", {href: "", className: "action", onClick: this.handleTags}, 
-            React.createElement("span", {className: "icon"}, React.createElement(Icon, {name: "tags", size: "mac"})), 
+          React.createElement("a", {href: "", className: "action", onClick: this.handleTags},
+            React.createElement("span", {className: "icon"}, React.createElement(Icon, {name: "tags", size: "mac"})),
             React.createElement("span", {className: "title"}, t.s("addTags"))
-          ), 
+          ),
 
-          React.createElement("a", {href: "", className: "action", onClick: this.handleRemove}, 
-            React.createElement("span", {className: "icon"}, React.createElement(Icon, {name: "trash", size: "mac", className: "icn-red"})), 
+          React.createElement("a", {href: "", className: "action", onClick: this.handleRemove},
+            React.createElement("span", {className: "icon"}, React.createElement(Icon, {name: "trash", size: "mac", className: "icn-red"})),
             React.createElement("span", {className: "title"}, t.s("remove"))
-          ), 
+          ),
 
-          React.createElement("div", {className: "divider"}), 
+          React.createElement("div", {className: "divider"}),
 
-          React.createElement("a", {href: "", className: "action", onClick: this.handleSelectAll}, 
-            React.createElement(Icon, {name: "select-all"}), 
+          React.createElement("a", {href: "", className: "action", onClick: this.handleSelectAll},
+            React.createElement(Icon, {name: "select-all"}),
             React.createElement("span", {className: "title"}, t.s("selectAll"))
-          ), 
+          ),
 
-          React.createElement("a", {href: "", className: "action", onClick: this.handleCancel}, 
-            React.createElement(Icon, {name: "clear", size: "mac"}), 
+          React.createElement("a", {href: "", className: "action", onClick: this.handleCancel},
+            React.createElement(Icon, {name: "clear", size: "mac"}),
             React.createElement("span", {className: "title"}, t.s("cancel"))
-          ), 
+          ),
 
-          React.createElement(Modal, {position: "right-top", isOpened: this.state.modalMoveShow, onClose: this.handleModalMoveClose}, 
+          React.createElement(Modal, {position: "right-top", isOpened: this.state.modalMoveShow, onClose: this.handleModalMoveClose},
             React.createElement(ModalBookmarksMove, null)
-          ), 
+          ),
 
-          React.createElement(Modal, {position: "right-top", isOpened: this.state.modalCopyShow, onClose: this.handleModalCopyClose}, 
+          React.createElement(Modal, {position: "right-top", isOpened: this.state.modalCopyShow, onClose: this.handleModalCopyClose},
             React.createElement(ModalBookmarksCopy, null)
-          ), 
+          ),
 
-          React.createElement(Modal, {position: "right-top", isOpened: this.state.modalRemoveShow, onClose: this.handleModalRemoveClose}, 
+          React.createElement(Modal, {position: "right-top", isOpened: this.state.modalRemoveShow, onClose: this.handleModalRemoveClose},
             React.createElement(ModalBookmarksRemove, null)
-          ), 
+          ),
 
-          React.createElement(Modal, {position: "right-top", isOpened: this.state.modalAddTagsShow, onClose: this.handleModalAddTagsClose}, 
+          React.createElement(Modal, {position: "right-top", isOpened: this.state.modalAddTagsShow, onClose: this.handleModalAddTagsClose},
             React.createElement(ModalBookmarksAddTags, null)
           )
         )
@@ -601,21 +601,21 @@ module.exports = React.createClass({
         }
 
         return (
-            React.createElement("figure", React.__spread({ref: "item", id: "element-"+this.props.item._id},  this.dragSourceFor('favicon'),  this.dropTargetFor('favicon'), {className: className, onContextMenu: this.handleMore}), 
-                React.createElement("div", {className: "favicon", style: {backgroundColor: faviconBg}}, 
+            React.createElement("figure", React.__spread({ref: "item", id: "element-"+this.props.item._id},  this.dragSourceFor('favicon'),  this.dropTargetFor('favicon'), {className: className, onContextMenu: this.handleMore}),
+                React.createElement("div", {className: "favicon", style: {backgroundColor: faviconBg}},
                     favicon
-                ), 
+                ),
 
-                React.createElement("figcaption", {className: "about"}, 
+                React.createElement("figcaption", {className: "about"},
                     React.createElement("div", {className: "title", title: title}, title)
-                ), 
+                ),
 
-                React.createElement("div", {className: "more"}, 
+                React.createElement("div", {className: "more"},
                   React.createElement("a", {href: "", id: "more-"+this.props.item._id, className: "action-icon icon-more", onClick: this.handleEdit}, React.createElement(Icon, {name: "more", size: "mac", style: {backgroundColor: this.state.palette}}))
                   /*<a href="" className="action-icon" onClick={this.handleRemove}><Icon name="trash" style={{backgroundColor: this.state.palette}} /></a>*/
-                ), 
+                ),
 
-                React.createElement("a", {href: this.state.link, className: "permalink"}), 
+                React.createElement("a", {href: this.state.link, className: "permalink"}),
                 React.createElement(Popover, React.__spread({position: this.state.mousePos ? "left" : "", onClose: this.handlePopoverClose, show: this.state.showPopover, attachId: "more-"+this.props.item._id},  this.props.item, {handleEdit: this.handleEdit, handleRemove: this.handleRemove, mousePos: this.state.mousePos}))
             )
         );
@@ -790,11 +790,11 @@ module.exports = React.createClass({
                     viewOrOpen = React.createElement("a", {href: this.state.link, className: "action-icon", target: "_blank"}, React.createElement(Icon, {name: "open-link", size: "mac"}));
             }
 
-            more = (React.createElement("div", {className: "more"}, 
-                viewOrOpen, 
+            more = (React.createElement("div", {className: "more"},
+                viewOrOpen,
                 /*!this.state.loading ? <a href="" className="action-icon icon-more"   onClick={this.handleMore}><Icon name="more" size="mac" /></a> : null*/
-                !this.state.loading ? React.createElement("a", {href: "", className: "action-icon", id: "more-"+this.state._id, onClick: this.handleEdit}, React.createElement(Icon, {name: "edit", size: "mac"})) : null, 
-                React.createElement("a", {href: "", className: "action-icon", onClick: this.handleRemove}, React.createElement(Icon, {name: "trash", size: "mac"})), 
+                !this.state.loading ? React.createElement("a", {href: "", className: "action-icon", id: "more-"+this.state._id, onClick: this.handleEdit}, React.createElement(Icon, {name: "edit", size: "mac"})) : null,
+                React.createElement("a", {href: "", className: "action-icon", onClick: this.handleRemove}, React.createElement(Icon, {name: "trash", size: "mac"})),
                 React.createElement(Checkbox, {active: this.state.selected, onClick: this.handleSelect})
             ));
         }
@@ -819,20 +819,20 @@ module.exports = React.createClass({
                 className += " grid-item";
 
                 content = (
-                    React.createElement("figure", React.__spread({ref: "bookmark", id: "element-"+this.state._id},  this.dragSourceFor('bookmark'),  this.dropTargetFor('bookmark'), {className: className, "data-type": this.state.type, onContextMenu: this.handleMore}), 
-                        React.createElement("div", {className: "cover"}, 
-                            cover_icon, 
+                    React.createElement("figure", React.__spread({ref: "bookmark", id: "element-"+this.state._id},  this.dragSourceFor('bookmark'),  this.dropTargetFor('bookmark'), {className: className, "data-type": this.state.type, onContextMenu: this.handleMore}),
+                        React.createElement("div", {className: "cover"},
+                            cover_icon,
                             React.createElement(Cover, {src: this.state.cover, link: this.state.link, domain: this.state.domain, width: "230", className: "cover-img", preHeight: this.props.view=="masonry", proportions: this.props.item.coverHeight})
                             /*<Favicon domain={this.state.domain} className="icon" />*/
-                        ), 
+                        ),
 
-                        React.createElement("figcaption", {className: "about"}, 
-                            React.createElement("div", {className: "title"}, this.state.title, " ", React.createElement("span", {className: "tags"}, tags)), 
+                        React.createElement("figcaption", {className: "about"},
+                            React.createElement("div", {className: "title"}, this.state.title, " ", React.createElement("span", {className: "tags"}, tags)),
                             React.createElement("div", {className: "type"}, typeIcon)
-                        ), 
-                        path, 
+                        ),
+                        path,
 
-                        more, 
+                        more,
                         permalink
                     ));
             break;
@@ -841,20 +841,20 @@ module.exports = React.createClass({
                 className += " list-item";
 
                 content = (
-                    React.createElement("figure", React.__spread({ref: "bookmark", id: "element-"+this.state._id},  this.dragSourceFor('bookmark'),  this.dropTargetFor('bookmark'), {className: className, "data-type": this.state.type, onContextMenu: this.handleMore}), 
-                        React.createElement("div", {className: "favicon"}, 
+                    React.createElement("figure", React.__spread({ref: "bookmark", id: "element-"+this.state._id},  this.dragSourceFor('bookmark'),  this.dropTargetFor('bookmark'), {className: className, "data-type": this.state.type, onContextMenu: this.handleMore}),
+                        React.createElement("div", {className: "favicon"},
                             React.createElement(Favicon, {domain: this.state.domain, className: "icon"})
-                        ), 
+                        ),
 
-                        React.createElement("figcaption", {className: "about"}, 
+                        React.createElement("figcaption", {className: "about"},
                             React.createElement("div", {className: "title"}, this.state.title, " ", React.createElement("span", {className: "tags"}, tags))
-                        ), 
+                        ),
 
-                        path, 
+                        path,
 
-                        React.createElement("div", {className: "type"}, typeIcon), 
+                        React.createElement("div", {className: "type"}, typeIcon),
 
-                        more, 
+                        more,
                         permalink
                     ))
             break;
@@ -873,24 +873,24 @@ module.exports = React.createClass({
                     favicon = React.createElement(Favicon, {domain: this.state.domain, className: "icon"});
 
                 content = (
-                    React.createElement("figure", React.__spread({ref: "bookmark", id: "element-"+this.state._id},  this.dragSourceFor('bookmark'),  this.dropTargetFor('bookmark'), {className: className, "data-type": this.state.type, onContextMenu: this.handleMore}), 
-                        React.createElement("div", {className: "cover"}, 
-                            cover_icon, 
+                    React.createElement("figure", React.__spread({ref: "bookmark", id: "element-"+this.state._id},  this.dragSourceFor('bookmark'),  this.dropTargetFor('bookmark'), {className: className, "data-type": this.state.type, onContextMenu: this.handleMore}),
+                        React.createElement("div", {className: "cover"},
+                            cover_icon,
                             React.createElement(Cover, {src: this.state.cover, link: this.state.link, domain: this.state.domain, width: "100", className: "cover-img", proportions: this.props.item.coverHeight})
-                            
+
                             /*<div className="light-border"></div>*/
-                        ), 
+                        ),
 
-                        React.createElement("figcaption", {className: "about"}, 
-                            React.createElement("div", {className: "title"}, this.state.title), 
-                            
-                            React.createElement("div", {className: "excerpt"}, React.createElement("span", {className: "description"}, excerptText), " ", React.createElement("span", {className: "tags"}, tags)), 
+                        React.createElement("figcaption", {className: "about"},
+                            React.createElement("div", {className: "title"}, this.state.title),
+
+                            React.createElement("div", {className: "excerpt"}, React.createElement("span", {className: "description"}, excerptText), " ", React.createElement("span", {className: "tags"}, tags)),
                             path
-                        ), 
+                        ),
 
-                        React.createElement("div", {className: "type"}, typeIcon), 
+                        React.createElement("div", {className: "type"}, typeIcon),
 
-                        more, 
+                        more,
                         permalink
                     ))
             break;
@@ -898,7 +898,7 @@ module.exports = React.createClass({
 
         return content;
     }
-}); 
+});
 
 },{"../../../actions/Bookmarks":2,"../../../modules/ReactDND":102,"../Collections/Path.js":33,"../Helpers/Checkbox.js":38,"../Helpers/Cover.js":40,"../Helpers/Favicon.js":42,"../Popovers/Bookmark":74,"./Tag.js":22,"react/addons":"react/addons"}],19:[function(require,module,exports){
 /** @jsx React.DOM */
@@ -949,23 +949,23 @@ module.exports = React.createClass({
 
                 if (_this.state.view == "favorites")
                     element = (React.createElement(Favorite, {
-                        key: "favorite_"+item._id, 
-                        item: item, 
-                        onMore: _this.props.onMore, 
-                        onMove: _this.props.onMove, 
+                        key: "favorite_"+item._id,
+                        item: item,
+                        onMore: _this.props.onMore,
+                        onMove: _this.props.onMove,
                         onEndDrag: _this.props.onMoveEnd}));
                 else
-                    element = React.createElement(Bookmark, {item: item, 
-                                      view: _this.state.view, 
-                                      key: "bookmark_"+item._id, 
-                                      selectMode: _this.props.selectMode, 
-                                      showPath: _this.props.showPath, 
-                                      canDrag: true, 
-                                      canDropSort: _this.state.sort=="sort", 
-                                      canEdit: _this.props.canEdit, 
-                                      onMore: _this.props.onMore, 
-                                      onMove: _this.props.onMove, 
-                                      onMoveEnd: _this.props.onMoveEnd, 
+                    element = React.createElement(Bookmark, {item: item,
+                                      view: _this.state.view,
+                                      key: "bookmark_"+item._id,
+                                      selectMode: _this.props.selectMode,
+                                      showPath: _this.props.showPath,
+                                      canDrag: true,
+                                      canDropSort: _this.state.sort=="sort",
+                                      canEdit: _this.props.canEdit,
+                                      onMore: _this.props.onMore,
+                                      onMove: _this.props.onMove,
+                                      onMoveEnd: _this.props.onMoveEnd,
                                       onSelect: _this.props.onSelect});
 
                 if (_this.state.sort!="sort") {
@@ -1047,17 +1047,17 @@ module.exports = React.createClass({
 
         if (this.state.view) {
             items = this.state.items.map(function (item) {
-                return (React.createElement(Bookmark, {item: item, 
-                                  view: _this.state.view, 
-                                  key: "bookmark_"+item._id, 
-                                  selectMode: _this.props.selectMode, 
-                                  showPath: _this.props.showPath, 
-                                  canDrag: true, 
-                                  canDropSort: /*_this.state.sort=="sort"*/false, 
-                                  canEdit: _this.props.canEdit, 
-                                  onMore: _this.props.onMore, 
-                                  onMove: _this.props.onMove, 
-                                  onMoveEnd: _this.props.onMoveEnd, 
+                return (React.createElement(Bookmark, {item: item,
+                                  view: _this.state.view,
+                                  key: "bookmark_"+item._id,
+                                  selectMode: _this.props.selectMode,
+                                  showPath: _this.props.showPath,
+                                  canDrag: true,
+                                  canDropSort: /*_this.state.sort=="sort"*/false,
+                                  canEdit: _this.props.canEdit,
+                                  onMore: _this.props.onMore,
+                                  onMove: _this.props.onMove,
+                                  onMoveEnd: _this.props.onMoveEnd,
                                   onSelect: _this.props.onSelect}));
             });
         }
@@ -1068,8 +1068,8 @@ module.exports = React.createClass({
 
         return (
           React.createElement(Masonry, {
-              className: className, 
-              elementType: 'figure'}, 
+              className: className,
+              elementType: 'figure'},
               items
           )
         );
@@ -1117,7 +1117,7 @@ module.exports = React.createClass({
     render: function() {
     	var cId = 0;
     	try{cId = CollectionsStore.getCurrentId()||0;}catch(e){};
-    	
+
         return React.createElement("a", {href: "#/collection/"+cId+"/"+encodeURIComponent(JSON.stringify([{key: "tag", val: this.props.name}])), className: "tag"}, "#", this.props.name)
     }
 });
@@ -1133,7 +1133,7 @@ module.exports = React.createClass({
 			if (parseInt(Api.getItem("openCount")||0)%10 != 0)
 				return null;
 		}
-		
+
 		var className = "card upgrade-bookmark";
 		switch(this.props.view){
 			case "grid":
@@ -1150,12 +1150,12 @@ module.exports = React.createClass({
 			excerpt = this.props.excerpt || "$2 "+t.s("und")+" "+t.s("pro_noAds").toLowerCase();
 
 		return (
-			React.createElement("figure", {className: className}, 
-				React.createElement("img", {className: "upgrade-bookmark-icon", src: (window.pathPrefix||"") + "../common/images/upgrade.png"}), 
-				React.createElement("div", {className: "upgrade-bookmark-text"}, 
-					React.createElement("b", null, title), 
+			React.createElement("figure", {className: className},
+				React.createElement("img", {className: "upgrade-bookmark-icon", src: (window.pathPrefix||"") + "../common/images/upgrade.png"}),
+				React.createElement("div", {className: "upgrade-bookmark-text"},
+					React.createElement("b", null, title),
 					excerpt
-				), 
+				),
 
 				React.createElement("a", {href: consts.proPage, target: "_blank", className: "permalink"})
 			)
@@ -1281,12 +1281,12 @@ module.exports = React.createClass({
 
         if (this.state.collection.author)
             actionLinks = (
-              React.createElement("ul", {className: "breadcrumbs"}, 
-                React.createElement("li", {className: "item more active"}, 
+              React.createElement("ul", {className: "breadcrumbs"},
+                React.createElement("li", {className: "item more active"},
                     React.createElement("a", {href: "", title: t.s("createSubFolder"), className: "action-icon", onClick: this.handleAddFolder, style: {paddingLeft: "14px",paddingRight:"14px"}, id: "current-collection-sub-folder-button"}, React.createElement(Icon, {name: "folder-add", size: "mac"}))
-                ), 
+                ),
 
-                React.createElement("li", {className: "item more active"}, 
+                React.createElement("li", {className: "item more active"},
                     React.createElement("a", {href: "", title: t.s("sharing"), className: "action-icon", onClick: this.handleShare, style: {paddingLeft: "14px",paddingRight:"14px"}, id: "current-collection-share-button"}, React.createElement(Icon, {name: "share", size: "mac"}))
                 )
               )
@@ -1294,23 +1294,23 @@ module.exports = React.createClass({
 
         if (this.state.collection._id===-99)
             actionLinks = (
-              React.createElement("ul", {className: "breadcrumbs"}, 
-                React.createElement("li", {className: "item more active"}, 
+              React.createElement("ul", {className: "breadcrumbs"},
+                React.createElement("li", {className: "item more active"},
                     React.createElement("a", {href: "", className: "action-icon", onClick: this.handleRemove, style: {paddingLeft:"14px",paddingRight:"14px"}}, React.createElement(Icon, {name: "trash", size: "mac"}))
                 )
               )
             );
 
         return (
-            React.createElement("div", {className: "breadcrumbs-wrap"}, 
-                React.createElement("ul", {className: "breadcrumbs"}, 
-                    React.createElement("li", {className: "item"}, React.createElement("a", {href: "#/", className: "action-icon"}, React.createElement(Icon, {name: "home"}))), 
+            React.createElement("div", {className: "breadcrumbs-wrap"},
+                React.createElement("ul", {className: "breadcrumbs"},
+                    React.createElement("li", {className: "item"}, React.createElement("a", {href: "#/", className: "action-icon"}, React.createElement(Icon, {name: "home"}))),
                     React.createElement("li", {className: "item separator"}, React.createElement(Icon, {name: "chevron-right", size: "small"}))
-                ), 
-                React.createElement("ul", {className: "breadcrumbs"}, 
-                    items, 
+                ),
+                React.createElement("ul", {className: "breadcrumbs"},
+                    items,
                     React.createElement("li", {className: "item active", id: "current-collection-settings-button"}, React.createElement("a", {href: "", onClick: this.handleEdit}, this.state.collection.title, " ", React.createElement(Icon, {name: "arrow-down", size: "small"})))
-                ), 
+                ),
 
                 actionLinks
             )
@@ -1342,13 +1342,13 @@ module.exports = React.createClass({
         var items = null, _this = this;
         if ((this.state.items||[]).length>0)
             items = this.state.items.map(function (item) {
-                return React.createElement(Collection, {item: item, 
-                                    look: "simple", 
-                                    key: "child_"+item._id, 
-                                    dragParent: "childrens", 
-                                    onMore: _this.props.onCollectionMore, 
-                                    onMove: _this.props.onCollectionMove, 
-                                    onEndDrag: _this.props.onCollectionMoveEnd, 
+                return React.createElement(Collection, {item: item,
+                                    look: "simple",
+                                    key: "child_"+item._id,
+                                    dragParent: "childrens",
+                                    onMore: _this.props.onCollectionMore,
+                                    onMove: _this.props.onCollectionMove,
+                                    onEndDrag: _this.props.onCollectionMoveEnd,
                                     onDropBookmark: _this.props.onDropBookmark});
             });
 
@@ -1544,7 +1544,7 @@ module.exports = React.createClass({
     handleSortChange: function(e) {
         e.preventDefault();
         this.props.handleSortChange(e.target.getAttribute("data-sort"));
-    }, 
+    },
 
     handleChangeViewItem: function(e) {
         e.preventDefault();
@@ -1558,31 +1558,31 @@ module.exports = React.createClass({
         var fastLinks = [];
         if (this.state.collection.author){
             fastLinks.push(
-              React.createElement("a", {href: "", onClick: this.handleEdit, className: "item"}, 
-                  React.createElement("span", {className: "icon currentCollectionBackground"}, React.createElement(Icon, {name: "edit"})), 
+              React.createElement("a", {href: "", onClick: this.handleEdit, className: "item"},
+                  React.createElement("span", {className: "icon currentCollectionBackground"}, React.createElement(Icon, {name: "edit"})),
                   React.createElement("span", {className: "title"}, t.s("collectionEdit"))
               )
             );
 
             fastLinks.push(
-              React.createElement("a", {href: "", onClick: this.handleShare, className: "item"}, 
-                  React.createElement("span", {className: "icon currentCollectionBackground"}, React.createElement(Icon, {name: "share"})), 
+              React.createElement("a", {href: "", onClick: this.handleShare, className: "item"},
+                  React.createElement("span", {className: "icon currentCollectionBackground"}, React.createElement(Icon, {name: "share"})),
                   React.createElement("span", {className: "title"}, t.s("shareCollection"))
               )
             );
 
             if ((window.environment||[]).indexOf("mobile")==-1){
                 fastLinks.push(
-                  React.createElement("a", {href: network.fixURL("/app#/collection/"+this.state.collection._id), target: "_blank", onClick: this.handleCloseMore, className: "item"}, 
-                      React.createElement("span", {className: "icon currentCollectionBackground"}, React.createElement(Icon, {name: "open-link"})), 
+                  React.createElement("a", {href: network.fixURL("/app#/collection/"+this.state.collection._id), target: "_blank", onClick: this.handleCloseMore, className: "item"},
+                      React.createElement("span", {className: "icon currentCollectionBackground"}, React.createElement(Icon, {name: "open-link"})),
                       React.createElement("span", {className: "title"}, t.s("openInBrowser"))
                   )
                 );
             }
 
             fastLinks.push(
-              React.createElement("a", {href: "", onClick: this.handleAddFolder, className: "item"}, 
-                  React.createElement("span", {className: "icon currentCollectionBackground"}, React.createElement(Icon, {name: "folder-add"})), 
+              React.createElement("a", {href: "", onClick: this.handleAddFolder, className: "item"},
+                  React.createElement("span", {className: "icon currentCollectionBackground"}, React.createElement(Icon, {name: "folder-add"})),
                   React.createElement("span", {className: "title"}, t.s("createSubFolder"))
               )
             );
@@ -1590,7 +1590,7 @@ module.exports = React.createClass({
 
         var sort = _sorting.map(function(item){
             return (
-              React.createElement("div", {className: "item "+(_this.state.sortSelected == item.key ? "active":null), "data-sort": item.key, onClick: _this.handleSortChange}, 
+              React.createElement("div", {className: "item "+(_this.state.sortSelected == item.key ? "active":null), "data-sort": item.key, onClick: _this.handleSortChange},
                   item.value
               )
             );
@@ -1604,26 +1604,26 @@ module.exports = React.createClass({
         });
 
         return (
-            React.createElement("div", {className: "clipper-toolbar-more "+(this.state.more ? "clipper-toolbar-show" : "")}, 
-                React.createElement("div", {className: "fast-links"}, 
+            React.createElement("div", {className: "clipper-toolbar-more "+(this.state.more ? "clipper-toolbar-show" : "")},
+                React.createElement("div", {className: "fast-links"},
                     fastLinks
-                ), 
+                ),
 
-                React.createElement("div", {className: "picker-list"}, 
-                    React.createElement("div", {className: "separator", style: {marginTop:"-1px"}}), 
+                React.createElement("div", {className: "picker-list"},
+                    React.createElement("div", {className: "separator", style: {marginTop:"-1px"}}),
                     React.createElement("div", {className: "section"}, t.s("view"))
-                ), 
+                ),
 
-                React.createElement("div", {className: "img-selector", style: {padding: "8px 16px"}}, 
+                React.createElement("div", {className: "img-selector", style: {padding: "8px 16px"}},
                     styles
-                ), 
+                ),
 
-                React.createElement("div", {className: "picker-list"}, 
-                    React.createElement("div", {className: "separator"}), 
+                React.createElement("div", {className: "picker-list"},
+                    React.createElement("div", {className: "separator"}),
                     React.createElement("div", {className: "section"}, t.s("collectionsSorting"))
-                ), 
+                ),
 
-                React.createElement("div", {className: "ioslike-tab"}, 
+                React.createElement("div", {className: "ioslike-tab"},
                     sort
                 )
             )
@@ -1643,8 +1643,8 @@ module.exports = React.createClass({
         if ((this.state.collection._id != -99)&&(typeof BrowserBridge != "undefined"))
             footer = (
                 React.createElement(ClipperAction, {
-                    collection: this.state.collection, 
-                    handleBookmarkEdit: this.props.handleBookmarkEdit, 
+                    collection: this.state.collection,
+                    handleBookmarkEdit: this.props.handleBookmarkEdit,
                     handleFab: this.props.handleFab}
                     )
             );
@@ -1652,18 +1652,18 @@ module.exports = React.createClass({
         var titleBar = null;
         if (this.state.showSearch)
             titleBar = (
-                React.createElement("section", {className: "search-bar"}, 
+                React.createElement("section", {className: "search-bar"},
                     React.createElement(Search, {queries: this.state.queries, onSearchReset: this.handleSearchReset, autoFocus: true})
                 )
             );
         else
             titleBar = (
-                React.createElement("section", {className: "navigation"}, 
-                    React.createElement("ul", {className: "path "+(this.state.collection.parent ? "" : "hidden")}, 
+                React.createElement("section", {className: "navigation"},
+                    React.createElement("ul", {className: "path "+(this.state.collection.parent ? "" : "hidden")},
                         items
-                    ), 
-                    React.createElement("h1", null, 
-                        React.createElement("a", {href: "", title: t.s("collectionEdit"), className: "path-more", id: "clipper-toolbar-setting", onClick: this.handleCollectionPopover}, UserStore.isLogged() ? this.state.collection.title : "Raindrop.io", 
+                    ),
+                    React.createElement("h1", null,
+                        React.createElement("a", {href: "", title: t.s("collectionEdit"), className: "path-more", id: "clipper-toolbar-setting", onClick: this.handleCollectionPopover}, UserStore.isLogged() ? this.state.collection.title : "Raindrop.io",
                         React.createElement(Icon, {name: "arrow-down", size: "small"}))
                     )
                 )
@@ -1678,27 +1678,27 @@ module.exports = React.createClass({
         //onMouseOver={this.handleSidebarOver} onMouseLeave={this.handleSidebarLeave}
         //{this.renderMore()}
         return (
-                React.createElement("div", {className: className}, 
-                    React.createElement("header", {className: UserStore.isLogged() ? "" : "hidden", id: "clipper-toolbar-header"}, 
-                        React.createElement("section", {className: "menu"}, 
+                React.createElement("div", {className: className},
+                    React.createElement("header", {className: UserStore.isLogged() ? "" : "hidden", id: "clipper-toolbar-header"},
+                        React.createElement("section", {className: "menu"},
                             React.createElement("a", {href: "", className: "action-icon", onClick: this.handleSidebar}, React.createElement(Icon, {name: "menu"}))
-                        ), 
-                        
-                        titleBar, 
+                        ),
 
-                        React.createElement("section", {className: UserStore.isLogged() ? "actions" : "hidden"}, 
-                            React.createElement("span", {className: this.state.showSearch ? "hidden" : "action-icon", title: t.s("sortBy")}, React.createElement(Select, {arrowIcon: false, items: _sorting, disableTitle: true, selected: this.state.sortSelected, handleChange: this.props.handleSortChange}, React.createElement(Icon, {name: "sorting", size: "mac"}))), 
+                        titleBar,
 
-                            React.createElement("a", {href: "", className: this.state.showSearch ? "hidden" : "action-icon", onClick: this.handleSearchOpen}, React.createElement(Icon, {name: "search", size: "mac"})), 
+                        React.createElement("section", {className: UserStore.isLogged() ? "actions" : "hidden"},
+                            React.createElement("span", {className: this.state.showSearch ? "hidden" : "action-icon", title: t.s("sortBy")}, React.createElement(Select, {arrowIcon: false, items: _sorting, disableTitle: true, selected: this.state.sortSelected, handleChange: this.props.handleSortChange}, React.createElement(Icon, {name: "sorting", size: "mac"}))),
+
+                            React.createElement("a", {href: "", className: this.state.showSearch ? "hidden" : "action-icon", onClick: this.handleSearchOpen}, React.createElement(Icon, {name: "search", size: "mac"})),
                             self!=top ? React.createElement("a", {href: "", className: "action-icon", onClick: this.handleClose}, React.createElement(Icon, {name: "clear", size: "mac"})) : null
                         )
-                    ), 
+                    ),
 
-                    
 
-                    footer, 
 
-                    React.createElement(Modal, {position: "right-top", isOpened: this.state.viewModal.show, onClose: this.handleViewModalClose, closeOnOutsideClick: true, params: this.state.collection}, 
+                    footer,
+
+                    React.createElement(Modal, {position: "right-top", isOpened: this.state.viewModal.show, onClose: this.handleViewModalClose, closeOnOutsideClick: true, params: this.state.collection},
                         React.createElement(CollectionViewModal, {onChangeView: this.handleChangeView})
                     )
                 )
@@ -1796,9 +1796,9 @@ module.exports = React.createClass({
         var search = null, style=null;
         //if ((this.state.showSearch)||((this.props.collection||{})._id==0)) {
             search = (
-                React.createElement("div", {className: "clipper-toolbar search-mode"}, 
-                    React.createElement("header", null, 
-                        React.createElement("section", {className: "search-bar"}, 
+                React.createElement("div", {className: "clipper-toolbar search-mode"},
+                    React.createElement("header", null,
+                        React.createElement("section", {className: "search-bar"},
                             React.createElement(Search, {queries: this.state.queries, onSearchReset: this.handleSearchReset, autoFocus: (this.props.collection||{})._id!=0})
                         )
                     )
@@ -1809,20 +1809,20 @@ module.exports = React.createClass({
         //}
 
         return (
-            React.createElement("div", {className: "desktop-toolbar", style: style}, 
-                React.createElement("div", {id: "collection-more-placeholder"}), 
-                React.createElement(PopoverCollection, {onClose: this.handleCollectionPopoverClose, 
-                      show: this.state.collectionPopover, 
-                      attachId: "collection-more-placeholder", 
-                      collection: this.props.collection, 
-                      sortSelected: this.props.sortSelected, 
-                      handleSortChange: this.props.handleSortChange, 
-                      handleEdit: this.handleEdit, 
-                      handleViewModalShow: this.handleViewModalShow, 
-                      handleAddFolder: this.props.handleAddFolder}), 
-                React.createElement(Modal, {position: "right-top", isOpened: this.state.viewModal.show, onClose: this.handleViewModalClose, closeOnOutsideClick: true, params: this.props.collection}, 
+            React.createElement("div", {className: "desktop-toolbar", style: style},
+                React.createElement("div", {id: "collection-more-placeholder"}),
+                React.createElement(PopoverCollection, {onClose: this.handleCollectionPopoverClose,
+                      show: this.state.collectionPopover,
+                      attachId: "collection-more-placeholder",
+                      collection: this.props.collection,
+                      sortSelected: this.props.sortSelected,
+                      handleSortChange: this.props.handleSortChange,
+                      handleEdit: this.handleEdit,
+                      handleViewModalShow: this.handleViewModalShow,
+                      handleAddFolder: this.props.handleAddFolder}),
+                React.createElement(Modal, {position: "right-top", isOpened: this.state.viewModal.show, onClose: this.handleViewModalClose, closeOnOutsideClick: true, params: this.props.collection},
                     React.createElement(CollectionViewModal, {onChangeView: this.handleChangeView})
-                ), 
+                ),
 
                 search
             )
@@ -1876,17 +1876,17 @@ module.exports = React.createClass({
         //  className += " invisible";
 
         return (
-          React.createElement("div", React.__spread({ref: "group", 
-            className: className, 
-            key: "grouptab_"+this.state.id, 
-            id: "tab-group-"+this.state.id}, 
-            this.dropTargetFor('collection', 'group'), 
-            this.dragSourceFor('group'), 
-            {"data-id": this.state.id, 
-            onClick: this.props.onClick, 
-            onContextMenu: this.handleMore}), 
+          React.createElement("div", React.__spread({ref: "group",
+            className: className,
+            key: "grouptab_"+this.state.id,
+            id: "tab-group-"+this.state.id},
+            this.dropTargetFor('collection', 'group'),
+            this.dragSourceFor('group'),
+            {"data-id": this.state.id,
+            onClick: this.props.onClick,
+            onContextMenu: this.handleMore}),
             /*<div className="action-icon" onClick={this.handleAdd}><Icon name="add" size="small" /></div>*/
-            React.createElement("div", {className: "title"}, this.props.children), 
+            React.createElement("div", {className: "title"}, this.props.children),
             React.createElement("div", {className: "action-icon", onClick: this.handleMore}, React.createElement(Icon, {name: "edit", size: "mac"}))
           )
         )
@@ -2011,10 +2011,10 @@ module.exports = React.createClass({
 
         var actions = null;
         if ((this.state.author)/*&&(typeof this.props.onMore == 'function')*/) {
-            actions = (React.createElement("div", {className: "more"}, 
-                React.createElement("a", {href: "", id: "edit-"+this.props.item._id, className: "action-icon icon-more", onClick: this.handleShare}, React.createElement(Icon, {name: "share", size: "mac"})), 
+            actions = (React.createElement("div", {className: "more"},
+                React.createElement("a", {href: "", id: "edit-"+this.props.item._id, className: "action-icon icon-more", onClick: this.handleShare}, React.createElement(Icon, {name: "share", size: "mac"})),
                 React.createElement("a", {href: "", id: "edit-"+this.props.item._id, className: "action-icon icon-more", onClick: this.handleEdit}, React.createElement(Icon, {name: "settings", size: "mac"}))
-                
+
                 /*<a href="" id={"more-"+this.props.item._id} className="action-icon icon-more" onClick={this.handleMore}><Icon name="more" size="mac" /></a>*/
             ));
         }
@@ -2040,24 +2040,24 @@ module.exports = React.createClass({
         }
 
         return (
-            React.createElement("figure", React.__spread({},  this.dragSourceFor('collection'),  this.dropTargetFor('collection', 'bookmark'), {className: className, ref: "collection", id: "child-collection-"+this.props.item._id, onContextMenu: this.handleMore}), 
-                React.createElement("div", {className: favIconClass}, 
-                    ghostIcon, 
+            React.createElement("figure", React.__spread({},  this.dragSourceFor('collection'),  this.dropTargetFor('collection', 'bookmark'), {className: className, ref: "collection", id: "child-collection-"+this.props.item._id, onContextMenu: this.handleMore}),
+                React.createElement("div", {className: favIconClass},
+                    ghostIcon,
                     icon
-                ), 
+                ),
 
-                React.createElement("figcaption", {className: "about"}, 
+                React.createElement("figcaption", {className: "about"},
                     React.createElement("div", {className: "title"}, this.state.title)
-                ), 
+                ),
 
-                React.createElement("div", {className: "info"}, 
-                    React.createElement("div", {className: "count"}, this.state.count), 
-                    statusShared, 
+                React.createElement("div", {className: "info"},
+                    React.createElement("div", {className: "count"}, this.state.count),
+                    statusShared,
                     statusPublic
-                ), 
+                ),
 
-                actions, 
-                React.createElement("a", {href: link, className: "permalink"}), 
+                actions,
+                React.createElement("a", {href: link, className: "permalink"}),
                 React.createElement(Popover, React.__spread({position: this.state.mousePos ? "left" : "", onClose: this.handlePopoverClose, show: this.state.showPopover, attachId: "more-"+this.props.item._id},  {collection:this.props.item}, {onlyBasic: true, handleEdit: this.handleEdit, handleRemove: this.handleRemove, mousePos: this.state.mousePos}))
             )
         );
@@ -2195,8 +2195,8 @@ module.exports = React.createClass({
 
     render: function() {
       return (
-        React.createElement("a", {href: "#/collection/"+this.state._id, className: "from-collection"}, 
-          !this.state.cover ? React.createElement(Icon, {name: network.defaultIcons(this.state._id), className: "collection-icon"}) : React.createElement("img", {src: this.state.cover, className: "collection-icon", alt: ""}), 
+        React.createElement("a", {href: "#/collection/"+this.state._id, className: "from-collection"},
+          !this.state.cover ? React.createElement(Icon, {name: network.defaultIcons(this.state._id), className: "collection-icon"}) : React.createElement("img", {src: this.state.cover, className: "collection-icon", alt: ""}),
           this.state.title
         )
       );
@@ -2278,25 +2278,25 @@ module.exports = React.createClass({
             return null;
 
         return (
-            React.createElement("div", {className: "collection-toolbar"}, 
-                React.createElement(Modal, {position: "right-top", isOpened: this.state.viewModal.show, onClose: this.handleViewModalClose, closeOnOutsideClick: true, params: this.state.collection}, 
+            React.createElement("div", {className: "collection-toolbar"},
+                React.createElement(Modal, {position: "right-top", isOpened: this.state.viewModal.show, onClose: this.handleViewModalClose, closeOnOutsideClick: true, params: this.state.collection},
                     React.createElement(CollectionViewModal, {onChangeView: this.handleChangeView})
-                ), 
+                ),
 
                 React.createElement(Breadcrumbs, {
-                    collection: this.state.collection, 
-                    parents: this.state.parents, 
-                    handleEditCollection: this.props.handleEditCollection, 
-                    handleAddFolder: this.props.handleAddFolder, 
+                    collection: this.state.collection,
+                    parents: this.state.parents,
+                    handleEditCollection: this.props.handleEditCollection,
+                    handleAddFolder: this.props.handleAddFolder,
                     onDropBookmark: this.props.onDropBookmark}
-                    ), 
-                React.createElement("div", {className: "toolbar-icons"}, 
+                    ),
+                React.createElement("div", {className: "toolbar-icons"},
                     React.createElement("span", {className: "action-icon", title: t.s("sortBy")}, React.createElement(Select, {arrowIcon: "true", items: _sorting, disableTitle: false, selected: this.state.sortSelected, handleChange: this.props.handleSortChange}, React.createElement(Icon, {name: "sorting", size: "mac"})))
                 )
             )
         );
         //
-        //<Icon name={this.state.collection.view} /> 
+        //<Icon name={this.state.collection.view} />
     }
 });
 
@@ -2470,13 +2470,13 @@ module.exports = React.createClass({
             try{cover = network.fixURL(item.cover[0]);}catch(e){}
 
             return (
-                React.createElement("div", {id: "cl-collection-"+item._id, className: "item"+((_this.props.activeCollection||0) == item._id ? " active":""), style: {paddingLeft: (item.level*20)+"px"}}, 
-                    React.createElement("div", {className: "icon"}, 
+                React.createElement("div", {id: "cl-collection-"+item._id, className: "item"+((_this.props.activeCollection||0) == item._id ? " active":""), style: {paddingLeft: (item.level*20)+"px"}},
+                    React.createElement("div", {className: "icon"},
                         React.createElement("img", {src: cover, alt: ""})
-                    ), 
-                    React.createElement("div", {className: "title"}, 
+                    ),
+                    React.createElement("div", {className: "title"},
                         item.title
-                    ), 
+                    ),
                     React.createElement("a", {href: "", className: "permalink", "data-cid": item._id, onClick: _this.handleCollectionSelect})
                 )
             );
@@ -2488,15 +2488,15 @@ module.exports = React.createClass({
                 if (index>0)
                     placeholder = React.createElement("div", {className: "section"});
                 return (
-                    React.createElement("div", null, 
-                        placeholder, 
-                        React.createElement("div", {id: "cl-group-"+index, className: "item"+(_this.props.activeGroup == index ? " active":"")}, 
-                            React.createElement("div", {className: "icon"}, 
+                    React.createElement("div", null,
+                        placeholder,
+                        React.createElement("div", {id: "cl-group-"+index, className: "item"+(_this.props.activeGroup == index ? " active":"")},
+                            React.createElement("div", {className: "icon"},
                                 React.createElement(Icon, {name: "group", size: "mac"})
-                            ), 
-                            React.createElement("div", {className: "title"}, 
+                            ),
+                            React.createElement("div", {className: "title"},
                                 item.title
-                            ), 
+                            ),
                             React.createElement("a", {href: "", className: "permalink", "data-index": index, onClick: _this.handleGroupSelect})
                         )
                     )
@@ -2542,7 +2542,7 @@ module.exports = React.createClass({
         }
 
         return (
-            React.createElement("div", {className: "picker-list"}, 
+            React.createElement("div", {className: "picker-list"},
                 items
             )
         );
@@ -2589,7 +2589,7 @@ module.exports = React.createClass({
       className += " active";
 
     return (
-      React.createElement("a", {href: "", onClick: this.handleClick, className: className}, 
+      React.createElement("a", {href: "", onClick: this.handleClick, className: className},
         React.createElement(Icon, {name: "done"})
       )
     );
@@ -2777,12 +2777,12 @@ module.exports = React.createClass({
     	switch(this.state.step){
     		case "loading":
     			content = (
-		    		React.createElement("div", {className: "sub", key: "loading"}, 
-		                React.createElement("section", {className: "icon"}, 
+		    		React.createElement("div", {className: "sub", key: "loading"},
+		                React.createElement("section", {className: "icon"},
 		                    React.createElement(Icon, {name: "loading", className: "rotating-animation", size: "mac"})
-		                ), 
-		                React.createElement("section", {className: "text"}, 
-		                    t.s("loading"), "...", 
+		                ),
+		                React.createElement("section", {className: "text"},
+		                    t.s("loading"), "...",
                             React.createElement("div", {className: "subinfo"}, this.state.url||t.s("orAlternativeFeed"))
 		                )
 		            )
@@ -2791,12 +2791,12 @@ module.exports = React.createClass({
 
     		case "new":
     			content = (
-		    		React.createElement("div", {className: "sub", onClick: this.handleSave, key: "new"}, 
-		                React.createElement("section", {className: "icon"}, 
+		    		React.createElement("div", {className: "sub", onClick: this.handleSave, key: "new"},
+		                React.createElement("section", {className: "icon"},
 		                    React.createElement(Icon, {name: "add-box-clean", size: "mac", className: "currentCollectionBackground"})
-		                ), 
-		                React.createElement("section", {className: "text"}, 
-		                    t.s("saveLink"), 
+		                ),
+		                React.createElement("section", {className: "text"},
+		                    t.s("saveLink"),
                             React.createElement("div", {className: "subinfo"}, t.s("or"), " ", t.s("noBookmarksD").toLowerCase())
 		                )
 		            )
@@ -2805,12 +2805,12 @@ module.exports = React.createClass({
 
     		case "saved":
     			content = (
-		    		React.createElement("div", {className: "sub", id: "bookmark-edit-clipper", onClick: this.handleBookmarkEdit, key: "saved"}, 
-		                React.createElement("section", {className: "icon"}, 
+		    		React.createElement("div", {className: "sub", id: "bookmark-edit-clipper", onClick: this.handleBookmarkEdit, key: "saved"},
+		                React.createElement("section", {className: "icon"},
 		                    React.createElement(Icon, {name: "done-circle", size: "mac", className: "icn-green"})
-		                ), 
-		                React.createElement("section", {className: "text"}, 
-		                    t.s((this.state.bookmark.type||"link") + "Saved"), 
+		                ),
+		                React.createElement("section", {className: "text"},
+		                    t.s((this.state.bookmark.type||"link") + "Saved"),
 		                    React.createElement("div", {className: "subinfo"}, t.s("alreadyInCollectionDD"))
 		                )
 		            )
@@ -2819,12 +2819,12 @@ module.exports = React.createClass({
 
             case "unsupported":
                 content = /*null;*/(
-                    React.createElement("div", {className: "sub", style: {cursor:"default"}, key: "unsupported"}, 
-                        React.createElement("section", {className: "icon"}, 
+                    React.createElement("div", {className: "sub", style: {cursor:"default"}, key: "unsupported"},
+                        React.createElement("section", {className: "icon"},
                             React.createElement(Icon, {name: "clear", size: "mac"})
-                        ), 
-                        React.createElement("section", {className: "text"}, 
-                            t.s("unableToRecognizeSpecifiedLink"), ".", React.createElement("br", null), 
+                        ),
+                        React.createElement("section", {className: "text"},
+                            t.s("unableToRecognizeSpecifiedLink"), ".", React.createElement("br", null),
                             React.createElement("a", {href: "", onClick: this.handleURL}, t.s("enterLink"), " (URL)")
                         )
                     )
@@ -2834,8 +2834,8 @@ module.exports = React.createClass({
 
         content = [content];
         content.push(
-            React.createElement("div", {className: "sub padding", onClick: this.handleFab, key: "more"}, 
-                React.createElement("section", {className: "text"}, 
+            React.createElement("div", {className: "sub padding", onClick: this.handleFab, key: "more"},
+                React.createElement("section", {className: "text"},
                     t.s("more"), " ", React.createElement(Icon, {name: "arrow-down", size: "small"})
                 )
             )
@@ -2944,11 +2944,11 @@ module.exports = React.createClass({
             if (this.state.width == 230)
               retinaWidth = 460;
             //onLoad={this.handleImgLoadSuccess}
-            return React.createElement("img", {ref: "img", className: className, "data-scale-down": this.state.scaleDown, 
+            return React.createElement("img", {ref: "img", className: className, "data-scale-down": this.state.scaleDown,
                         //data-proportions={(this.state.proportions||"").toString()}
-                        src: network.thumb(this.state.src, this.state.width), 
-                        srcSet: network.thumb(this.state.src, retinaWidth)+" 2x", alt: "", 
-                        onLoad: this.handleImgLoadSuccess, 
+                        src: network.thumb(this.state.src, this.state.width),
+                        srcSet: network.thumb(this.state.src, retinaWidth)+" 2x", alt: "",
+                        onLoad: this.handleImgLoadSuccess,
                          onError: this.handleImgLoadError});
         }else if (this.state.domain) {
             //style={{backgroundImage: "url("+network.favIcon(this.state.domain)+")"}}
@@ -3019,13 +3019,13 @@ module.exports = React.createClass({
                 style.backgroundSize = _this.props.imageSize;
 
             return (
-                React.createElement("div", {className: className, style: style, key: "coveritem_"+item, id: "coveritem_"+index}, 
+                React.createElement("div", {className: className, style: style, key: "coveritem_"+item, id: "coveritem_"+index},
                     React.createElement("a", {href: "", "data-index": index, onClick: _this.handleSelect}, React.createElement(Icon, {name: "done"}))
                 ));
         });
-        
+
         return (
-            React.createElement("div", {className: "cover-selector"}, 
+            React.createElement("div", {className: "cover-selector"},
                 items, this.props.children
             )
         );
@@ -3113,14 +3113,14 @@ module.exports = React.createClass({
 		}catch(e){}
 
 		if (!UserStore.isPro())
-			proLine = (React.createElement("div", null, 
+			proLine = (React.createElement("div", null,
 				"Whant more? ", React.createElement("a", {href: consts.proPage, target: "_blank"}, "Try PRO plan"), " with 1 GB of new uploads each month."
 			));
 
 		return (
-			React.createElement("div", {className: "file-limit-widget", style: this.props.style}, 
-				React.createElement("strong", null, strings.humanFileSize(used,true)), " of ", React.createElement("strong", null, strings.humanFileSize(size,true)), " in this month.", 
-				proLine, 
+			React.createElement("div", {className: "file-limit-widget", style: this.props.style},
+				React.createElement("strong", null, strings.humanFileSize(used,true)), " of ", React.createElement("strong", null, strings.humanFileSize(size,true)), " in this month.",
+				proLine,
 				React.createElement("progress", {max: size, value: used})
 			)
 		);
@@ -3218,12 +3218,12 @@ module.exports = React.createClass({
           welcomeText = React.createElement("div", null, t.s("welcome"), " Raindrop.io", React.createElement("div", {className: "external"}, t.s("appDesc")));
 
         content = (
-          React.createElement("div", {className: "about about-blue"}, 
-            React.createElement("div", {className: "icon"}, 
+          React.createElement("div", {className: "about about-blue"},
+            React.createElement("div", {className: "icon"},
               React.createElement(Icon, {name: "tab", size: "big"})
-            ), 
+            ),
 
-            React.createElement("div", {className: "text"}, 
+            React.createElement("div", {className: "text"},
               welcomeText
             )
           )
@@ -3232,15 +3232,15 @@ module.exports = React.createClass({
 
       case "clipper":
         content = (
-          React.createElement("div", {className: "about about-green"}, 
-            React.createElement("div", {className: "icon"}, 
+          React.createElement("div", {className: "about about-green"},
+            React.createElement("div", {className: "icon"},
               React.createElement(Icon, {name: "storm", size: "big"})
-            ), 
+            ),
 
-            React.createElement("div", {className: "text"}, 
-              React.createElement("strong", null, "Web Clipper"), " — ", t.s("extensionDescription"), 
+            React.createElement("div", {className: "text"},
+              React.createElement("strong", null, "Web Clipper"), " — ", t.s("extensionDescription"),
 
-              React.createElement("div", {className: "external"}, 
+              React.createElement("div", {className: "external"},
                 t.s("browserExtensionD")
               )
             )
@@ -3250,12 +3250,12 @@ module.exports = React.createClass({
 
       case "sharing":
         content = (
-          React.createElement("div", {className: "about about-red"}, 
-            React.createElement("div", {className: "icon"}, 
+          React.createElement("div", {className: "about about-red"},
+            React.createElement("div", {className: "icon"},
               React.createElement(Icon, {name: "group", size: "big"})
-            ), 
+            ),
 
-            React.createElement("div", {className: "text"}, 
+            React.createElement("div", {className: "text"},
               "Share bookmarks and collaborate with friends and colleagues."
             )
           )
@@ -3266,23 +3266,23 @@ module.exports = React.createClass({
         var actions = null;
         if ((this.props.params||{}).actions)
           actions = (
-            React.createElement("footer", null, 
-              React.createElement("a", {href: "", className: "action-icon", onClick: this.handleSignIn}, t.s("signIn")), 
+            React.createElement("footer", null,
+              React.createElement("a", {href: "", className: "action-icon", onClick: this.handleSignIn}, t.s("signIn")),
               React.createElement("a", {href: "", className: "action-icon sign-in", onClick: this.handleSignUp}, t.s("signUp"))
             )
           );
 
         content = (
-          React.createElement("div", {className: "about"}, 
-            React.createElement("div", {className: "icon"}, 
+          React.createElement("div", {className: "about"},
+            React.createElement("div", {className: "icon"},
               React.createElement(Icon, {name: "bookmark-outline", size: "big"})
-            ), 
+            ),
 
-            React.createElement("div", {className: "text"}, 
-              t.s("welcomeSlide1D"), " ", t.s("welcomeSlide1DD"), 
-              React.createElement("div", {className: "external"}, 
+            React.createElement("div", {className: "text"},
+              t.s("welcomeSlide1D"), " ", t.s("welcomeSlide1DD"),
+              React.createElement("div", {className: "external"},
                 React.createElement(Icon, {name: "external", size: "small"}), "  ", React.createElement("a", {href: network.fixURL("/welcome"), target: "_blank", className: "learn-more"}, t.s("howToUse"))
-              ), 
+              ),
 
               actions
             )
@@ -3295,10 +3295,10 @@ module.exports = React.createClass({
       className += " " + this.props.className;
 
     return (
-      React.createElement("div", {className: className}, 
-        React.createElement("div", {className: "image"}, 
+      React.createElement("div", {className: className},
+        React.createElement("div", {className: "image"},
           React.createElement("div", {id: "image-svg", ref: "svg"})
-        ), 
+        ),
 
         content
       )
@@ -3363,7 +3363,7 @@ module.exports = React.createClass({
   _renderLayer: function() {
     React.render(this.props.children, this.popup);
   },
-  
+
   render: function() {
     // Render a placeholder
     return React.createElement("div", null);
@@ -3399,7 +3399,7 @@ module.exports = {
 
             if ((stop)&&(typeof callback == "function"))
                 callback(true);
-            
+
             stop && e.preventDefault();
 
             return;
@@ -3452,9 +3452,9 @@ module.exports = React.createClass({
         }
 
         return (
-            React.createElement("label", {className: "mini-select"}, 
-                React.createElement("span", {className: "child"}, this.props.children), 
-                React.createElement("span", {className: "title"}, this.props.disableTitle ? null : React.createElement("span", {className: "title-text"}, title), " ", arrowIcon), 
+            React.createElement("label", {className: "mini-select"},
+                React.createElement("span", {className: "child"}, this.props.children),
+                React.createElement("span", {className: "title"}, this.props.disableTitle ? null : React.createElement("span", {className: "title-text"}, title), " ", arrowIcon),
                 select
             )
         );
@@ -3487,7 +3487,7 @@ module.exports = {
     setTimeout(function(){
       document.body.classList.remove('selectize-overflow-visible');
     },50)
-    
+
   }
 };
 
@@ -3526,9 +3526,9 @@ var initScenarios = function() {
       text: React.createElement("div", null, t.s("welcomeSlide1D") + " " + t.s("welcomeSlide1DD")),
       actions: function(component) {
         return (
-          React.createElement("div", null, 
+          React.createElement("div", null,
             /*<a href={network.fixURL("/welcome")} className="action-icon not-main">{t.s("howToUse")}</a>*/
-            React.createElement("a", {href: "", className: "action-icon not-main", onClick: component.handleSignIn}, t.s("signIn")), 
+            React.createElement("a", {href: "", className: "action-icon not-main", onClick: component.handleSignIn}, t.s("signIn")),
             React.createElement("a", {href: "", className: "action-icon", onClick: component.handleSignUp}, t.s("signUp"))
           )
         )
@@ -3546,7 +3546,7 @@ var initScenarios = function() {
         return false;
       }
     },
-    
+
     {
       name: "no_bookmarks",
       color: "light",
@@ -3556,7 +3556,7 @@ var initScenarios = function() {
         if ((window.environment||[]).indexOf("clipper")!=-1)
           return null;
 
-        return (React.createElement("div", null, 
+        return (React.createElement("div", null,
           React.createElement("a", {href: "", className: "action-icon", id: "tip-handleAddBookmark", onClick: component.handleAddBookmark}, t.s("add"))
         ));
       },
@@ -3962,21 +3962,21 @@ module.exports = React.createClass({
       _scenarios[index].showed = _scenarios[index].showed || 0;
       _scenarios[index].showed++;
       return (
-        React.createElement("div", {className: "tips", "data-current-tip": scenario.name}, 
-          React.createElement("div", {className: "tip tip-color-"+(scenario.color||"light"), id: "tip-"+scenario.name}, 
-            React.createElement("div", {className: "content"}, 
-              React.createElement("div", {className: "icon"}, 
+        React.createElement("div", {className: "tips", "data-current-tip": scenario.name},
+          React.createElement("div", {className: "tip tip-color-"+(scenario.color||"light"), id: "tip-"+scenario.name},
+            React.createElement("div", {className: "content"},
+              React.createElement("div", {className: "icon"},
                 React.createElement("img", {src: (window.pathPrefix||"") + "images/tips/"+scenario.name+".svg", alt: ""})
-              ), 
+              ),
 
-              React.createElement("div", {className: "text"}, 
-                React.createElement("h3", null, scenario.title), 
+              React.createElement("div", {className: "text"},
+                React.createElement("h3", null, scenario.title),
                 React.createElement("div", {className: "info"}, scenario.text)
-              ), 
+              ),
 
-              React.createElement("div", {className: "actions"}, 
+              React.createElement("div", {className: "actions"},
                 scenario.actions(this)
-              ), 
+              ),
 
               close
             )
@@ -4026,8 +4026,8 @@ module.exports = React.createClass({
         var _this = this;
 
         return (
-            React.createElement("div", null, 
-                React.createElement(Modal, {isOpened: this.state.show, onClose: this.handleFrameClose, params: this.state}, 
+            React.createElement("div", null,
+                React.createElement(Modal, {isOpened: this.state.show, onClose: this.handleFrameClose, params: this.state},
                     React.createElement(FrameModal, null)
                 )
             )
@@ -4119,43 +4119,43 @@ module.exports = React.createClass({
         loadingBlock = React.createElement("div", {className: "absoluteLoading"}, React.createElement("div", {className: "loader-inner line-scale"}, React.createElement("div", null), React.createElement("div", null), React.createElement("div", null), React.createElement("div", null)));
 
     return (
-        React.createElement("div", {className: "modal-dialog"}, 
-            React.createElement("header", null, 
-                React.createElement("div", {className: "actionBar"}, 
-                    React.createElement("div", {className: "actions"}, 
+        React.createElement("div", {className: "modal-dialog"},
+            React.createElement("header", null,
+                React.createElement("div", {className: "actionBar"},
+                    React.createElement("div", {className: "actions"},
                         React.createElement("a", {href: "", className: "action-icon", onClick: this.handleClose}, React.createElement(Icon, {name: this.iconCloseBack()}))
-                    ), 
+                    ),
                     React.createElement("h3", null, t.s("addTags"))
                 )
-            ), 
+            ),
 
-            React.createElement("article", null, 
-              React.createElement("form", {onSubmit: this.handleSave, style: {position:"relative"}}, 
-                  React.createElement("div", {style: {visibility: (this.state.loading?"hidden":null)}}, 
-                      React.createElement("div", {className: "form-editor"}, 
-                          React.createElement("div", {className: "oneline"}, 
-                              React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "tags"})), 
-                              React.createElement("div", {className: "area"}, 
-                                  React.createElement("label", null, t.s("tags")), 
+            React.createElement("article", null,
+              React.createElement("form", {onSubmit: this.handleSave, style: {position:"relative"}},
+                  React.createElement("div", {style: {visibility: (this.state.loading?"hidden":null)}},
+                      React.createElement("div", {className: "form-editor"},
+                          React.createElement("div", {className: "oneline"},
+                              React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "tags"})),
+                              React.createElement("div", {className: "area"},
+                                  React.createElement("label", null, t.s("tags")),
                                   React.createElement(Selectize, {
-                                      name: "tags", 
-                                      value: this.state.addTags, 
-                                      options: this.state.tags, 
-                                      multi: true, 
-                                      placeholder: t.s("addTags")+"...", 
-                                      onChange: this.handleTagsChange, 
+                                      name: "tags",
+                                      value: this.state.addTags,
+                                      options: this.state.tags,
+                                      multi: true,
+                                      placeholder: t.s("addTags")+"...",
+                                      onChange: this.handleTagsChange,
                                       filterOptions: this.handleSelectFilter}
                                   )
                               )
                           )
-                      ), 
+                      ),
 
-                      React.createElement("footer", null, 
-                          React.createElement("div", {className: "actions"}, 
+                      React.createElement("footer", null,
+                          React.createElement("div", {className: "actions"},
                               React.createElement("input", {type: "submit", className: "action-icon active", value: t.s("save")})
                           )
                       )
-                  ), 
+                  ),
 
                   loadingBlock
               )
@@ -4174,7 +4174,7 @@ var CollectionsStore = require('../../../stores/Collections');
 
 module.exports = React.createClass({
   mixins: [require("./ModalMixin")],
-  
+
   displayName: "Modals/BookmarksCopy",
 
   getInitialState: function() {
@@ -4211,7 +4211,7 @@ module.exports = React.createClass({
 
     if (this.state.loading){
       wrapClassName += " centered-content";
-      content = (React.createElement("div", null, 
+      content = (React.createElement("div", null,
         React.createElement("div", {className: "loader-inner line-scale"}, React.createElement("div", null), React.createElement("div", null), React.createElement("div", null), React.createElement("div", null))
       ));
     }else{
@@ -4220,18 +4220,18 @@ module.exports = React.createClass({
     }
 
     return (
-        React.createElement("div", {className: "modal-dialog"}, 
-            React.createElement("header", null, 
-                React.createElement("div", {className: "actionBar"}, 
-                    React.createElement("div", {className: "actions"}, 
+        React.createElement("div", {className: "modal-dialog"},
+            React.createElement("header", null,
+                React.createElement("div", {className: "actionBar"},
+                    React.createElement("div", {className: "actions"},
                         React.createElement("a", {href: "", className: "action-icon", onClick: this.handleClose}, React.createElement(Icon, {name: this.iconCloseBack()}))
-                    ), 
+                    ),
                     React.createElement("h3", null, t.s("selectCollection"))
                 )
-            ), 
+            ),
 
-            React.createElement("article", null, 
-              React.createElement(OverflowScroll, {className: wrapClassName, style: {height: "400px"}}, 
+            React.createElement("article", null,
+              React.createElement(OverflowScroll, {className: wrapClassName, style: {height: "400px"}},
                 content
               )
             )
@@ -4249,7 +4249,7 @@ var CollectionsStore = require('../../../stores/Collections');
 
 module.exports = React.createClass({
   mixins: [require("./ModalMixin")],
-  
+
   displayName: "Modals/BookmarksMove",
 
   getInitialState: function() {
@@ -4291,7 +4291,7 @@ module.exports = React.createClass({
 
     if (this.state.loading){
       wrapClassName += " centered-content";
-      content = (React.createElement("div", null, 
+      content = (React.createElement("div", null,
         React.createElement("div", {className: "loader-inner line-scale"}, React.createElement("div", null), React.createElement("div", null), React.createElement("div", null), React.createElement("div", null))
       ));
     }else{
@@ -4300,18 +4300,18 @@ module.exports = React.createClass({
     }
 
     return (
-        React.createElement("div", {className: "modal-dialog"}, 
-            React.createElement("header", null, 
-                React.createElement("div", {className: "actionBar"}, 
-                    React.createElement("div", {className: "actions"}, 
+        React.createElement("div", {className: "modal-dialog"},
+            React.createElement("header", null,
+                React.createElement("div", {className: "actionBar"},
+                    React.createElement("div", {className: "actions"},
                         React.createElement("a", {href: "", className: "action-icon", onClick: this.handleClose}, React.createElement(Icon, {name: this.iconCloseBack()}))
-                    ), 
+                    ),
                     React.createElement("h3", null, t.s("moveSelectedBookmarks"))
                 )
-            ), 
+            ),
 
-            React.createElement("article", null, 
-              React.createElement(OverflowScroll, {className: wrapClassName, style: {height: "400px"}}, 
+            React.createElement("article", null,
+              React.createElement(OverflowScroll, {className: wrapClassName, style: {height: "400px"}},
                 content
               )
             )
@@ -4353,15 +4353,15 @@ module.exports = React.createClass({
 
   render: function() {
     return (
-        React.createElement("div", {className: "modal-dialog"}, 
-            React.createElement("header", null, 
-                React.createElement("div", {className: "actionBar"}, 
+        React.createElement("div", {className: "modal-dialog"},
+            React.createElement("header", null,
+                React.createElement("div", {className: "actionBar"},
                     React.createElement("h3", null, t.s("remove"))
                 )
-            ), 
+            ),
 
-            React.createElement("article", null, 
-              React.createElement(OverflowScroll, {className: "noMargin centered-content", style: {height: "400px"}}, 
+            React.createElement("article", null,
+              React.createElement(OverflowScroll, {className: "noMargin centered-content", style: {height: "400px"}},
                   React.createElement("div", {className: "loader-inner line-scale"}, React.createElement("div", null), React.createElement("div", null), React.createElement("div", null), React.createElement("div", null))
               )
             )
@@ -4438,18 +4438,18 @@ module.exports = React.createClass({
         */
 
         return (
-            React.createElement("div", {className: "modal-dialog"}, React.createElement("div", {className: "modal-dialog-wrap"}, 
-                React.createElement("header", null, 
-                    React.createElement("div", {className: "actionBar"}, 
-                        React.createElement("div", {className: "actions"}, 
+            React.createElement("div", {className: "modal-dialog"}, React.createElement("div", {className: "modal-dialog-wrap"},
+                React.createElement("header", null,
+                    React.createElement("div", {className: "actionBar"},
+                        React.createElement("div", {className: "actions"},
                             React.createElement("a", {href: "", className: "action-icon", onClick: this.handleClose}, React.createElement(Icon, {name: this.iconCloseBack()}))
-                        ), 
+                        ),
                         React.createElement("h3", null, t.s("view"))
                     )
-                ), 
+                ),
 
-                React.createElement("article", null, 
-                    React.createElement("div", {className: "img-selector"}, 
+                React.createElement("article", null,
+                    React.createElement("div", {className: "img-selector"},
                         styles
                     )
 
@@ -4458,7 +4458,7 @@ module.exports = React.createClass({
                         <div className="section">
                             {t.s("settings")}
                         </div>
-                        
+
 
                         <div className="oneline" style={{margin:"0"}}>
                             <div className="icon"><Icon name="visual" /></div>
@@ -4496,7 +4496,7 @@ module.exports = React.createClass({
 /** @jsx React.DOM */
 module.exports = React.createClass({
   mixins: [require("./ModalMixin")],
-  
+
   displayName: "Modals/Frame",
 
   handleClose: function(e) {
@@ -4509,15 +4509,15 @@ module.exports = React.createClass({
 
   render: function() {
     return (
-      React.createElement("div", {className: "modal-dialog"}, 
-        React.createElement("header", null, 
-            React.createElement("div", {className: "actionBar"}, 
-                React.createElement("div", {className: "actions"}, 
+      React.createElement("div", {className: "modal-dialog"},
+        React.createElement("header", null,
+            React.createElement("div", {className: "actionBar"},
+                React.createElement("div", {className: "actions"},
                     React.createElement("a", {href: "", className: "action-icon", onClick: this.handleClose}, React.createElement(Icon, {name: this.iconCloseBack()}))
-                ), 
+                ),
                 React.createElement("h3", null, this.props.title)
             )
-        ), 
+        ),
 
         React.createElement("iframe", {src: this.props.url, width: this.props.width, height: this.props.height, frameBorder: "0"})
       )
@@ -4806,7 +4806,7 @@ var Portal = (function (_React$Component) {
 
                     document.body.classList.remove("modal-now-closing");
 
-                    if (typeof _this.props.onClose != 'undefined') 
+                    if (typeof _this.props.onClose != 'undefined')
                         _this.props.onClose();
                 },190);
 
@@ -4859,7 +4859,7 @@ module.exports = {
 	iconCloseBack: function() {
 		if ((window.environment||[]).indexOf("clipper")!=-1)
 			return "back";
-		
+
 		return "clear";
 	}
 }
@@ -4870,7 +4870,7 @@ var TagsStore = require('../../../stores/Tags');
 
 module.exports = React.createClass({
     mixins: [require("./ModalMixin")],
-    
+
   displayName: "Modals/GroupEdit",
 
     getInitialState: function() {
@@ -4912,35 +4912,35 @@ module.exports = React.createClass({
 
     render: function() {
         return (
-            React.createElement("div", {className: "modal-dialog"}, 
-                React.createElement("header", null, 
-                    React.createElement("div", {className: "actionBar"}, 
-                        React.createElement("div", {className: "actions"}, 
+            React.createElement("div", {className: "modal-dialog"},
+                React.createElement("header", null,
+                    React.createElement("div", {className: "actionBar"},
+                        React.createElement("div", {className: "actions"},
                             React.createElement("a", {href: "", className: "action-icon", onClick: this.handleClose}, React.createElement(Icon, {name: this.iconCloseBack()}))
-                        ), 
+                        ),
                         React.createElement("h3", null, t.s("tags"))
                     )
-                ), 
+                ),
 
-                React.createElement("article", null, 
-                    React.createElement("form", {onSubmit: this.handleSave}, 
-                        React.createElement("div", {className: "form-editor"}, 
-                            React.createElement("div", {className: "oneline"}, 
-                                React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "tag"})), 
-                                React.createElement("div", {className: "area"}, 
-                                    React.createElement("label", null, t.s("name")), 
+                React.createElement("article", null,
+                    React.createElement("form", {onSubmit: this.handleSave},
+                        React.createElement("div", {className: "form-editor"},
+                            React.createElement("div", {className: "oneline"},
+                                React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "tag"})),
+                                React.createElement("div", {className: "area"},
+                                    React.createElement("label", null, t.s("name")),
                                     React.createElement("input", {type: "text", className: "important", required: true, autoFocus: true, valueLink: {value: this.state.title, requestChange: this.handleTitleChange}, ref: "title"})
                                 )
                             )
-                        ), 
+                        ),
 
-                        React.createElement("footer", null, 
-                            React.createElement("div", {className: "actions left"}, 
+                        React.createElement("footer", null,
+                            React.createElement("div", {className: "actions left"},
                                 React.createElement("a", {href: "", className: "action-icon active", onClick: this.handleRemove}, t.s("remove"))
-                            ), 
+                            ),
 
-                            React.createElement("div", {className: "actions"}, 
-                                React.createElement("a", {href: "", className: "action-icon active", onClick: this.handleClose}, t.s("cancel")), 
+                            React.createElement("div", {className: "actions"},
+                                React.createElement("a", {href: "", className: "action-icon active", onClick: this.handleClose}, t.s("cancel")),
                                 React.createElement("input", {type: "submit", className: "action-icon active", value: t.s("save")})
                             )
                         )
@@ -4970,7 +4970,7 @@ module.exports = React.createClass({
   displayName: "Modals/Viewer",
 
   _getBookmark: function(id) {
-    var item = BookmarksStore.getBookmark(id); 
+    var item = BookmarksStore.getBookmark(id);
     if (item == null)
       item = {}
     item._id = item._id || id;
@@ -5089,11 +5089,11 @@ module.exports = React.createClass({
   render: function() {
     var prev = null, next = null;
     if (this.state.item.navigation.prev)
-      prev = (React.createElement("a", {href: "#"+this.props.router.getCurrentPathname()+"?viewer="+this.state.item.navigation.prev, className: "nav-left action-icon"}, 
+      prev = (React.createElement("a", {href: "#"+this.props.router.getCurrentPathname()+"?viewer="+this.state.item.navigation.prev, className: "nav-left action-icon"},
           React.createElement(Icon, {name: "left"})
         ));
     if (this.state.item.navigation.next)
-      next = (React.createElement("a", {href: "#"+this.props.router.getCurrentPathname()+"?viewer="+this.state.item.navigation.next, className: "nav-right action-icon"}, 
+      next = (React.createElement("a", {href: "#"+this.props.router.getCurrentPathname()+"?viewer="+this.state.item.navigation.next, className: "nav-right action-icon"},
           React.createElement(Icon, {name: "right"})
         ));
 
@@ -5102,9 +5102,9 @@ module.exports = React.createClass({
       html = React.createElement("div", {style: {paddingTop: "10px"}}, React.createElement("div", {className: "bookmarks"}, React.createElement(BookmarkItem, {item: this.state.item, view: "list"})));
     else
       html = (
-        React.createElement("div", {className: "text-viewer-raindrop"}, 
-          React.createElement("article", {dangerouslySetInnerHTML: {__html: this.state.item.html||""}}), 
-          React.createElement("br", null), 
+        React.createElement("div", {className: "text-viewer-raindrop"},
+          React.createElement("article", {dangerouslySetInnerHTML: {__html: this.state.item.html||""}}),
+          React.createElement("br", null),
           React.createElement("a", {href: this.state.item.link, target: network.linkTarget(), className: "read-more"}, t.s("viewOn"), " ", strings.beautifulDomain(this.state.item.domain))
         )
       );
@@ -5115,57 +5115,57 @@ module.exports = React.createClass({
       fontSize = 0;
 
     return (
-      React.createElement("div", {className: "modal-dialog modal-fullsize vfontcolor-"+this.state.fontColor}, 
-        React.createElement("header", null, 
-            React.createElement("div", {className: "actionBar"}, 
-                React.createElement("div", {className: "actions"}, 
-                    React.createElement("a", {href: "", className: "action-icon viewer-raindrop-logo", onClick: this.handleClose}, React.createElement("span", {className: "logo-text", dangerouslySetInnerHTML: {__html: logoSVG}})), 
+      React.createElement("div", {className: "modal-dialog modal-fullsize vfontcolor-"+this.state.fontColor},
+        React.createElement("header", null,
+            React.createElement("div", {className: "actionBar"},
+                React.createElement("div", {className: "actions"},
+                    React.createElement("a", {href: "", className: "action-icon viewer-raindrop-logo", onClick: this.handleClose}, React.createElement("span", {className: "logo-text", dangerouslySetInnerHTML: {__html: logoSVG}})),
                     prev, next
-                ), 
+                ),
 
-                React.createElement("h3", {className: "center"}, " "), 
+                React.createElement("h3", {className: "center"}, " "),
 
-                React.createElement("div", {className: "actions right"}, 
-                    React.createElement("a", {href: this.state.item.link, target: "_blank", className: "action-icon"}, React.createElement(Icon, {name: "open-link", size: "mac"})), 
-                    React.createElement("a", {href: "", className: "action-icon", onClick: this.handleFont, id: "font-select-link"}, React.createElement(Icon, {name: "font", size: "mac"}), " ", React.createElement(Icon, {name: "arrow-down", size: "small"})), 
-                    React.createElement("a", {href: "", className: "action-icon", onClick: this.handleBookmarkEdit, id: "bookmark-viewer-edit-"+this.state.item._id}, React.createElement(Icon, {name: "edit", size: "mac"})), 
+                React.createElement("div", {className: "actions right"},
+                    React.createElement("a", {href: this.state.item.link, target: "_blank", className: "action-icon"}, React.createElement(Icon, {name: "open-link", size: "mac"})),
+                    React.createElement("a", {href: "", className: "action-icon", onClick: this.handleFont, id: "font-select-link"}, React.createElement(Icon, {name: "font", size: "mac"}), " ", React.createElement(Icon, {name: "arrow-down", size: "small"})),
+                    React.createElement("a", {href: "", className: "action-icon", onClick: this.handleBookmarkEdit, id: "bookmark-viewer-edit-"+this.state.item._id}, React.createElement(Icon, {name: "edit", size: "mac"})),
                     React.createElement("a", {href: "", className: "action-icon", onClick: this.handleClose}, React.createElement(Icon, {name: "clear", size: "mac"}))
                 )
             )
-        ), 
+        ),
 
-        React.createElement("div", {className: "navi"}, prev, next), 
+        React.createElement("div", {className: "navi"}, prev, next),
 
-        React.createElement("section", {id: "main-viewer-frame-raindrop", onWheel: this.handleScroll, ref: "div", className: "typography-viewer-raindrop typography-viewer-raindrop-type"+this.state.item.type+" vfontsize-"+fontSize+" vfontfamily-"+this.state.fontFamily}, 
-          React.createElement("div", null, 
-            React.createElement("h1", null, this.state.item.title), 
+        React.createElement("section", {id: "main-viewer-frame-raindrop", onWheel: this.handleScroll, ref: "div", className: "typography-viewer-raindrop typography-viewer-raindrop-type"+this.state.item.type+" vfontsize-"+fontSize+" vfontfamily-"+this.state.fontFamily},
+          React.createElement("div", null,
+            React.createElement("h1", null, this.state.item.title),
 
-            React.createElement("div", {className: "domain"}, 
-              React.createElement("div", {className: "favicon"}, 
+            React.createElement("div", {className: "domain"},
+              React.createElement("div", {className: "favicon"},
                 React.createElement(Favicon, {domain: this.state.item.domain})
-              ), 
-              React.createElement("div", {className: "title"}, 
-                strings.beautifulDomain(this.state.item.domain), 
+              ),
+              React.createElement("div", {className: "title"},
+                strings.beautifulDomain(this.state.item.domain),
                 React.createElement("div", {className: "subinfo"}, moment(this.state.item.lastUpdate).format("ll"))
-              ), 
+              ),
               React.createElement("a", {href: this.state.item.link, target: network.linkTarget()})
-            ), 
+            ),
 
-            html, 
+            html,
 
             React.createElement("br", null)
 
           )
-        ), 
+        ),
 
-        React.createElement(PopoverFont, {onClose: this.handleFontClose, 
-                      show: this.state.fontPopover, 
-                      attachId: "font-select-link", 
-                      fontColor: this.state.fontColor, 
-                      fontFamily: this.state.fontFamily, 
-                      handleIncrementFont: this.handleIncrementFont, 
-                      handleDicrementFont: this.handleDicrementFont, 
-                      handleFontColor: this.handleFontColor, 
+        React.createElement(PopoverFont, {onClose: this.handleFontClose,
+                      show: this.state.fontPopover,
+                      attachId: "font-select-link",
+                      fontColor: this.state.fontColor,
+                      fontFamily: this.state.fontFamily,
+                      handleIncrementFont: this.handleIncrementFont,
+                      handleDicrementFont: this.handleDicrementFont,
+                      handleFontColor: this.handleFontColor,
                       handleFontFamily: this.handleFontFamily})
       )
     );
@@ -5404,23 +5404,23 @@ module.exports = React.createClass({
         //Change collection
         if (this.state.step == "collection"){
             return (
-                React.createElement("div", {className: "pop-content"}, 
-                React.createElement("div", {className: "pop-sticky-header"}, 
-                    React.createElement("div", {className: "sticky-header"}, 
-                        React.createElement("header", null, 
-                            React.createElement("div", {className: "actions"}, 
+                React.createElement("div", {className: "pop-content"},
+                React.createElement("div", {className: "pop-sticky-header"},
+                    React.createElement("div", {className: "sticky-header"},
+                        React.createElement("header", null,
+                            React.createElement("div", {className: "actions"},
                                 React.createElement("a", {href: "", className: "but default onlyicons", onClick: this.goToForm}, React.createElement(Icon, {name: "back", size: "mac"}))
-                            ), 
-                            React.createElement("div", {className: "max title center"}, 
+                            ),
+                            React.createElement("div", {className: "max title center"},
                                 t.s("selectCollection")
-                            ), 
+                            ),
                             React.createElement("div", {className: "actions"})
                         )
-                    ), 
+                    ),
 
                     React.createElement(CollectionsList, {
-                        activeCollection: this.state.item.collectionId, 
-                        onSelectCollection: this.handleChangeCollection, 
+                        activeCollection: this.state.item.collectionId,
+                        onSelectCollection: this.handleChangeCollection,
                         onCancel: this.goToForm})
                 )
                 )
@@ -5430,9 +5430,9 @@ module.exports = React.createClass({
         //Change icons
         if (this.state.step == "icons"){
             return React.createElement(BookmarkIcon, {
-                                bookmark: this.state.item, 
-                                goToForm: this.goToForm, 
-                                onUpdate: this.props.onUpdate, 
+                                bookmark: this.state.item,
+                                goToForm: this.goToForm,
+                                onUpdate: this.props.onUpdate,
                                 setMedia: this.setMedia});
         }
 
@@ -5462,73 +5462,73 @@ module.exports = React.createClass({
         }
 
         return (
-        React.createElement("div", null, 
-            React.createElement("div", {className: (this.props.isSubContent ? "pop-sub-content":"pop-content")+" "+(loading ? "invisible" : null)}, 
-                React.createElement("form", {onSubmit: this.handleSave}, 
-                    React.createElement("header", null, 
-                        React.createElement("div", {className: "max title", style: {marginRight:0}}, 
-                            React.createElement(Textarea, {required: true, value: this.state.item.title, onChange: this.handleTitleChange, ref: "title", placeholder: t.s("enterTitle"), rows: "1"}), 
+        React.createElement("div", null,
+            React.createElement("div", {className: (this.props.isSubContent ? "pop-sub-content":"pop-content")+" "+(loading ? "invisible" : null)},
+                React.createElement("form", {onSubmit: this.handleSave},
+                    React.createElement("header", null,
+                        React.createElement("div", {className: "max title", style: {marginRight:0}},
+                            React.createElement(Textarea, {required: true, value: this.state.item.title, onChange: this.handleTitleChange, ref: "title", placeholder: t.s("enterTitle"), rows: "1"}),
                             React.createElement(Textarea, {className: "small" + (hideUnnecessary?" hidden":""), value: this.state.item.excerpt, onChange: this.handleExcerptChange, ref: "excerpt", placeholder: t.s("enterDescription"), rows: "1"})
-                        ), 
+                        ),
 
-                        React.createElement("div", {className: "cover", onClick: this.handleOpenIcons}, 
-                            React.createElement(Cover, {src: this.state.item.cover, link: this.state.item.link, domain: this.state.item.domain, className: "cover-img"}), 
+                        React.createElement("div", {className: "cover", onClick: this.handleOpenIcons},
+                            React.createElement(Cover, {src: this.state.item.cover, link: this.state.item.link, domain: this.state.item.domain, className: "cover-img"}),
                             React.createElement("div", {className: "dots"}, coverDots)
                         )
-                    ), 
+                    ),
 
-                    React.createElement("div", {className: "entries"}, 
-                        React.createElement("div", {className: "row"}, 
-                            React.createElement("div", {className: "title"}, t.s("collection")), 
-                            React.createElement("div", {className: "content"}, 
+                    React.createElement("div", {className: "entries"},
+                        React.createElement("div", {className: "row"},
+                            React.createElement("div", {className: "title"}, t.s("collection")),
+                            React.createElement("div", {className: "content"},
                                 React.createElement("a", {href: "", className: "block-link", onClick: this.handleOpenCollectionsList}, React.createElement("img", {className: "small-icon", src: cover, alt: ""}), collection.title)
                             )
-                        ), 
+                        ),
 
-                        React.createElement("div", {className: "row " + (hideUnnecessary?" hidden":"")}, 
-                            React.createElement("div", {className: "title"}, t.s("tags")), 
-                            React.createElement("div", {className: "content max"}, 
+                        React.createElement("div", {className: "row " + (hideUnnecessary?" hidden":"")},
+                            React.createElement("div", {className: "title"}, t.s("tags")),
+                            React.createElement("div", {className: "content max"},
                                 React.createElement(Selectize, {
-                                    name: "tags", 
-                                    value: this.state.item.tags, 
-                                    options: this.state.tags, 
-                                    multi: true, 
-                                    placeholder: t.s("addTags")+"...", 
-                                    onChange: this.handleTagsChange, 
-                                    onFocus: this.handleSelectFocus, 
-                                    onBlur: this.handleSelectBlur, 
+                                    name: "tags",
+                                    value: this.state.item.tags,
+                                    options: this.state.tags,
+                                    multi: true,
+                                    placeholder: t.s("addTags")+"...",
+                                    onChange: this.handleTagsChange,
+                                    onFocus: this.handleSelectFocus,
+                                    onBlur: this.handleSelectBlur,
                                     filterOptions: this.handleSelectFilter}
                                 )
                             )
-                        ), 
+                        ),
 
-                        React.createElement("div", {className: "row"}, 
-                            React.createElement("div", {className: "title"}, "URL"), 
-                            React.createElement("div", {className: "content"}, 
+                        React.createElement("div", {className: "row"},
+                            React.createElement("div", {className: "title"}, "URL"),
+                            React.createElement("div", {className: "content"},
                                 React.createElement(Textarea, {className: "small", value: this.state.item.link, readOnly: "true", ref: "link", placeholder: t.s("enterLink"), rows: "1"})
                             )
                         )
-                    ), 
+                    ),
 
-                    React.createElement("footer", null, 
-                        React.createElement("input", {type: "submit", className: "but accent pull-right", value: text.save}), 
-                        React.createElement("a", {href: "", onClick: this.handleClose, className: "but default pull-right"}, text.cancel), 
-                        
-                        React.createElement("a", {href: "", className: "but ", onClick: this.handleRemoveBookmark}, t.s("remove")), 
-                        React.createElement("label", {className: "but select onlyicons " + (hideUnnecessary?" hidden":""), title: t.s(this.state.item.type), style: {marginRight:0}}, 
-                            React.createElement(Icon, {name: this.state.item.type, size: this.state.item.type == "link" ? "mac" : null}), 
-                            React.createElement(Icon, {name: "arrow-down", size: "small"}), 
+                    React.createElement("footer", null,
+                        React.createElement("input", {type: "submit", className: "but accent pull-right", value: text.save}),
+                        React.createElement("a", {href: "", onClick: this.handleClose, className: "but default pull-right"}, text.cancel),
 
-                            React.createElement("select", {value: this.state.item.type, onChange: this.handleTypeChange}, 
-                                React.createElement("option", {value: "link"}, t.s("link")), 
-                                React.createElement("option", {value: "article"}, t.s("article")), 
-                                React.createElement("option", {value: "image"}, t.s("image")), 
+                        React.createElement("a", {href: "", className: "but ", onClick: this.handleRemoveBookmark}, t.s("remove")),
+                        React.createElement("label", {className: "but select onlyicons " + (hideUnnecessary?" hidden":""), title: t.s(this.state.item.type), style: {marginRight:0}},
+                            React.createElement(Icon, {name: this.state.item.type, size: this.state.item.type == "link" ? "mac" : null}),
+                            React.createElement(Icon, {name: "arrow-down", size: "small"}),
+
+                            React.createElement("select", {value: this.state.item.type, onChange: this.handleTypeChange},
+                                React.createElement("option", {value: "link"}, t.s("link")),
+                                React.createElement("option", {value: "article"}, t.s("article")),
+                                React.createElement("option", {value: "image"}, t.s("image")),
                                 React.createElement("option", {value: "video"}, t.s("video"))
                             )
                         )
                     )
                 )
-            ), 
+            ),
 
             React.createElement("div", {className: "pop-loader "+(loading ? null : "hidden")})
         ));
@@ -5699,9 +5699,9 @@ module.exports = React.createClass({
 
         ///BUTTONS
         var actionButtons = [
-          (React.createElement("div", {className: "action-item action-item-gray"}, 
-            React.createElement("a", {href: "", onClick: this.handleURL}, 
-              React.createElement(Icon, {name: "add"}), 
+          (React.createElement("div", {className: "action-item action-item-gray"},
+            React.createElement("a", {href: "", onClick: this.handleURL},
+              React.createElement(Icon, {name: "add"}),
               React.createElement("span", null, "URL")
             )
           ))
@@ -5713,9 +5713,9 @@ module.exports = React.createClass({
         }catch(e) {}
         if (!haveScreenshot)
           actionButtons.unshift(
-            React.createElement("div", {className: "action-item"}, 
-              React.createElement("a", {href: "", onClick: this.handleScreenshot}, 
-                React.createElement(Icon, {name: "web"}), 
+            React.createElement("div", {className: "action-item"},
+              React.createElement("a", {href: "", onClick: this.handleScreenshot},
+                React.createElement(Icon, {name: "web"}),
                 React.createElement("span", null, t.s("clickToMakeScreenshot"))
               )
             )
@@ -5736,19 +5736,19 @@ module.exports = React.createClass({
         }
 
         return (
-          React.createElement("div", {className: "pop-content"}, 
-            React.createElement("div", {className: "pop-sticky-header"}, 
-                React.createElement("div", {className: "sticky-header"}, 
-                    React.createElement("header", null, 
-                        React.createElement("div", {className: "actions"}, 
+          React.createElement("div", {className: "pop-content"},
+            React.createElement("div", {className: "pop-sticky-header"},
+                React.createElement("div", {className: "sticky-header"},
+                    React.createElement("header", null,
+                        React.createElement("div", {className: "actions"},
                             React.createElement("a", {href: "", className: "but default onlyicons", onClick: this.props.goToForm}, React.createElement(Icon, {name: "back", size: "mac"}))
-                        ), 
-                        React.createElement("div", {className: "max title center"}, 
+                        ),
+                        React.createElement("div", {className: "max title center"},
                             React.createElement(MiniSearch, {onChange: this.handleSearch})
-                        ), 
+                        ),
                         React.createElement("div", {className: "actions"})
                     )
-                ), 
+                ),
 
                 content, loadMore
             )
@@ -6079,12 +6079,12 @@ module.exports = React.createClass({
     render: function() {
         if (this.state.disableNested)
             return (
-                React.createElement("div", {className: (this.props.isSubContent ? "pop-sub-content":"pop-content")}, 
-                    React.createElement(Upgrade, {view: "list", force: "true", title: t.s("createSubFolder"), excerpt: t.s("onlyInPro") + ". " + t.s("footerProAd") + " " +t.s("footerProAdD")}), 
+                React.createElement("div", {className: (this.props.isSubContent ? "pop-sub-content":"pop-content")},
+                    React.createElement(Upgrade, {view: "list", force: "true", title: t.s("createSubFolder"), excerpt: t.s("onlyInPro") + ". " + t.s("footerProAd") + " " +t.s("footerProAdD")}),
 
-                    React.createElement("footer", null, 
-                        React.createElement("a", {href: consts.proPage, target: "_blank", className: "but accent pull-right"}, t.s("goToPRO")), 
-                        React.createElement("a", {href: "", onClick: this.handleClose, className: "but default pull-right"}, t.s("cancel")), 
+                    React.createElement("footer", null,
+                        React.createElement("a", {href: consts.proPage, target: "_blank", className: "but accent pull-right"}, t.s("goToPRO")),
+                        React.createElement("a", {href: "", onClick: this.handleClose, className: "but default pull-right"}, t.s("cancel")),
 
                         removeCollection
                     )
@@ -6097,26 +6097,26 @@ module.exports = React.createClass({
             //Change collection
             if (this.state.step == "parent"){
                 return (
-                    React.createElement("div", {className: "pop-content"}, 
-                    React.createElement("div", {className: "pop-sticky-header"}, 
-                        React.createElement("div", {className: "sticky-header"}, 
-                            React.createElement("header", null, 
-                                React.createElement("div", {className: "actions"}, 
+                    React.createElement("div", {className: "pop-content"},
+                    React.createElement("div", {className: "pop-sticky-header"},
+                        React.createElement("div", {className: "sticky-header"},
+                            React.createElement("header", null,
+                                React.createElement("div", {className: "actions"},
                                     React.createElement("a", {href: "", className: "but default onlyicons", onClick: this.goToForm}, React.createElement(Icon, {name: "back", size: "mac"}))
-                                ), 
-                                React.createElement("div", {className: "max title center"}, 
+                                ),
+                                React.createElement("div", {className: "max title center"},
                                     t.s("parent")
-                                ), 
+                                ),
                                 React.createElement("div", {className: "actions"})
                             )
-                        ), 
+                        ),
 
                         React.createElement(CollectionsList, {
-                            skipCollection: this.state.item._id, 
-                            activeCollection: this.state.item.parentId, 
-                            activeGroup: this.state.item.group, 
-                            onSelectCollection: this.handleChangeCollection, 
-                            onSelectGroup: this.handleChangeGroup, 
+                            skipCollection: this.state.item._id,
+                            activeCollection: this.state.item.parentId,
+                            activeGroup: this.state.item.group,
+                            onSelectCollection: this.handleChangeCollection,
+                            onSelectGroup: this.handleChangeGroup,
                             onCancel: this.goToForm})
                     )
                     )
@@ -6126,21 +6126,21 @@ module.exports = React.createClass({
             //Change icons
             if (this.state.step == "icons"){
                 return React.createElement(CollectionIcon, {
-                                    collection: this.state.item, 
-                                    goToForm: this.goToForm, 
-                                    onUpdate: this.props.onUpdate, 
+                                    collection: this.state.item,
+                                    goToForm: this.goToForm,
+                                    onUpdate: this.props.onUpdate,
                                     setCover: this.setCover});
             }
 
             //Sharing
             if (this.state.step == "sharing"){
                 return React.createElement(CollectionSharing, {
-                                    collection: this.state.item, 
-                                    goToForm: this.goToForm, 
+                                    collection: this.state.item,
+                                    goToForm: this.goToForm,
                                     onUpdate: this.props.onUpdate});
             }
         }
-        
+
 
         var parent = null, parentLabel = "", cover = null;
 
@@ -6198,76 +6198,76 @@ module.exports = React.createClass({
         }
 
         return (
-        React.createElement("div", null, 
-            React.createElement("div", {className: (this.props.isSubContent ? "pop-sub-content":"pop-content")+" "+(loading ? "invisible" : null)}, 
-                React.createElement("form", {onSubmit: this.handleSave}, 
-                    React.createElement("header", null, 
-                        React.createElement("div", {className: "max title", style: {marginRight:0}}, 
-                            React.createElement("input", {type: "text", className: "important", required: true, autoFocus: true, valueLink: {value: this.state.item.title, requestChange: this.handleTitleChange}, ref: "title"}), 
-                            
-                            React.createElement("div", {className: "sublinks" + (this.state.item._id <= 0 ? " hidden" : "")}, 
-                                React.createElement("a", {href: consts.host+"/collection/"+this.state.item._id, target: "_blank", className: "but " + (this.state.item.public ? "" : "hidden")}, React.createElement(Icon, {name: "link", size: "mac"}), " ", t.s("link")), 
+        React.createElement("div", null,
+            React.createElement("div", {className: (this.props.isSubContent ? "pop-sub-content":"pop-content")+" "+(loading ? "invisible" : null)},
+                React.createElement("form", {onSubmit: this.handleSave},
+                    React.createElement("header", null,
+                        React.createElement("div", {className: "max title", style: {marginRight:0}},
+                            React.createElement("input", {type: "text", className: "important", required: true, autoFocus: true, valueLink: {value: this.state.item.title, requestChange: this.handleTitleChange}, ref: "title"}),
 
-                                React.createElement("label", {className: "but select"}, 
-                                    React.createElement(Icon, {name: "rss", size: "mac"}), " RSS", 
+                            React.createElement("div", {className: "sublinks" + (this.state.item._id <= 0 ? " hidden" : "")},
+                                React.createElement("a", {href: consts.host+"/collection/"+this.state.item._id, target: "_blank", className: "but " + (this.state.item.public ? "" : "hidden")}, React.createElement(Icon, {name: "link", size: "mac"}), " ", t.s("link")),
 
-                                    React.createElement("select", {value: "-1", onChange: this.handleRSS}, 
-                                        this.state.item.public ? React.createElement("option", {value: "public"}, t.s("publicRSSfeed")) : null, 
-                                        React.createElement("option", {value: "private"}, t.s("privateRSSfeed")), 
+                                React.createElement("label", {className: "but select"},
+                                    React.createElement(Icon, {name: "rss", size: "mac"}), " RSS",
+
+                                    React.createElement("select", {value: "-1", onChange: this.handleRSS},
+                                        this.state.item.public ? React.createElement("option", {value: "public"}, t.s("publicRSSfeed")) : null,
+                                        React.createElement("option", {value: "private"}, t.s("privateRSSfeed")),
                                         React.createElement("option", {value: "-1", disabled: true}, t.s('feedWarning'))
                                     )
                                 )
                             )
-                        ), 
+                        ),
 
-                        React.createElement("div", {className: "cover", onClick: this.handleOpenIcons}, 
+                        React.createElement("div", {className: "cover", onClick: this.handleOpenIcons},
                             React.createElement("img", {src: collectionCover, alt: "", className: "cover-img cover-small"})
                         )
-                    ), 
+                    ),
 
-                    React.createElement("div", {className: "entries"}, 
-                        React.createElement("div", {className: "row"}, 
-                            React.createElement("div", {className: "title"}, parentLabel), 
-                            React.createElement("div", {className: "content"}, 
+                    React.createElement("div", {className: "entries"},
+                        React.createElement("div", {className: "row"},
+                            React.createElement("div", {className: "title"}, parentLabel),
+                            React.createElement("div", {className: "content"},
                                 React.createElement("a", {href: "", className: "block-link", onClick: this.handleOpenCollectionsList}, cover, parent.title)
                             )
-                        ), 
+                        ),
 
-                        React.createElement("div", {className: "row" + (this.state.item._id <= 0 ? " hidden" : "")}, 
-                            React.createElement("div", {className: "title wrap-text"}, t.s("sharing")), 
-                            React.createElement("div", {className: "content"}, 
-                                React.createElement("a", {href: "", className: "block-link", onClick: this.handleOpenSharing}, React.createElement(Icon, {name: this.state.item.public ? "link" : "lock", size: "mac", className: "content-icon"}), t.s((this.state.item.public ? "accessViaLink" : "privateD")), " ", this.state.collaboratorsText), 
+                        React.createElement("div", {className: "row" + (this.state.item._id <= 0 ? " hidden" : "")},
+                            React.createElement("div", {className: "title wrap-text"}, t.s("sharing")),
+                            React.createElement("div", {className: "content"},
+                                React.createElement("a", {href: "", className: "block-link", onClick: this.handleOpenSharing}, React.createElement(Icon, {name: this.state.item.public ? "link" : "lock", size: "mac", className: "content-icon"}), t.s((this.state.item.public ? "accessViaLink" : "privateD")), " ", this.state.collaboratorsText),
                                 React.createElement("br", null)
                             )
-                        ), 
+                        ),
 
-                        React.createElement("div", {className: "row"}, 
-                            React.createElement("div", {className: "title ", style: {paddingTop:"10px"}}, t.s("view")), 
-                            React.createElement("div", {className: "content max"}, 
-                                React.createElement("div", {className: "stag"}, 
-                                    React.createElement("a", {href: "", className: this.state.item.view == "list" ? "active" : null, "data-view": "list", onClick: this.handleChangeView}, React.createElement(Icon, {name: "list", size: "mac"})), 
-                                    React.createElement("a", {href: "", className: this.state.item.view == "grid" ? "active" : null, "data-view": "grid", onClick: this.handleChangeView}, React.createElement(Icon, {name: "grid", size: "mac"})), 
-                                    React.createElement("a", {href: "", className: this.state.item.view == "simple" ? "active" : null, "data-view": "simple", onClick: this.handleChangeView}, React.createElement(Icon, {name: "simple", size: "mac"})), 
+                        React.createElement("div", {className: "row"},
+                            React.createElement("div", {className: "title ", style: {paddingTop:"10px"}}, t.s("view")),
+                            React.createElement("div", {className: "content max"},
+                                React.createElement("div", {className: "stag"},
+                                    React.createElement("a", {href: "", className: this.state.item.view == "list" ? "active" : null, "data-view": "list", onClick: this.handleChangeView}, React.createElement(Icon, {name: "list", size: "mac"})),
+                                    React.createElement("a", {href: "", className: this.state.item.view == "grid" ? "active" : null, "data-view": "grid", onClick: this.handleChangeView}, React.createElement(Icon, {name: "grid", size: "mac"})),
+                                    React.createElement("a", {href: "", className: this.state.item.view == "simple" ? "active" : null, "data-view": "simple", onClick: this.handleChangeView}, React.createElement(Icon, {name: "simple", size: "mac"})),
                                     React.createElement("a", {href: "", className: this.state.item.view == "masonry" ? "active" : null, "data-view": "masonry", onClick: this.handleChangeView}, React.createElement(Icon, {name: "masonry", size: "mac"}))
-                                ), 
+                                ),
 
                                 React.createElement("div", {className: "subinfo", style: {marginTop:"8px"}}, viewDesc)
                             )
                         )
-                    ), 
+                    ),
 
-                    React.createElement("div", {className: "nice-action" + (!this.state.item.author || this.state.item._id <= 0 ? " hidden" : "")}, 
+                    React.createElement("div", {className: "nice-action" + (!this.state.item.author || this.state.item._id <= 0 ? " hidden" : "")},
                         React.createElement("a", {href: "", className: "block-link", onClick: this.handleSubFolder}, React.createElement(Icon, {name: "folder-add", size: "mac", className: "content-icon"}), t.s("createSubFolder"))
-                    ), 
+                    ),
 
-                    React.createElement("footer", null, 
-                        React.createElement("input", {type: "submit", className: "but accent pull-right "+((!this.state.item.author || this.state.item._id<0) && !this.state.item.blank  ? "hidden" : ""), value: this.state.item._id > 0 ? t.s("save") : t.s("createNewCollection")}), 
-                        React.createElement("a", {href: "", onClick: this.handleClose, className: "but default pull-right"}, t.s("cancel")), 
+                    React.createElement("footer", null,
+                        React.createElement("input", {type: "submit", className: "but accent pull-right "+((!this.state.item.author || this.state.item._id<0) && !this.state.item.blank  ? "hidden" : ""), value: this.state.item._id > 0 ? t.s("save") : t.s("createNewCollection")}),
+                        React.createElement("a", {href: "", onClick: this.handleClose, className: "but default pull-right"}, t.s("cancel")),
 
                         removeCollection
                     )
                 )
-            ), 
+            ),
 
             React.createElement("div", {className: "pop-loader "+(loading ? null : "hidden")})
         ));
@@ -6419,7 +6419,7 @@ module.exports = React.createClass({
             //themes
             var themes = this.state.icons.map(function(item,index){
                 return (
-                    React.createElement("a", {href: "", className: "item"+(_this.state.theme==index?" active":""), "data-index": index, onClick: _this.handleChangeTheme}, 
+                    React.createElement("a", {href: "", className: "item"+(_this.state.theme==index?" active":""), "data-index": index, onClick: _this.handleChangeTheme},
                         React.createElement("img", {src: network.fixURL(_this.state.path+item.items[parseInt(item.items.length/2)]+".png"), style: {width:"32px",height:"32px"}, alt: ""})
                     ));
             });
@@ -6428,19 +6428,19 @@ module.exports = React.createClass({
         }
 
         return (
-            React.createElement("div", {className: "pop-content"}, 
-                React.createElement("div", {className: "pop-sticky-header"}, 
-                    React.createElement("div", {className: "sticky-header"}, 
-                        React.createElement("header", null, 
-                            React.createElement("div", {className: "actions"}, 
+            React.createElement("div", {className: "pop-content"},
+                React.createElement("div", {className: "pop-sticky-header"},
+                    React.createElement("div", {className: "sticky-header"},
+                        React.createElement("header", null,
+                            React.createElement("div", {className: "actions"},
                                 React.createElement("a", {href: "", className: "but default onlyicons", onClick: this.props.goToForm}, React.createElement(Icon, {name: "back", size: "mac"}))
-                            ), 
-                            React.createElement("div", {className: "max title center"}, 
+                            ),
+                            React.createElement("div", {className: "max title center"},
                                 React.createElement("a", {href: "", className: "but "+(this.state.step ? "active" : ""), onClick: this.handleThemes}, t.s("selectAIconSet"), " ", React.createElement(Icon, {name: "arrow-down", size: "small"}))
-                            ), 
+                            ),
                             React.createElement("div", {className: "actions"})
                         )
-                    ), 
+                    ),
 
                     content
                 )
@@ -6599,18 +6599,18 @@ module.exports = React.createClass({
         var actions = t.s("role_"+item.role);
         if (item.role!="owner" && this.state.collection.author)
             actions = (
-                React.createElement("label", {className: "but select default onlyicons"}, 
-                    React.createElement(Icon, {name: "settings", size: "mac"}), 
-                    React.createElement(Icon, {name: "arrow-down", size: "small"}), 
+                React.createElement("label", {className: "but select default onlyicons"},
+                    React.createElement(Icon, {name: "settings", size: "mac"}),
+                    React.createElement(Icon, {name: "arrow-down", size: "small"}),
 
-                    React.createElement("select", {value: item.role, "data-userid": item._id, onChange: this.handleChangeRole}, 
-                        React.createElement("optgroup", {label: t.s("withAccessLevel")}, 
-                            item.role=="owner" ? React.createElement("option", {value: "owner"}, t.s("role_owner")) : null, 
-                            React.createElement("option", {value: "member"}, t.s("role_member")), 
+                    React.createElement("select", {value: item.role, "data-userid": item._id, onChange: this.handleChangeRole},
+                        React.createElement("optgroup", {label: t.s("withAccessLevel")},
+                            item.role=="owner" ? React.createElement("option", {value: "owner"}, t.s("role_owner")) : null,
+                            React.createElement("option", {value: "member"}, t.s("role_member")),
                             React.createElement("option", {value: "viewer"}, t.s("role_viewer"))
-                        ), 
+                        ),
 
-                        React.createElement("optgroup", {label: "⌘"}, 
+                        React.createElement("optgroup", {label: "⌘"},
                             React.createElement("option", {value: ""}, t.s("remove"))
                         )
                     )
@@ -6618,17 +6618,17 @@ module.exports = React.createClass({
             );
 
         return (
-            React.createElement("div", {className: "item "+(first?"first":"")}, 
-                React.createElement("div", {className: "icon"}, 
+            React.createElement("div", {className: "item "+(first?"first":"")},
+                React.createElement("div", {className: "icon"},
                     React.createElement(Avatar, {src: item.email_MD5, size: "64"})
-                ), 
+                ),
 
-                React.createElement("div", {className: "title"}, 
-                    item.fullName, 
+                React.createElement("div", {className: "title"},
+                    item.fullName,
                     React.createElement("input", {type: "text", value: item.email, readonly: true, onFocus: this.handleSelectAll, onMouseUp: this.handleSelectAll})
-                ), 
+                ),
 
-                React.createElement("div", {className: "actions"}, 
+                React.createElement("div", {className: "actions"},
                     actions
                 )
             )
@@ -6679,77 +6679,77 @@ module.exports = React.createClass({
         }
 
     	return (
-    		React.createElement("div", {className: "pop-content"}, 
-                React.createElement("div", {className: "pop-sticky-header"}, 
-                    React.createElement("div", {className: "sticky-header"}, 
-                        React.createElement("header", null, 
-                            React.createElement("div", {className: "actions"}, 
+    		React.createElement("div", {className: "pop-content"},
+                React.createElement("div", {className: "pop-sticky-header"},
+                    React.createElement("div", {className: "sticky-header"},
+                        React.createElement("header", null,
+                            React.createElement("div", {className: "actions"},
                                 React.createElement("a", {href: "", className: "but default onlyicons", onClick: this.props.goToForm}, React.createElement(Icon, {name: "back", size: "mac"}))
-                            ), 
-                            React.createElement("div", {className: "max title center"}, 
+                            ),
+                            React.createElement("div", {className: "max title center"},
                                 t.s("sharing")
-                            ), 
+                            ),
                             React.createElement("div", {className: "actions"})
                         )
-                    ), 
+                    ),
 
-                    React.createElement("div", {className: "list"}, 
-                        React.createElement("div", {className: "item first"}, 
-                            React.createElement("div", {className: "icon"}, 
+                    React.createElement("div", {className: "list"},
+                        React.createElement("div", {className: "item first"},
+                            React.createElement("div", {className: "icon"},
                                 React.createElement("div", {className: "icon-link"}, React.createElement(Icon, {name: "link", size: "mac"}))
-                            ), 
+                            ),
 
-                            React.createElement("div", {className: "title"}, 
-                                t.s("accessViaLink"), 
+                            React.createElement("div", {className: "title"},
+                                t.s("accessViaLink"),
                                 React.createElement("input", {type: "text", className: this.state.collection.public ? "" : "hidden", readOnly: true, autoFocus: true, value: network.fixURL("/collection/"+this.state.collection._id||""), onFocus: this.handleSelectAll, onMouseUp: this.handleSelectAll})
-                            ), 
+                            ),
 
-                            React.createElement("div", {className: "actions"}, 
+                            React.createElement("div", {className: "actions"},
                                 React.createElement("div", {onClick: this.handleChangePublic, className: "extra-checkbox"+(this.state.collection.public?" active":"")})
                             )
-                        ), 
+                        ),
 
-                        collaborators, 
+                        collaborators,
 
 
-                        React.createElement("div", {className: "separator"}, t.s("inviteMorePeople")), 
+                        React.createElement("div", {className: "separator"}, t.s("inviteMorePeople")),
 
-                        React.createElement("div", {className: "item first"}, 
-                            React.createElement("div", {className: "icon"}, 
+                        React.createElement("div", {className: "item first"},
+                            React.createElement("div", {className: "icon"},
                                 React.createElement(Icon, {name: "add-box-clean", size: "mac", className: "icn-blue"})
-                            ), 
+                            ),
 
-                            React.createElement("div", {className: "title"}, 
+                            React.createElement("div", {className: "title"},
                                 React.createElement("textarea", {placeholder: t.s("enterEmails"), disabled: this.state.invite.loading, valueLink: {value: this.state.invite.emails, requestChange: this.handleEmailsChange}})
                             )
-                        ), 
+                        ),
 
-                        React.createElement("div", {className: "item " + (!invite ? "hidden" : null)}, 
-                            React.createElement("div", {className: "icon"}, 
+                        React.createElement("div", {className: "item " + (!invite ? "hidden" : null)},
+                            React.createElement("div", {className: "icon"},
                                 React.createElement(Icon, {name: "lock", size: "mac", className: "icn-blue"})
-                            ), 
+                            ),
 
-                            React.createElement("div", {className: "title"}, 
+                            React.createElement("div", {className: "title"},
                                 " "
-                            ), 
+                            ),
 
-                            React.createElement("div", {className: "actions"}, 
-                                React.createElement("label", {className: "but select default"}, 
-                                    t.s("role_"+this.state.invite.role), 
-                                    React.createElement(Icon, {name: "arrow-down", size: "small"}), 
+                            React.createElement("div", {className: "actions"},
+                                React.createElement("label", {className: "but select default"},
+                                    t.s("role_"+this.state.invite.role),
+                                    React.createElement(Icon, {name: "arrow-down", size: "small"}),
 
-                                    React.createElement("select", {value: this.state.invite.role, onChange: this.handleChangeInviteRole}, 
-                                        React.createElement("optgroup", {label: t.s("withAccessLevel")}, 
-                                            React.createElement("option", {value: "member"}, t.s("role_member")), 
+                                    React.createElement("select", {value: this.state.invite.role, onChange: this.handleChangeInviteRole},
+                                        React.createElement("optgroup", {label: t.s("withAccessLevel")},
+                                            React.createElement("option", {value: "member"}, t.s("role_member")),
                                             React.createElement("option", {value: "viewer"}, t.s("role_viewer"))
                                         )
                                     )
                                 )
                             )
-                        ), 
+                        ),
 
-                        React.createElement("footer", {className: !invite && !unshare ? "hidden" : null}, 
-                            invite, 
+                        React.createElement("footer", {className: !invite && !unshare ? "hidden" : null},
+                            invite,
                             unshare
                         )
                     )
@@ -6801,16 +6801,16 @@ module.exports = React.createClass({
     	var tabs = null;
     	if (!this.state.hideTabs)
     		tabs = (
-    			React.createElement("div", {className: "simple-tab"}, 
-    				React.createElement("a", {href: "", "data-tab": "1", className: "item "+(this.state.tab==1?"active":""), onClick: this.handleChangeTab}, "URL"), 
-    				React.createElement("a", {href: "", "data-tab": "2", className: "item "+(this.state.tab==2?"active":""), onClick: this.handleChangeTab}, t.s("nestedCollections")), 
+    			React.createElement("div", {className: "simple-tab"},
+    				React.createElement("a", {href: "", "data-tab": "1", className: "item "+(this.state.tab==1?"active":""), onClick: this.handleChangeTab}, "URL"),
+    				React.createElement("a", {href: "", "data-tab": "2", className: "item "+(this.state.tab==2?"active":""), onClick: this.handleChangeTab}, t.s("nestedCollections")),
                     React.createElement("a", {href: "", "data-tab": "3", className: "item "+(this.state.tab==3?"active":""), onClick: this.handleChangeTab}, "File")
                 )
     		);
 
-    	return (React.createElement("div", null, 
-    		React.createElement("div", {className: "pop-content"}, 
-    			tabs, 
+    	return (React.createElement("div", null,
+    		React.createElement("div", {className: "pop-content"},
+    			tabs,
     			React.createElement(Component, React.__spread({},  this.props, {isSubContent: true}))
     		)
     	));
@@ -6850,29 +6850,29 @@ module.exports = React.createClass({
 
     render: function() {
     	return (
-            React.createElement("div", {className: (this.props.isSubContent ? "pop-sub-content":"pop-content")}, 
-        		React.createElement("form", {style: {position:"relative"}}, 
-                    React.createElement("header", null, 
-                        React.createElement("div", {className: "max title"}, 
-                            React.createElement("div", null, t.s("select")+" "+t.s("dropFilesHere").toLowerCase()), 
+            React.createElement("div", {className: (this.props.isSubContent ? "pop-sub-content":"pop-content")},
+        		React.createElement("form", {style: {position:"relative"}},
+                    React.createElement("header", null,
+                        React.createElement("div", {className: "max title"},
+                            React.createElement("div", null, t.s("select")+" "+t.s("dropFilesHere").toLowerCase()),
                             React.createElement("div", {style: {marginTop: "2px", opacity: .7, fontSize: "13px"}}, dropfiles.getHumanAcceptString())
                         )
-                    ), 
+                    ),
 
-                    React.createElement("div", {className: "entries"}, 
-                        React.createElement("div", {className: "row "}, 
-                            React.createElement("div", {className: "title"}, "Used"), 
-                            React.createElement("div", {className: "content max"}, 
+                    React.createElement("div", {className: "entries"},
+                        React.createElement("div", {className: "row "},
+                            React.createElement("div", {className: "title"}, "Used"),
+                            React.createElement("div", {className: "content max"},
                                 React.createElement(FileLimit, {style: {marginTop: "-4px"}})
                             )
                         )
-                    ), 
+                    ),
 
-        			React.createElement("footer", null, 
-                        React.createElement("label", {className: "file-block but accent pull-right"}, 
-                            t.s("select"), 
+        			React.createElement("footer", null,
+                        React.createElement("label", {className: "file-block but accent pull-right"},
+                            t.s("select"),
                             React.createElement("input", {type: "file", multiple: "multiple", accept: dropfiles.getAcceptString(), placeholder: "", ref: "file", onChange: this.handleFile})
-                        ), 
+                        ),
                         React.createElement("a", {href: "", className: "but default pull-right", onClick: this.handleClose}, t.s("cancel"))
                     )
         		)
@@ -6968,17 +6968,17 @@ module.exports = React.createClass({
             removeGroup = React.createElement("a", {href: "", className: "but", onClick: this.handleRemoveGroup}, t.s("remove"));
 
         return (
-            React.createElement("div", {className: "pop-content"}, 
-                React.createElement("form", {onSubmit: this.handleSave}, 
-                    React.createElement("header", null, 
-                        React.createElement("div", {className: "max title"}, 
+            React.createElement("div", {className: "pop-content"},
+                React.createElement("form", {onSubmit: this.handleSave},
+                    React.createElement("header", null,
+                        React.createElement("div", {className: "max title"},
                             React.createElement("input", {type: "text", className: "important", required: true, autoFocus: true, valueLink: {value: this.state.item.title, requestChange: this.handleTitleChange}, ref: "title"})
                         )
-                    ), 
+                    ),
 
-                    React.createElement("footer", null, 
-                        React.createElement("input", {type: "submit", className: "but accent pull-right", value: this.state.id > 0 ? t.s("save") : t.s("create")}), 
-                        React.createElement("a", {href: "", onClick: this.handleClose, className: "but default pull-right"}, t.s("cancel")), 
+                    React.createElement("footer", null,
+                        React.createElement("input", {type: "submit", className: "but accent pull-right", value: this.state.id > 0 ? t.s("save") : t.s("create")}),
+                        React.createElement("a", {href: "", onClick: this.handleClose, className: "but default pull-right"}, t.s("cancel")),
 
                         removeGroup
                     )
@@ -7056,7 +7056,7 @@ module.exports = React.createClass({
     	if (pin){
     		var rect = pin.getBoundingClientRect();
     		pinVisible = (((window.innerHeight + window.pageYOffset) > (rect.top+window.scrollY)) && ((window.pageYOffset - window.innerHeight) < (rect.top + window.scrollY + pin.offsetHeight) ));
-    	
+
     		if ((body.offsetHeight < rect.top)&&(havePlace)&&(pinVisible)){
                 points.top = rect.top;
 	    		positions.push("top");
@@ -7237,11 +7237,11 @@ module.exports = React.createClass({
 		}
 
 		return (
-			React.createElement("div", {key: "pop"}, 
-				bodyBlack, 
-				React.createElement("div", {id: "pop-body", "data-name": this.state.params.name, ref: "body"}, 
-					React.createElement("div", {id: "pop-arrow", ref: "arrow"}), 
-					React.createElement(OverflowScroll, null, 
+			React.createElement("div", {key: "pop"},
+				bodyBlack,
+				React.createElement("div", {id: "pop-body", "data-name": this.state.params.name, ref: "body"},
+					React.createElement("div", {id: "pop-arrow", ref: "arrow"}),
+					React.createElement(OverflowScroll, null,
 						Component ? React.createElement(Component, React.__spread({},  this.state.params, {onUpdate: this.afterComponentsUpdate})) : null
 					)
 				)
@@ -7355,21 +7355,21 @@ module.exports = React.createClass({
 
     render: function() {
         var content = React.createElement("div", {className: "content"});
-        
+
         switch(this.state.step){
             case "unsupported":
                 content = (
-                    React.createElement("div", {className: "content", onClick: this.handleClose}, 
-                        React.createElement("div", {className: "cover"}, 
+                    React.createElement("div", {className: "content", onClick: this.handleClose},
+                        React.createElement("div", {className: "cover"},
                             React.createElement(Icon, {name: "minus-box-clean", size: "mac"})
-                        ), 
+                        ),
 
-                        React.createElement("div", {className: "title"}, 
-                            React.createElement("strong", null, t.s("error")), 
+                        React.createElement("div", {className: "title"},
+                            React.createElement("strong", null, t.s("error")),
                             React.createElement("div", {className: "subinfo"}, t.s("serverundefined"))
-                        ), 
+                        ),
 
-                        React.createElement("a", {href: "", className: "close"}, 
+                        React.createElement("a", {href: "", className: "close"},
                             React.createElement(Icon, {name: "clear", size: "mac"})
                         )
                     )
@@ -7391,17 +7391,17 @@ module.exports = React.createClass({
                     savedText = t.s("alreadyInCollection");
 
                 content = (
-                    React.createElement("div", {className: "content", onClick: this.handleEdit}, 
-                        React.createElement("div", {className: "cover"}, 
+                    React.createElement("div", {className: "content", onClick: this.handleEdit},
+                        React.createElement("div", {className: "cover"},
                             React.createElement("img", {className: "small-icon", src: cover, alt: ""})
-                        ), 
+                        ),
 
-                        React.createElement("div", {className: "title"}, 
-                            React.createElement("strong", null, savedText, " ", React.createElement("b", null, collection.title)), 
+                        React.createElement("div", {className: "title"},
+                            React.createElement("strong", null, savedText, " ", React.createElement("b", null, collection.title)),
                             React.createElement("div", {className: "subinfo"}, t.s("alreadyInCollectionD"))
-                        ), 
+                        ),
 
-                        React.createElement("a", {href: "", className: "close", onClick: this.handleClose, onMouseOver: this.closeOver, onMouseLeave: this.closeLeave}, 
+                        React.createElement("a", {href: "", className: "close", onClick: this.handleClose, onMouseOver: this.closeOver, onMouseLeave: this.closeLeave},
                             React.createElement(Icon, {name: "done-circle", size: "mac"})
                         )
                     )
@@ -7416,8 +7416,8 @@ module.exports = React.createClass({
             className = "done";
 
         return (
-            React.createElement("div", {className: "pop-saver "+className}, 
-                React.createElement(Icon, {name: "preloader-circle", className: "colorful-preloader", size: "big"}), 
+            React.createElement("div", {className: "pop-saver "+className},
+                React.createElement(Icon, {name: "preloader-circle", className: "colorful-preloader", size: "big"}),
                 content
             )
         );
@@ -7505,33 +7505,33 @@ module.exports = React.createClass({
     },
 
     render: function() {
-    	return (React.createElement("div", null, 
-    		React.createElement("div", {className: (this.props.isSubContent ? "pop-sub-content":"pop-content")+" "+(this.state.loading ? "invisible" : null)}, 
-	            React.createElement("form", {onSubmit: this.handleSave}, 
-	                React.createElement("header", null, 
-	                    React.createElement("div", {className: "max title"}, 
+    	return (React.createElement("div", null,
+    		React.createElement("div", {className: (this.props.isSubContent ? "pop-sub-content":"pop-content")+" "+(this.state.loading ? "invisible" : null)},
+	            React.createElement("form", {onSubmit: this.handleSave},
+	                React.createElement("header", null,
+	                    React.createElement("div", {className: "max title"},
 	                        React.createElement("input", {type: "text", className: "important", required: true, autoFocus: true, valueLink: {value: this.state.item.url, requestChange: this.handleURLChange}, ref: "url", placeholder: t.s("enterLink") + " (URL)"})
 	                    )
-	                ), 
+	                ),
 
-	                React.createElement("div", {className: "entries"}, 
-                        React.createElement("div", {className: "row "}, 
-                            React.createElement("div", {className: "title"}, t.s("more")), 
-                            React.createElement("div", {className: "content max"}, 
-                                React.createElement("a", {href: consts.getImportLink(), target: "_blank", className: "block-link"}, React.createElement(Icon, {name: "import", size: "mac", className: "content-icon icn-blue"}), t.s("importBookmarks")), 
-                                React.createElement("br", null), 
+	                React.createElement("div", {className: "entries"},
+                        React.createElement("div", {className: "row "},
+                            React.createElement("div", {className: "title"}, t.s("more")),
+                            React.createElement("div", {className: "content max"},
+                                React.createElement("a", {href: consts.getImportLink(), target: "_blank", className: "block-link"}, React.createElement(Icon, {name: "import", size: "mac", className: "content-icon icn-blue"}), t.s("importBookmarks")),
+                                React.createElement("br", null),
                                 React.createElement("a", {href: network.settingsURL()+"/install", target: "_blank", className: "block-link"}, React.createElement(Icon, {name: "install", size: "mac", className: "content-icon icn-green"}), t.s("browserExtension"), ", ", t.s("mobileApp").toLowerCase())
                             )
                         )
-                    ), 
+                    ),
 
-	                React.createElement("footer", null, 
-	                    React.createElement("input", {type: "submit", className: "but accent pull-right", value: t.s("add")}), 
+	                React.createElement("footer", null,
+	                    React.createElement("input", {type: "submit", className: "but accent pull-right", value: t.s("add")}),
 	                    React.createElement("a", {href: "", onClick: this.handleClose, className: "but default pull-right"}, t.s("cancel"))
 	                )
 	            )
-	        ), 
-	        React.createElement("div", {className: "pop-loader "+(this.state.loading ? null : "hidden")}, 
+	        ),
+	        React.createElement("div", {className: "pop-loader "+(this.state.loading ? null : "hidden")},
 	        	React.createElement("div", {className: "pop-content"}, React.createElement("a", {href: "", onClick: this.handleClose, className: "but default pull-right"}, t.s("cancel")))
 	        )
         ));
@@ -7572,40 +7572,40 @@ module.exports = React.createClass({
 	render: function() {
 		if (this.props.show)
     		return this._makeWrap(
-    			React.createElement("div", {className: "picker-list"}, 
+    			React.createElement("div", {className: "picker-list"},
     				/*<div className="section" style={{margin:0}}>{this.props.link}</div>*/
 
-	  				React.createElement("div", {className: "item"}, 
-	  					React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "open-link", size: "mac"})), 
-						React.createElement("div", {className: "title"}, 
+	  				React.createElement("div", {className: "item"},
+	  					React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "open-link", size: "mac"})),
+						React.createElement("div", {className: "title"},
 							t.s("openInBrowser")
-						), 
+						),
 						React.createElement("a", {href: this.props.link, target: "_blank", className: "permalink", onClick: this.props.onClose})
-			        ), 
+			        ),
 
-			        React.createElement("div", {className: "item"}, 
-			        	React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "link", size: "mac"})), 
-						React.createElement("div", {className: "title"}, 
+			        React.createElement("div", {className: "item"},
+			        	React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "link", size: "mac"})),
+						React.createElement("div", {className: "title"},
 							t.s("copyLinkToClipboard")
-						), 
+						),
 						React.createElement("a", {href: "", className: "permalink", onClick: this.handleCopyToClipboard})
-			        ), 
+			        ),
 
-			        React.createElement("div", {className: "separator"}), 
+			        React.createElement("div", {className: "separator"}),
 
-			        React.createElement("div", {className: "item"}, 
-			        	React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "edit", size: "mac"})), 
-						React.createElement("div", {className: "title"}, 
+			        React.createElement("div", {className: "item"},
+			        	React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "edit", size: "mac"})),
+						React.createElement("div", {className: "title"},
 							t.s("edit")
-						), 
+						),
 						React.createElement("a", {href: "", className: "permalink", onClick: this.handleEdit})
-			        ), 
+			        ),
 
-			        React.createElement("div", {className: "item"}, 
-			        	React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "trash", size: "mac"})), 
-						React.createElement("div", {className: "title"}, 
+			        React.createElement("div", {className: "item"},
+			        	React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "trash", size: "mac"})),
+						React.createElement("div", {className: "title"},
 							t.s("remove")
-						), 
+						),
 						React.createElement("a", {href: "", className: "permalink", onClick: this.handleRemove})
 			        )
 	  			)
@@ -7686,11 +7686,11 @@ module.exports = React.createClass({
       var _this = this;
       var sort = _sorting.map(function(item){
         return (
-          React.createElement("div", {className: "item"}, 
-              React.createElement("div", {className: "icon"}, (_this.props.sortSelected == item.key ? React.createElement(Icon, {name: "done"}):null)), 
-              React.createElement("div", {className: "title", style: {textTransform: "capitalize"}}, 
+          React.createElement("div", {className: "item"},
+              React.createElement("div", {className: "icon"}, (_this.props.sortSelected == item.key ? React.createElement(Icon, {name: "done"}):null)),
+              React.createElement("div", {className: "title", style: {textTransform: "capitalize"}},
                   item.value
-              ), 
+              ),
               React.createElement("a", {href: "", className: "permalink", "data-sort": item.key, onClick: _this.handleSortChange})
           )
         );
@@ -7702,52 +7702,52 @@ module.exports = React.createClass({
       var onlyBasic = this.props.onlyBasic;
 
       return this._makeWrap(
-        React.createElement("div", {className: "picker-list"}, 
+        React.createElement("div", {className: "picker-list"},
           /*<div className="section" style={{margin:0}}>{this.props.collection.title}</div>*/
 
-          React.createElement("div", {className:  ((window.environment||[]).indexOf("mobile")!=-1) ? "hidden" : "item"}, 
-              React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "open-link", size: "mac"})), 
-              React.createElement("div", {className: "title"}, 
+          React.createElement("div", {className:  ((window.environment||[]).indexOf("mobile")!=-1) ? "hidden" : "item"},
+              React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "open-link", size: "mac"})),
+              React.createElement("div", {className: "title"},
                   t.s("openInBrowser")
-              ), 
+              ),
               React.createElement("a", {href: network.fixURL("/app#/collection/"+this.props.collection._id), target: "_blank", onClick: this.props.onClose, className: "permalink"})
-          ), 
+          ),
 
-          React.createElement("div", {className: this.props.collection.author && !onlyBasic ? "item" : "hidden"}, 
-              React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "folder-add", size: "mac"})), 
-              React.createElement("div", {className: "title"}, 
+          React.createElement("div", {className: this.props.collection.author && !onlyBasic ? "item" : "hidden"},
+              React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "folder-add", size: "mac"})),
+              React.createElement("div", {className: "title"},
                   t.s("createSubFolder")
-              ), 
+              ),
               React.createElement("a", {href: "", className: "permalink", onClick: this.handleAddFolder})
-          ), 
+          ),
 
-          React.createElement("div", {className: this.props.collection.author ? "item" : "hidden"}, 
-              React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "edit", size: "mac"})), 
-              React.createElement("div", {className: "title"}, 
+          React.createElement("div", {className: this.props.collection.author ? "item" : "hidden"},
+              React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "edit", size: "mac"})),
+              React.createElement("div", {className: "title"},
                   t.s("collectionEdit")
-              ), 
+              ),
               React.createElement("a", {href: "", className: "permalink", onClick: this.handleEdit})
-          ), 
+          ),
 
-          React.createElement("div", {className: this.props.collection.author ? "item" : "hidden"}, 
-              React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "share", size: "mac"})), 
-              React.createElement("div", {className: "title"}, 
+          React.createElement("div", {className: this.props.collection.author ? "item" : "hidden"},
+              React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "share", size: "mac"})),
+              React.createElement("div", {className: "title"},
                   t.s("sharing")
-              ), 
+              ),
               React.createElement("a", {href: "", className: "permalink", onClick: this.handleShare})
-          ), 
+          ),
 
-          React.createElement("div", {className: !onlyBasic ? "item" : "hidden"}, 
-              React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: this.props.collection.view})), 
-              React.createElement("div", {className: "title"}, 
+          React.createElement("div", {className: !onlyBasic ? "item" : "hidden"},
+              React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: this.props.collection.view})),
+              React.createElement("div", {className: "title"},
                   t.s("view")
-              ), 
+              ),
               React.createElement("a", {href: "", className: "permalink", onClick: this.handleViewModalShow})
-          ), 
-          
-          React.createElement("span", {className: !onlyBasic ? "" : "hidden"}, 
-          React.createElement("div", {className: "separator"}), 
-          React.createElement("div", {className: "section"}, t.s("collectionsSorting")), 
+          ),
+
+          React.createElement("span", {className: !onlyBasic ? "" : "hidden"},
+          React.createElement("div", {className: "separator"}),
+          React.createElement("div", {className: "section"}, t.s("collectionsSorting")),
           sort
           )
         )
@@ -7829,11 +7829,11 @@ module.exports = React.createClass({
       var _this = this;
       var sort = _sorting.map(function(item){
         return (
-          React.createElement("div", {className: "item"}, 
-              React.createElement("div", {className: "icon"}, (_this.props.sortSelected == item.key ? React.createElement(Icon, {name: "done"}):null)), 
-              React.createElement("div", {className: "title", style: {textTransform: "capitalize"}}, 
+          React.createElement("div", {className: "item"},
+              React.createElement("div", {className: "icon"}, (_this.props.sortSelected == item.key ? React.createElement(Icon, {name: "done"}):null)),
+              React.createElement("div", {className: "title", style: {textTransform: "capitalize"}},
                   item.value
-              ), 
+              ),
               React.createElement("a", {href: "", className: "permalink", "data-sort": item.key, onClick: _this.handleSortChange})
           )
         );
@@ -7847,15 +7847,15 @@ module.exports = React.createClass({
       var fastLinks = [];
       if (this.props.collection.author){
         fastLinks.push(
-          React.createElement("a", {href: "", onClick: this.handleEdit, className: "item"}, 
-              React.createElement("span", {className: "icon blue"}, React.createElement(Icon, {name: "edit"})), 
+          React.createElement("a", {href: "", onClick: this.handleEdit, className: "item"},
+              React.createElement("span", {className: "icon blue"}, React.createElement(Icon, {name: "edit"})),
               React.createElement("span", {className: "title"}, t.s("collectionEdit"))
           )
         );
 
         fastLinks.push(
-          React.createElement("a", {href: "", onClick: this.handleShare, className: "item"}, 
-              React.createElement("span", {className: "icon tomato"}, React.createElement(Icon, {name: "share"})), 
+          React.createElement("a", {href: "", onClick: this.handleShare, className: "item"},
+              React.createElement("span", {className: "icon tomato"}, React.createElement(Icon, {name: "share"})),
               React.createElement("span", {className: "title"}, t.s("sharing"))
           )
         );
@@ -7863,8 +7863,8 @@ module.exports = React.createClass({
 
       if ((window.environment||[]).indexOf("mobile")==-1){
         fastLinks.push(
-          React.createElement("a", {href: network.fixURL("/app#/collection/"+this.props.collection._id), target: "_blank", onClick: this.props.onClose, className: "item"}, 
-              React.createElement("span", {className: "icon asphalt"}, React.createElement(Icon, {name: "open-link"})), 
+          React.createElement("a", {href: network.fixURL("/app#/collection/"+this.props.collection._id), target: "_blank", onClick: this.props.onClose, className: "item"},
+              React.createElement("span", {className: "icon asphalt"}, React.createElement(Icon, {name: "open-link"})),
               React.createElement("span", {className: "title"}, t.s("openInBrowser"))
           )
         );
@@ -7872,27 +7872,27 @@ module.exports = React.createClass({
 
       if (this.props.collection.author && !onlyBasic){
         fastLinks.push(
-          React.createElement("a", {href: "", onClick: this.handleAddFolder, className: "item"}, 
-              React.createElement("span", {className: "icon green"}, React.createElement(Icon, {name: "folder-add"})), 
+          React.createElement("a", {href: "", onClick: this.handleAddFolder, className: "item"},
+              React.createElement("span", {className: "icon green"}, React.createElement(Icon, {name: "folder-add"})),
               React.createElement("span", {className: "title"}, t.s("createSubFolder"))
           )
         );
       }
 
     	return this._makeWrap(
-      React.createElement("div", null, 
-        React.createElement("div", {className: "fast-links"}, 
+      React.createElement("div", null,
+        React.createElement("div", {className: "fast-links"},
           fastLinks
-        ), 
+        ),
 
-        React.createElement("div", {className: "picker-list"}, 
+        React.createElement("div", {className: "picker-list"},
           React.createElement("div", {className: "section"}, t.s("view"))
-        ), 
+        ),
 
-        React.createElement("div", {className: "picker-list"}, 
-          React.createElement("span", {className: !onlyBasic ? "" : "hidden"}, 
-          React.createElement("div", {className: "separator"}), 
-          React.createElement("div", {className: "section"}, t.s("collectionsSorting")), 
+        React.createElement("div", {className: "picker-list"},
+          React.createElement("span", {className: !onlyBasic ? "" : "hidden"},
+          React.createElement("div", {className: "separator"}),
+          React.createElement("div", {className: "section"}, t.s("collectionsSorting")),
           sort
           )
         )
@@ -7925,23 +7925,23 @@ module.exports = React.createClass({
   render: function() {
     if (this.props.show)
     	return this._makeWrap(
-        React.createElement("div", null, 
-          React.createElement("div", {className: "font-edit popover-font-size"}, 
-            React.createElement("a", {href: "", className: "action-icon", onClick: this.props.handleDicrementFont}, React.createElement(Icon, {name: "minus-box-clean", size: "mac"})), 
-            React.createElement("div", null, t.s("fontSize")), 
+        React.createElement("div", null,
+          React.createElement("div", {className: "font-edit popover-font-size"},
+            React.createElement("a", {href: "", className: "action-icon", onClick: this.props.handleDicrementFont}, React.createElement(Icon, {name: "minus-box-clean", size: "mac"})),
+            React.createElement("div", null, t.s("fontSize")),
             React.createElement("a", {href: "", className: "action-icon", onClick: this.props.handleIncrementFont}, React.createElement(Icon, {name: "add-box-clean", size: "mac"}))
-          ), 
+          ),
 
-          React.createElement("div", {className: "font-edit"}, 
-            React.createElement("a", {href: "", className: "item orange "+(this.props.fontColor == "" ? "active" : ""), "data-color": "", onClick: this.handleFontColor}, React.createElement(Icon, {name: "sun", size: "big"})), 
-            React.createElement("a", {href: "", className: "item red "+(this.props.fontColor == "sunset" ? "active" : ""), "data-color": "sunset", onClick: this.handleFontColor}, React.createElement(Icon, {name: "sunset", size: "big"})), 
+          React.createElement("div", {className: "font-edit"},
+            React.createElement("a", {href: "", className: "item orange "+(this.props.fontColor == "" ? "active" : ""), "data-color": "", onClick: this.handleFontColor}, React.createElement(Icon, {name: "sun", size: "big"})),
+            React.createElement("a", {href: "", className: "item red "+(this.props.fontColor == "sunset" ? "active" : ""), "data-color": "sunset", onClick: this.handleFontColor}, React.createElement(Icon, {name: "sunset", size: "big"})),
             React.createElement("a", {href: "", className: "item "+(this.props.fontColor == "night" ? "active" : ""), "data-color": "night", onClick: this.handleFontColor}, React.createElement(Icon, {name: "moon", size: "big"}))
-          ), 
+          ),
 
-          React.createElement("div", {className: "font-edit"}, 
-            React.createElement("a", {href: "", className: "family "+(this.props.fontFamily == "" ? "active" : ""), "data-family": "", onClick: this.handleFontFamily}, "Aa"), 
-            React.createElement("a", {href: "", className: "family georgia "+(this.props.fontFamily == "georgia" ? "active" : ""), "data-family": "georgia", onClick: this.handleFontFamily}, "Aa"), 
-            React.createElement("a", {href: "", className: "family helvetica "+(this.props.fontFamily == "helvetica" ? "active" : ""), "data-family": "helvetica", onClick: this.handleFontFamily}, "Aa"), 
+          React.createElement("div", {className: "font-edit"},
+            React.createElement("a", {href: "", className: "family "+(this.props.fontFamily == "" ? "active" : ""), "data-family": "", onClick: this.handleFontFamily}, "Aa"),
+            React.createElement("a", {href: "", className: "family georgia "+(this.props.fontFamily == "georgia" ? "active" : ""), "data-family": "georgia", onClick: this.handleFontFamily}, "Aa"),
+            React.createElement("a", {href: "", className: "family helvetica "+(this.props.fontFamily == "helvetica" ? "active" : ""), "data-family": "helvetica", onClick: this.handleFontFamily}, "Aa"),
             React.createElement("a", {href: "", className: "family verdana "+(this.props.fontFamily == "verdana" ? "active" : ""), "data-family": "verdana", onClick: this.handleFontFamily}, "Aa")
           )
         )
@@ -8002,9 +8002,9 @@ module.exports = {
 	    	pos.top = pos.top - 150;
 
 		return (
-			React.createElement(RenderInBody, {name: "popover", category: (this.props.attachId||"")}, React.createElement("div", {className: "popover", id: "popover-for-"+(this.props.attachId||""), onClick: this.handleBeyondClick, onContextMenu: this.handleContext, onWheel: this.handleWeel}, 
-				React.createElement("div", {className: "popover-wrap", style: {top: pos.top+"px", left: pos.left+"px", width: div.offsetWidth}}, 
-					React.createElement("div", {className: "popover-body popover-pos-"+fixPosition}, 
+			React.createElement(RenderInBody, {name: "popover", category: (this.props.attachId||"")}, React.createElement("div", {className: "popover", id: "popover-for-"+(this.props.attachId||""), onClick: this.handleBeyondClick, onContextMenu: this.handleContext, onWheel: this.handleWeel},
+				React.createElement("div", {className: "popover-wrap", style: {top: pos.top+"px", left: pos.left+"px", width: div.offsetWidth}},
+					React.createElement("div", {className: "popover-body popover-pos-"+fixPosition},
 						html
 					)
 				)
@@ -8041,7 +8041,7 @@ module.exports = React.createClass({
   		e.stopPropagation();
   		BrowserBridge.openURL(e.target.href);
   	}
-  	
+
   	this.props.onClose();
   },
 
@@ -8055,83 +8055,83 @@ module.exports = React.createClass({
   	var pro=null;
   	if ((window.environment||[]).indexOf("mac")==-1)
   	pro = (
-  		React.createElement("div", {className: "item " + (UserStore.isLogged() ? "" : "hidden")}, 	
-  			React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "pro", size: "mac"})), 
-			React.createElement("div", {className: "title"}, 
+  		React.createElement("div", {className: "item " + (UserStore.isLogged() ? "" : "hidden")},
+  			React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "pro", size: "mac"})),
+			React.createElement("div", {className: "title"},
 				React.createElement("strong", null, t.s("upgradeAccount"))
-			), 
+			),
 			React.createElement("a", {href: sURL + "/pro", target: _target, className: "permalink", onClick: this.handleClick})
         )
   	);
 
   	if (this.props.show)
 	  	return this._makeWrap(
-	  		React.createElement("div", {className: "picker-list"}, 
-	  			React.createElement("div", {className: "section", style: {margin:0}}, UserStore.getUser().email||UserStore.getUser().fullName||t.s("settings")), 
+	  		React.createElement("div", {className: "picker-list"},
+	  			React.createElement("div", {className: "section", style: {margin:0}}, UserStore.getUser().email||UserStore.getUser().fullName||t.s("settings")),
 
-	  			pro, 
+	  			pro,
 
-	  			React.createElement("div", {className: "item " + (UserStore.isLogged() ? "" : "hidden")}, 
-					React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "settings", size: "mac"})), 
-					React.createElement("div", {className: "title"}, 
+	  			React.createElement("div", {className: "item " + (UserStore.isLogged() ? "" : "hidden")},
+					React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "settings", size: "mac"})),
+					React.createElement("div", {className: "title"},
 						t.s("settings") + " " + t.s("und") + " " + t.s("profile").toLowerCase()
-					), 
+					),
 					React.createElement("a", {href: sURL, target: _target, className: "permalink", onClick: this.handleClick})
-		        ), 
+		        ),
 
-		        React.createElement("div", {className: "item " + (((window.environment||[]).indexOf("clipper")==-1) && ((window.environment||[]).indexOf("mac")==-1) ? "" : "hidden")}, 
-					React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "web", size: "mac"})), 
-					React.createElement("div", {className: "title"}, 
+		        React.createElement("div", {className: "item " + (((window.environment||[]).indexOf("clipper")==-1) && ((window.environment||[]).indexOf("mac")==-1) ? "" : "hidden")},
+					React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "web", size: "mac"})),
+					React.createElement("div", {className: "title"},
 						t.s("background")
-					), 
+					),
 					React.createElement("a", {href: "#/interface", className: "permalink", onClick: this.handleClick})
-		        ), 
+		        ),
 
-		        React.createElement("div", {className: "separator"}), 
+		        React.createElement("div", {className: "separator"}),
 
-		        React.createElement("div", {className: "item " + (UserStore.isLogged() ? "" : "hidden")}, 
-					React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "import", size: "mac"})), 
-					React.createElement("div", {className: "title"}, 
+		        React.createElement("div", {className: "item " + (UserStore.isLogged() ? "" : "hidden")},
+					React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "import", size: "mac"})),
+					React.createElement("div", {className: "title"},
 						t.s("importBookmarks")
-					), 
+					),
 					React.createElement("a", {href: sURL+"/import", target: _target, className: "permalink", onClick: this.handleClick})
-		        ), 
+		        ),
 
-		        React.createElement("div", {className: "item " + (UserStore.isLogged() ? "" : "hidden")}, 
-					React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "export", size: "mac"})), 
-					React.createElement("div", {className: "title"}, 
+		        React.createElement("div", {className: "item " + (UserStore.isLogged() ? "" : "hidden")},
+					React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "export", size: "mac"})),
+					React.createElement("div", {className: "title"},
 						t.s("exportBookmarks")
-					), 
+					),
 					React.createElement("a", {href: sURL+"/export", target: _target, className: "permalink", onClick: this.handleClick})
-		        ), 
+		        ),
 
-		        React.createElement("div", {className: "separator"}), 
+		        React.createElement("div", {className: "separator"}),
 
-		        React.createElement("div", {className: "item"}, 
-					React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "install", size: "mac"})), 
-					React.createElement("div", {className: "title"}, 
-						t.s("install"), 
-						React.createElement("div", {style: {fontSize: "13px", opacity: ".7"}}, 
-							t.s("browserExtension"), React.createElement("br", null), 
+		        React.createElement("div", {className: "item"},
+					React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "install", size: "mac"})),
+					React.createElement("div", {className: "title"},
+						t.s("install"),
+						React.createElement("div", {style: {fontSize: "13px", opacity: ".7"}},
+							t.s("browserExtension"), React.createElement("br", null),
 							t.s("und"), " ", t.s("mobileApp").toLowerCase()
 						)
-					), 
+					),
 					React.createElement("a", {href: sURL+"/install", target: _target, className: "permalink", onClick: this.handleClick})
-		        ), 
+		        ),
 
-		        React.createElement("div", {className: "item"}, 
-					React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "help", size: "mac"})), 
-					React.createElement("div", {className: "title"}, 
+		        React.createElement("div", {className: "item"},
+					React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "help", size: "mac"})),
+					React.createElement("div", {className: "title"},
 						t.s("help")
-					), 
+					),
 					React.createElement("a", {href: sURL+"/help", target: _target, className: "permalink", onClick: this.handleClick})
-		        ), 
+		        ),
 
-		        React.createElement("div", {className: "item " + (UserStore.isLogged() ? "actions" : "hidden")}, 
-					React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "exit", size: "mac"})), 
-					React.createElement("div", {className: "title"}, 
+		        React.createElement("div", {className: "item " + (UserStore.isLogged() ? "actions" : "hidden")},
+					React.createElement("div", {className: "icon"}, React.createElement(Icon, {name: "exit", size: "mac"})),
+					React.createElement("div", {className: "title"},
 						t.s("logOut")
-					), 
+					),
 					React.createElement("a", {href: "", className: "permalink", onClick: this.handleLogOut})
 		        )
 	  		)
@@ -8187,20 +8187,20 @@ module.exports = React.createClass({
           className += " "+this.state.item.className;
 
         return (
-            React.createElement("figure", {className: className, id: "searchResultItem_"+this.state.index}, 
-                React.createElement("div", {className: "cover"}, 
-                    cover, 
+            React.createElement("figure", {className: className, id: "searchResultItem_"+this.state.index},
+                React.createElement("div", {className: "cover"},
+                    cover,
                     favicon
-                ), 
-                React.createElement("figcaption", {className: "about"}, 
-                    React.createElement("div", {className: "title", dangerouslySetInnerHTML: createMarkup(this.state.item.title)}), 
+                ),
+                React.createElement("figcaption", {className: "about"},
+                    React.createElement("div", {className: "title", dangerouslySetInnerHTML: createMarkup(this.state.item.title)}),
                     excerpt
-                ), 
+                ),
 
-                React.createElement("a", {href: this.state.item.link||null, 
-                    className: "permalink searchResultItemLink", id: "searchResultItemLink_"+this.state.index, 
-                    onClick: this.state.item.link ? null : this.handleClick, 
-                    "data-noclick": !this.state.item.link, 
+                React.createElement("a", {href: this.state.item.link||null,
+                    className: "permalink searchResultItemLink", id: "searchResultItemLink_"+this.state.index,
+                    onClick: this.state.item.link ? null : this.handleClick,
+                    "data-noclick": !this.state.item.link,
                     onMouseDown: this.state.item.link ? null : this.handleClick})
             )
         );
@@ -8248,10 +8248,10 @@ module.exports = React.createClass({
 
 	render: function() {
 		return (
-			React.createElement("form", {className: "mini-search", onSubmit: this.handleSubmit}, 
-				React.createElement("label", null, 
-					React.createElement(Icon, {name: "search", size: "mac"}), 
-					React.createElement("input", {type: "text", placeholder: t.s("defaultCollection-0") + (this.props.placeholder? " (" + this.props.placeholder + ")..." : ""), ref: "input", onChange: this.handleChange}), 
+			React.createElement("form", {className: "mini-search", onSubmit: this.handleSubmit},
+				React.createElement("label", null,
+					React.createElement(Icon, {name: "search", size: "mac"}),
+					React.createElement("input", {type: "text", placeholder: t.s("defaultCollection-0") + (this.props.placeholder? " (" + this.props.placeholder + ")..." : ""), ref: "input", onChange: this.handleChange}),
 					React.createElement("a", {href: "", className: "action-icon "+(this.state.query=="" ? "hidden" : ""), onClick: this.handleReset}, React.createElement(Icon, {name: "clear", size: "mac"}))
 				)
 			)
@@ -8357,21 +8357,21 @@ module.exports = React.createClass({
 			select = [
 				React.createElement(Icon, {name: "arrow-down", size: "small"}),
 				(
-					React.createElement("select", {ref: "select", tabIndex: "-1", value: this.props.item.key, onChange: this.changeQuery}, 
-                        canBeType ? React.createElement("option", {value: "type"}, t.s("type")) : null, 
-                        React.createElement("option", {value: "tag"}, tagTitle), 
-                        canBeDomain ? React.createElement("option", {value: "domain"}, t.s("sites")) : null, 
+					React.createElement("select", {ref: "select", tabIndex: "-1", value: this.props.item.key, onChange: this.changeQuery},
+                        canBeType ? React.createElement("option", {value: "type"}, t.s("type")) : null,
+                        React.createElement("option", {value: "tag"}, tagTitle),
+                        canBeDomain ? React.createElement("option", {value: "domain"}, t.s("sites")) : null,
                         React.createElement("option", {value: "word"}, _.capitalize(t.s("all")))
                     )
 				)
 			];
 
 		return (
-			React.createElement("figure", {className: className}, 
-                showSelect ? React.createElement("label", {className: "type"}, 
+			React.createElement("figure", {className: className},
+                showSelect ? React.createElement("label", {className: "type"},
                     keyString, select
-                ) : null, 
-                React.createElement("a", {href: "", id: "focus-zone-"+this.props.index, onClick: this.handleClick, onDoubleClick: this.handleRemove, onFocus: this.handleFocus, onBlur: this.handleBlur, onKeyDown: this.handleKey, className: "text"}, 
+                ) : null,
+                React.createElement("a", {href: "", id: "focus-zone-"+this.props.index, onClick: this.handleClick, onDoubleClick: this.handleRemove, onFocus: this.handleFocus, onBlur: this.handleBlur, onKeyDown: this.handleKey, className: "text"},
                     valString
                 )
             )
@@ -8622,7 +8622,7 @@ module.exports = React.createClass({
 
             (json.items||[]).forEach(function(c) {
                if ((c.title || "").toLowerCase().indexOf(val.toLowerCase()) >= 0)
-                    collections.push(c); 
+                    collections.push(c);
             });
 
             items = (collections||[]).map(function(c){
@@ -8713,7 +8713,7 @@ module.exports = React.createClass({
 			if ((group.childrens||[]).length>0){
 				if (group.title)
     				items.push(
-    					React.createElement("div", {className: "section", key: "group"+index}, 
+    					React.createElement("div", {className: "section", key: "group"+index},
     						group.title, " ", React.createElement("span", {className: "count"}, group.id ? group.childrens.length : null)
     					)
     				);
@@ -8721,10 +8721,10 @@ module.exports = React.createClass({
                 var childrens = [];
 				group.childrens.forEach(function(item,index) {
 					childrens.push(
-						React.createElement(Item, {item: item, 
-							  active: (iterator+index)==_this.state.index, 
-							  index: iterator+index, 
-							  key: "search_item_" +(item.gist||"")+item._id, 
+						React.createElement(Item, {item: item,
+							  active: (iterator+index)==_this.state.index,
+							  index: iterator+index,
+							  key: "search_item_" +(item.gist||"")+item._id,
 							  onClick: _this.props.addQuery})
 					);
 				});
@@ -8732,7 +8732,7 @@ module.exports = React.createClass({
 
                 if (childrens.length>0)
                     items.push(
-                        React.createElement("div", {className: "childrens_"+(group.className||""), key: "childrens"+index}, 
+                        React.createElement("div", {className: "childrens_"+(group.className||""), key: "childrens"+index},
                             childrens
                         )
                     );
@@ -8742,7 +8742,7 @@ module.exports = React.createClass({
 		resultsCount = iterator;
 
 		return (
-			React.createElement("div", {className: "search-results", id: "searchResults", ref: "div", onWheel: this.handleScroll, onMouseEnter: this.handleResultsMouseOver, onMouseLeave: this.handleResultsMouseLeave}, 
+			React.createElement("div", {className: "search-results", id: "searchResults", ref: "div", onWheel: this.handleScroll, onMouseEnter: this.handleResultsMouseOver, onMouseLeave: this.handleResultsMouseLeave},
 				items
 			)
 		);
@@ -8807,7 +8807,7 @@ module.exports = React.createClass({
         console.log(index)
         //if (index<=0)
         //    return;
-        
+
         var elem = document.getElementById("focus-zone-"+index);
         if (elem)
             elem.focus();
@@ -8904,7 +8904,7 @@ module.exports = React.createClass({
     handleFormReset: function(e) {
         if (e)
             e.preventDefault();
-        
+
         var elem = document.getElementById('searchForm');
         if (elem) elem.reset();
         //document.getElementById('searchInput').blur();
@@ -8930,38 +8930,38 @@ module.exports = React.createClass({
 
         var queries = this.state.queries.map(function(item,index){
             return React.createElement(QueryItem, {
-                        key: "query_"+index, 
-                        index: index, 
-                        item: item, 
-                        changeQuery: _this.changeQuery, 
+                        key: "query_"+index,
+                        index: index,
+                        item: item,
+                        changeQuery: _this.changeQuery,
                         focusOnQuery: _this.focusOnQuery});
         });
 
         //
-        return (React.createElement("div", {className: className}, 
-            React.createElement("form", {onSubmit: this.handleSubmit, id: "searchForm"}, 
-                React.createElement("div", {className: "queries"}, 
-                    React.createElement(Icon, {name: "search", size: "mac"}), 
+        return (React.createElement("div", {className: className},
+            React.createElement("form", {onSubmit: this.handleSubmit, id: "searchForm"},
+                React.createElement("div", {className: "queries"},
+                    React.createElement(Icon, {name: "search", size: "mac"}),
 
-                    queries, 
+                    queries,
 
-                    React.createElement("input", {ref: "searchInput", 
-                           className: "search-input", 
-                           id: "searchInput", 
-                           type: "search", 
-                           name: "q", 
-                           value: this.state.val, 
-                           onMouseDown: this.handleNotReseted, 
-                           onChange: this.handleType, 
-                           onFocus: this.handleFocus, 
-                           onBlur: this.handleBlur, 
-                           onKeyDown: this.handleKey, 
-                           autoComplete: "off", 
-                           placeholder: t.s('defaultCollection-0'), 
-                           autoFocus: this.props.autoFocus||false}), 
+                    React.createElement("input", {ref: "searchInput",
+                           className: "search-input",
+                           id: "searchInput",
+                           type: "search",
+                           name: "q",
+                           value: this.state.val,
+                           onMouseDown: this.handleNotReseted,
+                           onChange: this.handleType,
+                           onFocus: this.handleFocus,
+                           onBlur: this.handleBlur,
+                           onKeyDown: this.handleKey,
+                           autoComplete: "off",
+                           placeholder: t.s('defaultCollection-0'),
+                           autoFocus: this.props.autoFocus||false}),
 
                     queries.length>0 || this.state.focus || this.props.autoFocus ? React.createElement("a", {href: "", className: "action-icon", onMouseDown: this.handleFormReset, onClick: this.handleFormReset, "data-noclick": "true"}, React.createElement(Icon, {name: "clear", size: "mac"})) : null
-                ), 
+                ),
 
                 React.createElement(Results, {ref: "results", val: this.state.val, queries: this.state.queries, addQuery: this.addQuery})
             )
@@ -9145,11 +9145,11 @@ module.exports = React.createClass({
 
   renderLink: function(attr) {
     return (
-      React.createElement("figure", {id: attr.id||null, className: "card collection " + (window.location.href.indexOf(attr.href||{})!=-1 ? "active" : "")}, 
-        React.createElement("div", {className: "icon"}, 
+      React.createElement("figure", {id: attr.id||null, className: "card collection " + (window.location.href.indexOf(attr.href||{})!=-1 ? "active" : "")},
+        React.createElement("div", {className: "icon"},
           React.createElement(Icon, {name: attr.icon})
-        ), 
-        React.createElement("figcaption", {className: "about"}, attr.title), 
+        ),
+        React.createElement("figcaption", {className: "about"}, attr.title),
         React.createElement("a", {href: attr.href||"", onClick: attr.onClick, className: "permalink"})
       )
     );
@@ -9171,20 +9171,20 @@ module.exports = React.createClass({
               (group.collections||[]).forEach(function(c){
                 var collection = CollectionsStore.getCollection(c);
                 if (collection!=null)
-                  items.push (React.createElement(Collection, React.__spread({},  collection, 
-                                          {key: "collection_"+collection._id, 
-                                          onMove: _this.handleMoveCollection, 
+                  items.push (React.createElement(Collection, React.__spread({},  collection,
+                                          {key: "collection_"+collection._id,
+                                          onMove: _this.handleMoveCollection,
                                           onDropBookmark: _this.handleDropBookmark})));
               });
 
               if (items.length==0)
                 items.push(
-                  React.createElement("figure", {className: "card collection", 
-                          key: "empty_"+group.id}, 
-                    React.createElement("div", {className: "icon"}, 
+                  React.createElement("figure", {className: "card collection",
+                          key: "empty_"+group.id},
+                    React.createElement("div", {className: "icon"},
                       React.createElement(Icon, {name: "folder-add"})
-                    ), 
-                    React.createElement("figcaption", {className: "about"}, t.s("createFirstCollection"), "..."), 
+                    ),
+                    React.createElement("figcaption", {className: "about"}, t.s("createFirstCollection"), "..."),
 
                     React.createElement("a", {href: "", "data-group": group.id, onClick: _this.handleGroupNewCollectionModalOpen, id: "newCollectionGroup"+group.id, className: "permalink"})
                   )
@@ -9192,30 +9192,30 @@ module.exports = React.createClass({
             }
 
             return (
-              React.createElement("section", {key: "sec_"+group.id, className: (group.hidden ? "section-hidden" : "")}, 
-                React.createElement(Group, React.__spread({},  group, {key: "group_"+group.id, 
-                      onToggle: _this.handleGroupToggle, 
-                      onMove: _this.handleMoveGroup, 
-                      onDrop: _this.handleDropCollectionToGroup})), 
+              React.createElement("section", {key: "sec_"+group.id, className: (group.hidden ? "section-hidden" : "")},
+                React.createElement(Group, React.__spread({},  group, {key: "group_"+group.id,
+                      onToggle: _this.handleGroupToggle,
+                      onMove: _this.handleMoveGroup,
+                      onDrop: _this.handleDropCollectionToGroup})),
                 items
               )
             );
           });
-          
+
           //Defaults
           groups.unshift(
-            React.createElement("section", {key: "sec_defaults_first"}, 
-              React.createElement(Collection, React.__spread({},  CollectionsStore.getCollection(0), {key: "d0"})), 
-              
+            React.createElement("section", {key: "sec_defaults_first"},
+              React.createElement(Collection, React.__spread({},  CollectionsStore.getCollection(0), {key: "d0"})),
+
               React.createElement(Collection, React.__spread({},  CollectionsStore.getCollection(-1), {onDropBookmark: _this.handleDropBookmark, key: "d-1"}))
             )
           );
 
           //New group
           groups.push(
-            React.createElement("section", {key: "sec_add_group"}, 
-              React.createElement("figure", {className: "card group", id: "sidebar-new-group"}, 
-                React.createElement("figcaption", {className: "about"}, t.s("createGroup")), 
+            React.createElement("section", {key: "sec_add_group"},
+              React.createElement("figure", {className: "card group", id: "sidebar-new-group"},
+                React.createElement("figcaption", {className: "about"}, t.s("createGroup")),
                 React.createElement("a", {href: "", className: "permalink group-permalink", onClick: this.handleNewGroup})
               )
             )
@@ -9223,32 +9223,32 @@ module.exports = React.createClass({
 
           //Global
           groups.push(
-            React.createElement("section", {key: "sec_defaults_last"}, 
-              
+            React.createElement("section", {key: "sec_defaults_last"},
+
 
               /*this.renderLink({icon: "settings", title: t.s("settings") + " " + t.s("und") + " " + t.s("profile").toLowerCase(), id: "settings-popover-link", onClick: this.handleSettingsPopoverShow})*/
-              this.renderLink({icon: "auto", title: t.s("tools"), href: "#/tools"}), 
-              React.createElement(Collection, React.__spread({},  CollectionsStore.getCollection(-2), {onDropBookmark: _this.handleDropBookmark, key: "d-2"})), 
+              this.renderLink({icon: "auto", title: t.s("tools"), href: "#/tools"}),
+              React.createElement(Collection, React.__spread({},  CollectionsStore.getCollection(-2), {onDropBookmark: _this.handleDropBookmark, key: "d-2"})),
               React.createElement(Collection, React.__spread({},  CollectionsStore.getCollection(-99), {onDropBookmark: _this.handleDropBookmark, key: "d-99"}))
             )
           );
 
           sidebar = (
-            React.createElement("div", {className: "collections-list"}, 
+            React.createElement("div", {className: "collections-list"},
               groups
             )
           );
         }
         else{
           sidebar = (
-            React.createElement("div", {className: "collections-list"}, 
-              React.createElement("section", null, 
-                this.renderLink({icon: "person", title: t.s("signIn"), onClick: this.handleSignIn}), 
+            React.createElement("div", {className: "collections-list"},
+              React.createElement("section", null,
+                this.renderLink({icon: "person", title: t.s("signIn"), onClick: this.handleSignIn}),
                 this.renderLink({icon: "person-add", title: t.s("signUp"), onClick: this.handleSignUp})
-              ), 
+              ),
 
-              React.createElement("section", null, 
-                this.renderLink({icon: "help", title: t.s("help"), href: network.settingsURL()+'/help'}), 
+              React.createElement("section", null,
+                this.renderLink({icon: "help", title: t.s("help"), href: network.settingsURL()+'/help'}),
                 this.renderLink({icon: "install", title: t.s("install"), href: network.settingsURL()+'/install'})
               )
             )
@@ -9263,11 +9263,11 @@ module.exports = React.createClass({
       //<Icon name="logo" style={{width: "96px", height: "12px"}} />
       //<img src={(window.pathPrefix||"") + "../common/images/logo-text.svg"} className={this.state.open ? "" : "hidden"} alt="" />
       var header = (
-        React.createElement("header", null, 
-          menu, 
-          React.createElement("div", {className: "header-center"}, 
-            React.createElement("div", {id: "settings-popover-link", className: this.state.open ? "header-user-block" : "hidden", onClick: this.handleSettingsPopoverShow}, 
-              React.createElement("img", {key: "avatar", className: "icn icn-circle pull-right", src: "https://www.gravatar.com/avatar/"+this.state.user.email_MD5+"?d=mm&s=48"}), 
+        React.createElement("header", null,
+          menu,
+          React.createElement("div", {className: "header-center"},
+            React.createElement("div", {id: "settings-popover-link", className: this.state.open ? "header-user-block" : "hidden", onClick: this.handleSettingsPopoverShow},
+              React.createElement("img", {key: "avatar", className: "icn icn-circle pull-right", src: "https://www.gravatar.com/avatar/"+this.state.user.email_MD5+"?d=mm&s=48"}),
               this.state.user.fullName||t.s("settings"), " ", React.createElement(Icon, {name: "arrow-down", size: "small"})/*
               <div className="subinfo">{this.state.user.email}</div>*/
             )
@@ -9282,15 +9282,15 @@ module.exports = React.createClass({
         popoverattachId = "mac-settings-placeholder";
 
       return (
-        React.createElement(OverflowScroll, null, 
-          header, 
-          React.createElement("div", {id: "mac-settings-placeholder"}), 
+        React.createElement(OverflowScroll, null,
+          header,
+          React.createElement("div", {id: "mac-settings-placeholder"}),
 
-          sidebar, 
+          sidebar,
 
-          React.createElement(PopoverSettings, {onClose: this.handleSettingsPopoverClose, 
-            show: this.state.settingsPopover, 
-            attachId: popoverattachId, 
+          React.createElement(PopoverSettings, {onClose: this.handleSettingsPopoverClose,
+            show: this.state.settingsPopover,
+            attachId: popoverattachId,
             position: "" }
             )
         )
@@ -9403,20 +9403,20 @@ module.exports = React.createClass({
 
     var actions = null;
     if (this.props.author) {
-      actions = (React.createElement("div", {className: "more"}, 
-          React.createElement("a", {href: "", className: "action-icon", onClick: this.handleSharing, title: t.s("sharing")}, React.createElement(Icon, {name: "share", size: "mac"})), 
-          React.createElement("a", {href: "", className: "action-icon", onClick: this.handleSubFolder, title: t.s("createSubFolder")}, React.createElement(Icon, {name: "folder-add", size: "mac"})), 
+      actions = (React.createElement("div", {className: "more"},
+          React.createElement("a", {href: "", className: "action-icon", onClick: this.handleSharing, title: t.s("sharing")}, React.createElement(Icon, {name: "share", size: "mac"})),
+          React.createElement("a", {href: "", className: "action-icon", onClick: this.handleSubFolder, title: t.s("createSubFolder")}, React.createElement(Icon, {name: "folder-add", size: "mac"})),
           React.createElement("a", {href: "", className: "action-icon", onClick: this.handleEdit, id: "side-collection-more-"+this.props._id, title: t.s("collectionEdit")}, React.createElement(Icon, {name: "settings", size: "mac"}))
           /*<a href="" id={"more-"+this.props._id} className="action-icon icon-more" onClick={this.handleMore}><Icon name="more" size="mac" /></a>*/
       ));
     }else if (this.props._id>0){
-      actions = (React.createElement("div", {className: "more"}, 
+      actions = (React.createElement("div", {className: "more"},
           React.createElement("a", {href: "", className: "action-icon", onClick: this.handleSharing, title: t.s("sharing")}, React.createElement(Icon, {name: "share", size: "mac"}))
       ));
     }
 
     if (this.props._id == -99)
-      actions = (React.createElement("div", {className: "more"}, 
+      actions = (React.createElement("div", {className: "more"},
           React.createElement("a", {href: "", className: "action-icon", onClick: this.handleRemove}, React.createElement(Icon, {name: "trash", size: "mac"}))
       ));
 
@@ -9427,28 +9427,28 @@ module.exports = React.createClass({
       collectionIcon = React.createElement("img", {src: cover, alt: ""});
 
     return (
-      React.createElement("figure", React.__spread({},  this.dragSourceFor('collection'), 
-              this.dropTargetFor('collection', 'bookmark'), 
-              {onContextMenu: this.handleMore, 
-              className: className, 
-              style: style, 
-              ref: "collection", 
-              id: "side-collection-"+this.props._id}), 
-        React.createElement("div", {className: "icon"}, 
+      React.createElement("figure", React.__spread({},  this.dragSourceFor('collection'),
+              this.dropTargetFor('collection', 'bookmark'),
+              {onContextMenu: this.handleMore,
+              className: className,
+              style: style,
+              ref: "collection",
+              id: "side-collection-"+this.props._id}),
+        React.createElement("div", {className: "icon"},
           collectionIcon
-        ), 
-        React.createElement("figcaption", {className: "about"}, this.props.title), 
+        ),
+        React.createElement("figcaption", {className: "about"}, this.props.title),
 
-        React.createElement("div", {className: "info"}, 
-          statusShared, 
+        React.createElement("div", {className: "info"},
+          statusShared,
           statusPublic
-        ), 
-        React.createElement("div", {className: "count"}, 
+        ),
+        React.createElement("div", {className: "count"},
           this.props.count||null
-        ), 
+        ),
 
-        actions, 
-        React.createElement("a", {href: link, className: "permalink"}), 
+        actions,
+        React.createElement("a", {href: link, className: "permalink"}),
         React.createElement(Popover, React.__spread({position: this.state.mousePos ? "left" : "", onClose: this.handlePopoverClose, show: this.state.showPopover, attachId: "more-"+this.props._id},  {collection:this.props}, {onlyBasic: true, handleEdit: this.handleEdit, handleRemove: this.handleRemove, mousePos: this.state.mousePos}))
       )
     );
@@ -9490,20 +9490,20 @@ module.exports = React.createClass({
 
   render: function() {
     return (
-      React.createElement("figure", React.__spread({className: "card group "+(this.props.hidden ? "closed" : "open"), 
-              onContextMenu: this.handleMore}, 
-              this.dropTargetFor('collection', 'group'), 
-              this.dragSourceFor('group'), 
-              {"data-id": this.props.id, 
-              ref: "group", 
-              id: "side-group-"+this.props.id}), 
-        React.createElement("figcaption", {className: "about"}, this.props.title), 
-        React.createElement("div", {className: "status" + (this.props.hidden ? "" : " invisible")}, React.createElement(Icon, {name: "arrow-down", size: "small"})), 
+      React.createElement("figure", React.__spread({className: "card group "+(this.props.hidden ? "closed" : "open"),
+              onContextMenu: this.handleMore},
+              this.dropTargetFor('collection', 'group'),
+              this.dragSourceFor('group'),
+              {"data-id": this.props.id,
+              ref: "group",
+              id: "side-group-"+this.props.id}),
+        React.createElement("figcaption", {className: "about"}, this.props.title),
+        React.createElement("div", {className: "status" + (this.props.hidden ? "" : " invisible")}, React.createElement(Icon, {name: "arrow-down", size: "small"})),
 
-        React.createElement("div", {className: "more"}, 
-            React.createElement("a", {href: "", className: "action-icon icon-more", onClick: this.handleMore, title: t.s("edit")}, React.createElement(Icon, {name: "edit", size: "mac"})), 
+        React.createElement("div", {className: "more"},
+            React.createElement("a", {href: "", className: "action-icon icon-more", onClick: this.handleMore, title: t.s("edit")}, React.createElement(Icon, {name: "edit", size: "mac"})),
             React.createElement("a", {href: "", className: "action-icon", onClick: this.handleAdd, title: t.s("createNewCollection")}, React.createElement(Icon, {name: "folder-add", size: "mac"}))
-        ), 
+        ),
 
         React.createElement("a", {href: "", className: "permalink group-permalink", onClick: this.onToggleGroup})
       )
@@ -9560,11 +9560,11 @@ module.exports = React.createClass({
                 icon = "cancel";
 
             return (
-                React.createElement("li", {key: "toast_"+item.id, "data-id": item.id, id: "toast-"+item.id, onMouseEnter: _this.handleStopTimer, onClick: _this.handleCloseItem}, 
-                    React.createElement("div", {className: "item-wrap status-"+item.status||""}, 
-                        React.createElement("div", null, React.createElement(Icon, {name: icon})), 
-                        React.createElement("div", null, 
-                            title, 
+                React.createElement("li", {key: "toast_"+item.id, "data-id": item.id, id: "toast-"+item.id, onMouseEnter: _this.handleStopTimer, onClick: _this.handleCloseItem},
+                    React.createElement("div", {className: "item-wrap status-"+item.status||""},
+                        React.createElement("div", null, React.createElement(Icon, {name: icon})),
+                        React.createElement("div", null,
+                            title,
                             React.createElement("div", {className: "excerpt"}, item.text)
                         )
                     )
@@ -9573,7 +9573,7 @@ module.exports = React.createClass({
         });
 
         return (
-            React.createElement(ReactCSSTransitionGroup, {component: "ul", transitionName: "toastanim", transitionEnterTimeout: 300, transitionLeaveTimeout: 300}, 
+            React.createElement(ReactCSSTransitionGroup, {component: "ul", transitionName: "toastanim", transitionEnterTimeout: 300, transitionLeaveTimeout: 300},
                 items
             )
         );
@@ -9602,14 +9602,14 @@ module.exports = React.createClass({
 
 		if ((window.environment||[]).indexOf("clipper")!=-1){
 			return (
-				React.createElement("div", {className: "clipper-toolbar"}, 
-	                React.createElement("header", null, 
-	                    React.createElement("section", {className: "menu"}, 
+				React.createElement("div", {className: "clipper-toolbar"},
+	                React.createElement("header", null,
+	                    React.createElement("section", {className: "menu"},
 	                        React.createElement("a", {href: "#/", className: "action-icon"}, React.createElement(Icon, {name: "back"}))
-	                    ), 
-	                    
-	                    React.createElement("section", {className: "navigation"}, 
-	                    	path.length>1 ? React.createElement("ul", {className: "path"}, path.splice(0,1)) : null, 
+	                    ),
+
+	                    React.createElement("section", {className: "navigation"},
+	                    	path.length>1 ? React.createElement("ul", {className: "path"}, path.splice(0,1)) : null,
 	                    	React.createElement("h1", null, this.props.path[this.props.path.length-1].title)
 	                    )
 	                )
@@ -9620,13 +9620,13 @@ module.exports = React.createClass({
 			return React.createElement("div", null);
 		else {
 			return (
-				React.createElement("div", {className: "collection-toolbar unified-titlebar"}, 
-					React.createElement("div", {className: "breadcrumbs-wrap"}, 
-		                React.createElement("ul", {className: "breadcrumbs"}, 
-		                    React.createElement("li", {className: "item"}, React.createElement("a", {href: "#/", className: "action-icon"}, React.createElement(Icon, {name: "home"}))), 
+				React.createElement("div", {className: "collection-toolbar unified-titlebar"},
+					React.createElement("div", {className: "breadcrumbs-wrap"},
+		                React.createElement("ul", {className: "breadcrumbs"},
+		                    React.createElement("li", {className: "item"}, React.createElement("a", {href: "#/", className: "action-icon"}, React.createElement(Icon, {name: "home"}))),
 		                    React.createElement("li", {className: "item separator"}, React.createElement(Icon, {name: "chevron-right", size: "small"}))
-		                ), 
-		                React.createElement("ul", {className: "breadcrumbs"}, 
+		                ),
+		                React.createElement("ul", {className: "breadcrumbs"},
 		                    path
 		                )
 		            )
@@ -9787,7 +9787,7 @@ module.exports = {
                     fileReader.onload = function (evt) {
                         // Read out file contents as a Data URL
                         var result = evt.target.result;
-                        
+
                         trySetBg(result);
                         try{localStorage.setItem(url, result);}catch(e){}
                     };
@@ -10025,7 +10025,7 @@ module.exports = React.createClass({
             for(var i in divs){
               if (!divs[i].classList.contains('icn'))
                 divs[i].style.backgroundColor = c;
-              
+
               divs[i].style.fill = c;
             }
         }catch(e){}
@@ -10167,24 +10167,24 @@ module.exports = React.createClass({
         if (typeof this.state.collection._id != "undefined") {
             if (this.state.bookmarks.length>0) {
                 if (this.state.collection.view == 'masonry')
-                    bview = React.createElement(BookmarksViewMasonry, {view: this.state.collection.view, 
-                                                  sort: _bookmarksParams.sort, 
-                                                  items: this.state.bookmarks, 
-                                                  canEdit: this.state.collection.author || this.state.collection._id<=0, 
-                                                  selectMode: BookmarksStore.getSelectedCount()>0, 
-                                                  showPath: this.state.collection._id==0, 
-                                                  onMove: this.handleMoveBookmark, 
-                                                  onMoveEnd: this.handleMoveBookmarkEnd, 
+                    bview = React.createElement(BookmarksViewMasonry, {view: this.state.collection.view,
+                                                  sort: _bookmarksParams.sort,
+                                                  items: this.state.bookmarks,
+                                                  canEdit: this.state.collection.author || this.state.collection._id<=0,
+                                                  selectMode: BookmarksStore.getSelectedCount()>0,
+                                                  showPath: this.state.collection._id==0,
+                                                  onMove: this.handleMoveBookmark,
+                                                  onMoveEnd: this.handleMoveBookmarkEnd,
                                                   onSelect: this.handleSelectBookmark});
                 else
-                    bview = React.createElement(BookmarksView, {view: this.state.collection.view, 
-                                           sort: _bookmarksParams.sort, 
-                                           items: this.state.bookmarks, 
-                                           canEdit: this.state.collection.author || this.state.collection._id<=0, 
-                                           selectMode: BookmarksStore.getSelectedCount()>0, 
-                                           showPath: this.state.collection._id==0, 
-                                           onMove: this.handleMoveBookmark, 
-                                           onMoveEnd: this.handleMoveBookmarkEnd, 
+                    bview = React.createElement(BookmarksView, {view: this.state.collection.view,
+                                           sort: _bookmarksParams.sort,
+                                           items: this.state.bookmarks,
+                                           canEdit: this.state.collection.author || this.state.collection._id<=0,
+                                           selectMode: BookmarksStore.getSelectedCount()>0,
+                                           showPath: this.state.collection._id==0,
+                                           onMove: this.handleMoveBookmark,
+                                           onMoveEnd: this.handleMoveBookmarkEnd,
                                            onSelect: this.handleSelectBookmark});
             }
         }
@@ -10193,9 +10193,9 @@ module.exports = React.createClass({
 
         var batchEdit = null;
         if (BookmarksStore.getSelectedCount()>0){
-          batchEdit = React.createElement(BatchEdit, {count: BookmarksStore.getSelectedCount(), 
-                                  bookmarksCount: this.state.collection.count, 
-                                  onCancel: this.handleSelectBookmarksCancel, 
+          batchEdit = React.createElement(BatchEdit, {count: BookmarksStore.getSelectedCount(),
+                                  bookmarksCount: this.state.collection.count,
+                                  onCancel: this.handleSelectBookmarksCancel,
                                   onSelectAll: this.handleSelectAllBookmarks});
 
           document.documentElement.classList.add("side-actions-open");
@@ -10224,13 +10224,13 @@ module.exports = React.createClass({
           actionBarCollectionIcon = React.createElement("img", {src: cover, alt: "", ref: "collectionIcon", className: "hidden", onLoad: this.handleCollectionColor, onError: this.handleCollectionColorError});
 
         var toolbar = (React.createElement(Toolbar, {
-                  collection: this.state.collection, 
-                  parents: this.state.parents, 
-                  sortSelected: _bookmarksParams.sort, 
-                  handleChangeView: this.handleChangeView, 
-                  handleSortChange: this.handleSortChange, 
-                  onDropBookmark: this.handleDropBookmark, 
-                  queries: searchQueries, 
+                  collection: this.state.collection,
+                  parents: this.state.parents,
+                  sortSelected: _bookmarksParams.sort,
+                  handleChangeView: this.handleChangeView,
+                  handleSortChange: this.handleSortChange,
+                  onDropBookmark: this.handleDropBookmark,
+                  queries: searchQueries,
                   onSearchReset: this.handleSearchReset}
                 ));
 
@@ -10247,37 +10247,37 @@ module.exports = React.createClass({
         //console.log(BookmarksStore.getIsLoading(),ChildrensStore.getIsLoading())
 
         return (
-            React.createElement("div", {className: "max-width main-content-wrap"}, 
-                actionBarCollectionIcon, 
+            React.createElement("div", {className: "max-width main-content-wrap"},
+                actionBarCollectionIcon,
 
-                search, 
-                toolbar, 
+                search,
+                toolbar,
 
-                React.createElement("div", {className: "main-content "+(itemsLoading ? "loading" : ""), onWheel: this.mainContentScroll, ref: "div"}, 
-                  React.createElement(Tips, {scope: "bookmarks"}), 
+                React.createElement("div", {className: "main-content "+(itemsLoading ? "loading" : ""), onWheel: this.mainContentScroll, ref: "div"},
+                  React.createElement(Tips, {scope: "bookmarks"}),
 
-                  React.createElement(ChildrensView, {items: this.state.childrens, 
-                                  onCollectionMove: this.handleMoveCollection, 
-                                  onCollectionMoveEnd: this.handleMoveCollectionEnd, 
-                                  onDropBookmark: this.handleDropBookmark}), 
+                  React.createElement(ChildrensView, {items: this.state.childrens,
+                                  onCollectionMove: this.handleMoveCollection,
+                                  onCollectionMoveEnd: this.handleMoveCollectionEnd,
+                                  onDropBookmark: this.handleDropBookmark}),
                   React.createElement(InfiniteScroll, {
-                      pageStart: 0, 
-                      loadMore: this.handleNextPage, 
-                      hasMore: true, 
-                      loader: React.createElement("span", null)}, 
-                      bview, 
+                      pageStart: 0,
+                      loadMore: this.handleNextPage,
+                      hasMore: true,
+                      loader: React.createElement("span", null)},
+                      bview,
                       React.createElement("div", {className: "show-more-button " + ( ((!BookmarksStore.getIsLoading()) && (!BookmarksStore.getIsNoMore()) && (UserStore.isLogged())) ? "show-more-button-visible" : "") }, t.s("more"), React.createElement("a", {href: "", className: "permalink", onClick: this.handleNextPage}))
-                  ), 
+                  ),
 
-                  batchEdit, 
+                  batchEdit,
                   React.createElement("span", {className: "loading-placeholder"})
-                ), 
+                ),
 
-                React.createElement(DocumentTitle, {title: this.state.collection.title||""}), 
+                React.createElement(DocumentTitle, {title: this.state.collection.title||""}),
 
-                fab, 
+                fab,
 
-                React.createElement(Modal, {position: "viewer", forceUpdated: true, isOpened: this.state.viewerModal.show, onClose: this.handleViewerModalClose, closeOnOutsideClick: false, closeOnEsc: true, params: this.state.viewerModal}, 
+                React.createElement(Modal, {position: "viewer", forceUpdated: true, isOpened: this.state.viewerModal.show, onClose: this.handleViewerModalClose, closeOnOutsideClick: false, closeOnEsc: true, params: this.state.viewerModal},
                     React.createElement(ViewerModal, {router: this.context.router, loadMore: this.handleNextPage})
                 )
             ));
@@ -10380,7 +10380,7 @@ var dashboard = React.createClass({
 
         CollectionsActions.setCurrent(-2);
 
-        window.dropFiles = BookmarksStore.handleDropFiles; 
+        window.dropFiles = BookmarksStore.handleDropFiles;
     },
 
     componentWillUnmount: function() {
@@ -10397,7 +10397,7 @@ var dashboard = React.createClass({
     handleFavAddClick: function(e){
         if (e)
           e.preventDefault();
-        
+
         Pop.show("URL", {
           pin: "fabAppButton",
           parentId: CollectionsStore.getCurrentId()
@@ -10477,11 +10477,11 @@ var dashboard = React.createClass({
               this.state.user.groups.forEach(function(item, index){
                 //if ((item.collections||[]).length>0)
                   groups.push(
-                    React.createElement(GroupTab, {id: item.id, 
-                              key: "grouptab_item_"+item.id, 
-                              active: _this.state.group.active == item.id, 
-                              onClick: _this.handleTabChange, 
-                              onMove: _this.handleMoveGroup}, 
+                    React.createElement(GroupTab, {id: item.id,
+                              key: "grouptab_item_"+item.id,
+                              active: _this.state.group.active == item.id,
+                              onClick: _this.handleTabChange,
+                              onMove: _this.handleMoveGroup},
                       item.title
                     ));
               });
@@ -10493,8 +10493,8 @@ var dashboard = React.createClass({
           }
 
           groups_content = (
-            React.createElement("div", {className: "groups-tab", "data-direction": this.state.group.direction}, 
-              React.createElement("div", {className: "item"+(this.state.group.active==-1?" active":""), "data-id": "-1", onClick: _this.handleTabChange}, React.createElement("div", {className: "title no-padding"}, React.createElement(Icon, {name: "best"}))), 
+            React.createElement("div", {className: "groups-tab", "data-direction": this.state.group.direction},
+              React.createElement("div", {className: "item"+(this.state.group.active==-1?" active":""), "data-id": "-1", onClick: _this.handleTabChange}, React.createElement("div", {className: "title no-padding"}, React.createElement(Icon, {name: "best"}))),
               groups
             )
           );
@@ -10514,13 +10514,13 @@ var dashboard = React.createClass({
 
               if (items.length==0){
                 items.push(
-                  React.createElement("figure", {className: "card favorite-item favorite-white favorite-add", id: "fav_add", key: "fav_add"}, 
-                    React.createElement("div", {className: "favicon favicon-svg"}, 
+                  React.createElement("figure", {className: "card favorite-item favorite-white favorite-add", id: "fav_add", key: "fav_add"},
+                    React.createElement("div", {className: "favicon favicon-svg"},
                       React.createElement(Icon, {name: "bookmark-outline", size: "big"})
-                    ), 
-                    React.createElement("figcaption", {className: "about"}, 
+                    ),
+                    React.createElement("figcaption", {className: "about"},
                       React.createElement("div", {className: "title"}, t.s("add"))
-                    ), 
+                    ),
                     React.createElement("a", {href: "", onClick: _this.handleFavAddClick, className: "permalink"})
                   )
                 );
@@ -10540,9 +10540,9 @@ var dashboard = React.createClass({
             (this.state.user.groups[activeGroupIndex].collections||[]).forEach(function(c){
                 var collection = CollectionsStore.getCollection(c);
                 if (collection!=null)
-                  items.push (React.createElement(Collection, {item: collection, 
-                                          key: "collection_item_"+collection._id, 
-                                          onMove: _this.handleMoveCollection, 
+                  items.push (React.createElement(Collection, {item: collection,
+                                          key: "collection_item_"+collection._id,
+                                          onMove: _this.handleMoveCollection,
                                           onEndDrag: _this.props.handleMoveCollectionEnd}));
             });
 
@@ -10559,15 +10559,15 @@ var dashboard = React.createClass({
         }
 
         return (
-            React.createElement("div", {className: "max-width"}, 
-                search, 
-                React.createElement("div", {className: "dashboard-wrap"}, 
+            React.createElement("div", {className: "max-width"},
+                search,
+                React.createElement("div", {className: "dashboard-wrap"},
                   React.createElement("div", {className: "dashboard"}, items)
-                ), 
+                ),
 
-                React.createElement(DocumentTitle, {title: strings.defaultTitle()}), 
+                React.createElement(DocumentTitle, {title: strings.defaultTitle()}),
 
-                fab, 
+                fab,
 
                 groups_content
             ));
@@ -10637,26 +10637,26 @@ module.exports = React.createClass({
 
     render: function() {
         return (
-            React.createElement("div", {className: "max-width"}, React.createElement("div", {className: "centered-content", style: {height:"100vh"}}, 
-            React.createElement("div", {className: "modal-dialog"}, 
-                React.createElement("header", null, 
-                    React.createElement("div", {className: "actionBar"}, 
-                        React.createElement("div", {className: "actions"}, 
+            React.createElement("div", {className: "max-width"}, React.createElement("div", {className: "centered-content", style: {height:"100vh"}},
+            React.createElement("div", {className: "modal-dialog"},
+                React.createElement("header", null,
+                    React.createElement("div", {className: "actionBar"},
+                        React.createElement("div", {className: "actions"},
                             React.createElement("a", {href: "", className: "action-icon", onClick: this.handleClose}, React.createElement(Icon, {name: "back"}))
-                        ), 
+                        ),
                         React.createElement("h3", null, t.s("interfaceStyle"))
                     )
 
-                    
-                ), 
 
-                React.createElement("article", null, 
-                    React.createElement("div", {style: {margin:"0 -16px"}}, 
+                ),
+
+                React.createElement("article", null,
+                    React.createElement("div", {style: {margin:"0 -16px"}},
                         React.createElement(CoverSelector, {items: this.state.backgroundImages, thumbs: true, selected: this.state.backgroundImageSelected, onSelect: this.handleChangeBackground})
                     )
                 )
             )
-            ), 
+            ),
 
             React.createElement(DocumentTitle, {title: t.s("interfaceStyle")})
             )
@@ -10682,7 +10682,7 @@ module.exports = React.createClass({displayName: "exports",
 		var path = [{title: t.s("tools"), href: "#/tools"}];
 
 		return (
-			React.createElement("div", {className: "max-width main-content-wrap"}, 
+			React.createElement("div", {className: "max-width main-content-wrap"},
 				React.createElement(RouteHandler, {path: path})
 			)
 		);
@@ -10695,26 +10695,26 @@ var TitleBar = require("../../components/UnifiedTitleBar");
 module.exports = React.createClass({displayName: "exports",
 	renderItem: function(item) {
 		return (
-			React.createElement("figure", {className: "card collection-item"}, 
-				React.createElement("div", {className: "favicon"}, 
+			React.createElement("figure", {className: "card collection-item"},
+				React.createElement("div", {className: "favicon"},
 					item.icon
-				), 
+				),
 
-				React.createElement("figcaption", {className: "about"}, 
+				React.createElement("figcaption", {className: "about"},
 					React.createElement("div", {className: "title"}, item.title)
-				), 
+				),
 
 				React.createElement("a", {href: item.href, className: "permalink"})
 			)
 		);
 	},
-	
+
 	render: function() {
 		return (
-			React.createElement("div", null, 
-				React.createElement(DocumentTitle, {title: t.s("tools")}), 
-				React.createElement(TitleBar, {path: this.props.path}), 
-				React.createElement("div", {className: "bookmarks view-grid childrens"}, 
+			React.createElement("div", null,
+				React.createElement(DocumentTitle, {title: t.s("tools")}),
+				React.createElement(TitleBar, {path: this.props.path}),
+				React.createElement("div", {className: "bookmarks view-grid childrens"},
 					this.renderItem({title: t.s("tags"), href: "#/tools/tags", icon: React.createElement("img", {className: "icon", src: network.fixURL("/other/welcome3/images/tag.svg")})})
 				)
 			)
@@ -10785,31 +10785,31 @@ module.exports = React.createClass({displayName: "exports",
 
 	handleRemove: function(e) {
 		e.preventDefault();
-		TagsStore.onRemove({_id: e.target.getAttribute("data-title")});	
+		TagsStore.onRemove({_id: e.target.getAttribute("data-title")});
 	},
 
 	render: function() {
 		var _this = this;
 		var tags = _.sortBy(this.state.tags, [this.state.sort]).map(function(item) {
 			return (
-				React.createElement("figure", {className: "card list-item"}, 
-					React.createElement("div", {className: "favicon"}, 
+				React.createElement("figure", {className: "card list-item"},
+					React.createElement("div", {className: "favicon"},
 						React.createElement(Icon, {name: "tag"})
-					), 
+					),
 
-					React.createElement("figcaption", {className: "about"}, 
+					React.createElement("figcaption", {className: "about"},
 						React.createElement("div", {className: "title"}, item._id)
-					), 
+					),
 
-					React.createElement("figcaption", {className: "type subinfo"}, 
+					React.createElement("figcaption", {className: "type subinfo"},
 						item.count
-					), 
+					),
 
-					React.createElement("div", {className: "more"}, 
-			            React.createElement("a", {href: "#/collection/0/%23"+item._id, className: "action-icon icon-more"}, React.createElement(Icon, {name: "open-link"})), 
-			            React.createElement("a", {href: "", className: "action-icon", "data-title": item._id, onClick: _this.handleTagEditModalOpen}, React.createElement(Icon, {name: "pencil"})), 
+					React.createElement("div", {className: "more"},
+			            React.createElement("a", {href: "#/collection/0/%23"+item._id, className: "action-icon icon-more"}, React.createElement(Icon, {name: "open-link"})),
+			            React.createElement("a", {href: "", className: "action-icon", "data-title": item._id, onClick: _this.handleTagEditModalOpen}, React.createElement(Icon, {name: "pencil"})),
 			            React.createElement("a", {href: "", className: "action-icon", "data-title": item._id, onClick: _this.handleRemove}, React.createElement(Icon, {name: "trash"}))
-			        ), 
+			        ),
 
 					React.createElement("a", {href: "", onClick: _this.handleTagEditModalOpen, "data-title": item._id, className: "permalink"})
 				)
@@ -10821,30 +10821,30 @@ module.exports = React.createClass({displayName: "exports",
 		var content = null;
 		if (tags.length>0)
 			content = (
-				React.createElement("div", {className: "bookmarks view-simple small-table"}, 
-					React.createElement("figure", {className: "card list-item table-head"}, 
-						React.createElement("div", {className: "favicon"}), 
+				React.createElement("div", {className: "bookmarks view-simple small-table"},
+					React.createElement("figure", {className: "card list-item table-head"},
+						React.createElement("div", {className: "favicon"}),
 
-						React.createElement("figcaption", {className: "about "+(this.state.sort=="title" ? "active" : "")}, 
-							React.createElement("a", {href: "", onClick: this.handleSortTitle}, t.s("name")), 
+						React.createElement("figcaption", {className: "about "+(this.state.sort=="title" ? "active" : "")},
+							React.createElement("a", {href: "", onClick: this.handleSortTitle}, t.s("name")),
 							React.createElement(Icon, {name: "arrow-top", size: "small", className: "sorting-icon"})
-						), 
+						),
 
-						React.createElement("figcaption", {className: (this.state.sort == "count" ? "active" : null)}, 
-							React.createElement("a", {href: "", onClick: this.handleSortCount}, _.capitalize(t.s("byBookmarksCount"))), 
+						React.createElement("figcaption", {className: (this.state.sort == "count" ? "active" : null)},
+							React.createElement("a", {href: "", onClick: this.handleSortCount}, _.capitalize(t.s("byBookmarksCount"))),
 							React.createElement(Icon, {name: "arrow-bottom", size: "small", className: "sorting-icon"})
 						)
-					), 
+					),
 
 					tags
 				)
 			);
 		else
 			content = (
-				React.createElement("div", {className: "tips"}, 
-					React.createElement("div", {className: "tip tip-color-light"}, 
-						React.createElement("div", {className: "content"}, 
-							React.createElement("div", {className: "text"}, 
+				React.createElement("div", {className: "tips"},
+					React.createElement("div", {className: "tip tip-color-light"},
+						React.createElement("div", {className: "content"},
+							React.createElement("div", {className: "text"},
 								React.createElement("h3", null, t.s("noTags"))
 							)
 						)
@@ -10852,13 +10852,13 @@ module.exports = React.createClass({displayName: "exports",
 				)
 			);
 
-		return (React.createElement("div", null, 
-			React.createElement(DocumentTitle, {title: t.s("tools") + " / " + t.s("tags")}), 
-			React.createElement(TitleBar, {path: this.props.path.concat([{title: t.s("tags")}])}), 
+		return (React.createElement("div", null,
+			React.createElement(DocumentTitle, {title: t.s("tools") + " / " + t.s("tags")}),
+			React.createElement(TitleBar, {path: this.props.path.concat([{title: t.s("tags")}])}),
 
-			content, 
+			content,
 
-			React.createElement(Modal, {isOpened: this.state.tagModal.show, onClose: this.handleTagEditModalClose, closeOnOutsideClick: true, params: this.state.tagModal}, 
+			React.createElement(Modal, {isOpened: this.state.tagModal.show, onClose: this.handleTagEditModalClose, closeOnOutsideClick: true, params: this.state.tagModal},
 				React.createElement(TagEditModal, null)
 			)
 		));
@@ -10911,9 +10911,9 @@ module.exports = React.createClass({
 
     render: function() {
     	return (
-    		React.createElement("div", {className: "absoluteLoading"}, 
-    			React.createElement("div", {className: "loader-inner line-scale"}, React.createElement("div", null), React.createElement("div", null), React.createElement("div", null), React.createElement("div", null)), 
-    			React.createElement("br", null), 
+    		React.createElement("div", {className: "absoluteLoading"},
+    			React.createElement("div", {className: "loader-inner line-scale"}, React.createElement("div", null), React.createElement("div", null), React.createElement("div", null), React.createElement("div", null)),
+    			React.createElement("br", null),
     			React.createElement("a", {href: "", onClick: this.handleRefresh, className: "action-icon active"}, t.s("refresh"))
     		)
     	);
@@ -11862,7 +11862,7 @@ module.exports = {
 	            }
 	        }
 	    }
-	    
+
 	    return false;
 
 	},
@@ -11873,8 +11873,8 @@ module.exports = {
 			div.id="drop-zone-info";
 			document.body.appendChild(div);
 			React.render((
-				React.createElement("div", null, 
-					React.createElement("img", {id: "drop-zone-image", src: (window.pathPrefix||"") + "../common/images/filetypes.svg", alt: ""}), 
+				React.createElement("div", null,
+					React.createElement("img", {id: "drop-zone-image", src: (window.pathPrefix||"") + "../common/images/filetypes.svg", alt: ""}),
 					React.createElement("strong", null, "Drag & Drop"), React.createElement("span", null, this.getHumanAcceptString())
 				)
 			), div);
@@ -11910,7 +11910,7 @@ module.exports = {
 		droppable.addEventListener("dragover", function(e) {
 			if (_this.containsFiles(e)){
 				e.dataTransfer.dropEffect = "copy";
-				
+
 				if (e.preventDefault) e.preventDefault();
 
 				this.classList.add("dropfile-over");
@@ -11961,7 +11961,7 @@ module.exports = {
         default: return "default-folder"; break;
       }
     },
-    
+
     getDomain: function(url){
       url = url || "";
       if(typeof document != "undefined"){
@@ -12050,7 +12050,7 @@ module.exports = {
 
         if ((window.environment||[]).indexOf("safari_popup")!=-1)
             _target = "_blank";
-        
+
         return _target;
     },
 
@@ -12060,7 +12060,7 @@ module.exports = {
         if ((window.environment||[]).indexOf("clipper")!=-1){
             _target = "_blank";
         }
-        
+
         if (window.location.protocol.indexOf("http")!=-1) {
             sURL = "/settings#/settings";
         }
@@ -12068,7 +12068,7 @@ module.exports = {
         {
             sURL = "../settings/settings.html?isMac#/settings";
         }
-        
+
         return sURL;
     }
 };
@@ -12161,7 +12161,7 @@ module.exports = {
         }
 
         s = S(s).replaceAll('"', '').s;
-        
+
         if (s.indexOf("-")!=-1){
           s = s.substr(0, s.indexOf("-")-1);
         }
@@ -12351,7 +12351,7 @@ module.exports = {
 
       var _this = this;
       var xmlhttp = new XMLHttpRequest();
-      var url = (window.pathPrefix||"")+"../common/js/"+this.currentLang+".js";
+      var url = (window.pathPrefix||"")+"../common/js/"+this.currentLang+".json";
 
       var e = new Event('langLoaded');
       xmlhttp.onreadystatechange = function() {
@@ -12485,7 +12485,7 @@ var BookmarksStore = Reflux.createStore({
 
             if (window.cacheDisabled||false)
               _canLoadFromCache = false;
-            
+
             if (_canLoadFromCache){
                 switch(_speed){
                   case "async":
@@ -12761,7 +12761,7 @@ var BookmarksStore = Reflux.createStore({
       Api.put("raindrop/"+params.item._id, params.item, function(json){
         if (json.result) {
           Api.setItem("last_collection", json.item.collection["$id"]);
-          
+
             if (params.updateModel){
               var index = _.findIndex(_bookmarks, {_id: params.item._id});
               if (index!=-1) {
@@ -12873,7 +12873,7 @@ var BookmarksStore = Reflux.createStore({
                 callback(false);
               }
             });
-            
+
             /*var temp = JSON.parse(JSON.stringify(params));
             temp.item._id = parseInt(selectedIds[step]);
             BookmarkActions.updateBookmark(temp, check);*/
@@ -13191,7 +13191,7 @@ var BookmarksStore = Reflux.createStore({
 
       var current = Promise.resolve();
       var queue = e.files.map(function(f) {
-        
+
         current = current.then(function(){
           return new Promise(function(res,rej){
             if (cId != CollectionsStore.getCurrentId()){
@@ -13255,17 +13255,17 @@ var BookmarksStore = Reflux.createStore({
         })
         return current;
       });
-      
+
       if (queue.length>0){
         Toasts.show({text: t.s("importingInfo2"), title: t.s("uploadProgress")});
 
         Promise.all(queue)
           .then(function(result) {
             result.reverse();
-            
+
             var c = Promise.resolve();
             var uploadQueue = result.map(function(r){
-              var item = r.item; 
+              var item = r.item;
               c = c.then(function(){
                 return new Promise(function(res,rej){
                   if (!item)
@@ -13368,7 +13368,7 @@ var ChildrensStore = Reflux.createStore({
                             }
                         })
                         .catch(function(e){
-                            
+
                         });}catch(e){}
                 break;
 
@@ -13402,7 +13402,7 @@ var ChildrensStore = Reflux.createStore({
                         Api.setItem(url, JSON.stringify(_childrens));
                     break;
                 }
-                
+
                 _this.trigger(_childrens);
             });
         }else{
@@ -13576,7 +13576,7 @@ var CollectionsStore = Reflux.createStore({
         if (!_loaded) {
             Api.get("collections", function (json) {
                 _loaded = true;
-                
+
                 if (json.result){
                     _collections = json.items || [];
 
@@ -13719,7 +13719,7 @@ var CollectionsStore = Reflux.createStore({
 
                     _this.trigger(_collections);
                     _this._saveCache();
-                    
+
                     ChildrensActions.removeCollection(params);
                     UserActions.saveGroups();
 
@@ -14136,7 +14136,7 @@ var StatsStore = Reflux.createStore({
                 }
             })
             .catch(function(e){
-                            
+
             });}catch(e){}
 
     	_loading = true;
@@ -14233,7 +14233,7 @@ var TagsStore = Reflux.createStore({
                     }
                 })
                 .catch(function(e){
-                            
+
                 });}catch(e){}
 
             Api.get(_this.url, function (json) {
@@ -14962,7 +14962,7 @@ var UserStore = Reflux.createStore({
               this.cleanGroups();
             }
         }
-        
+
         if (typeof callback == "function")
           callback(_logged);
     },

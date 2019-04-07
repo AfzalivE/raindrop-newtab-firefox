@@ -10093,7 +10093,7 @@ module.exports = {
                     fileReader.onload = function (evt) {
                         // Read out file contents as a Data URL
                         var result = evt.target.result;
-                        
+
                         trySetBg(result);
                         try{localStorage.setItem(url, result);}catch(e){}
                     };
@@ -10214,12 +10214,12 @@ window.addEventListener((window.languageLoaded ? "DOMContentLoaded" : "langLoade
   var eContent = document.getElementById('app-content');
 
   Router.run((
-    React.createElement(Route, {name: "app", path: "/", handler: AppRoute}, 
-        React.createElement(Route, {name: "file", path: "/file/:source", handler: FileRoute}), 
-        React.createElement(Route, {name: "uploadCollections", path: "/upload/collections/:source", handler: UploadCollectionsRoute}), 
-        React.createElement(Route, {name: "uploadBookmarks", path: "/upload/bookmarks", handler: UploadBookmarksRoute}), 
-        React.createElement(Route, {name: "final", path: "/final", handler: FinalRoute}), 
-        React.createElement(Route, {name: "reset", path: "/reset", handler: ResetRoute}), 
+    React.createElement(Route, {name: "app", path: "/", handler: AppRoute},
+        React.createElement(Route, {name: "file", path: "/file/:source", handler: FileRoute}),
+        React.createElement(Route, {name: "uploadCollections", path: "/upload/collections/:source", handler: UploadCollectionsRoute}),
+        React.createElement(Route, {name: "uploadBookmarks", path: "/upload/bookmarks", handler: UploadBookmarksRoute}),
+        React.createElement(Route, {name: "final", path: "/final", handler: FinalRoute}),
+        React.createElement(Route, {name: "reset", path: "/reset", handler: ResetRoute}),
         React.createElement(DefaultRoute, {name: "home", handler: HomeRoute})
     )
   ), function (Handler,s) {
@@ -10498,41 +10498,41 @@ module.exports = React.createClass({
 
   render: function() {
     return (
-      React.createElement("div", {className: "window"}, 
-        React.createElement("div", {className: "badge"}, React.createElement("img", {src: "images/"+source+".png", alt: ""})), 
-        React.createElement("header", null, 
-          React.createElement("h1", null, t.s("uploadBookmarksFile"), " (", source.charAt(0).toUpperCase() + source.slice(1), ")"), 
+      React.createElement("div", {className: "window"},
+        React.createElement("div", {className: "badge"}, React.createElement("img", {src: "images/"+source+".png", alt: ""})),
+        React.createElement("header", null,
+          React.createElement("h1", null, t.s("uploadBookmarksFile"), " (", source.charAt(0).toUpperCase() + source.slice(1), ")"),
           React.createElement("h3", null, t.s("importInfo2"))
-        ), 
+        ),
 
-        React.createElement("div", {className: "actions"}, 
-          React.createElement("div", {className: "action"}, 
-            React.createElement("div", {className: "icon"}, 
+        React.createElement("div", {className: "actions"},
+          React.createElement("div", {className: "action"},
+            React.createElement("div", {className: "icon"},
               React.createElement(Icon, {name: "file-upload", className: "icn-blue"})
-            ), 
-            React.createElement("div", {className: "text"}, 
+            ),
+            React.createElement("div", {className: "text"},
               t.s("uploadBookmarksFile")
-            ), 
+            ),
             React.createElement("input", {type: "file", name: "file", className: "ghost-file", onChange: this.handleFile})
-          ), 
+          ),
 
-          React.createElement("div", {className: "action"}, 
-            React.createElement("div", {className: "icon"}, 
+          React.createElement("div", {className: "action"},
+            React.createElement("div", {className: "icon"},
               React.createElement(Icon, {name: "info"})
-            ), 
-            React.createElement("div", {className: "text"}, 
+            ),
+            React.createElement("div", {className: "text"},
               "How export bookmarks from ", source.charAt(0).toUpperCase() + source.slice(1), "?"
-            ), 
+            ),
             React.createElement("a", {href: config.help[source], target: "_blank", className: "permalink"})
-          ), 
+          ),
 
-          React.createElement("div", {className: "action"}, 
-            React.createElement("div", {className: "icon"}, 
+          React.createElement("div", {className: "action"},
+            React.createElement("div", {className: "icon"},
               React.createElement(Icon, {name: "back"})
-            ), 
-            React.createElement("div", {className: "text"}, 
+            ),
+            React.createElement("div", {className: "text"},
               t.s("back")
-            ), 
+            ),
             React.createElement("a", {href: "#/", className: "permalink"})
           )
         )
@@ -10594,34 +10594,34 @@ module.exports = React.createClass({
 
   render: function() {
     return (
-      React.createElement("div", {className: "window"}, 
-        React.createElement("div", {className: "topimg"}, 
-          React.createElement("div", {id: "minifiles"}), 
+      React.createElement("div", {className: "window"},
+        React.createElement("div", {className: "topimg"},
+          React.createElement("div", {id: "minifiles"}),
 
-          React.createElement("div", {className: "final-img"}, 
-            React.createElement("span", null), 
+          React.createElement("div", {className: "final-img"},
+            React.createElement("span", null),
             React.createElement("div", {id: "file-img"})
           )
-        ), 
-        React.createElement("header", null, 
-          React.createElement("h1", null, "We need a little more time for recognize each bookmark (save full text, media and cover)."), 
-          React.createElement("h3", null, 
+        ),
+        React.createElement("header", null,
+          React.createElement("h1", null, "We need a little more time for recognize each bookmark (save full text, media and cover)."),
+          React.createElement("h3", null,
             "Please be patient. As soon as they are processed, we will notify you at the specified email (", React.createElement("a", {href: network.fixURL("/app/profile"), target: "_blank"}, this.state.email), ")!"
-          ), 
+          ),
 
-          React.createElement("h3", null, 
+          React.createElement("h3", null,
             "But you already can use Raindrop.io from web, browser extensions and mobile apps. Customize look of each collection, add new members, reorganize or save new bookmarks."
           )
-        ), 
+        ),
 
-        React.createElement("div", {className: "actions"}, 
-          React.createElement("div", {className: "action"}, 
-            React.createElement("div", {className: "icon"}, 
+        React.createElement("div", {className: "actions"},
+          React.createElement("div", {className: "action"},
+            React.createElement("div", {className: "icon"},
               React.createElement(Icon, {name: "back"})
-            ), 
-            React.createElement("div", {className: "text"}, 
+            ),
+            React.createElement("div", {className: "text"},
               t.s("Import another bookmarks")
-            ), 
+            ),
             React.createElement("a", {href: "#/", className: "permalink"})
           )
         )
@@ -10674,32 +10674,32 @@ module.exports = React.createClass({
           if (title == "file")
             title = "HTML File";
 
-          return (React.createElement("li", null, 
-            React.createElement("a", {href: "#/file/"+item}, 
-              React.createElement("span", {className: "icon"}, React.createElement("img", {src: "images/"+item+".png", alt: ""})), 
+          return (React.createElement("li", null,
+            React.createElement("a", {href: "#/file/"+item},
+              React.createElement("span", {className: "icon"}, React.createElement("img", {src: "images/"+item+".png", alt: ""})),
               React.createElement("span", {className: "text"}, title)
             )
           ));
         });
 
         return (
-          React.createElement("div", {className: "window"}, 
-            React.createElement("header", null, 
+          React.createElement("div", {className: "window"},
+            React.createElement("header", null,
               React.createElement("h1", null, t.s("importFrom"))
-            ), 
+            ),
 
-            React.createElement("div", {className: "actions-grid"}, 
+            React.createElement("div", {className: "actions-grid"},
               sources
-            ), 
+            ),
 
-            React.createElement("div", {className: "actions"}, 
-              React.createElement("div", {className: "action"}, 
-                React.createElement("div", {className: "icon"}, 
+            React.createElement("div", {className: "actions"},
+              React.createElement("div", {className: "action"},
+                React.createElement("div", {className: "icon"},
                   React.createElement(Icon, {name: "library"})
-                ), 
-                React.createElement("div", {className: "text"}, 
+                ),
+                React.createElement("div", {className: "text"},
                   t.s("Reset Raindrop.io account (clear all bookmarks and collections)")
-                ), 
+                ),
                 React.createElement("a", {href: "", onClick: this.handleResetClick, className: "permalink"})
               )
             )
@@ -10769,13 +10769,13 @@ module.exports = React.createClass({
 
   render: function() {
     return (
-      React.createElement("div", {className: "window"}, 
-        React.createElement("header", null, 
+      React.createElement("div", {className: "window"},
+        React.createElement("header", null,
           React.createElement("h1", null, "Reset Raindrop.io account")
-        ), 
+        ),
 
-        React.createElement("div", {className: "loadingbar"}, 
-          React.createElement("figure", null, React.createElement("span", {style: {width: this.state.progress+"%"}})), 
+        React.createElement("div", {className: "loadingbar"},
+          React.createElement("figure", null, React.createElement("span", {style: {width: this.state.progress+"%"}})),
           React.createElement("div", {className: "caption"}, "Removing collections and bookmarks...")
         )
       )
@@ -10806,7 +10806,7 @@ module.exports = React.createClass({
       component.context.router.transitionTo('app');
     else{
       queue.bookmarks = queue.bookmarks.reverse();
-      
+
       var worker = {
         count: parseInt(queue.bookmarks.length/_perQueue),
         index: 0,
@@ -10876,13 +10876,13 @@ module.exports = React.createClass({
 
   render: function() {
     return (
-      React.createElement("div", {className: "window"}, 
-        React.createElement("header", null, 
+      React.createElement("div", {className: "window"},
+        React.createElement("header", null,
           React.createElement("h1", null, t.s("importing"), "...")
-        ), 
+        ),
 
-        React.createElement("div", {className: "loadingbar"}, 
-          React.createElement("figure", null, React.createElement("span", {style: {width: this.state.progress+"%"}})), 
+        React.createElement("div", {className: "loadingbar"},
+          React.createElement("figure", null, React.createElement("span", {style: {width: this.state.progress+"%"}})),
           React.createElement("div", {className: "caption"}, "Saving bookmarks...")
         )
       )
@@ -10981,13 +10981,13 @@ module.exports = React.createClass({
 
   render: function() {
     return (
-      React.createElement("div", {className: "window"}, 
-        React.createElement("header", null, 
+      React.createElement("div", {className: "window"},
+        React.createElement("header", null,
           React.createElement("h1", null, t.s("importing"), "...")
-        ), 
+        ),
 
-        React.createElement("div", {className: "loadingbar"}, 
-          React.createElement("figure", null, React.createElement("span", {style: {width: this.state.progress+"%"}})), 
+        React.createElement("div", {className: "loadingbar"},
+          React.createElement("figure", null, React.createElement("span", {style: {width: this.state.progress+"%"}})),
           React.createElement("div", {className: "caption"}, "Saving collections...")
         )
       )
@@ -11255,7 +11255,7 @@ module.exports = {
 
         if ((window.environment||[]).indexOf("safari_popup")!=-1)
             _target = "_blank";
-        
+
         return _target;
     },
 
@@ -11265,7 +11265,7 @@ module.exports = {
         if ((window.environment||[]).indexOf("clipper")!=-1){
             _target = "_blank";
         }
-        
+
         if (window.location.protocol.indexOf("http")!=-1) {
             sURL = "/settings#/settings";
         }
@@ -11273,7 +11273,7 @@ module.exports = {
         {
             sURL = "../settings/settings.html?isMac#/settings";
         }
-        
+
         return sURL;
     }
 };
@@ -11357,7 +11357,7 @@ module.exports = {
 
       var _this = this;
       var xmlhttp = new XMLHttpRequest();
-      var url = (window.pathPrefix||"")+"../common/js/"+this.currentLang+".js";
+      var url = (window.pathPrefix||"")+"../common/js/"+this.currentLang+".json";
 
       var e = new Event('langLoaded');
       xmlhttp.onreadystatechange = function() {
@@ -11470,7 +11470,7 @@ var CollectionsStore = Reflux.createStore({
         if (!_loaded) {
             Api.get("collections", function (json) {
                 _loaded = true;
-                
+
                 if (json.result){
                     _collections = json.items || [];
 
@@ -11613,7 +11613,7 @@ var CollectionsStore = Reflux.createStore({
 
                     _this.trigger(_collections);
                     _this._saveCache();
-                    
+
                     ChildrensActions.removeCollection(params);
                     UserActions.saveGroups();
 
@@ -11836,7 +11836,7 @@ var StatsStore = Reflux.createStore({
                 }
             })
             .catch(function(e){
-                            
+
             });}catch(e){}
 
     	_loading = true;

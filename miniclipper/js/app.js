@@ -1253,7 +1253,7 @@
       initJSfile: function () {
         var e = this,
           t = new XMLHttpRequest,
-          n = (window.pathPrefix || "") + "../common/js/" + this.currentLang + ".js",
+          n = (window.pathPrefix || "") + "../common/js/" + this.currentLang + ".json",
           o = new Event("langLoaded");
         t.onreadystatechange = function () {
           4 == t.readyState && t.responseText && (window["lang_" + e.currentLang] = JSON.parse(t.responseText), window.languageLoaded = !0, window.dispatchEvent(o))
