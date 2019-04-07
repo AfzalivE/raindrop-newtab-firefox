@@ -6035,7 +6035,7 @@ Raven.prototype = {
         }
 
         if (isMinified) {
-            // The source is minified and we don't know which column. Fuck it.
+            // The source is minified and we don't know which column.
             if (isUndefined(frame.column)) return;
 
             // If the source is minified and has a frame column
