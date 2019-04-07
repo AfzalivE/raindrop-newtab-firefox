@@ -1285,7 +1285,7 @@ module.exports = invariant;
  *
  * @providesModule shallowEqual
  * @typechecks
- * 
+ *
  */
 
 'use strict';
@@ -4378,7 +4378,7 @@ function denodeifyWithoutCount(fn) {
     'args[argLength] = cb;',
     'res = fn.apply(self, args);',
     '}',
-    
+
     'if (res &&',
     '(typeof res === "object" || typeof res === "function") &&',
     'typeof res.then === "function"',
@@ -8908,7 +8908,7 @@ var RouteHandler = require('./RouteHandler');
  *       <Route name="about" handler={About}/>
  *     </Route>
  *   ];
- *   
+ *
  *   Router.run(routes, function (Handler) {
  *     React.render(<Handler/>, document.body);
  *   });
@@ -10089,9 +10089,9 @@ var createRouter = require('./createRouter');
  *   Router.run(routes, function (Handler) {
  *     React.render(<Handler/>, document.body);
  *   });
- * 
+ *
  * Using HTML5 history and a custom "cursor" prop:
- * 
+ *
  *   Router.run(routes, Router.HistoryLocation, function (Handler) {
  *     React.render(<Handler cursor={cursor}/>, document.body);
  *   });
@@ -32154,7 +32154,7 @@ module.exports = warning;
  * TODO: combatible error handling?
  */
 
-module.exports = function(arr, fn, initial){  
+module.exports = function(arr, fn, initial){
   var idx = 0;
   var len = arr.length;
   var curr = arguments.length == 3
@@ -32164,7 +32164,7 @@ module.exports = function(arr, fn, initial){
   while (idx < len) {
     curr = fn.call(null, curr, arr[idx], ++idx, arr);
   }
-  
+
   return curr;
 };
 },{}],250:[function(require,module,exports){
@@ -33100,15 +33100,13 @@ var environment = {};
 exports.environment = environment;
 function checkEnv(target) {
     var flag = undefined;
-    try {
-        /*eslint-disable no-eval */
-        if (eval(target)) {
-            flag = true;
-        }
-        /*eslint-enable no-eval */
-    } catch (e) {
-        flag = false;
-    }
+    // try {
+    //     if (eval(target)) {
+    //         flag = true;
+    //     }
+    // } catch (e) {
+    //     flag = false;
+    // }
     environment[callbackName(target, "has")] = flag;
 }
 checkEnv("setImmediate");
@@ -34262,7 +34260,7 @@ var define, requireModule, require, requirejs;
   };
 })();
 
-define("promise/all", 
+define("promise/all",
   ["./utils","exports"],
   function(__dependency1__, __exports__) {
     "use strict";
@@ -34359,7 +34357,7 @@ define("promise/all",
 
     __exports__.all = all;
   });
-define("promise/asap", 
+define("promise/asap",
   ["exports"],
   function(__exports__) {
     "use strict";
@@ -34424,7 +34422,7 @@ define("promise/asap",
 
     __exports__.asap = asap;
   });
-define("promise/config", 
+define("promise/config",
   ["exports"],
   function(__exports__) {
     "use strict";
@@ -34443,7 +34441,7 @@ define("promise/config",
     __exports__.config = config;
     __exports__.configure = configure;
   });
-define("promise/polyfill", 
+define("promise/polyfill",
   ["./promise","./utils","exports"],
   function(__dependency1__, __dependency2__, __exports__) {
     "use strict";
@@ -34462,7 +34460,7 @@ define("promise/polyfill",
         local = self;
       }
 
-      var es6PromiseSupport = 
+      var es6PromiseSupport =
         "Promise" in local &&
         // Some of these methods are missing from
         // Firefox/Chrome experimental implementations
@@ -34485,7 +34483,7 @@ define("promise/polyfill",
 
     __exports__.polyfill = polyfill;
   });
-define("promise/promise", 
+define("promise/promise",
   ["./config","./utils","./all","./race","./resolve","./reject","./asap","exports"],
   function(__dependency1__, __dependency2__, __dependency3__, __dependency4__, __dependency5__, __dependency6__, __dependency7__, __exports__) {
     "use strict";
@@ -34700,7 +34698,7 @@ define("promise/promise",
 
     __exports__.Promise = Promise;
   });
-define("promise/race", 
+define("promise/race",
   ["./utils","exports"],
   function(__dependency1__, __exports__) {
     "use strict";
@@ -34793,7 +34791,7 @@ define("promise/race",
 
     __exports__.race = race;
   });
-define("promise/reject", 
+define("promise/reject",
   ["exports"],
   function(__exports__) {
     "use strict";
@@ -34844,7 +34842,7 @@ define("promise/reject",
 
     __exports__.reject = reject;
   });
-define("promise/resolve", 
+define("promise/resolve",
   ["exports"],
   function(__exports__) {
     "use strict";
@@ -34863,7 +34861,7 @@ define("promise/resolve",
 
     __exports__.resolve = resolve;
   });
-define("promise/utils", 
+define("promise/utils",
   ["exports"],
   function(__exports__) {
     "use strict";
@@ -56811,17 +56809,17 @@ function MasonryComponent(React) {
             /*
              * otherwise we reverse it because so we're going through the list picking off the items that
              * have been added at the end of the list. this complex logic is preserved in case it needs to be
-             * invoked 
-             * 
+             * invoked
+             *
              * var endingIndex = newChildren.length - 1;
-             * 
+             *
              * domDiff.reverse().filter(function(newChild, i){
              *     var append = endingIndex == newChildren.indexOf(newChild);
-             *     
+             *
              *     if (append) {
              *         endingIndex--;
              *     }
-             *     
+             *
              *     return append;
              * });
              */
@@ -61431,7 +61429,7 @@ Pathformer.prototype.TYPES = ['line', 'ellipse', 'circle', 'polygon', 'polyline'
 /**
  * List of attribute names which contain
  * data. This array list them to check if
- * they contain bad values, like percentage. 
+ * they contain bad values, like percentage.
  *
  * @type {Array}
  */
@@ -61502,7 +61500,7 @@ Pathformer.prototype.polylineToPath = function (element) {
   var i, path;
   var newElement = {};
   var points = element.points.trim().split(' ');
-  
+
   // Reformatting if points are defined without commas
   if (element.points.indexOf(',') === -1) {
     var formattedPoints = [];
@@ -61687,8 +61685,8 @@ function Vivus (element, options, callback) {
 
 /**
  * Timing functions
- ************************************** 
- * 
+ **************************************
+ *
  * Default functions to help developers.
  * It always take a number as parameter (between 0 to 1) then
  * return a number (between 0 and 1)
@@ -61753,7 +61751,7 @@ Vivus.prototype.setElement = function (element, options) {
   case window.HTMLObjectElement:
     // If we have to wait for it
     var onLoad, self;
-    
+
     self = this;
     onLoad = function (e) {
       if (self.isReady) {
@@ -62031,7 +62029,7 @@ Vivus.prototype.trace = function () {
  * ressources, too much DOM manupulation..
  * but it's the only way to let the magic happen on IE.
  * By default, this fallback is only applied on IE.
- * 
+ *
  * @param  {Number} index Path index
  */
 Vivus.prototype.renderPath = function (index) {
@@ -62050,7 +62048,7 @@ Vivus.prototype.renderPath = function (index) {
  * This this mainly due to the case of passing an
  * object tag in the constructor. It will wait
  * the end of the loading to initialise.
- * 
+ *
  */
 Vivus.prototype.init = function () {
   // Set object variables
@@ -62139,7 +62137,7 @@ Vivus.prototype.finish = function () {
 
 /**
  * Set the level of progress of the drawing.
- * 
+ *
  * @param {number} progress Level of progress to set
  */
 Vivus.prototype.setFrameProgress = function (progress) {
