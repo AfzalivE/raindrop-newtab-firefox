@@ -508,7 +508,9 @@
       getCurrentPage: function (e) {
         switch (o) {
           case "chrome":
-            chrome.tabs.getSelected(null, function (t) {
+            chrome.tabs.query({
+            "currentWindow": true
+            }, function (t) {
               e({
                 title: t.title,
                 url: t.url
@@ -528,7 +530,9 @@
       },
       setPageActionStatus: function (e) {
         var t = e ? "-active" : "";
-        chrome.tabs.getSelected(null, function (e) {
+        chrome.tabs.query({
+          "currentWindow": true
+        }, function (e) {
           chrome.pageAction.setIcon({
             tabId: e.id,
             path: {

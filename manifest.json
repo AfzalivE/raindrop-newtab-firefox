@@ -1,6 +1,4 @@
 {
-"update_url": "https://clients2.google.com/service/update2/crx",
-
   "manifest_version": 2,
   "name": "Raindrop.io New Tab / Speed Dial",
   "default_locale": "en",
@@ -8,7 +6,6 @@
   "homepage_url": "https://raindrop.io",
   "short_name": "RaindropNewTab",
   "version": "0.7.5",
-  "default_locale": "en",
 
   "offline_enabled": true,
 
@@ -46,8 +43,6 @@
     "newtab": "app/index.html#/"
   },
 
-  "options_page": "settings/settings.html",
-  
   "options_ui": {
     "page": "settings/settings.html",
     "chrome_style": true
