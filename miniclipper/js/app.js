@@ -508,9 +508,7 @@
       getCurrentPage: function (e) {
         switch (o) {
           case "chrome":
-            chrome.tabs.query({
-              "currentWindow": true
-            }, function (t) {
+            chrome.tabs.getSelected(null, function (t) {
               e({
                 title: t.title,
                 url: t.url
@@ -530,9 +528,7 @@
       },
       setPageActionStatus: function (e) {
         var t = e ? "-active" : "";
-        chrome.tabs.query({
-          "currentWindow": true
-        }, function (e) {
+        chrome.tabs.getSelected(null, function (e) {
           chrome.pageAction.setIcon({
             tabId: e.id,
             path: {
@@ -1253,7 +1249,7 @@
       initJSfile: function () {
         var e = this,
           t = new XMLHttpRequest,
-          n = (window.pathPrefix || "") + "../common/js/" + this.currentLang + ".json",
+          n = (window.pathPrefix || "") + "../common/js/" + this.currentLang + ".js",
           o = new Event("langLoaded");
         t.onreadystatechange = function () {
           4 == t.readyState && t.responseText && (window["lang_" + e.currentLang] = JSON.parse(t.responseText), window.languageLoaded = !0, window.dispatchEvent(o))

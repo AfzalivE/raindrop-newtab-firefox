@@ -1,2221 +1,3093 @@
-! function e(t, n, a) {
-  function o(i, r) {
-    if (!n[i]) {
-      if (!t[i]) {
-        var c = "function" == typeof require && require;
-        if (!r && c) return c(i, !0);
-        if (s) return s(i, !0);
-        var l = new Error("Cannot find module '" + i + "'");
-        throw l.code = "MODULE_NOT_FOUND", l
-      }
-      var u = n[i] = {
-        exports: {}
-      };
-      t[i][0].call(u.exports, function (e) {
-        var n = t[i][1][e];
-        return o(n ? n : e)
-      }, u, u.exports, e, t, n, a)
-    }
-    return n[i].exports
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+var BookmarkActions = Reflux.createActions([
+    'load',
+    'parseURL',
+    'loadBookmark',
+    'insertBookmark',
+    'updateBookmark',
+    'updateSelectedBookmarks',
+    'removeBookmark',
+    'removeSelectedBookmarks',
+    'copySelectedBookmarks',
+    'swapBookmarks',
+    'saveAllSort',
+    'syncMove',
+    'initFavorites',
+    'setSelected',
+    'selectAll',
+    'clearSelect',
+    'reset'
+]);
+
+module.exports = BookmarkActions;
+
+},{}],2:[function(require,module,exports){
+var ChildrensActions = Reflux.createActions([
+    'load',
+    'swapCollections',
+    'saveAllSort',
+    'removeCollection'
+]);
+
+module.exports = ChildrensActions;
+
+},{}],3:[function(require,module,exports){
+var CollectionsActions = Reflux.createActions([
+    'load',
+    'setCurrent',
+    'updateCollection',
+    'insertCollection',
+    'removeCollection',
+    'updateCountCollection',
+    'updateColorCollection'
+]);
+
+module.exports = CollectionsActions;
+
+},{}],4:[function(require,module,exports){
+var ModalFrameActions = Reflux.createActions([
+    'show'
+]);
+
+module.exports = ModalFrameActions;
+
+},{}],5:[function(require,module,exports){
+module.exports = Reflux.createActions([
+    'load'
+]);
+
+},{}],6:[function(require,module,exports){
+var ToastActions = Reflux.createActions([
+    'show',
+    'close',
+    'stopTimer'
+]);
+
+module.exports = ToastActions;
+
+},{}],7:[function(require,module,exports){
+var UserActions = Reflux.createActions([
+    'load',
+    'toggleGroup',
+    'updateGroup',
+    'insertGroup',
+    'removeGroup',
+    'swapGroups',
+    'saveGroups',
+    'updateCollection',
+    'updateLanguage',
+    'updateConfig',
+    'swapCollections',
+    'logOut',
+    'signIn',
+    'signUp'
+]);
+
+module.exports = UserActions;
+
+},{}],8:[function(require,module,exports){
+/** @jsx React.DOM */
+
+module.exports = React.createClass({
+  displayName: "Helpers/Icon",
+
+  shouldComponentUpdate: function(nextProps) {
+    if (this.props.name != nextProps.name)
+      return true;
+
+    if (this.props.size != nextProps.size)
+      return true;
+
+    if (this.props.style != nextProps.style)
+      return true;
+
+    return false;
+  },
+
+  render: function() {
+      var fullName = this.props.name+(this.props.size ? "-"+this.props.size : "");
+      var useTag = '<use xlink:href="#'+fullName+'" />',
+          className = "icn"+(this.props.size ? " icn-"+this.props.size : "");
+
+      if (this.props.className)
+        className += " "+this.props.className;
+
+      return (
+          React.createElement("svg", {key: "icon_"+fullName, className: className, "data-name": this.props.name, style: this.props.style||null, dangerouslySetInnerHTML: {__html: useTag}})
+      );
   }
-  for (var s = "function" == typeof require && require, i = 0; i < a.length; i++) o(a[i]);
-  return o
-}({
-  1: [function (e, t, n) {
-    var a = Reflux.createActions(["load", "parseURL", "loadBookmark", "insertBookmark", "updateBookmark", "updateSelectedBookmarks", "removeBookmark", "removeSelectedBookmarks", "copySelectedBookmarks", "swapBookmarks", "saveAllSort", "syncMove", "initFavorites", "setSelected", "selectAll", "clearSelect", "reset"]);
-    t.exports = a
-  }, {}],
-  2: [function (e, t, n) {
-    var a = Reflux.createActions(["load", "swapCollections", "saveAllSort", "removeCollection"]);
-    t.exports = a
-  }, {}],
-  3: [function (e, t, n) {
-    var a = Reflux.createActions(["load", "setCurrent", "updateCollection", "insertCollection", "removeCollection", "updateCountCollection", "updateColorCollection"]);
-    t.exports = a
-  }, {}],
-  4: [function (e, t, n) {
-    var a = Reflux.createActions(["show"]);
-    t.exports = a
-  }, {}],
-  5: [function (e, t, n) {
-    t.exports = Reflux.createActions(["load"])
-  }, {}],
-  6: [function (e, t, n) {
-    var a = Reflux.createActions(["show", "close", "stopTimer"]);
-    t.exports = a
-  }, {}],
-  7: [function (e, t, n) {
-    var a = Reflux.createActions(["load", "toggleGroup", "updateGroup", "insertGroup", "removeGroup", "swapGroups", "saveGroups", "updateCollection", "updateLanguage", "updateConfig", "swapCollections", "logOut", "signIn", "signUp"]);
-    t.exports = a
-  }, {}],
-  8: [function (e, t, n) {
-    t.exports = React.createClass({
-      displayName: "Helpers/Icon",
-      shouldComponentUpdate: function (e) {
-        return this.props.name != e.name ? !0 : this.props.size != e.size ? !0 : this.props.style != e.style ? !0 : !1
-      },
-      render: function () {
-        var e = this.props.name + (this.props.size ? "-" + this.props.size : ""),
-          t = '<use xlink:href="#' + e + '" />',
-          n = "icn" + (this.props.size ? " icn-" + this.props.size : "");
-        return this.props.className && (n += " " + this.props.className), React.createElement("svg", {
-          key: "icon_" + e,
-          className: n,
-          "data-name": this.props.name,
-          style: this.props.style || null,
-          dangerouslySetInnerHTML: {
-            __html: t
-          }
-        })
-      }
-    })
-  }, {}],
-  9: [function (e, n, a) {
-    n.exports = React.createClass({
-      displayName: "Helpers/UserVoice",
-      getInitialState: function () {
+});
+
+},{}],9:[function(require,module,exports){
+module.exports = React.createClass({
+    displayName: "Helpers/UserVoice",
+	getInitialState: function() {
+		return {
+			user: UserStore.getUser(),
+			id: 'feedback-uservoice-' + new Date().getTime().toString(),
+			loading: true
+		}
+	},
+
+	onUserChange: function(user) {
+        if (this.isMounted())
+        this.setState({
+            user: user,
+            password: {},
+            loading: false
+        });
+    },
+
+    componentWillMount: function() {
+        UserStore.onLoad();
+
+        if (typeof window.UserVoice == "undefined"){
+        	var key = "jlb8wSxdcZRy8qdRNzP1OQ";
+        	if (t.getLang()=="ru_RU")
+        		key = "Kbyq0Zv9xshiMnm61ryC7g";
+
+        	var protocol = "";
+        	if (window.location.protocol.indexOf("http")==-1)
+        		protocol = "https:";
+
+        	UserVoice=window.UserVoice||[];(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src=protocol+'//widget.uservoice.com/'+key+'.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
+    	}
+    },
+
+    componentDidMount: function() {
+        this.unsubscribeUser = UserStore.listen(this.onUserChange);
+    },
+
+    componentWillUnmount: function() {
+        this.unsubscribeUser();
+    },
+
+    componentDidUpdate: function() {
+    	if (UserStore.isLogged()){
+	    	UserVoice.push(['identify',{
+							email:		this.state.user.email,
+							name:		this.state.user.fullName,
+							type:		(UserStore.isPro() ? "PRO" : "Free"),
+							account: {
+								_id:	this.state.user._id,
+								name:	this.state.user.fullName,
+								plan:	(UserStore.isPro() ? "PRO" : "Free")
+							}
+						}]);
+    	}
+
+        UserVoice.push(['embed', '#' + this.state.id, {mode: this.props.mode}]);
+    },
+
+	render: function() {
+		return (
+			React.createElement("div", {id: this.state.id, className: "userVoice"})
+		);
+	}
+});
+
+},{}],10:[function(require,module,exports){
+/** @jsx React.DOM */
+var ToastStore = require('../../stores/Toast');
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+
+module.exports = React.createClass({
+  displayName: "Toast",
+
+    //mixins: [PureRenderMixin],
+
+    getInitialState: function() {
         return {
-          user: UserStore.getUser(),
-          id: "feedback-uservoice-" + (new Date).getTime().toString(),
-          loading: !0
+            items: ToastStore.getToasts()
         }
-      },
-      onUserChange: function (e) {
-        this.isMounted() && this.setState({
-          user: e,
-          password: {},
-          loading: !1
-        })
-      },
-      componentWillMount: function () {
-        if (UserStore.onLoad(), "undefined" == typeof window.UserVoice) {
-          var e = "jlb8wSxdcZRy8qdRNzP1OQ";
-          "ru_RU" == t.getLang() && (e = "Kbyq0Zv9xshiMnm61ryC7g");
-          var n = ""; - 1 == window.location.protocol.indexOf("http") && (n = "https:"), UserVoice = window.UserVoice || [],
-            function () {
-              var t = document.createElement("script");
-              t.type = "text/javascript", t.async = !0, t.src = n + "//widget.uservoice.com/" + e + ".js";
-              var a = document.getElementsByTagName("script")[0];
-              a.parentNode.insertBefore(t, a)
-            }()
-        }
-      },
-      componentDidMount: function () {
-        this.unsubscribeUser = UserStore.listen(this.onUserChange)
-      },
-      componentWillUnmount: function () {
-        this.unsubscribeUser()
-      },
-      componentDidUpdate: function () {
-        UserStore.isLogged() && UserVoice.push(["identify", {
-          email: this.state.user.email,
-          name: this.state.user.fullName,
-          type: UserStore.isPro() ? "PRO" : "Free",
-          account: {
-            _id: this.state.user._id,
-            name: this.state.user.fullName,
-            plan: UserStore.isPro() ? "PRO" : "Free"
-          }
-        }]), UserVoice.push(["embed", "#" + this.state.id, {
-          mode: this.props.mode
-        }])
-      },
-      render: function () {
-        return React.createElement("div", {
-          id: this.state.id,
-          className: "userVoice"
-        })
-      }
-    })
-  }, {}],
-  10: [function (e, t, n) {
-    var a = e("../../stores/Toast"),
-      o = React.addons.CSSTransitionGroup;
-    t.exports = React.createClass({
-      displayName: "Toast",
-      getInitialState: function () {
-        return {
-          items: a.getToasts()
-        }
-      },
-      onToastsChange: function (e) {
-        this.isMounted() && this.setState({
-          items: e
-        })
-      },
-      componentDidMount: function () {
-        this.unsubscribeToast = a.listen(this.onToastsChange)
-      },
-      componentWillUnmount: function () {
-        this.unsubscribeToast()
-      },
-      handleCloseItem: function (e) {
-        Toasts.close({
-          id: e.target.getAttribute("data-id")
-        })
-      },
-      handleStopTimer: function (e) {},
-      render: function () {
-        var e = this,
-          t = this.state.items.map(function (t) {
-            var n = null;
-            t.title && (n = React.createElement("div", {
-              className: "title"
-            }, React.createElement("strong", null, t.title)));
-            var a = "info-outline";
-            return t.status && (a = "cancel"), React.createElement("li", {
-              key: "toast_" + t.id,
-              "data-id": t.id,
-              id: "toast-" + t.id,
-              onMouseEnter: e.handleStopTimer,
-              onClick: e.handleCloseItem
-            }, React.createElement("div", {
-              className: "item-wrap status-" + t.status || ""
-            }, React.createElement("div", null, React.createElement(Icon, {
-              name: a
-            })), React.createElement("div", null, n, React.createElement("div", {
-              className: "excerpt"
-            }, t.text))))
-          });
-        return React.createElement(o, {
-          component: "ul",
-          transitionName: "toastanim",
-          transitionEnterTimeout: 300,
-          transitionLeaveTimeout: 300
-        }, t)
-      }
-    })
-  }, {
-    "../../stores/Toast": 28
-  }],
-  11: [function (e, t, n) {
-    var a = "https://raindrop.io",
-      o = "/api/";
-    t.exports = {
-      host: a,
-      apiPrefix: a + o,
-      screenshotService: a + "/screenshot/?url=",
-      contentTypes: ["link", "article", "image", "video"],
-      proPage: a + "/static/pro",
-      modalMargin: 30,
-      languages: {
-        id_ID: "Bahasa Indonesia",
-        de_DE: "Deutsch",
-        en_US: "English",
-        es_ES: "Español",
-        fr_FR: "Français",
-        nl_NL: "Nederlands",
-        pl_PL: "Polski",
-        pt_BR: "Português (Brasil)",
-        sv_SE: "Svenska",
-        fi_FI: "Suomi",
-        tr_TR: "Türkçe",
-        kk_KZ: "Қазақ тілі",
-        ru_RU: "Русский",
-        uk_UA: "Українська мова",
-        ko_KR: "한국어",
-        zh_TW: "中文 (繁體)",
-        zh_CN: "中文（简体）",
-        hy_AM: "հայերեն"
-      },
-      backgroundImages: [{
-        src: "",
-        contrast: "black"
-      }, {
-        src: (window.pathPrefix || "") + "images/themes/reflectiononthelake.jpg",
-        contrast: "white"
-      }, {
-        src: (window.pathPrefix || "") + "images/themes/milleniumbridge.jpg",
-        contrast: "white"
-      }, {
-        src: (window.pathPrefix || "") + "images/themes/empireofthealps.jpg",
-        contrast: "white"
-      }, {
-        src: (window.pathPrefix || "") + "images/themes/brown-sunset.jpg",
-        contrast: "white"
-      }, {
-        src: (window.pathPrefix || "") + "images/themes/san-francisco.jpg",
-        contrast: "white"
-      }, {
-        src: (window.pathPrefix || "") + "images/themes/rocks.jpg",
-        contrast: "white"
-      }, {
-        src: (window.pathPrefix || "") + "images/themes/material-geometry.jpg",
-        contrast: "white"
-      }, {
-        src: (window.pathPrefix || "") + "images/themes/brown-rocks.jpg",
-        contrast: "white"
-      }, {
-        src: (window.pathPrefix || "") + "images/themes/material-view.jpg",
-        contrast: "black"
-      }, {
-        src: (window.pathPrefix || "") + "images/themes/surf.jpg",
-        contrast: "white"
-      }, {
-        src: (window.pathPrefix || "") + "images/themes/silver.jpg",
-        contrast: "black"
-      }],
-      getBackgroundSelected: function () {
-        var e = null,
-          t = 0;
-        try {
-          null != localStorage.getItem("background-image") && (e = localStorage.getItem("background-image"))
-        } catch (n) {}
-        for (var a in this.backgroundImages)
-          if (this.backgroundImages[a].src == e) {
-            t = a;
-            break
-          } return t
-      },
-      setBackground: function (e) {
-        var t = this.getBackgroundSelected();
-        if (t >= 0) {
-          var n = this.backgroundImages[t];
-          document.documentElement.classList.remove("contrast-white"), document.documentElement.classList.remove("contrast-black"), document.documentElement.classList.add("contrast-" + n.contrast || "black");
-          var a = function (e) {
-            var t = function () {
-              null != document.getElementById("app-background") && (document.getElementById("app-background").style.backgroundImage = 'url("' + e + '")')
-            };
-            null != document.getElementById("app-background") ? t() : document.addEventListener("DOMContentLoaded", t)
-          };
-          if (!n.src) return void a("about:blank");
-          var o = (e || "") + n.src,
-            s = null;
-          try {
-            localStorage.getItem(o)
-          } catch (i) {}
-          if (null == s) {
-            var r = new XMLHttpRequest,
-              c = new FileReader;
-            r.onload = function () {
-              if (4 == r.readyState && 200 == r.status) {
-                var e = new Blob([r.response], {
-                  type: "image/jpeg"
-                });
-                c.onload = function (e) {
-                  var t = e.target.result;
-                  a(t);
-                  try {
-                    localStorage.setItem(o, t)
-                  } catch (n) {}
-                }, c.readAsDataURL(e)
-              }
-            }, r.open("GET", o, !0), r.responseType = "arraybuffer", r.send()
-          } else a(s)
-        }
-      },
-      defaultCollectionIcon: function () {
-        return network.fixURL("/other/popup/img/icon-folder.png")
-      },
-      getImportLink: function () {
-        return "undefined" != typeof window.environment ? network.fixURL("/other/import/import.html") : "../import/index.html"
-      }
+    },
+
+    onToastsChange: function(toasts) {
+        if (this.isMounted()) this.setState({items:toasts});
+    },
+
+    componentDidMount: function() {
+        this.unsubscribeToast = ToastStore.listen(this.onToastsChange);
+    },
+
+    componentWillUnmount: function() {
+        this.unsubscribeToast();
+    },
+
+    handleCloseItem: function(e) {
+        Toasts.close({id: e.target.getAttribute("data-id")});
+    },
+
+    handleStopTimer: function(e) {
+        //Toasts.stopTimer({id: e.target.getAttribute("data-id")});
+    },
+
+    render: function() {
+        var _this = this;
+
+        var items = this.state.items.map(function(item){
+            var title = null;
+            if (item.title)
+                title = React.createElement("div", {className: "title"}, React.createElement("strong", null, item.title));
+
+            var icon = "info-outline";
+            if (item.status||"" == "error")
+                icon = "cancel";
+
+            return (
+                React.createElement("li", {key: "toast_"+item.id, "data-id": item.id, id: "toast-"+item.id, onMouseEnter: _this.handleStopTimer, onClick: _this.handleCloseItem}, 
+                    React.createElement("div", {className: "item-wrap status-"+item.status||""}, 
+                        React.createElement("div", null, React.createElement(Icon, {name: icon})), 
+                        React.createElement("div", null, 
+                            title, 
+                            React.createElement("div", {className: "excerpt"}, item.text)
+                        )
+                    )
+                )
+            );
+        });
+
+        return (
+            React.createElement(ReactCSSTransitionGroup, {component: "ul", transitionName: "toastanim", transitionEnterTimeout: 300, transitionLeaveTimeout: 300}, 
+                items
+            )
+        );
     }
-  }, {}],
-  12: [function (e, t, n) {
-    function a(e) {
-      var t = !1;
-      if (e)
-        if (e.code) switch (e.code) {
-          case 22:
-            t = !0;
-            break;
-          case 1014:
-            "NS_ERROR_DOM_QUOTA_REACHED" === e.name && (t = !0)
-        } else -2147024882 === e.number && (t = !0);
-      return t
-    }
-    var o = e("superagent");
-    t.exports = {
-      timeout: 6e3,
-      makeFinalURL: function (e) {
-        return 0 == e.indexOf("http") ? e : consts.apiPrefix + e
-      },
-      getText: function (e, t) {
-        o.get(e).set("Content-Encoding", "gzip").end(function (e, n) {
-          return "undefined" == typeof n ? void t({}) : void t((n || {}).text || null)
-        })
-      },
-      get: function (e, t, n) {
-        n = n || {}, o.get(this.makeFinalURL(e)).timeout(this.timeout).set("Accept", "application/json").set("Content-Encoding", "gzip").end(function (e, a) {
-          return "undefined" == typeof a ? void t({}) : void t(n.text ? a.text || "" : a.body || {})
-        })
-      },
-      post: function (e, t, n) {
-        o.post(this.makeFinalURL(e)).timeout(this.timeout).send(t).set("Accept", "application/json").end(function (e, t) {
-          return "undefined" == typeof t ? void n({}) : void n(t.body || {})
-        })
-      },
-      put: function (e, t, n) {
-        o.put(this.makeFinalURL(e)).timeout(this.timeout).send(t).set("Accept", "application/json").end(function (e, t) {
-          return "undefined" == typeof t ? void n({}) : void n(t.body || {})
-        })
-      },
-      del: function (e, t) {
-        o.del(this.makeFinalURL(e)).timeout(this.timeout).set("Accept", "application/json").end(function (e, n) {
-          return "undefined" == typeof n ? void t({}) : void t(n.body || {})
-        })
-      },
-      upload: function (e, t, n, a) {
-        o.post(this.makeFinalURL(e)).attach(t.name, t.file, t.file.name).on("progress", function (e) {
-          var t = parseInt(e.percent || 0);
-          n(t)
-        }).end(function (e, t) {
-          return "undefined" == typeof t ? void a({}) : void a(t.body || {})
-        })
-      },
-      getItem: function (e) {
-        var t;
-        try {
-          t = localStorage || window.localStorage
-        } catch (n) {}
-        return t ? t.getItem(e) : null
-      },
-      setItem: function (e, t) {
-        var n;
-        try {
-          n = localStorage || window.localStorage
-        } catch (o) {}
-        if (n) try {
-          n.setItem(e, t)
-        } catch (o) {
-          a(o) && n.clear()
-        } else console.log("No localStorage access")
-      },
-      removeItem: function (e) {
-        var t;
-        try {
-          t = localStorage || window.localStorage
-        } catch (n) {}
-        t ? t.removeItem(e) : console.log("No localStorage access")
-      },
-      clear: function () {
-        var e;
-        try {
-          e = localStorage || window.localStorage
-        } catch (t) {}
-        e ? e.clear() : console.log("No localStorage access")
-      }
-    }
-  }, {
-    superagent: "superagent"
-  }],
-  13: [function (e, t, n) {
-    t.exports = {
-      getDomain: function (e) {
-        if (e = e || "", "undefined" != typeof document) {
-          var t = document.createElement("a");
-          t.href = e;
-          var n = t.hostname;
-          return delete t, n
+});
+
+},{"../../stores/Toast":28}],11:[function(require,module,exports){
+var host = "https://raindrop.io",
+    apiPrefix = "/api/";
+
+module.exports = {
+    host: host,
+    apiPrefix: host + apiPrefix,
+    screenshotService: host + "/screenshot/?url=",
+    contentTypes: ["link", "article", "image", "video"],
+
+    proPage: host + "/static/pro",
+    modalMargin: 30,
+
+    languages: {
+        "id_ID": "Bahasa Indonesia",
+        "de_DE": "Deutsch",
+        "en_US": "English",
+        "es_ES": "Español",
+        "fr_FR": "Français",
+        "nl_NL": "Nederlands",
+        "pl_PL": "Polski",
+        "pt_BR": "Português (Brasil)",
+        "sv_SE": "Svenska",
+        "fi_FI": "Suomi",
+        "tr_TR": "Türkçe",
+        "kk_KZ": "Қазақ тілі",
+        "ru_RU": "Русский",
+        "uk_UA": "Українська мова",
+        "ko_KR": "한국어",
+        "zh_TW": "中文 (繁體)",
+        "zh_CN": "中文（简体）",
+        "hy_AM": "հայերեն"
+    },
+
+    backgroundImages: [
+        {
+            src: "",
+            contrast: "black"
+        },
+        {
+            src: (window.pathPrefix||"") + "images/themes/reflectiononthelake.jpg",
+            contrast: "white"
+        },
+        {
+            src: (window.pathPrefix||"") + "images/themes/milleniumbridge.jpg",
+            contrast: "white"
+        },
+        {
+            src: (window.pathPrefix||"") + "images/themes/empireofthealps.jpg",
+            contrast: "white"
+        },
+        {
+            src: (window.pathPrefix||"") + "images/themes/brown-sunset.jpg",
+            contrast: "white"
+        },
+        {
+            src: (window.pathPrefix||"") + "images/themes/san-francisco.jpg",
+            contrast: "white"
+        },
+        {
+            src: (window.pathPrefix||"") + "images/themes/rocks.jpg",
+            contrast: "white"
+        },
+        {
+            src: (window.pathPrefix||"") + "images/themes/material-geometry.jpg",
+            contrast: "white"
+        },
+        {
+            src: (window.pathPrefix||"") + "images/themes/brown-rocks.jpg",
+            contrast: "white"
+        },
+        {
+            src: (window.pathPrefix||"") + "images/themes/material-view.jpg",
+            contrast: "black"
+        },
+        {
+            src: (window.pathPrefix||"") + "images/themes/surf.jpg",
+            contrast: "white"
+        },
+        {
+            src: (window.pathPrefix||"") + "images/themes/silver.jpg",
+            contrast: "black"
         }
-        var a;
-        return a = e.indexOf("://") > -1 ? e.split("/")[2] : e.split("/")[0], a = a.split(":")[0]
-      },
-      fixURL: function (e) {
-        try {
-          e = e.trim()
-        } catch (t) {
-          t && (e = "")
-        }
-        return 0 == e.indexOf("//") ? "http:" + e : 0 == e.indexOf("/") ? "https://raindrop.io" + e : e
-      },
-      favIcon: function (e) {
-        return "https://raindrop.io/favicon/" + (e || "")
-      },
-      thumb: function (e, t) {
-        try {
-          e = e.trim()
-        } catch (n) {
-          n && (e = "")
-        }
-        return "undefined" == typeof t && (t = 230), "" != e ? 0 != e.indexOf("http") ? this.fixURL(e) : 0 == e.indexOf("https://raindrop.io") ? e : 0 == e.indexOf("http://raindrop.io") ? e : "https://raindrop.io/makethumb/?url=" + encodeURIComponent(e) + "&width=" + t : "about:blank"
-      },
-      cleanDomain: function (e) {
-        try {
-          var t = e.split("."),
-            n = 2;
-          t.length > n && (("org" == t[t.length - 2] || "net" == t[t.length - 2] || "com" == t[t.length - 2] || "co" == t[t.length - 2]) && (n = 3), t.splice(0, t.length - n), e = t.join("."))
-        } catch (a) {}
-        return e
-      },
-      linkTarget: function () {
-        var e = "_self";
-        return -1 != (window.environment || []).indexOf("clipper") && (e = "_top"), -1 != (window.environment || []).indexOf("safari_popup") && (e = "_blank"), e
-      },
-      settingsURL: function () {
-        var e = "../settings/settings.html#/settings",
-          t = "_self";
-        return -1 != (window.environment || []).indexOf("clipper") && (t = "_blank"), -1 != window.location.protocol.indexOf("http") && (e = "/settings#/settings"), -1 != (window.environment || []).indexOf("mac") && (e = "../settings/settings.html?isMac#/settings"), e
-      }
-    }
-  }, {}],
-  14: [function (e, t, n) {
-    e("moment/locale/id.js"), e("moment/locale/de.js"), e("moment/locale/es.js"), e("moment/locale/fr.js"), e("moment/locale/nl.js"), e("moment/locale/pl.js"), e("moment/locale/pt.js"), e("moment/locale/fi.js"), e("moment/locale/tr.js"), e("moment/locale/ru.js"), e("moment/locale/uk.js"), e("moment/locale/ko.js"), e("moment/locale/zh-cn.js"), e("moment/locale/zh-tw.js"), t.exports = {
-      defaultLang: "en_US",
-      currentLang: "en_US",
-      getLang: function () {
-        return this.currentLang
-      },
-      cleanLang: function (e) {
-        for (var t in consts.languages)
-          if (0 == t.indexOf(e)) return t;
-        return this.defaultLang
-      },
-      setLang: function (e) {
-        if ("undefined" == typeof e) {
-          e = null;
-          try {
-            e = localStorage.getItem("language") || null
-          } catch (t) {}
-          if (null == e) {
-            var n = navigator.language || navigator.userLanguage || "";
-            try {
-              n = n.trim().substr(0, 2).toLowerCase()
-            } catch (t) {
-              t && (n = "")
+    ],
+
+    getBackgroundSelected: function() {
+        var prefs = null, current = 0;
+        try{
+            if (localStorage.getItem("background-image")!=null)
+              prefs = localStorage.getItem("background-image");
+        }catch(e){}
+
+        for(var i in this.backgroundImages)
+            if (this.backgroundImages[i].src == prefs){
+                current = i;
+                break;
             }
-            "" != n && (e = this.cleanLang(n))
-          }
-        }
-        "undefined" == typeof consts.languages[e] && (e = this.defaultLang), this.currentLang = e;
-        try {
-          localStorage.setItem("language", this.currentLang)
-        } catch (t) {}
-        "undefined" != typeof moment ? moment.locale(this.currentLang) : "undefined" != typeof window.moment && window.moment.locale(this.currentLang)
-      },
-      s: function (e) {
-        return "undefined" == typeof window["lang_" + this.currentLang] ? e : "undefined" != typeof window["lang_" + this.currentLang][e] ? window["lang_" + this.currentLang][e] : e
-      },
-      initJSfile: function () {
-        var e = this,
-          t = new XMLHttpRequest,
-          n = (window.pathPrefix || "") + "../common/js/" + this.currentLang + ".json",
-          a = new Event("langLoaded");
-        t.onreadystatechange = function () {
-          4 == t.readyState && t.responseText && (window["lang_" + e.currentLang] = JSON.parse(t.responseText), window.languageLoaded = !0, window.dispatchEvent(a))
-        }, t.open("GET", n, !0), t.send()
-      }
-    }
-  }, {
-    "moment/locale/de.js": "moment/locale/de.js",
-    "moment/locale/es.js": "moment/locale/es.js",
-    "moment/locale/fi.js": "moment/locale/fi.js",
-    "moment/locale/fr.js": "moment/locale/fr.js",
-    "moment/locale/id.js": "moment/locale/id.js",
-    "moment/locale/ko.js": "moment/locale/ko.js",
-    "moment/locale/nl.js": "moment/locale/nl.js",
-    "moment/locale/pl.js": "moment/locale/pl.js",
-    "moment/locale/pt.js": "moment/locale/pt.js",
-    "moment/locale/ru.js": "moment/locale/ru.js",
-    "moment/locale/tr.js": "moment/locale/tr.js",
-    "moment/locale/uk.js": "moment/locale/uk.js",
-    "moment/locale/zh-cn.js": "moment/locale/zh-cn.js",
-    "moment/locale/zh-tw.js": "moment/locale/zh-tw.js"
-  }],
-  15: [function (e, t, n) {
-    var a = e("react/addons").addons.CSSTransitionGroup;
-    t.exports = React.createClass({
-      displayName: "exports",
-      getInitialState: function () {
-        return {
-          index: 0
-        }
-      },
-      handleForward: function (e) {
-        e.preventDefault(), this.props.images.length > this.state.index + 1 ? this.setState({
-          index: this.state.index + 1
-        }) : this.setState({
-          index: 0
-        })
-      },
-      render: function () {
-        var e = null;
-        return this.props.images.length > 1 && (e = React.createElement("a", {
-          href: "",
-          className: "action-icon",
-          onClick: this.handleForward
-        }, React.createElement(Icon, {
-          name: "forward"
-        }))), React.createElement("div", {
-          className: "slider"
-        }, e, React.createElement(a, {
-          transitionName: "carousel"
-        }, React.createElement("img", {
-          src: this.props.images[this.state.index],
-          alt: "",
-          key: this.props.images[this.state.index]
-        })), React.createElement("img", {
-          className: "space",
-          src: this.props.images[this.state.index],
-          alt: ""
-        }))
-      }
-    })
-  }, {
-    "react/addons": "react/addons"
-  }],
-  16: [function (e, n, a) {
-    n.exports = React.createClass({
-      displayName: "exports",
-      componentDidMount: function () {
-        this.props.changeTitle(t.s("exportBookmarks"))
-      },
-      render: function () {
-        return React.createElement("div", {
-          className: "page-wrap"
-        }, React.createElement("section", null, React.createElement("header", null, React.createElement("h2", null, t.s("exportBookmarks"))), React.createElement("article", null, React.createElement("div", {
-          className: "list"
-        }, React.createElement("a", {
-          href: consts.host + "/api/export",
-          target: window.targetLink,
-          className: "item",
-          download: !0
-        }, React.createElement("span", {
-          className: "title"
-        }, t.s("allBookmarks")), React.createElement("span", {
-          className: "block"
-        }, ".html"), React.createElement("span", {
-          className: "forward last-icon"
-        }, React.createElement(Icon, {
-          name: "chevron-right"
-        })))))))
-      }
-    })
-  }, {}],
-  17: [function (e, n, a) {
-    var o = e("../../app/components/Helpers/UserVoice");
-    n.exports = React.createClass({
-      displayName: "exports",
-      componentDidMount: function () {
-        this.props.changeTitle(t.s("help"))
-      },
-      render: function () {
-        return React.createElement("div", {
-          className: "page-wrap"
-        }, React.createElement("section", null, React.createElement("header", null, React.createElement("h2", null, t.s("help")), React.createElement("p", null, t.s("haveIdeas"))), React.createElement("article", null, React.createElement(o, null), React.createElement("br", null), "Send your emails to ", React.createElement("a", {
-          href: "mailto:info@raindrop.io"
-        }, "info@raindrop.io"))))
-      }
-    })
-  }, {
-    "../../app/components/Helpers/UserVoice": 9
-  }],
-  18: [function (e, n, a) {
-    n.exports = React.createClass({
-      displayName: "exports",
-      componentDidMount: function () {
-        this.props.changeTitle(t.s("importBookmarks"))
-      },
-      render: function () {
-        return React.createElement("iframe", {
-          src: consts.host + "/other/import/import.html"
-        })
-      }
-    })
-  }, {}],
-  19: [function (e, n, a) {
-    e("../components/Slider");
-    n.exports = React.createClass({
-      displayName: "exports",
-      componentDidMount: function () {
-        this.props.changeTitle(t.s("install"))
-      },
-      render: function () {
-        return React.createElement("div", {
-          className: "page-wrap"
-        }, React.createElement("div", {
-          className: "platforms"
-        }, React.createElement("div", {
-          className: "item hide-on-clipper",
-          style: {
-            backgroundColor: "#707D87"
-          }
-        }, React.createElement("img", {
-          src: consts.host + "/img/marketing/teaser/extension.png",
-          alt: ""
-        }), React.createElement("div", {
-          className: "title"
-        }, React.createElement("div", {
-          className: "desc"
-        }, t.s("browserPlugin")), React.createElement("div", {
-          className: "links"
-        }, React.createElement("a", {
-          href: "https://chrome.google.com/webstore/detail/raindropio/ldgfbffkinooeloadekpmfoklnobpien",
-          target: "_blank"
-        }, React.createElement("img", {
-          src: consts.host + "/img/marketing/teaser/badge-chrome.png",
-          height: "32",
-          alt: ""
-        })), React.createElement("a", {
-          href: "https://addons.mozilla.org/firefox/addon/raindropio/",
-          target: "_blank"
-        }, React.createElement("img", {
-          src: consts.host + "/img/marketing/teaser/badge-firefox.png",
-          height: "32",
-          alt: ""
-        })), React.createElement("a", {
-          href: "https://raindrop.io/releases/safari.safariextz",
-          target: "_blank"
-        }, React.createElement("img", {
-          src: consts.host + "/img/marketing/teaser/badge-safari.png",
-          height: "32",
-          alt: ""
-        })), React.createElement("a", {
-          href: "https://addons.opera.com/extensions/details/raindropio-smart-bookmarks",
-          target: "_blank"
-        }, React.createElement("img", {
-          src: consts.host + "/img/marketing/teaser/badge-opera.png",
-          height: "32",
-          alt: ""
-        }))))), React.createElement("div", {
-          className: "item",
-          style: {
-            backgroundColor: "#4B88B7"
-          }
-        }, React.createElement("img", {
-          src: consts.host + "/img/marketing/teaser/ios.png",
-          alt: ""
-        }), React.createElement("div", {
-          className: "title"
-        }, React.createElement("div", {
-          className: "desc"
-        }, "iPhone & iPad"), React.createElement("div", {
-          className: "links"
-        }, React.createElement("a", {
-          href: "https://itunes.apple.com/us/app/raindrop.io-keep-your-favorites/id1021913807",
-          target: "_blank"
-        }, React.createElement("img", {
-          src: consts.host + "/img/marketing/teaser/badge-ios.png",
-          height: "32",
-          alt: ""
-        }))))), React.createElement("div", {
-          className: "item hide-on-mac",
-          style: {
-            backgroundColor: "#4CB580"
-          }
-        }, React.createElement("img", {
-          src: consts.host + "/img/marketing/teaser/android.png",
-          alt: ""
-        }), React.createElement("div", {
-          className: "title"
-        }, React.createElement("div", {
-          className: "desc"
-        }, "Android Phone & Tablet"), React.createElement("div", {
-          className: "links"
-        }, React.createElement("a", {
-          href: "https://play.google.com/store/apps/details?id=io.raindrop.raindropio&hl=en",
-          target: "_blank"
-        }, React.createElement("img", {
-          src: consts.host + "/img/marketing/teaser/badge-android.png",
-          height: "38",
-          alt: ""
-        }))))), React.createElement("div", {
-          className: "item",
-          style: {
-            backgroundColor: "#7753CD"
-          }
-        }, React.createElement("img", {
-          src: consts.host + "/img/marketing/teaser/mac.png",
-          alt: ""
-        }), React.createElement("div", {
-          className: "title"
-        }, React.createElement("div", {
-          className: "desc"
-        }, "Mac OS X"), React.createElement("div", {
-          className: "links"
-        }, React.createElement("a", {
-          href: "https://itunes.apple.com/app/raindrop.io-keep-your-favorites/id957810159",
-          target: "_blank"
-        }, React.createElement("img", {
-          src: consts.host + "/img/marketing/teaser/badge-mac.png",
-          height: "32",
-          alt: ""
-        }))))), React.createElement("div", {
-          className: "item",
-          style: {
-            backgroundColor: "#E8674F"
-          }
-        }, React.createElement("img", {
-          src: consts.host + "/img/marketing/teaser/mac.png",
-          alt: ""
-        }), React.createElement("div", {
-          className: "title"
-        }, React.createElement("div", {
-          className: "desc"
-        }, t.s("pro_speed_dial")), React.createElement("div", {
-          className: "links"
-        }, React.createElement("a", {
-          href: "https://chrome.google.com/webstore/detail/raindropio-new-tab-speed/knifgjkgmgdinjeecneiphoniamhgbof",
-          target: "_blank"
-        }, React.createElement("img", {
-          src: consts.host + "/img/marketing/teaser/badge-chrome.png",
-          height: "32",
-          alt: ""
-        })))))))
-      }
-    })
-  }, {
-    "../components/Slider": 15
-  }],
-  20: [function (e, n, a) {
-    n.exports = React.createClass({
-      displayName: "exports",
-      getInitialState: function () {
-        return {
-          user: UserStore.getUser(),
-          loading: !0
-        }
-      },
-      onUserChange: function (e) {
-        this.isMounted() && this.setState({
-          user: e,
-          password: {},
-          loading: !1
-        })
-      },
-      componentWillMount: function () {
-        UserStore.onLoad()
-      },
-      componentDidMount: function () {
-        this.props.changeTitle("Integration"), this.unsubscribeUser = UserStore.listen(this.onUserChange)
-      },
-      componentWillUnmount: function () {
-        this.unsubscribeUser()
-      },
-      render: function () {
-        var e = !1,
-          n = consts.host + "/dropbox/authorize";
-        _this = this;
-        try {
-          e = _this.state.user.dropbox.enabled
-        } catch (a) {}
-        return e && (n = consts.host + "/dropbox/revoke"), UserStore.isPro() || (n = "#/settings/pro"), React.createElement("div", {
-          className: "page-wrap"
-        }, React.createElement("section", null, React.createElement("header", null, React.createElement("h2", null, "Integration")), React.createElement("article", null, React.createElement("div", {
-          className: "list"
-        }, React.createElement("a", {
-          href: n,
-          target: window.targetLink,
-          className: "item"
-        }, React.createElement("span", {
-          className: "title",
-          style: {
-            flex: 1
-          }
-        }, t.s("pro_dropbox"), React.createElement("span", {
-          className: "subtitle"
-        }, t.s("pro_dropboxD"))), React.createElement("span", {
-          className: "last-icon"
-        }, React.createElement("div", {
-          className: "extra-checkbox" + (e ? " active" : "")
-        })))))))
-      }
-    })
-  }, {}],
-  21: [function (e, n, a) {
-    n.exports = React.createClass({
-      displayName: "exports",
-      getInitialState: function () {
-        return {
-          user: UserStore.getUser(),
-          loading: !0
-        }
-      },
-      onUserChange: function (e) {
-        this.isMounted() && this.setState({
-          user: e,
-          loading: !1
-        })
-      },
-      componentWillMount: function () {
-        UserStore.onLoad()
-      },
-      componentDidMount: function () {
-        this.props.changeTitle(t.s("upgradeAccount")), this.unsubscribeUser = UserStore.listen(this.onUserChange)
-      },
-      componentWillUnmount: function () {
-        this.unsubscribeUser()
-      },
-      renderFree: function () {
-        return this.state.loading ? React.createElement("div", {
-          className: "page-wrap"
-        }, React.createElement("section", null, React.createElement("header", null, React.createElement("h2", null, t.s("loading"), "...")))) : React.createElement("section", null, React.createElement("header", null, React.createElement("h2", null, t.s("upgradeAccount"))), React.createElement("article", null, React.createElement("div", {
-          className: "list"
-        }, React.createElement("div", {
-          className: "text"
-        }, React.createElement("img", {
-          className: "pull-right",
-          src: consts.host + "/img/v3/pro-buy.png",
-          width: "109",
-          alt: ""
-        }), React.createElement("strong", null, t.s("footerProAd"), " ", t.s("footerProAdD"), ":"), React.createElement("ul", null, React.createElement("li", null, t.s("nestedCollections")), React.createElement("li", null, t.s("dropboxBackup")), React.createElement("li", null, t.s("pro_nextFeatures")), React.createElement("li", null, t.s("pro_support")), React.createElement("li", null, t.s("pro_noAds")))), React.createElement("a", {
-          href: consts.host + "/pages/pricing",
-          target: window.targetLink,
-          className: "item"
-        }, React.createElement("span", {
-          className: "title",
-          style: {
-            flex: 1
-          }
-        }, t.s("compareFreePro")), React.createElement("span", {
-          className: "forward"
-        }, React.createElement(Icon, {
-          name: "chevron-right"
-        }))), React.createElement("a", {
-          href: consts.host + "/static/pro",
-          target: window.targetLink,
-          className: "item accent"
-        }, React.createElement("span", {
-          className: "title"
-        }, t.s("upgradeToPro")), React.createElement("span", {
-          className: "forward"
-        }, React.createElement(Icon, {
-          name: "chevron-right"
-        }))))))
-      },
-      renderPro: function () {
-        return React.createElement("section", null, React.createElement("header", null, React.createElement("h2", null, t.s("upgradeAccount"))), React.createElement("article", null, React.createElement("div", {
-          className: "list"
-        }, React.createElement("div", {
-          className: "text"
-        }, React.createElement("strong", {
-          style: {
-            textTransform: "capitalize"
-          }
-        }, React.createElement(Icon, {
-          name: "done",
-          className: "icn-green pull-right"
-        }), t.s("until") + " " + moment(UserStore.getUser().proExpire).format("ll"))), React.createElement("a", {
-          href: consts.host + "/static/pro",
-          target: window.targetLink,
-          className: "item accent"
-        }, React.createElement("span", {
-          className: "title"
-        }, t.s("renewPro")), React.createElement("span", {
-          className: "forward"
-        }, React.createElement(Icon, {
-          name: "chevron-right"
-        }))))))
-      },
-      render: function () {
-        return React.createElement("div", {
-          className: "page-wrap"
-        }, UserStore.isPro() ? this.renderPro() : this.renderFree(), React.createElement("section", null, React.createElement("header", null, React.createElement("h2", null, "Q&A")), React.createElement("article", null, React.createElement("div", {
-          className: "list"
-        }, React.createElement("div", {
-          className: "text"
-        }, React.createElement("strong", null, "Where do I get started?"), React.createElement("p", null, "Start with the free plan — it’s the best choice if you want to test our apps. Plus, it’s completely free.")), React.createElement("div", {
-          className: "text"
-        }, React.createElement("strong", null, "Do I have to pay for my nested collections to keep them accessible?"), React.createElement("p", null, "No. Don’t worry, we won’t charge you for hosting your nested collections. The great news is that all your nested collections remain accessible even if your subscription ends or you’ve switched to the free plan.")), React.createElement("div", {
-          className: "text"
-        }, React.createElement("strong", null, "How can I cancel my subscription?"), React.createElement("p", null, "At any time you can cancel the subscription and get your money back. To do this, please ", React.createElement("a", {
-          href: "#/settings/help"
-        }, "contact us"), ".")), React.createElement("div", {
-          className: "text"
-        }, React.createElement("strong", null, "What happens at the end of the paid period?"), React.createElement("p", null, "When the period of paid subscription ends you automatically switch to the free plan. All your collections (including nested) will remain accessible, but if you want to create more nested collections you will have to switch to paid plan. Also Dropbox backup will be stopped.")), React.createElement("div", {
-          className: "text"
-        }, React.createElement("strong", null, "Is there any discount for an annual subscription?"), React.createElement("p", null, "Yes, we offer a 20% discount if you choose annual subscription.")), React.createElement("div", {
-          className: "text"
-        }, React.createElement("strong", null, "Got more questions?"), React.createElement("p", null, "We are happy to help you. ", React.createElement("a", {
-          href: "#/settings/help"
-        }, "Contact us"), "."))))))
-      }
-    })
-  }, {}],
-  22: [function (e, n, a) {
-    n.exports = React.createClass({
-      displayName: "exports",
-      getInitialState: function () {
-        return {
-          user: UserStore.getUser(),
-          loading: !0
-        }
-      },
-      onUserChange: function (e) {
-        this.isMounted() && this.setState({
-          user: e,
-          password: {},
-          loading: !1
-        })
-      },
-      componentWillMount: function () {
-        UserStore.onLoad()
-      },
-      componentDidMount: function () {
-        this.props.changeTitle(t.s("profile")), this.unsubscribeUser = UserStore.listen(this.onUserChange)
-      },
-      componentWillUnmount: function () {
-        this.unsubscribeUser()
-      },
-      handleFullNameChange: function (e) {
-        this.state.user.fullName = e.target.value, this.setState({
-          user: this.state.user
-        })
-      },
-      handleEmailChange: function (e) {
-        this.state.user.email = e.target.value, this.setState({
-          user: this.state.user
-        })
-      },
-      handleSaveProfile: function (e) {
-        e.preventDefault();
-        var n = {
-          fullName: this.state.user.fullName
-        };
-        this.state.user.email && (n.email = this.state.user.email, this.state.user.password || (n.newpassword = this.state.password.next)), this.setState({
-          loading: !0
-        }), Api.put("user", n, function (e) {
-          e.result ? Toasts.show({
-            text: t.s("saveSuccess")
-          }) : Toasts.show({
-            text: t.s("server" + e.error)
-          }), UserStore.onLoad()
-        })
-      },
-      handleLangChange: function (e) {
-        e.preventDefault();
-        var n = React.findDOMNode(this.refs.lang),
-          a = n.options[n.selectedIndex].value;
-        this.setState({
-          loading: !0
-        }), UserActions.updateLanguage({
-          lang: a
-        }, function () {
-          t.setLang(a), location.reload()
-        })
-      },
-      handleOldPasswordChange: function (e) {
-        this.state.password.old = e.target.value, this.setState({
-          password: this.state.password
-        })
-      },
-      handleNewPasswordChange: function (e) {
-        this.state.password.next = e.target.value, this.setState({
-          password: this.state.password
-        })
-      },
-      handleSavePassword: function (e) {
-        e.preventDefault();
-        var n = {
-          oldpassword: this.state.password.old,
-          newpassword: this.state.password.next,
-          email: this.state.user.email,
-          fullName: this.state.user.fullName
-        };
-        this.setState({
-          loading: !0
-        }), Api.put("user", n, function (e) {
-          e.result ? Toasts.show({
-            text: t.s("saveSuccess")
-          }) : Toasts.show({
-            text: t.s("server" + e.error)
-          }), UserStore.onLoad()
-        })
-      },
-      handleRemoveAccount: function (e) {
-        e.preventDefault(), confirm(t.s("removeAccountD")) && (window.location = consts.host + "/api/user-remove")
-      },
-      render: function () {
-        if (this.state.loading) return React.createElement("div", {
-          className: "page-wrap"
-        }, React.createElement("section", null, React.createElement("header", null, React.createElement("h2", null, t.s("loading"), "..."))));
-        if (!UserStore.isLogged()) return React.createElement("div", {
-          className: "page-wrap"
-        });
-        var e = [];
-        for (var n in consts.languages) e.push(React.createElement("option", {
-          selected: t.getLang() == n,
-          value: n
-        }, consts.languages[n]));
-        var a = null;
-        return this.state.user.password || (a = React.createElement("label", {
-          className: "item"
-        }, React.createElement("span", {
-          className: "title"
-        }, t.s("password")), React.createElement("span", {
-          className: "block"
-        }, React.createElement("input", {
-          type: "password",
-          onChange: this.handleNewPasswordChange,
-          placeholder: t.s("newPassword"),
-          required: !0
-        })))), React.createElement("div", {
-          className: "page-wrap"
-        }, React.createElement("section", null, React.createElement("header", null, React.createElement("h2", null, t.s("basicData")), React.createElement("p", null, t.s("changeAvatarInfo"))), React.createElement("article", null, React.createElement("form", {
-          onSubmit: this.handleSaveProfile
-        }, React.createElement("div", {
-          className: "list"
-        }, React.createElement("label", {
-          className: "item"
-        }, React.createElement("span", {
-          className: "title"
-        }, t.s("yourName")), React.createElement("span", {
-          className: "block"
-        }, React.createElement("input", {
-          type: "text",
-          defaultValue: this.state.user.fullName,
-          onChange: this.handleFullNameChange,
-          required: !0
-        }))), React.createElement("label", {
-          className: "item"
-        }, React.createElement("span", {
-          className: "title"
-        }, "Email"), React.createElement("span", {
-          className: "block"
-        }, React.createElement("input", {
-          type: "email",
-          defaultValue: this.state.user.email,
-          onChange: this.handleEmailChange,
-          placeholder: "your@email.com",
-          required: !0
-        }))), a, React.createElement("label", {
-          className: "item"
-        }, React.createElement("span", {
-          className: "title"
-        }, t.s("language")), React.createElement("span", {
-          className: "block"
-        }, React.createElement("select", {
-          ref: "lang",
-          onChange: this.handleLangChange
-        }, e))), React.createElement("div", {
-          className: "item"
-        }, React.createElement("span", {
-          className: "title"
-        }, "ID"), React.createElement("span", {
-          className: "block"
-        }, this.state.user._id)), React.createElement("a", {
-          href: "https://gravatar.com",
-          target: "_blank",
-          className: "item"
-        }, React.createElement("span", {
-          className: "title",
-          style: {
-            flex: 1
-          }
-        }, t.s("changeAvatar")), React.createElement("span", {
-          className: "forward"
-        }, React.createElement(Icon, {
-          name: "chevron-right"
-        })))), React.createElement("div", {
-          className: "actions"
-        }, React.createElement("input", {
-          type: "submit",
-          value: t.s("save")
-        }))))), React.createElement("section", {
-          className: this.state.user.password ? "" : "hidden"
-        }, React.createElement("header", null, React.createElement("h2", null, t.s("changePassword"))), React.createElement("article", null, React.createElement("form", {
-          onSubmit: this.handleSavePassword
-        }, React.createElement("div", {
-          className: "list"
-        }, React.createElement("label", {
-          className: "item"
-        }, React.createElement("span", {
-          className: "title"
-        }, t.s("currentPassword")), React.createElement("span", {
-          className: "block"
-        }, React.createElement("input", {
-          type: "password",
-          onChange: this.handleOldPasswordChange,
-          placeholder: t.s("currentPassword"),
-          required: !0
-        }))), React.createElement("label", {
-          className: "item"
-        }, React.createElement("span", {
-          className: "title"
-        }, t.s("newPassword")), React.createElement("span", {
-          className: "block"
-        }, React.createElement("input", {
-          type: "password",
-          onChange: this.handleNewPasswordChange,
-          placeholder: t.s("newPassword"),
-          required: !0
-        })))), React.createElement("div", {
-          className: "actions"
-        }, React.createElement("a", {
-          href: consts.host + "/account/reset",
-          target: "_blank"
-        }, t.s("recoverPassword")), React.createElement("input", {
-          type: "submit",
-          value: t.s("changePassword")
-        }))))), React.createElement("section", null, React.createElement("article", null, React.createElement("div", {
-          className: "actions"
-        }, React.createElement("a", {
-          href: "",
-          onClick: this.handleRemoveAccount
-        }, t.s("removeAccount"))))))
-      }
-    })
-  }, {}],
-  23: [function (e, n, a) {
-    var o = (e("../../actions/Collections"),
-      e("../../stores/Collections"));
-    n.exports = React.createClass({
-      displayName: "exports",
-      getInitialState: function () {
-        return {
-          collections: o.getCollections(),
-          childrens: []
-        }
-      },
-      onCollectionsChange: function (e) {
-        this.isMounted() && this.setState({
-          collections: e
-        })
-      },
-      componentWillMount: function () {
-        o.onLoad()
-      },
-      componentDidMount: function () {
-        this.props.changeTitle("RSS");
-        var e = this;
-        this.unsubscribeCollections = o.listen(this.onCollectionsChange), Api.get("childrens", function (t) {
-          e.setState({
-            childrens: t.items || []
-          })
-        })
-      },
-      componentWillUnmount: function () {
-        this.unsubscribeCollections()
-      },
-      renderItem: function (e) {
-        var t = consts.defaultCollectionIcon();
-        try {
-          t = network.fixURL(e.cover[0])
-        } catch (n) {}
-        return React.createElement("a", {
-          href: e.link,
-          target: window.targetLink,
-          className: "item"
-        }, React.createElement("span", {
-          className: "title"
-        }, e.title), React.createElement("span", {
-          className: "block"
-        }, e.link), React.createElement("span", {
-          className: "last-icon",
-          style: {
-            marginLeft: "20px"
-          }
-        }, React.createElement("img", {
-          src: t,
-          className: "icon",
-          height: "24",
-          alt: ""
-        })))
-      },
-      render: function () {
-        var e = this,
-          n = this.state.collections.concat(this.state.childrens);
-        n = _.sortBy(n, "title");
-        var a = [];
-        n.forEach(function (t) {
-          t._id > 0 && t.uniqKey && a.push(e.renderItem({
-            title: t.title,
-            link: consts.host + "/feed/" + t.uniqKey,
-            cover: t.cover
-          }))
-        });
-        var o = [];
-        return n.forEach(function (t) {
-          t._id > 0 && o.push(e.renderItem({
-            title: t.title,
-            link: consts.host + "/collection/" + t._id + "/feed",
-            cover: t.cover
-          }))
-        }), React.createElement("div", {
-          className: "page-wrap"
-        }, React.createElement("section", null, React.createElement("header", null, React.createElement("h2", null, t.s("privateRSSfeed")), React.createElement("p", null, t.s("feedWarning"))), React.createElement("article", null, React.createElement("div", {
-          className: "list"
-        }, this.renderItem({
-          title: t.s("myCollections"),
-          link: consts.host + "/feeds/" + UserStore.getUser().uniqKey
-        }), this.renderItem({
-          title: t.s("orAlternativeFeed"),
-          link: consts.host + "/feed/" + UserStore.getUser().uniqKey
-        }), a))), React.createElement("section", null, React.createElement("header", null, React.createElement("h2", null, t.s("publicRSSfeed"))), React.createElement("article", null, React.createElement("div", {
-          className: "list"
-        }, o))))
-      }
-    })
-  }, {
-    "../../actions/Collections": 3,
-    "../../stores/Collections": 26
-  }],
-  24: [function (e, n, a) {
-    n.exports = React.createClass({
-      displayName: "exports",
-      contextTypes: {
-        router: React.PropTypes.func
-      },
-      mixins: [Router.State],
-      getInitialState: function () {
-        return {
-          user: UserStore.getUser(),
-          loading: !0,
-          sidebar: !1,
-          title: ""
-        }
-      },
-      onUserChange: function (e) {
-        this.isMounted() && this.setState({
-          user: e,
-          password: {},
-          loading: !1
-        })
-      },
-      componentWillMount: function () {
-        UserStore.onLoad()
-      },
-      componentDidMount: function () {
-        this.unsubscribeUser = UserStore.listen(this.onUserChange)
-      },
-      componentWillUnmount: function () {
-        this.unsubscribeUser()
-      },
-      componentWillReceiveProps: function (e) {
-        this.handleSidebar()
-      },
-      handleSidebar: function (e) {
-        e && e.preventDefault();
-        var t = !this.state.sidebar;
-        this.setState({
-          sidebar: t
-        }), t ? document.documentElement.classList.add("sidebar-open") : document.documentElement.classList.remove("sidebar-open")
-      },
-      handleTitle: function (e) {
-        this.setState({
-          title: e
-        })
-      },
-      renderLogged: function () {
-        var e = React.createElement("a", {
-          href: "#/settings/import"
-        }, t.s("importBookmarks"));
-        return -1 != window.environment.indexOf("mac") && (e = React.createElement("a", {
-          href: consts.host + "/other/import/import.html",
-          target: "_blank"
-        }, t.s("importBookmarks"))), React.createElement("menu", null, React.createElement("li", {
-          className: "section"
-        }, t.s("account")), React.createElement("li", {
-          className: "item hide-on-mac " + (this.context.router.isActive("pro") ? "active" : "")
-        }, React.createElement("a", {
-          href: "#/settings/pro"
-        }, t.s("upgradeAccount"))), React.createElement("li", {
-          className: "item " + (this.context.router.isActive("profile") ? "active" : "")
-        }, React.createElement("a", {
-          href: "#/settings"
-        }, t.s("profile"))), React.createElement("li", {
-          className: "section"
-        }, t.s("basicData")), React.createElement("li", {
-          className: "item " + (this.context.router.isActive("import") ? "active" : "")
-        }, e), React.createElement("li", {
-          className: "item " + (this.context.router.isActive("export") ? "active" : "")
-        }, React.createElement("a", {
-          href: "#/settings/export"
-        }, t.s("exportBookmarks"))), React.createElement("li", {
-          className: "item " + (this.context.router.isActive("integration") ? "active" : "")
-        }, React.createElement("a", {
-          href: "#/settings/integration"
-        }, "Integration")), React.createElement("li", {
-          className: "item " + (this.context.router.isActive("rss") ? "active" : "")
-        }, React.createElement("a", {
-          href: "#/settings/rss"
-        }, "RSS")), React.createElement("li", {
-          className: "section"
-        }), React.createElement("li", {
-          className: "item " + (this.context.router.isActive("install") ? "active" : "")
-        }, React.createElement("a", {
-          href: "#/settings/install"
-        }, t.s("install"), "   ", React.createElement(Icon, {
-          name: "apple"
-        }), " ", React.createElement(Icon, {
-          name: "android",
-          className: "hide-on-mac"
-        }), " ", React.createElement(Icon, {
-          name: "google-chrome"
-        }), " ", React.createElement(Icon, {
-          name: "laptop"
-        }))), React.createElement("li", {
-          className: "item " + (this.context.router.isActive("help") ? "active" : "")
-        }, React.createElement("a", {
-          href: "#/settings/help"
-        }, t.s("help"))), React.createElement("li", {
-          className: "item " + (UserStore.isPro() ? "" : "hidden")
-        }, React.createElement("a", {
-          href: consts.host + "/static/upcoming",
-          target: window.targetLink
-        }, t.s("pro_nextFeatures"))), React.createElement("li", {
-          className: "item"
-        }, React.createElement("a", {
-          href: consts.host + "/dev",
-          target: window.targetLink
-        }, t.s("forDevelopers"))))
-      },
-      renderStatic: function () {
-        return React.createElement("menu", null, React.createElement("li", {
-          className: "section"
-        }, "Raindrop.io"), React.createElement("li", {
-          className: "item " + (this.context.router.isActive("install") ? "active" : "")
-        }, React.createElement("a", {
-          href: "#/settings/install"
-        }, t.s("install"))), React.createElement("li", {
-          className: "item " + (this.context.router.isActive("help") ? "active" : "")
-        }, React.createElement("a", {
-          href: "#/settings/help"
-        }, t.s("help"))), React.createElement("li", {
-          className: "item"
-        }, React.createElement("a", {
-          href: consts.host + "/dev",
-          target: window.targetLink
-        }, t.s("forDevelopers"))))
-      },
-      render: function () {
-        var e = "/";
-        return -1 != window.environment.indexOf("extension") && (e = "../../app/index.html"), -1 != window.environment.indexOf("mac") && (e = "../mac/index.html"), -1 != window.environment.indexOf("clipper") && (e = "../app/index.html" + window.location.search), React.createElement("div", {
-          id: "page"
-        }, React.createElement("div", {
-          id: "sidebar"
-        }, React.createElement("header", {
-          className: "desktop_hide"
-        }, React.createElement("a", {
-          href: "",
-          onClick: this.handleSidebar
-        }, React.createElement(Icon, {
-          name: "clear"
-        }))), UserStore.isLogged() ? this.renderLogged() : this.renderStatic()), React.createElement("div", {
-          id: "content"
-        }, React.createElement(DocumentTitle, {
-          title: this.state.title || ""
-        }), React.createElement(RouteHandler, {
-          changeTitle: this.handleTitle
-        })), React.createElement("div", {
-          id: "toolbar"
-        }, React.createElement("a", {
-          href: e,
-          id: "go-back"
-        }, React.createElement(Icon, {
-          name: "back"
-        })), React.createElement("a", {
-          href: "",
-          className: "title",
-          onClick: this.handleSidebar
-        }, this.state.title, React.createElement(Icon, {
-          name: "arrow-down",
-          size: "small",
-          className: "mobileMenu desktop_hide"
-        }))))
-      }
-    })
-  }, {}],
-  25: [function (e, n, a) {
-    React = e("react"), Reflux = e("reflux"), consts = e("../app/config"), Api = e("../modules/api.js"), t = e("../modules/translate"), window.moment = e("moment"), t.setLang(), t.initJSfile(), _ = e("lodash"), network = e("../modules/network.js"), S = e("string"), Icon = e("../app/components/Helpers/Icon.js"), ls = e("localforage"), Toasts = e("../actions/Toast"), DocumentTitle = e("react-document-title"), UserActions = e("../actions/User"), UserStore = e("../stores/User"), Router = e("react-router");
-    var o = Router.DefaultRoute,
-      s = Router.Route,
-      i = Router.Redirect;
-    RouteHandler = Router.RouteHandler, Link = Router.Link;
-    var r = React.createClass({
-        displayName: "AppRoute",
-        render: function () {
-          return React.createElement(RouteHandler, null)
-        }
-      }),
-      c = {
-        loaded: !1,
-        load: function () {
-          if (this.loaded) return !1;
-          UserStore.onLoad();
-          var t = document.getElementById("app-toast"),
-            n = e("../app/components/Toast.js");
-          React.render(React.createElement(n, null), t), this.loaded = !0
-        }
-      };
-    window.addEventListener(window.languageLoaded ? "DOMContentLoaded" : "langLoaded", function () {
-      var t = document.getElementById("app-content"),
-        n = e("./routes/Settings"),
-        a = e("./routes/Pro"),
-        l = e("./routes/Profile"),
-        u = e("./routes/Import"),
-        m = e("./routes/Export"),
-        d = e("./routes/Integration"),
-        p = e("./routes/RSS"),
-        h = e("./routes/Install"),
-        g = e("./routes/Help"),
-        f = React.createElement(s, {
-          path: "/",
-          handler: r
-        }, React.createElement(s, {
-          name: "settings",
-          path: "/settings",
-          handler: n
-        }, React.createElement(o, {
-          name: "profile",
-          handler: l
-        }), React.createElement(s, {
-          name: "pro",
-          path: "pro",
-          handler: a
-        }), React.createElement(s, {
-          name: "import",
-          path: "import",
-          handler: u
-        }), React.createElement(s, {
-          name: "export",
-          path: "export",
-          handler: m
-        }), React.createElement(s, {
-          name: "integration",
-          path: "integration",
-          handler: d
-        }), React.createElement(s, {
-          name: "rss",
-          path: "rss",
-          handler: p
-        }), React.createElement(s, {
-          name: "install",
-          path: "install",
-          handler: h
-        }), React.createElement(s, {
-          name: "help",
-          path: "help",
-          handler: g
-        })), React.createElement(i, {
-          to: "settings"
-        }));
-      Router.run(f, function (e, n) {
-        var a = null;
-        try {
-          a = n.routes[1].name, a = n.routes[2].name
-        } catch (o) {}
-        document.body.setAttribute("data-route", a || ""), React.render(React.createElement(e, null), t, function () {
-          c.load()
-        })
-      })
-    }), window.environment = [], window.targetLink = "_self", -1 == window.location.protocol.indexOf("http") ? window.environment.push("extension") : window.environment.push("site"), -1 != window.location.href.indexOf("clipper/") ? window.environment.push("clipper") : -1 != window.location.search.indexOf("isMac") && (window.environment.push("mac"), window.targetLink = "_blank"), -1 != window.location.href.indexOf("only_current") && window.environment.push("only_current"), -1 != navigator.appVersion.indexOf("Win") && window.environment.push("Windows"), -1 != navigator.appVersion.indexOf("Mac") && window.environment.push("MacOS"), -1 != navigator.appVersion.indexOf("X11") && window.environment.push("UNIX"), -1 != navigator.appVersion.indexOf("Linux") && window.environment.push("Linux");
-    for (var l in window.environment) document.documentElement.classList.add(window.environment[l])
-  }, {
-    "../actions/Toast": 6,
-    "../actions/User": 7,
-    "../app/components/Helpers/Icon.js": 8,
-    "../app/components/Toast.js": 10,
-    "../app/config": 11,
-    "../modules/api.js": 12,
-    "../modules/network.js": 13,
-    "../modules/translate": 14,
-    "../stores/User": 29,
-    "./routes/Export": 16,
-    "./routes/Help": 17,
-    "./routes/Import": 18,
-    "./routes/Install": 19,
-    "./routes/Integration": 20,
-    "./routes/Pro": 21,
-    "./routes/Profile": 22,
-    "./routes/RSS": 23,
-    "./routes/Settings": 24,
-    localforage: "localforage",
-    lodash: "lodash",
-    moment: "moment",
-    react: "react",
-    "react-document-title": "react-document-title",
-    "react-router": "react-router",
-    reflux: "reflux",
-    string: "string"
-  }],
-  26: [function (e, n, a) {
-    var o = e("../actions/Collections"),
-      s = e("../actions/Childrens"),
-      i = e("../actions/User"),
-      r = e("../stores/Stats"),
-      c = e("../actions/Bookmarks"),
-      l = [],
-      u = -2,
-      m = !1,
-      d = "sync";
-    "undefined" != typeof isIOSapp && (u = 0);
-    var p = [],
-      h = function () {
-        p = [{
-          _id: 0,
-          title: t.s("all"),
-          view: "list"
-        }, {
-          _id: -2,
-          title: t.s("favoriteSites"),
-          view: "simple"
-        }, {
-          _id: -1,
-          title: t.s("defaultCollection--1"),
-          view: "list"
-        }, {
-          _id: -99,
-          title: t.s("defaultCollection--99"),
-          view: "list"
-        }, {
-          _id: -3,
-          title: t.s("articles"),
-          view: "list"
-        }, {
-          _id: -4,
-          title: t.s("images") + " " + t.s("und") + " " + t.s("videos").toLowerCase(),
-          view: "masonry"
-        }];
-        for (var e in p) p[e].view = Api.getItem("collection/" + p[e]._id + "/view") || p[e].view, p[e].cover = [(window.pathPrefix || "") + "../common/images/collection" + p[e]._id + ".png"]
-      };
-    document ? window.languageLoaded ? h() : window.addEventListener("langLoaded", h) : h();
-    var g = Reflux.createStore({
-      init: function () {
-        this.listenTo(o.load, this.onLoad), this.listenTo(o.setCurrent, this.onSetCurrent), this.listenTo(o.updateCollection, this.onUpdateCollection), this.listenTo(o.insertCollection, this.onInsertCollection), this.listenTo(o.removeCollection, this.onRemoveCollection), this.listenTo(o.updateCountCollection, this.onUpdateCountCollection), this.listenTo(o.updateColorCollection, this.onUpdateColorCollection)
-      },
-      _saveCache: function () {
-        switch (d) {
-          case "async":
-            try {
-              ls.setItem("collections", l).then(function () {})["catch"](function (e) {})
-            } catch (e) {}
-            break;
-          case "sync":
-            Api.setItem("collections", JSON.stringify(l))
-        }
-      },
-      onLoad: function (e) {
-        var t = this;
-        m || Api.get("collections", function (e) {
-          if (m = !0, e.result) {
-            l = e.items || [], t._insertDefaults(), t.trigger(l), t._saveCache(), UserStore._checkGroupsStability();
-            try {
-              window.Intercom("update", {
-                collections: l.length
-              })
-            } catch (n) {}
-          }
-        })
-      },
-      onLoadId: function (e, t) {
-        var n = this,
-          a = _.findIndex(l, {
-            _id: e
-          }); - 1 == a ? Api.get("collection/" + e, function (e) {
-          e.result && (n._updateOrInsertItem(e.item), n.trigger(l)), "function" == typeof t && t()
-        }) : "function" == typeof t && t()
-      },
-      onSetCurrent: function (e) {
-        if (null == e) return u = null, void this.trigger(l);
-        u = parseInt(e);
-        var t = _.findIndex(l, {
-          _id: u
-        }); - 1 != t ? this.trigger(l) : this.onLoadId(u)
-      },
-      onUpdateCollection: function (e, n) {
-        var a = this,
-          o = !1;
-        "undefined" == typeof e.updateModel && (e.updateModel = !0), ("number" == typeof e.item.group || "number" == typeof e.item.parentId) && (o = !0), "number" == typeof e.item.group ? e.item.parentId = "root" : delete e.item.group, o && i.updateCollection({
-          _id: e.item._id,
-          group: e.item.group
-        }), Api.put("collection/" + e.item._id, e.item, function (o) {
-          o.result ? (a._updateOrInsertItem(o.item), e.silent || Toasts.show({
-            text: t.s("saveSuccess"),
-            title: e.item.title
-          })) : e.silent || Toasts.show({
-            text: strings.getErrorFromJSON(o),
-            title: e.item.title,
-            status: "error"
-          }), "function" == typeof n && n((o.item || [])._id || !1)
-        });
-        var s = _.findIndex(l, {
-          _id: parseInt(e.item._id)
-        });
-        if (-1 != s && e.updateModel) {
-          for (var r in e.item) l[s][r] = e.item[r];
-          if (this.trigger(l), l[s]._id <= 0)
-            for (var r in e.item) Api.setItem("collection/" + e.item._id + "/" + r, e.item[r]);
-          this._saveCache()
-        }
-      },
-      onInsertCollection: function (e, n) {
-        var a = this;
-        Api.post("collection", e.item, function (o) {
-          o.result ? (l.push(o.item), "number" == typeof e.item.group && (e.item.parentId = "root", i.updateCollection({
-            _id: o.item._id,
-            group: e.item.group
-          })), e.silent || Toasts.show({
-            text: t.s("addSuccess"),
-            title: e.item.title
-          }), a.trigger(l), a._saveCache()) : e.silent || Toasts.show({
-            text: strings.getErrorFromJSON(o),
-            title: e.item.title,
-            status: "error"
-          }), "function" == typeof n && n((o.item || [])._id || !1)
-        })
-      },
-      onRemoveCollection: function (e, n) {
-        var a = this,
-          o = function () {
-            Api.del("collection/" + e.item._id, function (o) {
-              if (o.result) {
-                if (e.item._id > 0) {
-                  var r = _.findIndex(l, {
-                    _id: e.item._id
-                  }); - 1 != r && l.splice(r, 1)
+        return current;
+    },
+
+    setBackground: function(pathPrefix) {
+        var i = this.getBackgroundSelected();
+
+        if (i>=0){
+            var current = this.backgroundImages[i];
+
+            /*var setBg = function() {
+                if (document.getElementById('app-background')!=null)
+                    document.getElementById('app-background').style.backgroundImage = "url("+(pathPrefix||"")+current.src+")";
+            }
+            if (document.getElementById('app-background')!=null)
+                setBg();
+            else
+                document.addEventListener("DOMContentLoaded", setBg);*/
+
+            //document.documentElement.style.backgroundImage = "url("+(pathPrefix||"")+current.src+")";
+            document.documentElement.classList.remove("contrast-white");
+            document.documentElement.classList.remove("contrast-black");
+            document.documentElement.classList.add("contrast-"+current.contrast||"black");
+
+            var trySetBg = function(bg) {
+                var setBg = function(){
+                    if (document.getElementById('app-background')!=null)
+                        document.getElementById('app-background').style.backgroundImage='url("'+bg+'")';
                 }
-                Toasts.show({
-                  text: -99 != e.item._id ? t.s("removeCollectionSuccess") : t.s("trashEmpty"),
-                  title: e.item.title
-                }), a.trigger(l), a._saveCache(), s.removeCollection(e), i.saveGroups(), a.getCurrentId() == e.item._id && c.reset(!0)
-              } else Toasts.show({
-                text: strings.getErrorFromJSON(o),
-                title: e.item.title,
-                status: "error"
-              });
-              "function" == typeof n && n(o.result)
-            })
-          };
-        e.silent ? o() : confirm(t.s("collectionDeleteConfirm")) ? o() : "function" == typeof n && n(!1)
-      },
-      onUpdateCountCollection: function (e) {
-        var t = _.findIndex(l, {
-          _id: parseInt(e._id)
-        });
-        if (-1 != t) {
-          switch (e.count) {
-            case "+":
-              l[t].count++;
-              break;
-            case "-":
-              l[t].count--;
-              break;
-            default:
-              l[t].count = e.count
-          }
-          this.trigger(l)
-        }
-      },
-      onUpdateColorCollection: function (e) {
-        var t = _.findIndex(l, {
-          _id: parseInt(e._id)
-        }); - 1 != t && (l[t].color = e.color, (l[t].cover || []).length > 0 && Api.setItem("collection_color_" + l[t].cover[0], e.color), this.trigger(l))
-      },
-      getCollections: function () {
-        return l
-      },
-      getCurrentId: function (e) {
-        if (e) switch (e) {
-          case "file":
-            if (0 > u && -1 > u) return -1
-        }
-        return u
-      },
-      getCollection: function (e) {
-        e = parseInt(e);
-        var t = _.findIndex(l, {
-          _id: e
-        });
-        return -1 != t ? (0 === e ? l[t].count = r.getAllCount() : 0 > e && (l[t].count = r.getCollectionCount(e)), this._prepareItem(l[t])) : null
-      },
-      getCount: function () {
-        return l.length
-      },
-      reset: function (e) {
-        e = e || {}, d = "undefined" != typeof e.speed ? e.speed : "sync", l = [], u = -2, "undefined" != typeof isIOSapp && (u = 0), m = !1, 0 != l.length || m || this._resetFromCache()
-      },
-      _updateOrInsertItem: function (e) {
-        var t = _.findIndex(l, {
-          _id: parseInt(e._id)
-        }); - 1 != t ? l[t] = e : l.push(e)
-      },
-      _insertDefaults: function () {
-        var e = this;
-        p.forEach(function (t) {
-          e._updateOrInsertItem(t)
-        })
-      },
-      _resetFromCache: function () {
-        if (!window.cacheDisabled) switch (d) {
-          case "async":
-            var e = this;
-            try {
-              ls.getItem("collections").then(function (t) {
-                t && 0 == l.length && (l = t, e._insertDefaults(), e.trigger(l))
-              })["catch"](function (e) {})
-            } catch (t) {}
-            break;
-          case "sync":
-            var n = Api.getItem("collections");
-            try {
-              n = JSON.parse(n)
-            } catch (t) {
-              t && (n = null)
+                if (document.getElementById('app-background')!=null)
+                    setBg();
+                else
+                    document.addEventListener("DOMContentLoaded", setBg);
+            };
+
+            //Load from HTTP
+            if (!current.src){
+                trySetBg("about:blank");
+                return;
             }
-            "object" == typeof n && null != n && (l = n, this._insertDefaults())
+
+            var url = (pathPrefix||"")+current.src;
+            var tempBg = null;
+            try{localStorage.getItem(url);}catch(e){}
+
+            if (tempBg == null){
+                var xmlhttp = new XMLHttpRequest();
+                var fileReader = new FileReader();
+
+                xmlhttp.onload = function() {
+                  if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var blob = new Blob([xmlhttp.response], {type: "image/jpeg"});
+                    fileReader.onload = function (evt) {
+                        // Read out file contents as a Data URL
+                        var result = evt.target.result;
+                        
+                        trySetBg(result);
+                        try{localStorage.setItem(url, result);}catch(e){}
+                    };
+                    // Load blob as Data URL
+                    fileReader.readAsDataURL(blob);
+                  }
+                }
+                xmlhttp.open("GET", url, true);
+                xmlhttp.responseType = 'arraybuffer';
+                xmlhttp.send();
+            }else{
+                trySetBg(tempBg);
+            }
         }
-      },
-      _prepareItem: function (e) {
-        if ("undefined" != typeof e.parent && "undefined" != typeof e.parent.$id && (e.parentId = e.parent.$id, delete e.group), "undefined" == typeof e.parentId) {
-          var t = UserStore.getCollectionGroup(e._id);
-          null != t && (e.group = parseInt(t))
-        }
-        return (e.cover || []).length > 0 && (e.color = Api.getItem("collection_color_" + e.cover[0])), e
-      },
-      _forceUpdate: function () {
-        this.trigger(l)
-      },
-      isLoading: function () {
-        return !m
+    },
+
+    defaultCollectionIcon: function() {
+        return network.fixURL("/other/popup/img/icon-folder.png");
+    },
+
+    getImportLink: function() {
+        if (typeof window.environment != "undefined")
+            return network.fixURL("/other/import/import.html");
+        else
+            return "../import/index.html";
+    }
+}
+
+},{}],12:[function(require,module,exports){
+var request = require('superagent');
+
+function isQuotaExceeded(e) {
+  var quotaExceeded = false;
+  if (e) {
+    if (e.code) {
+      switch (e.code) {
+        case 22:
+          quotaExceeded = true;
+          break;
+        case 1014:
+          // Firefox
+          if (e.name === 'NS_ERROR_DOM_QUOTA_REACHED') {
+            quotaExceeded = true;
+          }
+          break;
       }
-    });
-    g.reset(), n.exports = g
-  }, {
-    "../actions/Bookmarks": 1,
-    "../actions/Childrens": 2,
-    "../actions/Collections": 3,
-    "../actions/User": 7,
-    "../stores/Stats": 27
-  }],
-  27: [function (e, t, n) {
-    var a = e("../actions/Stats"),
-      o = e("../actions/Collections"),
-      s = {},
-      i = !1,
-      r = 0,
-      c = !1,
-      l = Reflux.createStore({
-        init: function () {
-          this.listenTo(a.load, this.onLoad), this.listenTo(o.updateCountCollection, this.onUpdate)
-        },
-        onLoad: function () {
-          var e = this;
-          if (!i) {
+    } else if (e.number === -2147024882) {
+      // Internet Explorer 8
+      quotaExceeded = true;
+    }
+  }
+  return quotaExceeded;
+}
+
+module.exports = {
+    timeout: 6000,
+
+    makeFinalURL: function(url) {
+      if (url.indexOf('http')==0)
+        return url;
+      else
+        return consts.apiPrefix + url;
+    },
+
+    getText: function(url, callback) {
+      request
+          .get(url)
+          .set('Content-Encoding', 'gzip')
+          .end(function(err, res){
+              if (typeof res == "undefined") {callback({});return;}
+              callback((res||{}).text||null);
+          });
+    },
+
+    "get": function(url,callback,conf) {
+        conf = conf || {};
+
+        request
+            .get(this.makeFinalURL(url))
+            .timeout(this.timeout)
+            .set('Accept', 'application/json')
+            .set('Content-Encoding', 'gzip')
+            .end(function(err, res){
+                if (typeof res == "undefined") {callback({});return;}
+                if (conf.text)
+                    callback(res.text||"");
+                else
+                    callback(res.body||{});
+            });
+    },
+
+    post: function(url,data,callback) {
+        request
+            .post(this.makeFinalURL(url))
+            .timeout(this.timeout)
+            .send(data)
+            .set('Accept', 'application/json')
+            //.set('Content-Encoding', 'gzip')
+            .end(function(err, res){
+                if (typeof res == "undefined") {callback({});return;}
+                callback(res.body||{});
+            });
+    },
+
+    put: function(url,data,callback) {
+        request
+            .put(this.makeFinalURL(url))
+            .timeout(this.timeout)
+            .send(data)
+            .set('Accept', 'application/json')
+            //.set('Content-Encoding', 'gzip')
+            .end(function(err, res){
+                if (typeof res == "undefined") {callback({});return;}
+                callback(res.body||{});
+            });
+    },
+
+    del: function(url,callback) {
+        request
+            .del(this.makeFinalURL(url))
+            .timeout(this.timeout)
+            .set('Accept', 'application/json')
+            //.set('Content-Encoding', 'gzip')
+            .end(function(err, res){
+                if (typeof res == "undefined") {callback({});return;}
+                callback(res.body||{});
+            });
+    },
+
+    upload: function(url, file, onProgress, callback) {
+        request
+            .post(this.makeFinalURL(url))
+            .attach(file.name, file.file, file.file.name)
+            .on('progress', function(e) {
+                var progress = parseInt(e.percent||0);
+                //if ((progress % 20 === 0)||(progress===100))
+                    onProgress(progress);
+            })
+            .end(function(err, res){
+                if (typeof res == "undefined") {callback({});return;}
+                callback(res.body||{});
+            });
+    },
+
+    getItem: function(key) {
+        var LST;
+        try {
+            LST = localStorage || window.localStorage;
+        } catch(e) {}
+
+        if (LST)
+            return LST.getItem(key);
+        else
+            return null;
+    },
+
+    setItem: function(key, value) {
+        var LST;
+        try {
+            LST = localStorage || window.localStorage;
+        } catch(e) {}
+
+        if (LST)
             try {
-              ls.getItem("stat").then(function (t) {
-                t && !c && (s = t, e._countAll(), e.trigger(s))
-              })["catch"](function (e) {})
-            } catch (t) {}
-            i = !0, Api.get("stat", function (t) {
-              if (t.result) {
-                s = t.items, e._countAll();
-                try {
-                  ls.setItem("stat", s).then(function () {})["catch"](function (e) {})
-                } catch (n) {}
-                e.trigger(s)
+                LST.setItem(key, value);
+            } catch(e) {
+                if (isQuotaExceeded(e)) {
+                    // Storage full, maybe notify user or do some clean-up
+                    LST.clear();
+                }
+            }
+        else
+            console.log("No localStorage access");
+    },
+
+    removeItem: function(key) {
+        var LST;
+        try {
+            LST = localStorage || window.localStorage;
+        } catch(e) {}
+
+        if (LST)
+            LST.removeItem(key);
+        else
+            console.log("No localStorage access");
+    },
+
+    clear: function() {
+        var LST;
+        try {
+            LST = localStorage || window.localStorage;
+        } catch(e) {}
+
+        if (LST)
+            LST.clear();
+        else
+            console.log("No localStorage access");
+    }
+}
+
+},{"superagent":"superagent"}],13:[function(require,module,exports){
+module.exports = {
+    getDomain: function(url){
+      url = url || "";
+      if(typeof document != "undefined"){
+          var a = document.createElement('a');
+          a.href = url;
+          var host = a.hostname;
+          delete a;
+          return host;
+      }else{
+        var domain;
+        //find & remove protocol (http, ftp, etc.) and get domain
+        if (url.indexOf("://") > -1) {
+            domain = url.split('/')[2];
+        }
+        else {
+            domain = url.split('/')[0];
+        }
+
+        //find & remove port number
+        domain = domain.split(':')[0];
+
+        return domain;
+      }
+    },
+
+    fixURL: function(s) {
+        try{
+            s = s.trim();
+        } catch(e) {if(e)s="";}
+
+        if (s.indexOf('//')==0)
+            return "http:"+s;
+        else if (s.indexOf('/')==0)/*((s.indexOf('http://')!=0)&&(s.indexOf('https://')!=0)&&(s.indexOf('chrome-extension://')!=0))*/
+            return "https://raindrop.io"+s;
+        else
+            return s;
+    },
+
+    favIcon: function(s) {
+        return "https://raindrop.io/favicon/"+(s||"");
+    },
+
+    thumb: function(s,width) {
+        try{
+            s = s.trim();
+        } catch(e) {if(e)s="";}
+
+        if (typeof width == "undefined")
+            width = 230;
+
+        if (s!="") {
+            if (s.indexOf('http')!=0)
+                return this.fixURL(s);
+            else if (s.indexOf('https://raindrop.io')==0)
+                return s;
+            else if (s.indexOf('http://raindrop.io')==0)
+                return s;
+            else
+                return "https://raindrop.io/makethumb/?url=" + encodeURIComponent(s) + "&width=" + width;
+        }
+        else
+            return "about:blank";
+    },
+
+    cleanDomain: function(domain) {
+        try{
+            var temp = domain.split('.'), maxSize = 2;
+            if (temp.length>maxSize){
+                if ((temp[ temp.length-2 ] == 'org')||(temp[ temp.length-2 ] == 'net')||(temp[ temp.length-2 ] == 'com')||(temp[ temp.length-2 ] == 'co'))
+                    maxSize = 3;
+
+                temp.splice(0, temp.length-maxSize );
+                domain = temp.join('.');
+            }
+        }catch(e){}
+
+        return domain;
+    },
+
+    linkTarget: function() {
+        var _target = "_self";
+        if ((window.environment||[]).indexOf("clipper")!=-1)
+            _target = "_top";
+
+        if ((window.environment||[]).indexOf("safari_popup")!=-1)
+            _target = "_blank";
+        
+        return _target;
+    },
+
+    settingsURL: function() {
+        var sURL = "../settings/settings.html#/settings";
+        var _target = "_self";
+        if ((window.environment||[]).indexOf("clipper")!=-1){
+            _target = "_blank";
+        }
+        
+        if (window.location.protocol.indexOf("http")!=-1) {
+            sURL = "/settings#/settings";
+        }
+        if ((window.environment||[]).indexOf("mac")!=-1)
+        {
+            sURL = "../settings/settings.html?isMac#/settings";
+        }
+        
+        return sURL;
+    }
+};
+
+},{}],14:[function(require,module,exports){
+require("moment/locale/id.js");
+require("moment/locale/de.js");
+require("moment/locale/es.js");
+require("moment/locale/fr.js");
+require("moment/locale/nl.js");
+require("moment/locale/pl.js");
+require("moment/locale/pt.js");
+require("moment/locale/fi.js");
+require("moment/locale/tr.js");
+require("moment/locale/ru.js");
+require("moment/locale/uk.js");
+require("moment/locale/ko.js");
+require("moment/locale/zh-cn.js");
+require("moment/locale/zh-tw.js");
+
+module.exports = {
+    defaultLang: "en_US",
+    currentLang: "en_US",
+    //strings: require("./languages"),
+
+    getLang: function() {
+        return this.currentLang;
+    },
+
+    cleanLang: function(lang) {
+      for(var i in consts.languages)
+        if (i.indexOf(lang)==0){
+          return i;
+        }
+      return this.defaultLang;
+    },
+
+    setLang: function(lang) {
+        //get defautls if lang not presented
+        if (typeof lang == "undefined"){
+          lang = null;
+          try{lang = localStorage.getItem("language")||null;}catch(e){}
+
+          if (lang==null){
+            var browserLang = navigator.language || navigator.userLanguage || "";
+            try{
+              browserLang = browserLang.trim().substr(0,2).toLowerCase();
+            } catch(e) {if (e) browserLang=""; }
+
+            if (browserLang!=""){
+              lang = this.cleanLang(browserLang);
+            }
+          }
+        }
+
+        if (typeof consts.languages[lang] == "undefined")
+            lang = this.defaultLang;
+
+        this.currentLang = lang;
+        try{localStorage.setItem("language", this.currentLang);}catch(e){}
+        if (typeof moment != "undefined")
+          moment.locale(this.currentLang);
+        else if (typeof window.moment != "undefined")
+          window.moment.locale(this.currentLang);
+    },
+
+    s: function(s) {
+      if (typeof window["lang_"+this.currentLang] == "undefined")
+        return s;
+
+      if (typeof window["lang_"+this.currentLang][s] != "undefined")
+          return window["lang_"+this.currentLang][s];
+      else
+          return s;
+    },
+
+    initJSfile: function() {
+      /*var script = document.createElement("script");
+      script.src = (window.pathPrefix||"")+"../common/js/"+this.currentLang+".js";
+      document.head.appendChild(script);*/
+
+      var _this = this;
+      var xmlhttp = new XMLHttpRequest();
+      var url = (window.pathPrefix||"")+"../common/js/"+this.currentLang+".js";
+
+      var e = new Event('langLoaded');
+      xmlhttp.onreadystatechange = function() {
+          if (xmlhttp.readyState == 4 && xmlhttp.responseText) {
+              window["lang_"+_this.currentLang] = JSON.parse(xmlhttp.responseText);
+              window.languageLoaded = true;
+              window.dispatchEvent(e);
+          }
+      }
+      xmlhttp.open("GET", url, true);
+      xmlhttp.send();
+    }
+}
+
+},{"moment/locale/de.js":"moment/locale/de.js","moment/locale/es.js":"moment/locale/es.js","moment/locale/fi.js":"moment/locale/fi.js","moment/locale/fr.js":"moment/locale/fr.js","moment/locale/id.js":"moment/locale/id.js","moment/locale/ko.js":"moment/locale/ko.js","moment/locale/nl.js":"moment/locale/nl.js","moment/locale/pl.js":"moment/locale/pl.js","moment/locale/pt.js":"moment/locale/pt.js","moment/locale/ru.js":"moment/locale/ru.js","moment/locale/tr.js":"moment/locale/tr.js","moment/locale/uk.js":"moment/locale/uk.js","moment/locale/zh-cn.js":"moment/locale/zh-cn.js","moment/locale/zh-tw.js":"moment/locale/zh-tw.js"}],15:[function(require,module,exports){
+var ReactCSSTransitionGroup = require('react/addons').addons.CSSTransitionGroup;
+
+module.exports = React.createClass({displayName: "exports",
+	getInitialState: function() {
+		return {
+			index:0
+		}
+	},
+
+	handleForward: function(e) {
+		e.preventDefault();
+		if (this.props.images.length>this.state.index+1)
+			this.setState({index: this.state.index+1});
+		else
+			this.setState({index: 0});
+	},
+
+	render: function() {
+		var forward = null;
+		if (this.props.images.length>1)
+			forward = React.createElement("a", {href: "", className: "action-icon", onClick: this.handleForward}, React.createElement(Icon, {name: "forward"}));
+		return (
+			React.createElement("div", {className: "slider"}, 
+				forward, 
+
+					React.createElement(ReactCSSTransitionGroup, {transitionName: "carousel"}, 
+						React.createElement("img", {src: this.props.images[this.state.index], alt: "", key: this.props.images[this.state.index]})
+					), 
+
+				React.createElement("img", {className: "space", src: this.props.images[this.state.index], alt: ""})
+			)
+		);
+	}
+});
+
+},{"react/addons":"react/addons"}],16:[function(require,module,exports){
+module.exports = React.createClass({displayName: "exports",
+	componentDidMount: function() {
+		this.props.changeTitle(t.s("exportBookmarks"));
+	},
+
+	render: function() {
+		return (
+			React.createElement("div", {className: "page-wrap"}, 
+				React.createElement("section", null, 
+					React.createElement("header", null, 
+						React.createElement("h2", null, t.s("exportBookmarks"))
+					), 
+
+					React.createElement("article", null, 
+						React.createElement("div", {className: "list"}, 
+							React.createElement("a", {href: consts.host+"/api/export", target: window.targetLink, className: "item", download: true}, 
+								React.createElement("span", {className: "title"}, t.s("allBookmarks")), 
+								React.createElement("span", {className: "block"}, 
+									".html" 
+								), 
+								React.createElement("span", {className: "forward last-icon"}, React.createElement(Icon, {name: "chevron-right"}))
+							)
+						)
+					)
+				)
+			)
+		);
+	}
+});
+
+},{}],17:[function(require,module,exports){
+var UserVoice = require("../../app/components/Helpers/UserVoice");
+
+module.exports = React.createClass({displayName: "exports",
+	componentDidMount: function() {
+		this.props.changeTitle(t.s("help"));
+	},
+
+	render: function() {
+		return (
+			React.createElement("div", {className: "page-wrap"}, 
+				React.createElement("section", null, 
+					React.createElement("header", null, 
+						React.createElement("h2", null, t.s("help")), 
+						React.createElement("p", null, t.s("haveIdeas"))
+					), 
+
+					React.createElement("article", null, 
+						React.createElement(UserVoice, null), 
+						React.createElement("br", null), 
+						"Send your emails to ", React.createElement("a", {href: "mailto:info@raindrop.io"}, "info@raindrop.io")
+					)
+				)
+			)
+		);
+	}
+});
+
+},{"../../app/components/Helpers/UserVoice":9}],18:[function(require,module,exports){
+module.exports = React.createClass({displayName: "exports",
+	componentDidMount: function() {
+		this.props.changeTitle(t.s("importBookmarks"));
+	},
+	
+	render: function() {
+		return (React.createElement("iframe", {src: consts.host+"/other/import/import.html"}));
+	}
+});
+
+},{}],19:[function(require,module,exports){
+var Slider = require("../components/Slider");
+
+module.exports = React.createClass({displayName: "exports",
+	componentDidMount: function() {
+		this.props.changeTitle(t.s("install"));
+	},
+	
+	render: function() {
+		return (
+			React.createElement("div", {className: "page-wrap"}, 
+				React.createElement("div", {className: "platforms"}, 
+					React.createElement("div", {className: "item hide-on-clipper", style: {backgroundColor: "#707D87"}}, 
+						React.createElement("img", {src: consts.host+"/img/marketing/teaser/extension.png", alt: ""}), 
+						React.createElement("div", {className: "title"}, 
+							React.createElement("div", {className: "desc"}, t.s("browserPlugin")), 
+							React.createElement("div", {className: "links"}, 
+								React.createElement("a", {href: "https://chrome.google.com/webstore/detail/raindropio/ldgfbffkinooeloadekpmfoklnobpien", target: "_blank"}, React.createElement("img", {src: consts.host+"/img/marketing/teaser/badge-chrome.png", height: "32", alt: ""})), 
+								React.createElement("a", {href: "https://addons.mozilla.org/firefox/addon/raindropio/", target: "_blank"}, React.createElement("img", {src: consts.host+"/img/marketing/teaser/badge-firefox.png", height: "32", alt: ""})), 
+								React.createElement("a", {href: "https://raindrop.io/releases/safari.safariextz", target: "_blank"}, React.createElement("img", {src: consts.host+"/img/marketing/teaser/badge-safari.png", height: "32", alt: ""})), 
+								React.createElement("a", {href: "https://addons.opera.com/extensions/details/raindropio-smart-bookmarks", target: "_blank"}, React.createElement("img", {src: consts.host+"/img/marketing/teaser/badge-opera.png", height: "32", alt: ""}))
+							)
+						)
+					), 
+
+					React.createElement("div", {className: "item", style: {backgroundColor: "#4B88B7"}}, 
+						React.createElement("img", {src: consts.host+"/img/marketing/teaser/ios.png", alt: ""}), 
+						React.createElement("div", {className: "title"}, 
+							React.createElement("div", {className: "desc"}, "iPhone & iPad"), 
+							React.createElement("div", {className: "links"}, 
+								React.createElement("a", {href: "https://itunes.apple.com/us/app/raindrop.io-keep-your-favorites/id1021913807", target: "_blank"}, React.createElement("img", {src: consts.host+"/img/marketing/teaser/badge-ios.png", height: "32", alt: ""}))
+							)
+						)
+					), 
+
+					React.createElement("div", {className: "item hide-on-mac", style: {backgroundColor: "#4CB580"}}, 
+						React.createElement("img", {src: consts.host+"/img/marketing/teaser/android.png", alt: ""}), 
+						React.createElement("div", {className: "title"}, 
+							React.createElement("div", {className: "desc"}, "Android Phone & Tablet"), 
+							React.createElement("div", {className: "links"}, 
+								React.createElement("a", {href: "https://play.google.com/store/apps/details?id=io.raindrop.raindropio&hl=en", target: "_blank"}, React.createElement("img", {src: consts.host+"/img/marketing/teaser/badge-android.png", height: "38", alt: ""}))
+							)
+						)
+					), 
+
+					React.createElement("div", {className: "item", style: {backgroundColor: "#7753CD"}}, 
+						React.createElement("img", {src: consts.host+"/img/marketing/teaser/mac.png", alt: ""}), 
+						React.createElement("div", {className: "title"}, 
+							React.createElement("div", {className: "desc"}, "Mac OS X"), 
+							React.createElement("div", {className: "links"}, 
+								React.createElement("a", {href: "https://itunes.apple.com/app/raindrop.io-keep-your-favorites/id957810159", target: "_blank"}, React.createElement("img", {src: consts.host+"/img/marketing/teaser/badge-mac.png", height: "32", alt: ""}))
+							)
+						)
+					), 
+
+					React.createElement("div", {className: "item", style: {backgroundColor: "#E8674F"}}, 
+						React.createElement("img", {src: consts.host+"/img/marketing/teaser/mac.png", alt: ""}), 
+						React.createElement("div", {className: "title"}, 
+							React.createElement("div", {className: "desc"}, t.s("pro_speed_dial")), 
+							React.createElement("div", {className: "links"}, 
+								React.createElement("a", {href: "https://chrome.google.com/webstore/detail/raindropio-new-tab-speed/knifgjkgmgdinjeecneiphoniamhgbof", target: "_blank"}, React.createElement("img", {src: consts.host+"/img/marketing/teaser/badge-chrome.png", height: "32", alt: ""}))
+								/*<a href="https://raindrop.io/releases/newtab.xpi" target="_blank"><img src={consts.host+"/img/marketing/teaser/badge-firefox.png"} height="32" alt="" /></a>*/
+							)
+						)
+					)
+				)				
+			)
+		);
+	}
+});
+
+},{"../components/Slider":15}],20:[function(require,module,exports){
+module.exports = React.createClass({displayName: "exports",
+	getInitialState: function() {
+		return {
+			user: UserStore.getUser(),
+			loading: true
+		}
+	},
+
+	onUserChange: function(user) {
+        if (this.isMounted())
+        this.setState({
+            user: user,
+            password: {},
+            loading: false
+        });
+    },
+
+    componentWillMount: function() {
+        UserStore.onLoad();
+    },
+
+    componentDidMount: function() {
+    	this.props.changeTitle("Integration");
+        this.unsubscribeUser = UserStore.listen(this.onUserChange);
+    },
+
+    componentWillUnmount: function() {
+        this.unsubscribeUser();
+    },
+
+	render: function() {
+		var dropbox = false, dropboxLink=consts.host+"/dropbox/authorize"; _this = this;
+		try{dropbox=_this.state.user.dropbox.enabled;}catch(e){}
+		if (dropbox)
+			dropboxLink=consts.host+"/dropbox/revoke";
+
+		if (!UserStore.isPro())
+			dropboxLink="#/settings/pro"
+
+		return (
+			React.createElement("div", {className: "page-wrap"}, 
+				React.createElement("section", null, 
+					React.createElement("header", null, 
+						React.createElement("h2", null, "Integration")
+					), 
+
+					React.createElement("article", null, 
+						React.createElement("div", {className: "list"}, 
+							React.createElement("a", {href: dropboxLink, target: window.targetLink, className: "item"}, 
+								React.createElement("span", {className: "title", style: {flex:1}}, 
+									t.s("pro_dropbox"), 
+									React.createElement("span", {className: "subtitle"}, t.s("pro_dropboxD"))
+								), 
+								React.createElement("span", {className: "last-icon"}, 
+									React.createElement("div", {className: "extra-checkbox"+(dropbox?" active":"")})
+								)
+							)
+						)
+					)
+				)
+			)
+		);
+	}
+});
+
+},{}],21:[function(require,module,exports){
+module.exports = React.createClass({displayName: "exports",
+	getInitialState: function() {
+		return {
+			user: UserStore.getUser(),
+			loading: true
+		}
+	},
+
+	onUserChange: function(user) {
+        if (this.isMounted())
+        this.setState({
+            user: user,
+            loading: false
+        });
+    },
+
+    componentWillMount: function() {
+        UserStore.onLoad();
+    },
+
+    componentDidMount: function() {
+    	this.props.changeTitle(t.s("upgradeAccount"));
+        this.unsubscribeUser = UserStore.listen(this.onUserChange);
+    },
+
+    componentWillUnmount: function() {
+        this.unsubscribeUser();
+    },
+
+	renderFree: function() {
+		if (this.state.loading)
+			return (
+				React.createElement("div", {className: "page-wrap"}, 
+				React.createElement("section", null, 
+					React.createElement("header", null, 
+						React.createElement("h2", null, t.s("loading"), "...")
+					)
+				)
+				)
+			);
+		
+		return (
+			React.createElement("section", null, 
+				React.createElement("header", null, 
+					React.createElement("h2", null, t.s("upgradeAccount"))
+				), 
+
+				React.createElement("article", null, 
+					React.createElement("div", {className: "list"}, 
+						React.createElement("div", {className: "text"}, 
+							React.createElement("img", {className: "pull-right", src: consts.host+"/img/v3/pro-buy.png", width: "109", alt: ""}), 
+							React.createElement("strong", null, t.s("footerProAd"), " ", t.s("footerProAdD"), ":"), 
+							React.createElement("ul", null, 
+								React.createElement("li", null, t.s("nestedCollections")), 
+								React.createElement("li", null, t.s("dropboxBackup")), 
+								React.createElement("li", null, t.s("pro_nextFeatures")), 
+								React.createElement("li", null, t.s("pro_support")), 
+								React.createElement("li", null, t.s("pro_noAds"))
+							)
+						), 
+
+						React.createElement("a", {href: consts.host+"/pages/pricing", target: window.targetLink, className: "item"}, 
+							React.createElement("span", {className: "title", style: {flex:1}}, t.s("compareFreePro")), 
+							React.createElement("span", {className: "forward"}, React.createElement(Icon, {name: "chevron-right"}))
+						), 
+
+						React.createElement("a", {href: consts.host+"/static/pro", target: window.targetLink, className: "item accent"}, 
+							React.createElement("span", {className: "title"}, t.s("upgradeToPro")), 
+							React.createElement("span", {className: "forward"}, React.createElement(Icon, {name: "chevron-right"}))
+						)
+					)
+				)
+			)
+		);
+	},
+
+	renderPro: function() {
+		return (
+			React.createElement("section", null, 
+				React.createElement("header", null, 
+					React.createElement("h2", null, t.s("upgradeAccount"))
+				), 
+
+				React.createElement("article", null, 
+					React.createElement("div", {className: "list"}, 
+						React.createElement("div", {className: "text"}, 
+							React.createElement("strong", {style: {textTransform:"capitalize"}}, 
+								React.createElement(Icon, {name: "done", className: "icn-green pull-right"}), 
+								t.s("until") + " " + moment(UserStore.getUser().proExpire).format("ll")
+							)
+						), 
+
+						React.createElement("a", {href: consts.host+"/static/pro", target: window.targetLink, className: "item accent"}, 
+							React.createElement("span", {className: "title"}, t.s("renewPro")), 
+							React.createElement("span", {className: "forward"}, React.createElement(Icon, {name: "chevron-right"}))
+						)
+					)
+				)
+			)
+		);
+	},
+
+	render: function() {
+		return (
+			React.createElement("div", {className: "page-wrap"}, 
+				UserStore.isPro() ? this.renderPro() : this.renderFree(), 
+
+				React.createElement("section", null, 
+					React.createElement("header", null, 
+						React.createElement("h2", null, "Q&A")
+					), 
+
+					React.createElement("article", null, 
+						React.createElement("div", {className: "list"}, 
+							React.createElement("div", {className: "text"}, 
+								React.createElement("strong", null, "Where do I get started?"), 
+								React.createElement("p", null, 
+									"Start with the free plan — it’s the best choice if you want to test our apps. Plus, it’s completely free."
+								)
+							), 
+
+							React.createElement("div", {className: "text"}, 
+								React.createElement("strong", null, "Do I have to pay for my nested collections to keep them accessible?"), 
+								React.createElement("p", null, 
+									"No. Don’t worry, we won’t charge you for hosting your nested collections. The great news is that all your nested collections remain accessible even if your subscription ends or you’ve switched to the free plan."
+								)
+							), 
+
+							React.createElement("div", {className: "text"}, 
+								React.createElement("strong", null, "How can I cancel my subscription?"), 
+								React.createElement("p", null, 
+									"At any time you can cancel the subscription and get your money back. To do this, please ", React.createElement("a", {href: "#/settings/help"}, "contact us"), "."
+								)
+							), 
+
+							React.createElement("div", {className: "text"}, 
+								React.createElement("strong", null, "What happens at the end of the paid period?"), 
+								React.createElement("p", null, 
+									"When the period of paid subscription ends you automatically switch to the free plan. All your collections (including nested) will remain accessible, but if you want to create more nested collections you will have to switch to paid plan. Also Dropbox backup will be stopped."
+								)
+							), 
+
+							React.createElement("div", {className: "text"}, 
+								React.createElement("strong", null, "Is there any discount for an annual subscription?"), 
+								React.createElement("p", null, 
+									"Yes, we offer a 20% discount if you choose annual subscription."
+								)
+							), 
+
+							React.createElement("div", {className: "text"}, 
+								React.createElement("strong", null, "Got more questions?"), 
+								React.createElement("p", null, 
+									"We are happy to help you. ", React.createElement("a", {href: "#/settings/help"}, "Contact us"), "."
+								)
+							)
+						)
+					)
+				)
+			)
+		);
+	}
+});
+
+},{}],22:[function(require,module,exports){
+module.exports = React.createClass({displayName: "exports",
+	getInitialState: function() {
+		return {
+			user: UserStore.getUser(),
+			loading: true
+		}
+	},
+
+	onUserChange: function(user) {
+        if (this.isMounted())
+        this.setState({
+            user: user,
+            password: {},
+            loading: false
+        });
+    },
+
+    componentWillMount: function() {
+        UserStore.onLoad();
+    },
+
+    componentDidMount: function() {
+    	this.props.changeTitle(t.s("profile"));
+        this.unsubscribeUser = UserStore.listen(this.onUserChange);
+    },
+
+    componentWillUnmount: function() {
+        this.unsubscribeUser();
+    },
+
+    handleFullNameChange: function(e) {
+    	this.state.user.fullName = e.target.value;
+        this.setState({user: this.state.user});
+    },
+
+    handleEmailChange: function(e) {
+    	this.state.user.email = e.target.value;
+        this.setState({user: this.state.user});
+    },
+
+    handleSaveProfile: function(e) {
+    	e.preventDefault();
+
+    	var update = {fullName: this.state.user.fullName}, _this = this;
+    	if (this.state.user.email){
+    		update.email = this.state.user.email;
+
+    		if (!this.state.user.password){
+    			update.newpassword = this.state.password.next;
+    		}
+    	}
+
+    	this.setState({loading:true});
+    	Api.put("user", update, function(json) {
+    		if (json.result)
+    			Toasts.show({text: t.s('saveSuccess')});
+    		else
+    			Toasts.show({text: t.s('server'+json.error)});
+
+    		UserStore.onLoad();
+    	});
+    },
+
+    handleLangChange: function(e) {
+    	e.preventDefault();
+        var select = React.findDOMNode(this.refs.lang);
+        var lang = select.options[select.selectedIndex].value;
+
+        this.setState({loading:true});
+        UserActions.updateLanguage({lang:lang}, function(){
+        	t.setLang(lang);
+            location.reload();//window.history.back();
+        });
+    },
+
+
+    handleOldPasswordChange: function(e) {
+    	this.state.password.old = e.target.value;
+        this.setState({password: this.state.password});
+    },
+
+    handleNewPasswordChange: function(e) {
+    	this.state.password.next = e.target.value;
+        this.setState({password: this.state.password});
+    },
+
+    handleSavePassword: function(e) {
+    	e.preventDefault();
+    	var update = {
+    		oldpassword: this.state.password.old,
+    		newpassword: this.state.password.next,
+    		email: this.state.user.email,
+    		fullName: this.state.user.fullName
+    	}, _this = this;
+
+    	this.setState({loading:true});
+    	Api.put("user", update, function(json) {
+    		if (json.result)
+    			Toasts.show({text: t.s('saveSuccess')});
+    		else
+    			Toasts.show({text: t.s('server'+json.error)});
+
+    		UserStore.onLoad();
+    	});
+    },
+
+    handleRemoveAccount: function(e) {
+    	e.preventDefault();
+    	if (confirm(t.s("removeAccountD")))
+    		window.location = consts.host + "/api/user-remove";
+    },
+
+	render: function() {
+		if (this.state.loading)
+			return (
+				React.createElement("div", {className: "page-wrap"}, 
+				React.createElement("section", null, 
+					React.createElement("header", null, 
+						React.createElement("h2", null, t.s("loading"), "...")
+					)
+				)
+				)
+			);
+
+		if (!UserStore.isLogged())
+			return (
+				React.createElement("div", {className: "page-wrap"})
+			);
+
+		var languages = [];
+		for(var code in consts.languages)
+        	languages.push(
+        		React.createElement("option", {selected: t.getLang()==code, value: code}, consts.languages[code])
+        	);
+
+        var emailPassword = null;
+        if (!this.state.user.password)
+        	emailPassword = (
+        		React.createElement("label", {className: "item"}, 
+					React.createElement("span", {className: "title"}, t.s("password")), 
+					React.createElement("span", {className: "block"}, 
+						React.createElement("input", {type: "password", onChange: this.handleNewPasswordChange, placeholder: t.s("newPassword"), required: true})
+					)
+				)
+        	);
+
+		return (
+			React.createElement("div", {className: "page-wrap"}, 
+				React.createElement("section", null, 
+					React.createElement("header", null, 
+						React.createElement("h2", null, t.s("basicData")), 
+						React.createElement("p", null, 
+							t.s("changeAvatarInfo")
+						)
+					), 
+
+					React.createElement("article", null, 
+						React.createElement("form", {onSubmit: this.handleSaveProfile}, 
+							React.createElement("div", {className: "list"}, 
+								React.createElement("label", {className: "item"}, 
+									React.createElement("span", {className: "title"}, t.s("yourName")), 
+									React.createElement("span", {className: "block"}, 
+										React.createElement("input", {type: "text", defaultValue: this.state.user.fullName, onChange: this.handleFullNameChange, required: true})
+									)
+								), 
+
+								React.createElement("label", {className: "item"}, 
+									React.createElement("span", {className: "title"}, "Email"), 
+									React.createElement("span", {className: "block"}, 
+										React.createElement("input", {type: "email", defaultValue: this.state.user.email, onChange: this.handleEmailChange, placeholder: "your@email.com", required: true})
+									)
+								), 
+
+								emailPassword, 
+
+								React.createElement("label", {className: "item"}, 
+									React.createElement("span", {className: "title"}, t.s("language")), 
+									React.createElement("span", {className: "block"}, 
+										React.createElement("select", {ref: "lang", onChange: this.handleLangChange}, 
+											languages
+										)
+									)
+								), 
+
+								React.createElement("div", {className: "item"}, 
+									React.createElement("span", {className: "title"}, "ID"), 
+									React.createElement("span", {className: "block"}, 
+										this.state.user._id
+									)
+								), 
+
+								React.createElement("a", {href: "https://gravatar.com", target: "_blank", className: "item"}, 
+									React.createElement("span", {className: "title", style: {flex:1}}, t.s("changeAvatar")), 
+									React.createElement("span", {className: "forward"}, React.createElement(Icon, {name: "chevron-right"}))
+								)
+							), 
+
+							React.createElement("div", {className: "actions"}, 
+								React.createElement("input", {type: "submit", value: t.s("save")})
+							)
+						)
+					)
+				), 
+
+				React.createElement("section", {className: this.state.user.password ? "" : "hidden"}, 
+					React.createElement("header", null, 
+						React.createElement("h2", null, t.s("changePassword"))
+					), 
+
+					React.createElement("article", null, 
+						React.createElement("form", {onSubmit: this.handleSavePassword}, 
+							React.createElement("div", {className: "list"}, 
+								React.createElement("label", {className: "item"}, 
+									React.createElement("span", {className: "title"}, t.s("currentPassword")), 
+									React.createElement("span", {className: "block"}, 
+										React.createElement("input", {type: "password", onChange: this.handleOldPasswordChange, placeholder: t.s("currentPassword"), required: true})
+									)
+								), 
+
+								React.createElement("label", {className: "item"}, 
+									React.createElement("span", {className: "title"}, t.s("newPassword")), 
+									React.createElement("span", {className: "block"}, 
+										React.createElement("input", {type: "password", onChange: this.handleNewPasswordChange, placeholder: t.s("newPassword"), required: true})
+									)
+								)
+							), 
+
+							React.createElement("div", {className: "actions"}, 
+								React.createElement("a", {href: consts.host+"/account/reset", target: "_blank"}, t.s("recoverPassword")), 
+								React.createElement("input", {type: "submit", value: t.s("changePassword")})
+							)
+						)
+					)
+				), 
+
+				React.createElement("section", null, 
+					React.createElement("article", null, 
+						React.createElement("div", {className: "actions"}, 
+							React.createElement("a", {href: "", onClick: this.handleRemoveAccount}, t.s("removeAccount"))
+						)
+					)
+				)
+			)
+		);
+	}
+});
+
+},{}],23:[function(require,module,exports){
+var CollectionsActions = require('../../actions/Collections');
+var CollectionsStore = require('../../stores/Collections');
+
+module.exports = React.createClass({displayName: "exports",
+	getInitialState: function() {
+		return {
+			collections: CollectionsStore.getCollections(),
+			childrens: []
+		};
+	},
+
+	onCollectionsChange: function(collections) {
+        if (this.isMounted())
+        this.setState({
+            collections: collections
+        });
+    },
+
+    componentWillMount: function() {
+        CollectionsStore.onLoad();
+    },
+
+    componentDidMount: function() {
+    	this.props.changeTitle("RSS");
+
+    	var _this = this;
+        this.unsubscribeCollections = CollectionsStore.listen(this.onCollectionsChange);
+        Api.get("childrens", function(json){
+        	_this.setState({childrens: json.items||[]});
+        });
+    },
+
+    componentWillUnmount: function() {
+        this.unsubscribeCollections();
+    },
+
+    renderItem: function(item) {
+    	var cover = consts.defaultCollectionIcon();
+        try{cover = network.fixURL(item.cover[0]);}catch(e){}
+
+    	return (
+    		React.createElement("a", {href: item.link, target: window.targetLink, className: "item"}, 
+				React.createElement("span", {className: "title"}, item.title), 
+				React.createElement("span", {className: "block"}, 
+					item.link
+				), 
+				React.createElement("span", {className: "last-icon", style: {marginLeft:"20px"}}, React.createElement("img", {src: cover, className: "icon", height: "24", alt: ""}))
+			)
+    	);
+    },
+
+	render: function() {
+		var _this = this;
+
+		var collections = this.state.collections.concat(this.state.childrens);
+		collections = _.sortBy(collections, "title");
+
+		var privateList = [];
+		collections.forEach(function(item){
+			if ((item._id>0)&&(item.uniqKey))
+			privateList.push(_this.renderItem({
+				title: item.title,
+				link: consts.host+"/feed/"+item.uniqKey,
+				cover: item.cover
+			}));
+		});
+
+
+		var publicList = [];
+		collections.forEach(function(item){
+			if (item._id>0)
+			publicList.push(_this.renderItem({
+				title: item.title,
+				link: consts.host+"/collection/"+item._id+"/feed",
+				cover: item.cover
+			}));
+		});
+
+
+		return (
+			React.createElement("div", {className: "page-wrap"}, 
+				React.createElement("section", null, 
+					React.createElement("header", null, 
+						React.createElement("h2", null, t.s("privateRSSfeed")), 
+						React.createElement("p", null, t.s("feedWarning"))
+					), 
+
+					React.createElement("article", null, 
+						React.createElement("div", {className: "list"}, 
+							this.renderItem({title: t.s("myCollections"), link: consts.host+"/feeds/"+UserStore.getUser().uniqKey}), 
+							this.renderItem({title: t.s("orAlternativeFeed"), link: consts.host+"/feed/"+UserStore.getUser().uniqKey}), 
+							privateList
+						)
+					)
+				), 
+
+				React.createElement("section", null, 
+					React.createElement("header", null, 
+						React.createElement("h2", null, t.s("publicRSSfeed"))
+					), 
+
+					React.createElement("article", null, 
+						React.createElement("div", {className: "list"}, 
+							publicList
+						)
+					)
+				)
+			)
+		);
+	}
+});
+
+},{"../../actions/Collections":3,"../../stores/Collections":26}],24:[function(require,module,exports){
+module.exports = React.createClass({displayName: "exports",
+	contextTypes: {
+        router: React.PropTypes.func
+    },
+
+    mixins: [ Router.State ],
+
+    getInitialState: function() {
+		return {
+			user: UserStore.getUser(),
+			loading: true,
+			sidebar: false,
+			title: ""
+		}
+	},
+
+	onUserChange: function(user) {
+        if (this.isMounted())
+        this.setState({
+            user: user,
+            password: {},
+            loading: false
+        });
+    },
+
+    componentWillMount: function() {
+        UserStore.onLoad();
+    },
+
+    componentDidMount: function() {
+        this.unsubscribeUser = UserStore.listen(this.onUserChange);
+    },
+
+    componentWillUnmount: function() {
+        this.unsubscribeUser();
+    },
+
+    componentWillReceiveProps: function(p) {
+    	this.handleSidebar();
+    },
+
+    handleSidebar: function(e) {
+    	if (e)
+    	e.preventDefault();
+
+    	var sidebar = !this.state.sidebar;
+    	this.setState({sidebar: sidebar});
+
+    	if (sidebar)
+    		document.documentElement.classList.add("sidebar-open");
+    	else
+    		document.documentElement.classList.remove("sidebar-open");
+    },
+
+    handleTitle: function(title) {
+    	this.setState({title: title});
+    },
+
+    renderLogged: function() {
+    	var importLink = React.createElement("a", {href: "#/settings/import"}, t.s("importBookmarks"));
+    	if (window.environment.indexOf("mac")!=-1)
+    		importLink = React.createElement("a", {href: consts.host+"/other/import/import.html", target: "_blank"}, t.s("importBookmarks"));
+
+    	return (
+    		React.createElement("menu", null, 
+				React.createElement("li", {className: "section"}, 
+					t.s("account")
+				), 
+				React.createElement("li", {className: "item hide-on-mac "+(this.context.router.isActive("pro") ? "active" : "")}, 
+					React.createElement("a", {href: "#/settings/pro"}, t.s("upgradeAccount"))
+				), 
+				React.createElement("li", {className: "item "+(this.context.router.isActive("profile") ? "active" : "")}, 
+					React.createElement("a", {href: "#/settings"}, t.s("profile"))
+				), 
+
+				React.createElement("li", {className: "section"}, 
+					t.s("basicData")
+				), 
+				React.createElement("li", {className: "item "+(this.context.router.isActive("import") ? "active" : "")}, 
+					importLink
+				), 
+				React.createElement("li", {className: "item "+(this.context.router.isActive("export") ? "active" : "")}, 
+					React.createElement("a", {href: "#/settings/export"}, t.s("exportBookmarks"))
+				), 
+				React.createElement("li", {className: "item "+(this.context.router.isActive("integration") ? "active" : "")}, 
+					React.createElement("a", {href: "#/settings/integration"}, "Integration")
+				), 
+				React.createElement("li", {className: "item "+(this.context.router.isActive("rss") ? "active" : "")}, 
+					React.createElement("a", {href: "#/settings/rss"}, "RSS")
+				), 
+
+				React.createElement("li", {className: "section"}
+					
+				), 
+				React.createElement("li", {className: "item "+(this.context.router.isActive("install") ? "active" : "")}, 
+					React.createElement("a", {href: "#/settings/install"}, t.s("install"), "   ", React.createElement(Icon, {name: "apple"}), " ", React.createElement(Icon, {name: "android", className: "hide-on-mac"}), " ", React.createElement(Icon, {name: "google-chrome"}), " ", React.createElement(Icon, {name: "laptop"}))
+				), 
+				React.createElement("li", {className: "item "+(this.context.router.isActive("help") ? "active" : "")}, 
+					React.createElement("a", {href: "#/settings/help"}, t.s("help"))
+				), 
+				React.createElement("li", {className: "item "+(!UserStore.isPro() ? "hidden" : "")}, 
+					React.createElement("a", {href: consts.host+"/static/upcoming", target: window.targetLink}, t.s("pro_nextFeatures"))
+				), 
+				React.createElement("li", {className: "item"}, 
+					React.createElement("a", {href: consts.host+"/dev", target: window.targetLink}, t.s("forDevelopers"))
+				)
+			)
+    	);
+    },
+
+    renderStatic: function() {
+    	return (
+    		React.createElement("menu", null, 
+				React.createElement("li", {className: "section"}, 
+					"Raindrop.io"
+				), 
+				React.createElement("li", {className: "item "+(this.context.router.isActive("install") ? "active" : "")}, 
+					React.createElement("a", {href: "#/settings/install"}, t.s("install"))
+				), 
+				React.createElement("li", {className: "item "+(this.context.router.isActive("help") ? "active" : "")}, 
+					React.createElement("a", {href: "#/settings/help"}, t.s("help"))
+				), 
+				React.createElement("li", {className: "item"}, 
+					React.createElement("a", {href: consts.host+"/dev", target: window.targetLink}, t.s("forDevelopers"))
+				)
+    		)
+    	);
+    },
+
+	render: function() {
+		var backURL = "/";
+
+		if (window.environment.indexOf("extension")!=-1)
+			backURL = "../../app/index.html";
+
+		if (window.environment.indexOf("mac")!=-1)
+			backURL = "../mac/index.html";
+
+		if (window.environment.indexOf("clipper")!=-1)
+			backURL = "../app/index.html"+window.location.search;
+
+		return (
+			React.createElement("div", {id: "page"}, 
+				React.createElement("div", {id: "sidebar"}, 
+					React.createElement("header", {className: "desktop_hide"}, 
+						React.createElement("a", {href: "", onClick: this.handleSidebar}, 
+							React.createElement(Icon, {name: "clear"})
+						)
+					), 
+
+					UserStore.isLogged() ? this.renderLogged() : this.renderStatic()
+				), 
+				React.createElement("div", {id: "content"}, 
+					
+					React.createElement(DocumentTitle, {title: this.state.title||""}), 
+					React.createElement(RouteHandler, {changeTitle: this.handleTitle})
+				), 
+
+				React.createElement("div", {id: "toolbar"}, 
+					React.createElement("a", {href: backURL, id: "go-back"}, React.createElement(Icon, {name: "back"})), 
+					React.createElement("a", {href: "", className: "title", onClick: this.handleSidebar}, 
+						this.state.title, 
+						React.createElement(Icon, {name: "arrow-down", size: "small", className: "mobileMenu desktop_hide"})
+					)
+				)
+			)
+		);
+	}
+});
+
+},{}],25:[function(require,module,exports){
+{
+	React = require('react');
+	Reflux = require('reflux');
+
+	/* Const */
+	consts = require('../app/config');
+
+	/* Translate */
+	Api = require('../modules/api.js');
+	t = require('../modules/translate');
+	window.moment = require('moment');
+	t.setLang();
+	t.initJSfile();
+
+	/* Helpers */
+	_ = require("lodash");
+	network = require('../modules/network.js');
+	S = require('string');
+	Icon = require('../app/components/Helpers/Icon.js');
+
+	/* Caching */
+	ls = require('localforage');
+	/*chromeStorageLocal = require('../modules/chromestoragelocal.js');
+	ls.defineDriver(chromeStorageLocal).then(function() {
+		ls.setDriver([chromeStorageLocal._driver, ls.INDEXEDDB, ls.LOCALSTORAGE]);
+	});*/
+}
+
+Toasts = require('../actions/Toast');
+DocumentTitle = require('react-document-title');
+
+/* User */
+UserActions = require('../actions/User');
+UserStore = require('../stores/User');
+
+/* Routing */
+Router = require('react-router');
+var DefaultRoute = Router.DefaultRoute;
+var Route = Router.Route;
+var Redirect = Router.Redirect;
+RouteHandler = Router.RouteHandler;
+Link = Router.Link;
+
+var AppRoute = React.createClass({displayName: "AppRoute",
+    render: function () {
+        return (
+            React.createElement(RouteHandler, null)
+        );
+    }
+});
+
+var commonComponents = {
+  loaded: false,
+  load: function() {
+    if (this.loaded) return false;
+
+    UserStore.onLoad();
+
+    var eToast = document.getElementById('app-toast');
+
+    var Toast = require('../app/components/Toast.js');
+    React.render(React.createElement(Toast, null), eToast);
+
+    this.loaded = true;
+  }
+}
+
+window.addEventListener((window.languageLoaded ? "DOMContentLoaded" : "langLoaded"), function() {
+	var eContent = document.getElementById('app-content');
+
+	var SettingsRoute = require("./routes/Settings");
+
+	var ProRoute = require("./routes/Pro");
+	var ProfileRoute = require("./routes/Profile");
+	var ImportRoute = require("./routes/Import");
+	var ExportRoute = require("./routes/Export");
+	var IntegrationRoute = require("./routes/Integration");
+	var RSSRoute = require("./routes/RSS");
+	var InstallRoute = require("./routes/Install");
+	var HelpRoute = require("./routes/Help");
+
+	var routes = (
+	    React.createElement(Route, {path: "/", handler: AppRoute}, 
+	        React.createElement(Route, {name: "settings", path: "/settings", handler: SettingsRoute}, 
+	        	React.createElement(DefaultRoute, {name: "profile", handler: ProfileRoute}), 
+	        	React.createElement(Route, {name: "pro", path: "pro", handler: ProRoute}), 
+	        	React.createElement(Route, {name: "import", path: "import", handler: ImportRoute}), 
+	        	React.createElement(Route, {name: "export", path: "export", handler: ExportRoute}), 
+	        	React.createElement(Route, {name: "integration", path: "integration", handler: IntegrationRoute}), 
+	        	React.createElement(Route, {name: "rss", path: "rss", handler: RSSRoute}), 
+	        	React.createElement(Route, {name: "install", path: "install", handler: InstallRoute}), 
+	        	React.createElement(Route, {name: "help", path: "help", handler: HelpRoute})
+	        ), 
+	        React.createElement(Redirect, {to: "settings"})
+	    )
+	);
+
+	/* Init */
+	Router.run(routes, function (Handler,s) {
+	  var r=null;
+	  try {r = s.routes[1].name; r = s.routes[2].name;}catch(e){}
+	  document.body.setAttribute('data-route', r||"");
+
+	  React.render(React.createElement(Handler, null), eContent, function(){commonComponents.load();});
+	});
+});
+
+window.environment = []; window.targetLink = "_self";
+if (window.location.protocol.indexOf("http")==-1){
+	window.environment.push("extension");
+}
+else{
+	window.environment.push("site");
+}
+
+if (window.location.href.indexOf("clipper/")!=-1){
+	window.environment.push("clipper");
+	//window.targetLink = "_blank";
+}else if (window.location.search.indexOf("isMac")!=-1){
+	window.environment.push("mac");
+	window.targetLink = "_blank";
+}
+
+if (window.location.href.indexOf("only_current")!=-1)
+	window.environment.push("only_current");
+
+//OS
+if (navigator.appVersion.indexOf("Win")!=-1) window.environment.push("Windows");
+if (navigator.appVersion.indexOf("Mac")!=-1) window.environment.push("MacOS");
+if (navigator.appVersion.indexOf("X11")!=-1) window.environment.push("UNIX");
+if (navigator.appVersion.indexOf("Linux")!=-1) window.environment.push("Linux");
+
+for(var i in window.environment)
+	document.documentElement.classList.add(window.environment[i]);
+
+},{"../actions/Toast":6,"../actions/User":7,"../app/components/Helpers/Icon.js":8,"../app/components/Toast.js":10,"../app/config":11,"../modules/api.js":12,"../modules/network.js":13,"../modules/translate":14,"../stores/User":29,"./routes/Export":16,"./routes/Help":17,"./routes/Import":18,"./routes/Install":19,"./routes/Integration":20,"./routes/Pro":21,"./routes/Profile":22,"./routes/RSS":23,"./routes/Settings":24,"localforage":"localforage","lodash":"lodash","moment":"moment","react":"react","react-document-title":"react-document-title","react-router":"react-router","reflux":"reflux","string":"string"}],26:[function(require,module,exports){
+var CollectionsActions = require('../actions/Collections');
+var ChildrensActions = require('../actions/Childrens');
+var UserActions = require('../actions/User');
+var StatsStore = require('../stores/Stats');
+var BookmarksActions = require('../actions/Bookmarks');
+
+var _collections = [], _currentId = -2, _loaded = false, _speed = "sync";
+
+if (typeof isIOSapp != "undefined")
+    _currentId = 0;
+
+var _defaults = [];
+var setDefaults = function() {
+    _defaults = [
+        {
+            _id: 0,
+            title: t.s("all"),
+            view: "list"
+        },
+        {
+            _id: -2,
+            title: t.s("favoriteSites"),
+            view: "simple",
+            //color: "243,73,94"
+        },
+        {
+            _id: -1,
+            title: t.s("defaultCollection--1"),
+            view: "list",
+            //color: "245,166,35"
+        },
+        {
+            _id: -99,
+            title: t.s("defaultCollection--99"),
+            view: "list"
+        },
+
+        {
+            _id: -3,
+            title: t.s("articles"),
+            view: "list"
+        },
+
+        {
+            _id: -4,
+            title: t.s("images") + " " + t.s("und") + " " + t.s("videos").toLowerCase(),
+            view: "masonry"
+        },
+    ];
+    for(var i in _defaults) {
+        _defaults[i].view = Api.getItem("collection/" + _defaults[i]._id + "/view") || _defaults[i].view;
+        _defaults[i].cover = [(window.pathPrefix||"") + "../common/images/collection"+_defaults[i]._id+".png"];
+    }
+}
+
+if (document){
+    if (window.languageLoaded)
+        setDefaults();
+    else
+        window.addEventListener("langLoaded", setDefaults);
+}
+else
+    setDefaults();
+
+var CollectionsStore = Reflux.createStore({
+    init: function() {
+        // Here we listen to actions and register callbacks
+        this.listenTo(CollectionsActions.load, this.onLoad);
+        this.listenTo(CollectionsActions.setCurrent, this.onSetCurrent);
+        this.listenTo(CollectionsActions.updateCollection, this.onUpdateCollection);
+        this.listenTo(CollectionsActions.insertCollection, this.onInsertCollection);
+        this.listenTo(CollectionsActions.removeCollection, this.onRemoveCollection);
+        this.listenTo(CollectionsActions.updateCountCollection, this.onUpdateCountCollection);
+        this.listenTo(CollectionsActions.updateColorCollection, this.onUpdateColorCollection);
+    },
+
+    _saveCache: function() {
+        switch(_speed){
+            case "async":
+                try{ls.setItem('collections', _collections).then(function(){}).catch(function(e){})}catch(e){};
+            break;
+
+            case "sync":
+                Api.setItem('collections', JSON.stringify(_collections));
+            break;
+        }
+    },
+
+    onLoad: function(params) {
+        var _this = this;
+
+        if (!_loaded) {
+            Api.get("collections", function (json) {
+                _loaded = true;
+                
+                if (json.result){
+                    _collections = json.items || [];
+
+                    _this._insertDefaults();
+
+                    _this.trigger(_collections);
+                    _this._saveCache();
+
+                    UserStore._checkGroupsStability();
+
+                    try{window.Intercom('update', {collections: _collections.length})}catch(e){}
+                }
+            });
+        }
+    },
+
+    onLoadId: function(id, callback) {
+        var _this = this;
+        var index = _.findIndex(_collections, { _id: id });
+        if (index==-1)
+        Api.get("collection/"+id, function(json){
+            if (json.result) {
+                _this._updateOrInsertItem(json.item);
+                _this.trigger(_collections);
+            }
+
+            if (typeof callback == 'function')
+                callback();
+        });else{
+            if (typeof callback == 'function')
+                callback();
+        }
+    },
+
+    onSetCurrent: function(id) {
+        if (id == null){
+            _currentId = null;
+            this.trigger(_collections);
+            return;
+        }
+
+        _currentId = parseInt(id);
+
+        var index = _.findIndex(_collections, { _id: _currentId });
+        if (index!=-1)
+            this.trigger(_collections);
+        else
+            this.onLoadId(_currentId);
+    },
+
+    onUpdateCollection: function(params, callback){
+        var _this = this, updateGroups = false;
+
+        if (typeof params.updateModel == "undefined")
+            params.updateModel = true;
+
+        if ((typeof params.item.group == 'number')||(typeof params.item.parentId == 'number'))
+            updateGroups = true;
+
+        if (typeof params.item.group == 'number') {
+            params.item.parentId = "root";
+        }else{
+            delete params.item.group;
+        }
+        if (updateGroups)
+            UserActions.updateCollection({_id: params.item._id, group: params.item.group});
+
+        Api.put("collection/" + params.item._id, params.item, function (json) {
+            if (json.result) {
+                _this._updateOrInsertItem(json.item);
+
+                if (!params.silent)
+                    Toasts.show({text: t.s("saveSuccess"), title: params.item.title});
+            }else{
+                if (!params.silent)
+                    Toasts.show({text: strings.getErrorFromJSON(json), title: params.item.title, status: "error"});
+            }
+
+            if (typeof callback == 'function')
+                callback((json.item || [])._id || false);
+        });
+
+        var index = _.findIndex(_collections, { _id: parseInt(params.item._id) });
+
+        if ((index!=-1)&&(params.updateModel)) {
+            for(var i in params.item)
+                _collections[index][i] = params.item[i];
+
+            this.trigger(_collections);
+
+            if (_collections[index]._id <= 0){
+                for(var i in params.item)
+                    Api.setItem("collection/" + params.item._id + "/" + i, params.item[i]);
+            }
+
+            this._saveCache();
+        }
+    },
+
+    onInsertCollection: function(params, callback){
+        var _this = this;
+
+        Api.post("collection", params.item, function(json){
+            if (json.result){
+                _collections.push(json.item);
+
+                if (typeof params.item.group == 'number') {
+                    params.item.parentId = "root";
+                    UserActions.updateCollection({_id: json.item._id, group: params.item.group});
+                }
+
+                if (!params.silent)
+                    Toasts.show({text: t.s("addSuccess"), title: params.item.title});
+
+                _this.trigger(_collections);
+                _this._saveCache();
+            }else{
+                if (!params.silent)
+                    Toasts.show({text: strings.getErrorFromJSON(json), title: params.item.title, status: "error"});
+            }
+
+            if (typeof callback == 'function')
+                callback( (json.item||[])._id||false );
+        });
+    },
+
+    onRemoveCollection: function(params,callback) {
+        var _this = this;
+
+        var removeNow = function(){
+            Api.del("collection/"+params.item._id, function(json){
+                if (json.result){
+                    if (params.item._id>0){
+                        var index = _.findIndex(_collections, {_id:params.item._id});
+                        if (index!=-1)
+                            _collections.splice(index,1);
+                    }
+
+                    Toasts.show({text: (params.item._id != -99 ? t.s("removeCollectionSuccess") : t.s("trashEmpty")), title: params.item.title});
+
+                    _this.trigger(_collections);
+                    _this._saveCache();
+                    
+                    ChildrensActions.removeCollection(params);
+                    UserActions.saveGroups();
+
+                    if (_this.getCurrentId() == params.item._id){
+                        BookmarksActions.reset(true);
+                    }
+                }else{
+                    Toasts.show({text: strings.getErrorFromJSON(json), title: params.item.title, status: "error"});
+                }
+
+                if (typeof callback == 'function')
+                    callback( json.result );
+            });
+        }
+
+        if (!params.silent){
+            if (confirm(t.s("collectionDeleteConfirm")))
+                removeNow();
+            else{
+                if (typeof callback == 'function')
+                    callback( false );
+            }
+        }else{
+            removeNow();
+        }
+    },
+
+    onUpdateCountCollection: function(params) {
+      var index = _.findIndex(_collections, { _id: parseInt(params._id) });
+      if (index!=-1){
+        switch(params.count){
+          case "+":
+            _collections[index].count++;
+          break;
+
+          case "-":
+            _collections[index].count--;
+          break;
+
+          default:
+            _collections[index].count = params.count;
+          break;
+        }
+
+        this.trigger(_collections);
+      }
+    },
+
+    onUpdateColorCollection: function(params) {
+      var index = _.findIndex(_collections, { _id: parseInt(params._id) });
+      if (index!=-1){
+        _collections[index].color = params.color;
+        if ((_collections[index].cover||[]).length>0)
+            Api.setItem("collection_color_"+_collections[index].cover[0], params.color);
+        this.trigger(_collections);
+      }
+    },
+
+    getCollections: function() {
+        return _collections;
+    },
+
+    getCurrentId: function(onlyWhat) {
+        if (onlyWhat){
+            switch(onlyWhat){
+                case "file":
+                    if (_currentId<0)
+                        if (_currentId<-1)
+                            return -1;
+                break;
+            }
+        }
+        return _currentId;
+    },
+
+    getCollection: function(id) {
+        id = parseInt(id);
+        var index = _.findIndex(_collections, { _id: id });
+        if (index!=-1){
+            if (id===0){
+                _collections[index].count = StatsStore.getAllCount();
+            }else if (id<0){
+                _collections[index].count = StatsStore.getCollectionCount(id);
+            }
+
+            return this._prepareItem(_collections[index]);
+        }
+        else
+            return null;
+    },
+
+    getCount: function() {
+      return _collections.length;
+    },
+
+    reset: function(params) {
+        params = params || {};
+        if (typeof params.speed != "undefined")
+          _speed = params.speed;
+        else
+          _speed = "sync";
+
+        _collections=[];
+        _currentId = -2;
+        if (typeof isIOSapp != "undefined")
+            _currentId = 0;
+        _loaded = false;
+
+        if ((_collections.length==0)&&(!_loaded))
+            this._resetFromCache();
+    },
+
+    _updateOrInsertItem: function(item) {
+        var index = _.findIndex(_collections, { _id: parseInt(item._id) });
+        if (index!=-1)
+            _collections[index] = item;
+        else
+            _collections.push(item);
+    },
+
+    _insertDefaults: function() {
+        var _this = this;
+        _defaults.forEach(function(item){
+            _this._updateOrInsertItem(item);
+        });
+    },
+
+    _resetFromCache: function() {
+        if (window.cacheDisabled||false)
+            return;
+
+        switch(_speed){
+            case "async":
+                var _this = this;
+                try{ls.getItem('collections')
+                    .then(function (val) {
+                        if ((val) && (_collections.length == 0)) {
+                            _collections = val;
+                            _this._insertDefaults();
+                            _this.trigger(_collections);
+                        };
+                    })
+                    .catch(function(e){
+                    });}catch(e){}
+            break;
+
+            case "sync":
+                var cache = Api.getItem('collections');
+                try{
+                    cache = JSON.parse(cache);
+                }catch(e){if (e) cache = null;}
+
+                if ((typeof cache == 'object')&&(cache!=null)){
+                    _collections = cache;
+                    this._insertDefaults();
+                }
+            break;
+        }
+    },
+
+    _prepareItem: function(item) {
+        if (typeof item.parent != "undefined")
+            if (typeof item.parent["$id"] != "undefined") {
+                item.parentId = item.parent["$id"];
+                delete item.group;
+            }
+
+        if (typeof item.parentId == "undefined"){
+            var group = UserStore.getCollectionGroup(item._id);
+            if (group!=null)
+                item.group = parseInt(group);
+        }
+
+        if ((item.cover||[]).length>0)
+            item.color = Api.getItem("collection_color_"+item.cover[0]);
+
+        //if (item._id<=0)
+        //  delete item.count;
+
+        return item;
+    },
+
+    _forceUpdate: function() {
+        this.trigger(_collections);
+    },
+
+    isLoading: function() {
+        return !_loaded;
+    }
+});
+CollectionsStore.reset();
+
+module.exports = CollectionsStore;
+
+},{"../actions/Bookmarks":1,"../actions/Childrens":2,"../actions/Collections":3,"../actions/User":7,"../stores/Stats":27}],27:[function(require,module,exports){
+var StatsActions = require('../actions/Stats');
+var CollectionsActions = require('../actions/Collections');
+
+var _stat = {}, _loading = false, _all = 0, _loaded = false;
+
+var StatsStore = Reflux.createStore({
+    init: function() {
+        // Here we listen to actions and register callbacks
+        this.listenTo(StatsActions.load, this.onLoad);
+        this.listenTo(CollectionsActions.updateCountCollection, this.onUpdate);
+    },
+
+    onLoad: function() {
+    	var _this = this;
+
+    	if (_loading)
+    		return;
+
+        try{ls.getItem("stat")
+            .then(function (val) {
+                if ((val) && (!_loaded)) {
+                    _stat = val;
+                    _this._countAll();
+                    _this.trigger(_stat);
+                }
+            })
+            .catch(function(e){
+                            
+            });}catch(e){}
+
+    	_loading = true;
+    	Api.get("stat", function(json) {
+    		if (json.result){
+	    		_stat = json.items;
+	    		_this._countAll();
+                try{ls.setItem("stat", _stat).then(function(){}).catch(function(e){})}catch(e){};
+	    		_this.trigger(_stat);
+	    	}
+
+            _loading = false;
+            _loaded = true;
+    	});
+    },
+
+    onUpdate: function(params) {
+        var index = _.findIndex(_stat, {_id: params._id});
+
+        switch(params.count){
+          case "+":
+            if (params._id!=-99) _all++;
+            if (index!=-1) _stat[index].count++;
+            this.trigger(_stat);
+          break;
+
+          case "-":
+            if (params._id!=-99) _all--;
+            if (_all<0)
+                _all = 0;
+
+            if (index!=-1) {
+                _stat[index].count--;
+                if (_stat[index].count<0)
+                    _stat[index].count = 0;
+            }
+            this.trigger(_stat);
+          break;
+        }
+    },
+
+    _countAll: function() {
+    	_all = 0;
+    	for(var i in _stat){
+            if (_stat[i]._id === -2){
+              _all = _all - (_stat[i].count||0);
+            }else if (typeof _stat[i]._id != "number")
+    		  _all += parseInt(_stat[i].count||0);
+    	}
+        if (_all<0) _all = 0;
+    },
+
+    getStat: function() {
+    	return _stat;
+    },
+
+    getAllCount: function() {
+    	return _all;
+    },
+
+    getCollectionCount: function(id) {
+        var index = _.findIndex(_stat, {_id: id});
+        if (index!=-1)
+            return _stat[index].count;
+        else
+            return 0;
+    }
+});
+
+module.exports = StatsStore;
+
+},{"../actions/Collections":3,"../actions/Stats":5}],28:[function(require,module,exports){
+var _toasts = [],
+    _timeout = 3000;
+
+var ToastStore = Reflux.createStore({
+    init: function() {
+        // Here we listen to actions and register callbacks
+        this.listenTo(Toasts.show, this.onShow);
+        this.listenTo(Toasts.close, this.onClose);
+        this.listenTo(Toasts.stopTimer, this.onStopTimer);
+    },
+
+    onShow: function(params) {
+        params.id = parseInt(new Date().getTime()/1000);
+        params.timeout = setTimeout(function() {
+            Toasts.close({id:params.id});
+        }, _timeout);
+        params.closing = false;
+        _toasts.push(params);
+
+        //if (_toasts.length>=10) {
+        //    this._removeItem(0,true);
+        //}
+
+        this.trigger(_toasts);
+    },
+
+    onClose: function(params) {
+        //var index = _.findIndex(_toasts, {id: parseInt(params.id)});
+
+        //if (index!=-1){
+            this._removeItem(parseInt(params.id));
+        //}
+    },
+
+    onStopTimer: function(params) {
+        var index = _.findIndex(_toasts, {id: parseInt(params.id)});
+
+        if (index!=-1){
+            clearTimeout(_toasts[index].timeout);
+        }
+    },
+
+    _removeItem: function(id, withoutUpdate) {
+        var _this = this;
+
+        var index = _.findIndex(_toasts, {id: id});
+        if (index==-1) return;
+
+        try{clearTimeout(_toasts[index].timeout);}catch(e){}
+
+        _toasts.splice(index, 1);
+
+        if (typeof withoutUpdate == 'undefined')
+            _this.trigger(_toasts);
+    },
+
+    getToasts: function() {
+        return _toasts;
+    },
+
+    reset: function() {
+        _toasts=[];
+    }
+});
+
+module.exports = ToastStore;
+
+},{}],29:[function(require,module,exports){
+var UserActions = require('../actions/User');
+var ModalFrameActions = require('../actions/ModalFrame');
+var CollectionsStore = require('./Collections');
+
+var _user = {}, _logged = false, _loading = false;
+
+var UserStore = Reflux.createStore({
+    init: function() {
+        // Here we listen to actions and register callbacks
+        this.listenTo(UserActions.load, this.onLoad);
+
+        this.listenTo(UserActions.toggleGroup, this.onToggleGroup);
+        this.listenTo(UserActions.updateGroup, this.onUpdateGroup);
+        this.listenTo(UserActions.insertGroup, this.onInsertGroup);
+        this.listenTo(UserActions.removeGroup, this.onRemoveGroup);
+        this.listenTo(UserActions.swapGroups, this.onSwapGroups);
+        this.listenTo(UserActions.saveGroups, this.saveGroups);
+
+        this.listenTo(UserActions.updateCollection, this.onUpdateCollection);
+        this.listenTo(UserActions.swapCollections, this.onSwapCollections);
+
+        this.listenTo(UserActions.updateLanguage, this.onUpdateLanguage);
+        this.listenTo(UserActions.updateConfig, this.onUpdateConfig);
+        this.listenTo(UserActions.logOut, this.onLogOut);
+        this.listenTo(UserActions.signIn, this.onSignIn);
+        this.listenTo(UserActions.signUp, this.onSignUp);
+    },
+
+    onLoad: function(callback) {
+        if (_loading) {
+          if (typeof callback == "function")
+              callback(false);
+          return;
+        }
+
+        var _this = this;
+        _loading = true;
+        this._resetFromCache();
+
+        Api.get("user", function(json){
+            var afterCheck = function() {
+              if (json.result||false) {
+                  _user = json.user;
+                  _logged = true;
+                  _this.cleanGroups();
+              }else{
+                _user = {};
+                _logged = false;
+
+                //if ((window.environment||[]).indexOf("web")!=-1)
+                //  window.location = network.fixURL("/account");
               }
-              i = !1, c = !0
-            })
+
+              Api.setItem('user', JSON.stringify(_user));
+              try{ls.setItem('user_id', _user._id || 0).then(function(){}).catch(function(e){})}catch(e){};
+
+              _loading = false;
+
+              _this.trigger(_user);
+              _this._checkGroupsStability();
+              _this.updateIntercom();
+            }
+
+            if ((typeof json.result == "boolean") || (typeof json.auth == "boolean")){
+              try{ls.getItem("user_id")
+                .then(function(_userId) {
+                  var currentJSONuserId = null;
+                  try{currentJSONuserId = parseInt(json.user._id);}catch(e){}
+
+                  if ((json.result||false)&&(parseInt(_userId) == currentJSONuserId))
+                    afterCheck();
+                  else{
+                    _this._cleanCache(afterCheck);
+                  }
+
+                  if (typeof callback == "function") callback(json.result);
+                })
+                .catch(function(e){
+                  afterCheck();
+                });}catch(e){
+                  afterCheck();
+                }
+            }else{
+              if (typeof callback == "function") callback(json.result);
+            }
+        });
+    },
+
+    updateIntercom: function() {
+      try{
+        var data = {
+          app_id: "ar0opykp",
+          user_id: _user._id,
+          name: _user.fullName,
+          email: _user.email || "",
+          created_at: Math.floor(new Date(_user.registered).getTime()/1000),
+          pro: _user.pro || false,
+          groups: (_user.groups||[]).length || 0,
+          platform: 'web'
+        };
+
+        if (_user.proExpire)
+          data.pro_expire = Math.floor(new Date(_user.proExpire).getTime()/1000);
+
+        if (typeof window != "undefined")
+          if (typeof window.Intercom != "undefined"){
+            window.Intercom('boot', data);
           }
-        },
-        onUpdate: function (e) {
-          var t = _.findIndex(s, {
-            _id: e._id
-          });
-          switch (e.count) {
-            case "+":
-              -99 != e._id && r++, -1 != t && s[t].count++, this.trigger(s);
-              break;
-            case "-":
-              -99 != e._id && r--, 0 > r && (r = 0), -1 != t && (s[t].count--, s[t].count < 0 && (s[t].count = 0)), this.trigger(s)
-          }
-        },
-        _countAll: function () {
-          r = 0;
-          for (var e in s) - 2 === s[e]._id ? r -= s[e].count || 0 : "number" != typeof s[e]._id && (r += parseInt(s[e].count || 0));
-          0 > r && (r = 0)
-        },
-        getStat: function () {
-          return s
-        },
-        getAllCount: function () {
-          return r
-        },
-        getCollectionCount: function (e) {
-          var t = _.findIndex(s, {
-            _id: e
-          });
-          return -1 != t ? s[t].count : 0
+
+        if (typeof NativeHelpers != "undefined"){
+          data.platform = "ios";
+          delete data.app_id;
+          NativeHelpers.intercomSetUser(data.user_id+"", data);
         }
-      });
-    t.exports = l
-  }, {
-    "../actions/Collections": 3,
-    "../actions/Stats": 5
-  }],
-  28: [function (e, t, n) {
-    var a = [],
-      o = 3e3,
-      s = Reflux.createStore({
-        init: function () {
-          this.listenTo(Toasts.show, this.onShow), this.listenTo(Toasts.close, this.onClose), this.listenTo(Toasts.stopTimer, this.onStopTimer)
-        },
-        onShow: function (e) {
-          e.id = parseInt((new Date).getTime() / 1e3), e.timeout = setTimeout(function () {
-            Toasts.close({
-              id: e.id
-            })
-          }, o), e.closing = !1, a.push(e), this.trigger(a)
-        },
-        onClose: function (e) {
-          this._removeItem(parseInt(e.id))
-        },
-        onStopTimer: function (e) {
-          var t = _.findIndex(a, {
-            id: parseInt(e.id)
-          }); - 1 != t && clearTimeout(a[t].timeout)
-        },
-        _removeItem: function (e, t) {
-          var n = this,
-            o = _.findIndex(a, {
-              id: e
+      } catch(e) {}
+
+      try{
+        Raven.setUserContext({
+          email: _user.email,
+          id: _user._id
+        });
+      }catch(e){}
+    },
+
+    onToggleGroup: function(params){
+        var index = _.findIndex((_user.groups||[]), { id: params.id });
+        if (index!=-1) {
+            _user.groups[index].hidden = !_user.groups[index].hidden;
+            this.saveGroups();
+        }
+    },
+
+    onUpdateGroup: function(params) {
+        var index = _.findIndex((_user.groups||[]), { id: params.id });
+        if (index!=-1) {
+            for(var i in params.item)
+                _user.groups[index][i] = params.item[i];
+
+            this.saveGroups(function(json){
+                if (json.result)
+                    Toasts.show({text: t.s("saveSuccess"), title: params.item.title});
+                else
+                    Toasts.show({text: t.s("saveError"), title: params.item.title, status: "error"});
             });
-          if (-1 != o) {
-            try {
-              clearTimeout(a[o].timeout)
-            } catch (s) {}
-            a.splice(o, 1), "undefined" == typeof t && n.trigger(a)
-          }
-        },
-        getToasts: function () {
-          return a
-        },
-        reset: function () {
-          a = []
         }
+    },
+
+    onInsertGroup: function(params, callback) {
+        if (typeof params.item.collections == "string")
+          params.item.collections = JSON.parse(params.item.collections)
+
+        _user.groups.push({
+            title: params.item.title,
+            hidden: false,
+            id: new Date().getTime(),
+            sort: (_user.groups||[]).length,
+            collections: params.item.collections || []
+        });
+        this.saveGroups(function(json){
+            if (!params.silent)
+              if (json.result)
+                  Toasts.show({text: t.s("addSuccess"), title: params.item.title});
+              else
+                  Toasts.show({text: t.s("saveError"), title: params.item.title, status: "error"});
+
+            if (typeof callback == "function")
+              callback(json.result);
+        }, params);
+    },
+
+    onRemoveGroup: function(params) {
+        var index = _.findIndex((_user.groups||[]), { id: params.id }), result = false, title = "";
+        if (index!=-1) {
+            title = _user.groups[index].title;
+            if ((_user.groups[index].collections||[]).length==0) {
+                _user.groups.splice(index, 1);
+                result = true;
+            }
+        }
+
+        if (result){
+            this.saveGroups();
+            Toasts.show({text: t.s("removeSuccess"), title: title});
+        }else{
+            Toasts.show({text: t.s("removeGroupError"), title: title, status: "error"});
+        }
+    },
+
+    onSwapGroups: function(params) {
+      if (params.fromId==params.toId)
+        return false;
+
+      var fromIndex = _.findIndex(_user.groups, {id: parseInt(params.fromId)});
+      var toIndex = _.findIndex(_user.groups, {id: parseInt(params.toId)});
+
+      if ((fromIndex!=-1)&&(toIndex!=-1)){
+        _user.groups = strings.swapArray(_user.groups, fromIndex, toIndex);
+        for(var i in _user.groups){
+          _user.groups[i].sort = i;
+        }
+
+        this.saveGroups();
+      }else{
+        return false;
+      }
+    },
+
+    onUpdateCollection: function(params) {
+        var needUpdate = false, found = false;
+
+        if (typeof params.group == 'undefined')
+            params.group = -1;
+
+        for(var i in _user.groups)
+            for(var j in (_user.groups[i].collections||[]))
+                if (_user.groups[i].collections[j]==params._id) {
+                    if (params.group != i) {
+                        _user.groups[i].collections.splice(j, 1);
+                        needUpdate = true;
+                    }
+                    found = true;
+                }
+
+        if ((needUpdate)||(!found)) {
+            if (params.group>=0) {
+                if (typeof _user.groups[params.group].collections != 'object')
+                    _user.groups[params.group].collections = [];
+
+                if (typeof params.toTop != "undefined")
+                  _user.groups[params.group].collections.unshift(params._id);
+                else
+                  _user.groups[params.group].collections.push(params._id);
+                _user.groups[params.group].hidden = false;
+            }
+
+            this.saveGroups();
+        }
+    },
+
+    onSwapCollections: function(params) {
+      if (params.fromId==params.toId)
+        return false;
+
+      var from = {
+            index: -1
+          },
+          to = {
+            index: -1
+          };
+
+      //find items indexes and parent groups
+      for(var i in _user.groups){
+        var tempFrom = (_user.groups[i].collections||[]).indexOf(parseInt(params.fromId));
+        var tempTo = (_user.groups[i].collections||[]).indexOf(parseInt(params.toId));
+
+        if (tempFrom!=-1){
+          from.index = tempFrom;
+          from.group = i;
+        }
+
+        if (tempTo!=-1){
+          to.index = tempTo;
+          to.group = i;
+        }
+
+        if ((from.index!=-1)&&(to.index!=-1))
+          break;
+      }
+
+      //swap items
+      if ((from.index!=-1)&&(to.index!=-1)){
+        if (from.group == to.group){
+          _user.groups[from.group].collections = strings.swapArray(_user.groups[from.group].collections, from.index, to.index);
+        }
+        else{
+          var tempFrom = _user.groups[from.group].collections[from.index];
+          _user.groups[from.group].collections.splice(from.index,1);
+
+          _user.groups[to.group].collections.splice(to.index, 0, tempFrom);
+        }
+
+        this.saveGroups();
+      }
+    },
+
+    onUpdateLanguage: function(params, callback) {
+        if (typeof _user.config != "object")
+            _user.config = {};
+
+        _user.config.lang = params.lang;
+        this.saveConfig({lang:_user.config.lang}, callback);
+    },
+
+    onUpdateConfig: function(params, callback) {
+      if (typeof _user.config != "object")
+          _user.config = {};
+
+      for(var i in params)
+        _user.config[i] = params[i];
+
+      this.saveConfig(params, callback);
+    },
+
+    onLogOut: function(callback) {
+      var _this = this;
+      _this._cleanCache(function(){
+        Api.get(network.fixURL("/auth/logout"), function(){
+          _this.reset();
+          callback();
+        });
       });
-    t.exports = s
-  }, {}],
-  29: [function (e, n, a) {
-    var o = e("../actions/User"),
-      s = (e("../actions/ModalFrame"), e("./Collections")),
-      i = {},
-      r = !1,
-      c = !1,
-      l = Reflux.createStore({
-        init: function () {
-          this.listenTo(o.load, this.onLoad), this.listenTo(o.toggleGroup, this.onToggleGroup), this.listenTo(o.updateGroup, this.onUpdateGroup), this.listenTo(o.insertGroup, this.onInsertGroup), this.listenTo(o.removeGroup, this.onRemoveGroup), this.listenTo(o.swapGroups, this.onSwapGroups), this.listenTo(o.saveGroups, this.saveGroups), this.listenTo(o.updateCollection, this.onUpdateCollection), this.listenTo(o.swapCollections, this.onSwapCollections), this.listenTo(o.updateLanguage, this.onUpdateLanguage), this.listenTo(o.updateConfig, this.onUpdateConfig), this.listenTo(o.logOut, this.onLogOut), this.listenTo(o.signIn, this.onSignIn), this.listenTo(o.signUp, this.onSignUp)
-        },
-        onLoad: function (e) {
-          if (c) return void("function" == typeof e && e(!1));
-          var t = this;
-          c = !0, this._resetFromCache(), Api.get("user", function (n) {
-            var a = function () {
-              n.result ? (i = n.user, r = !0, t.cleanGroups()) : (i = {}, r = !1), Api.setItem("user", JSON.stringify(i));
-              try {
-                ls.setItem("user_id", i._id || 0).then(function () {})["catch"](function (e) {})
-              } catch (e) {}
-              c = !1, t.trigger(i), t._checkGroupsStability(), t.updateIntercom()
-            };
-            if ("boolean" == typeof n.result || "boolean" == typeof n.auth) try {
-              ls.getItem("user_id").then(function (o) {
-                var s = null;
-                try {
-                  s = parseInt(n.user._id)
-                } catch (i) {}
-                n.result && parseInt(o) == s ? a() : t._cleanCache(a), "function" == typeof e && e(n.result)
-              })["catch"](function (e) {
-                a()
-              })
-            } catch (o) {
-              a()
-            } else "function" == typeof e && e(n.result)
-          })
-        },
-        updateIntercom: function () {
-          try {
-            var e = {
-              app_id: "ar0opykp",
-              user_id: i._id,
-              name: i.fullName,
-              email: i.email || "",
-              created_at: Math.floor(new Date(i.registered).getTime() / 1e3),
-              pro: i.pro || !1,
-              groups: (i.groups || []).length || 0,
-              platform: "web"
-            };
-            i.proExpire && (e.pro_expire = Math.floor(new Date(i.proExpire).getTime() / 1e3)), "undefined" != typeof window && "undefined" != typeof window.Intercom && window.Intercom("boot", e), "undefined" != typeof NativeHelpers && (e.platform = "ios", delete e.app_id, NativeHelpers.intercomSetUser(e.user_id + "", e))
-          } catch (t) {}
-          try {
-            Raven.setUserContext({
-              email: i.email,
-              id: i._id
-            })
-          } catch (t) {}
-        },
-        onToggleGroup: function (e) {
-          var t = _.findIndex(i.groups || [], {
-            id: e.id
-          }); - 1 != t && (i.groups[t].hidden = !i.groups[t].hidden, this.saveGroups())
-        },
-        onUpdateGroup: function (e) {
-          var n = _.findIndex(i.groups || [], {
-            id: e.id
+    },
+
+    onSignIn: function(callback, params) {
+      var _this = this;
+      if (typeof params == "undefined") params = {};
+
+      var url = "/account" + (((window.environment||[]).indexOf("web")==-1) ? "?extension" : "");
+      if (params.google)
+        url = "/auth/google" + (((window.environment||[]).indexOf("web")==-1) ? "?redirect=%2Fother%2Fmodal-login.html" : "");
+
+      if ((window.environment||[]).indexOf("desktop")!=-1)
+        window.location = (network.fixURL(url));
+      else if ((window.environment||[]).indexOf("clipper")!=-1){
+        window.location.hash = "#/waitauth";
+        BrowserBridge.openModal(network.fixURL(url), {width: 700, height: 600});
+      }
+      else if (typeof chrome != "undefined")
+        chrome.windows.create({
+          url: network.fixURL(url),
+          type: "popup",
+          width: 700,
+          height: 600
+        }, function(win) {
+          chrome.windows.onRemoved.addListener(function(id){
+            if (id == win.id)
+              _this._cleanCache(callback);
           });
-          if (-1 != n) {
-            for (var a in e.item) i.groups[n][a] = e.item[a];
-            this.saveGroups(function (n) {
-              n.result ? Toasts.show({
-                text: t.s("saveSuccess"),
-                title: e.item.title
-              }) : Toasts.show({
-                text: t.s("saveError"),
-                title: e.item.title,
-                status: "error"
-              })
-            })
+        });
+      else{
+        window.open(network.fixURL(url), "raindropwindow", "width=700,height=600,resizable=yes,scrollbars=yes,status=no,toolbar=no,menubar=no,location=no");
+        window.location.hash = "#/waitauth";
+      }
+      /*else{
+        ModalFrameActions.show({
+          title: t.s("signIn"),
+          url: network.fixURL(url),
+          width: 600,
+          height: 500,
+          onClose: function() {
+            _this._cleanCache(callback);
           }
-        },
-        onInsertGroup: function (e, n) {
-          "string" == typeof e.item.collections && (e.item.collections = JSON.parse(e.item.collections)), i.groups.push({
-            title: e.item.title,
-            hidden: !1,
-            id: (new Date).getTime(),
-            sort: (i.groups || []).length,
-            collections: e.item.collections || []
-          }), this.saveGroups(function (a) {
-            e.silent || (a.result ? Toasts.show({
-              text: t.s("addSuccess"),
-              title: e.item.title
-            }) : Toasts.show({
-              text: t.s("saveError"),
-              title: e.item.title,
-              status: "error"
-            })), "function" == typeof n && n(a.result)
-          }, e)
-        },
-        onRemoveGroup: function (e) {
-          var n = _.findIndex(i.groups || [], {
-              id: e.id
-            }),
-            a = !1,
-            o = ""; - 1 != n && (o = i.groups[n].title, 0 == (i.groups[n].collections || []).length && (i.groups.splice(n, 1), a = !0)), a ? (this.saveGroups(), Toasts.show({
-            text: t.s("removeSuccess"),
-            title: o
-          })) : Toasts.show({
-            text: t.s("removeGroupError"),
-            title: o,
-            status: "error"
-          })
-        },
-        onSwapGroups: function (e) {
-          if (e.fromId == e.toId) return !1;
-          var t = _.findIndex(i.groups, {
-              id: parseInt(e.fromId)
-            }),
-            n = _.findIndex(i.groups, {
-              id: parseInt(e.toId)
+        });
+      }*/
+    },
+
+    onSignUp: function(callback) {
+      var _this = this;
+
+      if ((window.environment||[]).indexOf("desktop")!=-1)
+        window.location = (network.fixURL("/account/signup" + (((window.environment||[]).indexOf("web")==-1) ? "?extension" : "")));
+      else if ((window.environment||[]).indexOf("clipper")!=-1){
+        window.location.hash = "#/waitauth";
+        BrowserBridge.openModal(network.fixURL("/account/signup?extension"), {width: 700, height: 600});
+      }
+      else if (typeof chrome != "undefined")
+        chrome.windows.create({
+          url: network.fixURL("/account/signup?extension"),
+          type: "popup",
+          width: 700,
+          height: 600
+        }, function(win) {
+          chrome.windows.onRemoved.addListener(function(id){
+            if (id == win.id)
+              _this._cleanCache(callback);
+          });
+        });
+      else{
+        window.open(network.fixURL("/account/signup?extension"), "raindropwindow", "width=700,height=600,resizable=yes,scrollbars=yes,status=no,toolbar=no,menubar=no,location=no");
+        window.location.hash = "#/waitauth";
+      }
+      /*else{
+        ModalFrameActions.show({
+          title: t.s("signUp"),
+          url: network.fixURL("/account/signup?extension"),
+          width: 600,
+          height: 600,
+          onClose: function() {
+            _this._cleanCache(callback);
+          }
+        });
+      }*/
+    },
+
+    _cleanCache: function(callback) {
+      var bg = Api.getItem("background-image");
+      //Api.get("user", function(json){
+        //if ((json||{}).result||false){
+          Api.clear();
+          Api.setItem("welcome-onboard","true");
+          Api.setItem("background-image",bg);
+          try{
+            ls.clear(function(err) {
+              callback();
             });
-          if (-1 == t || -1 == n) return !1;
-          i.groups = strings.swapArray(i.groups, t, n);
-          for (var a in i.groups) i.groups[a].sort = a;
-          this.saveGroups()
-        },
-        onUpdateCollection: function (e) {
-          var t = !1,
-            n = !1;
-          "undefined" == typeof e.group && (e.group = -1);
-          for (var a in i.groups)
-            for (var o in i.groups[a].collections || []) i.groups[a].collections[o] == e._id && (e.group != a && (i.groups[a].collections.splice(o, 1), t = !0), n = !0);
-          (t || !n) && (e.group >= 0 && ("object" != typeof i.groups[e.group].collections && (i.groups[e.group].collections = []), "undefined" != typeof e.toTop ? i.groups[e.group].collections.unshift(e._id) : i.groups[e.group].collections.push(e._id), i.groups[e.group].hidden = !1), this.saveGroups())
-        },
-        onSwapCollections: function (e) {
-          if (e.fromId == e.toId) return !1;
-          var t = {
-              index: -1
-            },
-            n = {
-              index: -1
-            };
-          for (var a in i.groups) {
-            var o = (i.groups[a].collections || []).indexOf(parseInt(e.fromId)),
-              s = (i.groups[a].collections || []).indexOf(parseInt(e.toId));
-            if (-1 != o && (t.index = o, t.group = a), -1 != s && (n.index = s, n.group = a), -1 != t.index && -1 != n.index) break
-          }
-          if (-1 != t.index && -1 != n.index) {
-            if (t.group == n.group) i.groups[t.group].collections = strings.swapArray(i.groups[t.group].collections, t.index, n.index);
-            else {
-              var o = i.groups[t.group].collections[t.index];
-              i.groups[t.group].collections.splice(t.index, 1), i.groups[n.group].collections.splice(n.index, 0, o)
-            }
-            this.saveGroups()
-          }
-        },
-        onUpdateLanguage: function (e, t) {
-          "object" != typeof i.config && (i.config = {}), i.config.lang = e.lang, this.saveConfig({
-            lang: i.config.lang
-          }, t)
-        },
-        onUpdateConfig: function (e, t) {
-          "object" != typeof i.config && (i.config = {});
-          for (var n in e) i.config[n] = e[n];
-          this.saveConfig(e, t)
-        },
-        onLogOut: function (e) {
-          var t = this;
-          t._cleanCache(function () {
-            Api.get(network.fixURL("/auth/logout"), function () {
-              t.reset(), e()
-            })
-          })
-        },
-        onSignIn: function (e, t) {
-          var n = this;
-          "undefined" == typeof t && (t = {});
-          var a = "/account" + (-1 == (window.environment || []).indexOf("web") ? "?extension" : "");
-          t.google && (a = "/auth/google" + (-1 == (window.environment || []).indexOf("web") ? "?redirect=%2Fother%2Fmodal-login.html" : "")), -1 != (window.environment || []).indexOf("desktop") ? window.location = network.fixURL(a) : -1 != (window.environment || []).indexOf("clipper") ? (window.location.hash = "#/waitauth", BrowserBridge.openModal(network.fixURL(a), {
-            width: 700,
-            height: 600
-          })) : "undefined" != typeof chrome ? chrome.windows.create({
-            url: network.fixURL(a),
-            type: "popup",
-            width: 700,
-            height: 600
-          }, function (t) {
-            chrome.windows.onRemoved.addListener(function (a) {
-              a == t.id && n._cleanCache(e)
-            })
-          }) : (window.open(network.fixURL(a), "raindropwindow", "width=700,height=600,resizable=yes,scrollbars=yes,status=no,toolbar=no,menubar=no,location=no"), window.location.hash = "#/waitauth")
-        },
-        onSignUp: function (e) {
-          var t = this; - 1 != (window.environment || []).indexOf("desktop") ? window.location = network.fixURL("/account/signup" + (-1 == (window.environment || []).indexOf("web") ? "?extension" : "")) : -1 != (window.environment || []).indexOf("clipper") ? (window.location.hash = "#/waitauth", BrowserBridge.openModal(network.fixURL("/account/signup?extension"), {
-            width: 700,
-            height: 600
-          })) : "undefined" != typeof chrome ? chrome.windows.create({
-            url: network.fixURL("/account/signup?extension"),
-            type: "popup",
-            width: 700,
-            height: 600
-          }, function (n) {
-            chrome.windows.onRemoved.addListener(function (a) {
-              a == n.id && t._cleanCache(e)
-            })
-          }) : (window.open(network.fixURL("/account/signup?extension"), "raindropwindow", "width=700,height=600,resizable=yes,scrollbars=yes,status=no,toolbar=no,menubar=no,location=no"), window.location.hash = "#/waitauth")
-        },
-        _cleanCache: function (e) {
-          var t = Api.getItem("background-image");
-          Api.clear(), Api.setItem("welcome-onboard", "true"), Api.setItem("background-image", t);
-          try {
-            ls.clear(function (t) {
-              e()
-            })
-          } catch (n) {
-            e()
-          }
-        },
-        getUser: function () {
-          return "undefined" == typeof i._id && this._resetFromCache(), _.clone(i)
-        },
-        getGroup: function (e) {
-          var t = _.findIndex(i.groups || [], {
-            id: e
-          });
-          return -1 != t ? i.groups[t] : null
-        },
-        isLogged: function () {
-          return r
-        },
-        isLoading: function () {
-          return c
-        },
-        isPro: function () {
-          return r && i.pro ? !0 : !1
-        },
-        reset: function () {
-          i = {}, r = !1, c = !1
-        },
-        cleanGroups: function () {
-          if ((i.groups || []).length > 0) {
-            for (var e in i.groups) null == (i.groups[e].id || null) && (i.groups[e].id = parseInt(e));
-            i.groups = _.sortBy(i.groups, function (e) {
-              return e.sort
-            })
-          } else i.groups = [{
-            id: 0,
-            sort: 0,
-            title: t.s("myCollections"),
-            hidden: !1
-          }]
-        },
-        saveGroups: function (e, t) {
-          if (t = t || {}, "undefined" == typeof t.cleanCollections && (t.cleanCollections = !0), s.getCount() > 0 && t.cleanCollections)
-            for (var n in i.groups) {
-              var a = [];
-              for (var o in i.groups[n].collections || []) null == s.getCollection(i.groups[n].collections[o]) && a.push(o);
-              _.pullAt(i.groups[n].collections, a)
-            }
-          this.saveConfig({
-            groups: i.groups
-          }, e)
-        },
-        removeEmptyGroups: function (e) {
-          var t = [];
-          for (var n in i.groups) 0 == (i.groups[n].collections || []).length && t.push(n);
-          _.pullAt(i.groups, t), this.saveGroups(e, {
-            cleanCollections: !1
-          })
-        },
-        saveConfig: function (e, t) {
-          "undefined" == typeof e.updateModel && (e.updateModel = !0);
-          try {
-            e.updateModel && (i.config[e.name] = !0)
-          } catch (n) {}
-          Api.put("userConfig", e, function (e) {
-            "function" == typeof t && t(e)
-          }), Api.setItem("user", JSON.stringify(i)), this.trigger(i)
-        },
-        getCollectionGroup: function (e) {
-          for (var t in i.groups)
-            for (var n in i.groups[t].collections || [])
-              if (i.groups[t].collections[n] == e) return parseInt(t);
-          return null
-        },
-        getConfig: function (e) {
-          var t = !1;
-          try {
-            t = i.config[e]
-          } catch (n) {}
-          return t
-        },
-        _checkGroupsStability: function () {
-          if (l.isLogged() && !l.isLoading() && s.getCount() > 0 && !s.isLoading()) {
-            var e = [],
-              n = s.getCollections();
-            if (n.forEach(function (t) {
-                var n = t._id <= 0;
-                "undefined" != typeof t.parent && (n = !0), "undefined" != typeof t.parentId && (n = !0), (i.groups || []).forEach(function (e) {
-                  var a = (e.collections || []).some(function (e) {
-                    return parseInt(e) == parseInt(t._id)
-                  });
-                  a && (n = !0)
-                }), n || e.push(parseInt(t._id))
-              }), e.length > 0) {
-              e = _.uniq(e);
-              var a = _.findIndex(i.groups || [], {
-                title: t.s("myCollections")
-              }); - 1 != a ? i.groups[a].collections = (i.groups[a].collections || []).concat(e) : (i.groups = i.groups || [], i.groups.push({
-                id: i.groups.length,
-                sort: i.groups.length,
-                title: t.s("myCollections"),
-                hidden: !1,
-                collections: e
-              })), l.saveGroups()
-            }
-          }
-        },
-        _resetFromCache: function () {
-          if (!window.cacheDisabled && !r) {
-            r = !1;
-            var e = Api.getItem("user");
-            try {
-              e = JSON.parse(e)
-            } catch (t) {
-              t && (e = null)
-            }
-            "object" == typeof e && null != e && (i = e, i._id && (r = !0, this.cleanGroups()))
-          }
-        },
-        _setProData: function (e, t) {
-          i.pro = e, i.proExpire = t
+          }catch(e){callback();}
+        //}else
+          //callback();
+      //});
+    },
+
+    getUser: function() {
+        if (typeof _user._id == 'undefined')
+            this._resetFromCache();
+
+        return _.clone(_user);
+    },
+
+    getGroup: function(id) {
+        var index = _.findIndex((_user.groups||[]), { id: id });
+        if (index!=-1)
+            return _user.groups[index];
+        else
+            return null;
+    },
+
+    isLogged: function() {
+      return _logged;
+    },
+
+    isLoading: function() {
+      return _loading;
+    },
+
+    isPro: function() {
+      if (_logged)
+        if (_user.pro)
+          return true;
+
+      return false;
+    },
+
+    reset: function() {
+        _user = {};
+        _logged = false;
+        _loading = false;
+    },
+
+    cleanGroups: function() {
+        if ((_user.groups||[]).length>0) {
+            for (var i in _user.groups)
+                if ((_user.groups[i].id || null) == null)
+                    _user.groups[i].id = parseInt(i);
+
+            _user.groups = _.sortBy(_user.groups, function (item) {
+                return item.sort;
+            });
+        }else{
+            _user.groups = [{id:0, sort: 0, title: t.s("myCollections"), hidden: false}];
         }
-      });
-    n.exports = l
-  }, {
-    "../actions/ModalFrame": 4,
-    "../actions/User": 7,
-    "./Collections": 26
-  }]
-}, {}, [25]);
-//# sourceMappingURL=settings.js.map
+    },
+
+    saveGroups: function(callback, params) {
+      //cleanup
+      params = params || {};
+      if (typeof params.cleanCollections == "undefined")
+        params.cleanCollections = true;
+
+      if ((CollectionsStore.getCount()>0)&&(params.cleanCollections)) {
+        for(var i in _user.groups){
+          var indexes = [];
+          for(var j in (_user.groups[i].collections||[]))
+            if (CollectionsStore.getCollection(_user.groups[i].collections[j])==null)
+              indexes.push(j);
+
+          _.pullAt(_user.groups[i].collections, indexes);
+        }
+      }
+
+      this.saveConfig({groups:_user.groups}, callback);
+    },
+
+    removeEmptyGroups: function(callback) {
+      var indexes = [];
+
+      for(var i in _user.groups){
+        if ((_user.groups[i].collections||[]).length==0)
+          indexes.push(i);
+      }
+
+      _.pullAt(_user.groups, indexes);
+      this.saveGroups(callback, {cleanCollections: false});
+    },
+
+    saveConfig: function(params, callback) {
+        if (typeof params.updateModel == "undefined")
+            params.updateModel = true;
+
+        try{
+          if (params.updateModel){
+            _user.config[params.name] = true;
+          }
+        }catch(e){}
+
+        //if (_logged)
+        Api.put('userConfig', params, function(json) {
+            if (typeof callback=="function")
+                callback(json);
+        });
+        Api.setItem('user', JSON.stringify(_user));
+        this.trigger(_user);
+    },
+
+    getCollectionGroup: function(cId) {
+        for(var i in _user.groups)
+            for(var j in (_user.groups[i].collections||[]))
+                if (_user.groups[i].collections[j]==cId)
+                    return parseInt(i);
+        return null;
+    },
+
+    getConfig: function(key) {
+        var val = false;
+        try{val = _user.config[key]} catch(e){}
+        return val;
+    },
+
+    _checkGroupsStability: function() {
+      if ( (UserStore.isLogged()) && (!UserStore.isLoading()) && (CollectionsStore.getCount()>0) && (!CollectionsStore.isLoading()) ){
+        var noGroup = [];
+        var collections = CollectionsStore.getCollections();
+
+        collections.forEach(function(coll) {
+          var found = (coll._id<=0);
+
+          if (typeof coll.parent != "undefined")
+            found = true;
+
+          if (typeof coll.parentId != "undefined")
+            found = true;
+
+          (_user.groups||[]).forEach(function(group) {
+            var inGroup = (group.collections||[]).some(function(cId) {
+              return ((parseInt(cId)) == (parseInt(coll._id)));
+            });
+            if (inGroup)
+              found = true;
+          });
+
+          if (!found)
+            noGroup.push(parseInt(coll._id));
+        });
+
+        if (noGroup.length>0){
+          noGroup = _.uniq(noGroup);
+
+          var index = _.findIndex((_user.groups||[]), { title: t.s("myCollections") });
+          if (index!=-1){
+              _user.groups[index].collections = (_user.groups[index].collections||[]).concat(noGroup);
+          }
+          else{
+              _user.groups = _user.groups || [];
+              _user.groups.push({id: _user.groups.length, sort: _user.groups.length, title: t.s("myCollections"), hidden: false, collections: noGroup});
+          }
+
+          UserStore.saveGroups();
+        }
+      }
+    },
+
+    _resetFromCache: function() {
+        if (window.cacheDisabled||false)
+            return;
+
+        if (_logged)
+          return;
+
+        _logged = false;
+
+        var cache = Api.getItem('user');
+        try{
+            cache = JSON.parse(cache);
+        }catch(e){if (e) cache = null;}
+
+        if ((typeof cache == 'object')&&(cache!=null)){
+            _user = cache;
+            if (_user._id){
+              _logged = true;
+              this.cleanGroups();
+            }
+        }
+    },
+
+    _setProData: function(isPro, proExpire){
+      _user.pro = isPro;
+      _user.proExpire = proExpire;
+    }
+});
+
+module.exports = UserStore;
+
+},{"../actions/ModalFrame":4,"../actions/User":7,"./Collections":26}]},{},[25]);

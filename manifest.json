@@ -1,11 +1,17 @@
 {
+"update_url": "https://clients2.google.com/service/update2/crx",
+
   "manifest_version": 2,
   "name": "Raindrop.io New Tab / Speed Dial",
+  "default_locale": "en",
   "description": "Your beautiful start page with favorite sites and bookmarks.",
   "homepage_url": "https://raindrop.io",
   "short_name": "RaindropNewTab",
   "version": "0.7.5",
   "default_locale": "en",
+
+  "offline_enabled": true,
+
   "commands": {
     "_execute_page_action": {
       "suggested_key": {
@@ -18,8 +24,9 @@
   },
 
   "background": {
-    "scripts": ["background.js"]
-  },
+		"scripts": ["background.js"],
+		"persistent": true
+	},
 
   "permissions": [
     "tabs",
@@ -29,16 +36,18 @@
     "notifications"
   ],
 
-  "icons": {
+  "icons" : {
     "16": "common/images/icon-16.png",
-    "48": "common/images/icon-48.png",
-    "128": "common/images/icon-128.png"
+    "48" : "common/images/icon-48.png",
+    "128" : "common/images/icon-128.png"
   },
 
-  "chrome_url_overrides": {
+  "chrome_url_overrides" : {
     "newtab": "app/index.html#/"
   },
 
+  "options_page": "settings/settings.html",
+  
   "options_ui": {
     "page": "settings/settings.html",
     "chrome_style": true
