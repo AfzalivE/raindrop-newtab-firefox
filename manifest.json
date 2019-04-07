@@ -5,9 +5,7 @@
   "description": "Your beautiful start page with favorite sites and bookmarks.",
   "homepage_url": "https://raindrop.io",
   "short_name": "RaindropNewTab",
-  "version": "0.7.5",
-
-  "offline_enabled": true,
+  "version": "0.7.6",
 
   "commands": {
     "_execute_page_action": {
@@ -19,11 +17,6 @@
       }
     }
   },
-
-  "background": {
-		"scripts": ["background.js"],
-		"persistent": true
-	},
 
   "permissions": [
     "tabs",
